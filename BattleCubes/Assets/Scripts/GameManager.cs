@@ -33,6 +33,10 @@ public class GameManager : MonoBehaviour
     const int GAMEEND = 3;
     int state = SETUP;
 
+    //notifications
+    const int TIME_UP = 0;
+    const int PLAYERS_READY = 1;
+
     //timeming
     public readonly float ROUND_TIME = 10;
     public readonly float SET_UP_TIME = 20;
@@ -149,12 +153,11 @@ public class GameManager : MonoBehaviour
         else {
             timeStopped = true;
 
-            print("before if");
             print(state);
             if (state == PLAN) {
                 outtaTimeCanvas.GetComponent<TweenController>().Notify();
+                infoSender.SendNotification(TIME_UP);
                 StartCoroutine(DoThrowdown());
-                print("inside if");
             }
             else if (state == SETUP) {
                 GetOutOfSetUp();
@@ -187,6 +190,12 @@ public class GameManager : MonoBehaviour
             return tmp;
         }
         return null;
+    }
+
+    public void ReadNotification(int notification) {
+        if (notification == TIME_UP) {
+            outtaTimeCanvas.GetComponent<TweenController>().Notify();
+        }
     }
 
     //get set

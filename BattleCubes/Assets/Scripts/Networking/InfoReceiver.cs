@@ -56,6 +56,11 @@ public class InfoReceiver : MonoBehaviourPun {
             //gameManager.GetEnemyCanvas().transform.Find("EnemyName").gameObject.GetComponent<TextMeshProUGUI>().text = (content[0]);
             //gameManager.GetEnemyCanvas().transform.Find("EnemyName").gameObject.GetComponent<TextMeshProUGUI>().text = (content[0]);
         }
+        if (eventCode == 3) {
+            int content = (int)photonEvent.CustomData;
+
+            gameManager.ReadNotification(content);
+        }
     }
     //GameManager gameManager;
     //objectClicker oc;

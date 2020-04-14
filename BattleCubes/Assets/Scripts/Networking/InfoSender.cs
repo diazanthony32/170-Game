@@ -31,13 +31,22 @@ public class InfoSender : MonoBehaviourPun {
         PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
     }
 
-    public void StartThrowDown() {
+    public void SendStartThrowDown() {
         byte evCode = 4;
 
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
         SendOptions sendOptions = new SendOptions { Reliability = true };
         PhotonNetwork.RaiseEvent(evCode, true, raiseEventOptions, sendOptions);
     }
+    public void SendGetOutOfSetup() {
+        byte evCode = 5;
+
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(evCode, true, raiseEventOptions, sendOptions);
+    }
+
+
     //public void SendTurningInfo(string content) {
 
     //    //sets event code; 1 means turnCube

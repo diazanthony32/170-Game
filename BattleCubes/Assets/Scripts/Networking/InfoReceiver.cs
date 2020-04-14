@@ -49,12 +49,9 @@ public class InfoReceiver : MonoBehaviourPun {
         else if (eventCode == 2) {
             int[] content = (int[])photonEvent.CustomData;
 
-            gameManager.GetRemainingTimeText().text = content[0].ToString();
-            gameManager.GetRoundCountText().text = gameManager.ConvertNumToText(content[1]);
-            //gameManager.GetRemainingTimeText().text = content[0].ToString();
-
-            //gameManager.GetEnemyCanvas().transform.Find("EnemyName").gameObject.GetComponent<TextMeshProUGUI>().text = (content[0]);
-            //gameManager.GetEnemyCanvas().transform.Find("EnemyName").gameObject.GetComponent<TextMeshProUGUI>().text = (content[0]);
+            gameManager.SetRemainingTimeText(content[0].ToString());
+            gameManager.SetRoundCountText(content[1].ToString());
+            gameManager.SetState(content[2]);
         }
         //notifications
         else if (eventCode == 3) {
@@ -65,6 +62,9 @@ public class InfoReceiver : MonoBehaviourPun {
         //do throwdown
         else if (eventCode == 4) {
             gameManager.StartThrowDown();
+        }
+        else if (eventCode == 5) {
+            gameManager.GetOutOfSetUp();
         }
         else {
             print("No notification");

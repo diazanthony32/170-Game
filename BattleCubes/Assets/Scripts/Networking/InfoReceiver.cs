@@ -46,7 +46,7 @@ public class InfoReceiver : MonoBehaviourPun {
         }
 
         //changeTimer for timer
-        if (eventCode == 2) {
+        else if (eventCode == 2) {
             int[] content = (int[])photonEvent.CustomData;
 
             gameManager.GetRemainingTimeText().text = content[0].ToString();
@@ -56,10 +56,18 @@ public class InfoReceiver : MonoBehaviourPun {
             //gameManager.GetEnemyCanvas().transform.Find("EnemyName").gameObject.GetComponent<TextMeshProUGUI>().text = (content[0]);
             //gameManager.GetEnemyCanvas().transform.Find("EnemyName").gameObject.GetComponent<TextMeshProUGUI>().text = (content[0]);
         }
-        if (eventCode == 3) {
+        //notifications
+        else if (eventCode == 3) {
             int content = (int)photonEvent.CustomData;
 
             gameManager.ReadNotification(content);
+        }
+        //do throwdown
+        else if (eventCode == 4) {
+            gameManager.StartThrowDown();
+        }
+        else {
+            print("No notification");
         }
     }
     //GameManager gameManager;

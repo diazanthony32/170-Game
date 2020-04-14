@@ -117,11 +117,6 @@ public class GameManager : MonoBehaviour
     //}
 
     public void GetOutOfSetUp() {
-
-        //if (setupCorrutineRunning == true) {
-        //    StopCoroutine(setupCorrutine());
-        //    setupCorrutineRunning = false;
-        //}
         print("getting out of setup");
         state = PLAN;
         remainingTime = ROUND_TIME;
@@ -129,19 +124,26 @@ public class GameManager : MonoBehaviour
         roundCount++;
         roundCountText.text = ConvertNumToText(roundCount);
 
-        //Players[0].turnCube.SetBasePos();
-        //playerInfoSender.SendSetBasePos();
-        //print("position saved");
+        setupCanvas.SetActive(false);
+        enemyActionList.SetActive(true);
+        playerActionList.SetActive(true);
+        enemyCanvas.SetActive(true);
 
-        //Players[0].SetAttackSideDefault();
-        //Players[0].SetTurnSideDefault();
+        mainScreenCanvas.SetActive(true);
 
-        //time = 0;
-        //readyButton.SetActive(false);
-        ////rotByFing.rotAllowed = false;
-        //rotByFing.SetRotAllowed(false);
-        //ResetReadies();
-        //yield return new WaitForSeconds(0.0f);
+        //StartRound();
+    }
+    //void StartRound() {
+    //    mainScreenCanvas.SetActive(true);
+    //    attackCanvas.SetActive(false);
+    //    rotationCanvas.SetActive(false);
+    //}
+    public void StartThrowDown() {
+        mainScreenCanvas.SetActive(false);
+        attackCanvas.SetActive(false);
+        rotationCanvas.SetActive(false);
+
+        StartCoroutine(DoThrowdown());
     }
 
     private void RunTimer() {
@@ -157,7 +159,7 @@ public class GameManager : MonoBehaviour
             if (state == PLAN) {
                 outtaTimeCanvas.GetComponent<TweenController>().Notify();
                 infoSender.SendNotification(TIME_UP);
-                StartCoroutine(DoThrowdown());
+                StartThrowDown();
             }
             else if (state == SETUP) {
                 GetOutOfSetUp();
@@ -177,6 +179,8 @@ public class GameManager : MonoBehaviour
         remainingTime = ROUND_TIME;
         roundCount++;
         roundCountText.text = ConvertNumToText(roundCount);
+
+        mainScreenCanvas.SetActive(true);
     }
 
     string[] ListToStringArray(List<string> l) {

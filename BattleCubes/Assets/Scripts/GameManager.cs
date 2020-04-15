@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     }
     public void CheckForReady() {
         if (readies[0] && readies[1]) {
-            remainingTime = 0;
+            remainingTime = 0.5f;
             //if (state != SETUP) {
             //    remainingTime = 0;
             //}
@@ -144,7 +144,9 @@ public class GameManager : MonoBehaviour
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
 
-        StartCoroutine(DoThrowdown());
+        if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+            StartCoroutine(DoThrowdown());
+        }
     }
 
     private void RunTimer() {
@@ -160,7 +162,7 @@ public class GameManager : MonoBehaviour
             if (state == PLAN) {
                 outtaTimeCanvas.GetComponent<TweenController>().Notify();
                 infoSender.SendNotification(TIME_UP);
-                //infoSender.SendStartThrowDown();
+                infoSender.SendStartThrowDown();
                 StartThrowDown();
             }
             else if (state == SETUP) {

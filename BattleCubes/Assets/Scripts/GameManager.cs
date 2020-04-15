@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
     public void CheckForReady() {
         if (readies[0] && readies[1]) {
             if (state != SETUP) {
-                //todo's
+                remainingTime = 0;
             }
             else {
                 GetOutOfSetUp();
@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
             if (state == PLAN) {
                 outtaTimeCanvas.GetComponent<TweenController>().Notify();
                 infoSender.SendNotification(TIME_UP);
-                infoSender.SendStartThrowDown();
+                //infoSender.SendStartThrowDown();
                 StartThrowDown();
             }
             else if (state == SETUP) {
@@ -183,6 +183,8 @@ public class GameManager : MonoBehaviour
         roundCountText.text = ConvertNumToText(roundCount);
 
         mainScreenCanvas.SetActive(true);
+        ResetReadies();
+        infoSender.SendResetReadies();
     }
 
     string[] ListToStringArray(List<string> l) {
@@ -204,6 +206,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ReadyUp() {
+        readies[0] = true;
+        infoSender.SendReady();
+    }
+    public void ResetReadies() {
+        readies[0] = false;
+        readies[1] = false;
+    }
+
     //set
     public void SetRoundCountText(int val) {
         roundCountText.text =  ConvertNumToText(val);
@@ -213,6 +224,9 @@ public class GameManager : MonoBehaviour
     }
     public void SetState(int val) {
         state = val;
+    }
+    public void SetEnemyReady() {
+        readies[1] = true;
     }
 
     //get

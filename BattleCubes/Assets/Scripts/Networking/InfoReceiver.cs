@@ -66,6 +66,12 @@ public class InfoReceiver : MonoBehaviourPun {
         else if (eventCode == 5) {
             gameManager.GetOutOfSetUp();
         }
+        else if (eventCode == 6) {
+            gameManager.SetEnemyReady();
+        }
+        else if (eventCode == 7) {
+            gameManager.ResetReadies();
+        }
         else {
             print("No notification");
         }

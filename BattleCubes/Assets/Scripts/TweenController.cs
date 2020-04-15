@@ -88,6 +88,12 @@ public class TweenController : MonoBehaviour
 
 	}
 
+    public void Rotate(Vector3 rotDir) {
+        //LeanTween.rotateAroundLocal(gameObject, rotDir, 90, 1);
+        print(rotDir);
+        LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine();
+    }
+
 	public void StopTween()
 	{
 		LeanTween.cancel(gameObject);

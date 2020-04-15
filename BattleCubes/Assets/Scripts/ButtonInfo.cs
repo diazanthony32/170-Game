@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ButtonInfo : MonoBehaviour
 {
+    [SerializeField] RotationByFinger swiperPannel;
     public string CubeTheme;
     public string CubeColor;
 
@@ -19,5 +20,7 @@ public class ButtonInfo : MonoBehaviour
         cube.transform.position = playerCubePosition.transform.position;
         cube.transform.rotation = playerCubePosition.transform.rotation;
         cube.transform.SetParent(playerCubePosition.transform);
+
+        swiperPannel.ChangeCube(cube);
     }
 }

@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e3247fb5d26e24ea6cec36c4bf07de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showFloating: 1
+  showFloating: 0
   delayTime: 0
   pulse: 0
   notify: 0

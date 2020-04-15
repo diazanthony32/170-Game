@@ -51,12 +51,17 @@ public class GameManager : MonoBehaviour
     int roundCount = 0;
 
     void Start() {
+        string[] cubeInfo = {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
+
         playerInfo = new List<string>();
         playerInfo.Add(PlayerPrefs.GetString("PlayerName"));
 
         infoSender.SendPlayerStats(ListToStringArray(playerInfo));
 
         playerCanvas.transform.Find("PlayerName").gameObject.GetComponent<TextMeshProUGUI>().text = playerInfo[0];
+
+         
+        infoSender.SendCubeInfo(cubeInfo);
 
         //roundCountText = gameCanvas.transform.Find("RoundCount").gameObject.GetComponent<TextMeshProUGUI>();
 
@@ -225,6 +230,22 @@ public class GameManager : MonoBehaviour
     public void ResetReadies() {
         readies[0] = false;
         readies[1] = false;
+    }
+    void SpawnPlayerCube(string[] cubeInfo) {
+        GameObject playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
+
+        GameObject cube = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Cube"));
+        cube.transform.position = playerCubePosition.transform.position;
+        cube.transform.rotation = playerCubePosition.transform.rotation;
+        cube.transform.SetParent(playerCubePosition.transform);
+    }
+    public void SpawnEnemyCube(string[] cubeInfo) {
+        GameObject playerCubePosition = GameObject.FindGameObjectWithTag("EnemyCubePosition");
+
+        GameObject cube = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Cube"));
+        cube.transform.position = playerCubePosition.transform.position;
+        cube.transform.rotation = playerCubePosition.transform.rotation;
+        cube.transform.SetParent(playerCubePosition.transform);
     }
 
     //set

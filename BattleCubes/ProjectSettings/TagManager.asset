@@ -10,6 +10,7 @@ TagManager:
   - searchText
   - gameCanvas
   - PlayerCubePosition
+  - EnemyCubePosition
   layers:
   - Default
   - TransparentFX

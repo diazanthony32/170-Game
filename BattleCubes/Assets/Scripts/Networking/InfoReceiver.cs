@@ -75,6 +75,13 @@ public class InfoReceiver : MonoBehaviourPun {
         else if (eventCode == 8) {
             gameManager.GetMainCanvas().SetActive(true);
         }
+        else if (eventCode == 9) {
+            string[] content = (string[])photonEvent.CustomData;
+
+            gameManager.SpawnEnemyCube(content);
+
+            
+        }
         else {
             print("No event code: " + eventCode);
         }

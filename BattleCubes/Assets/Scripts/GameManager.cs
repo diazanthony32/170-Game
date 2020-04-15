@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     }
     public void CheckForReady() {
         if (readies[0] && readies[1]) {
-            remainingTime = 0;
+            remainingTime = 3;
             //if (state != SETUP) {
             //    remainingTime = 0;
             //}

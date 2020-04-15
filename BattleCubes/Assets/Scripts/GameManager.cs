@@ -98,7 +98,9 @@ public class GameManager : MonoBehaviour
     }
     public void CheckForReady() {
         if (readies[0] && readies[1]) {
-            remainingTime = 3;
+            remainingTime = 0;
+            ResetReadies();
+            infoSender.SendResetReadies();
             //if (state != SETUP) {
             //    remainingTime = 0;
             //}

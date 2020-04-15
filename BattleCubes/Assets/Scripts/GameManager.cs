@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -191,6 +192,8 @@ public class GameManager : MonoBehaviour
 
         mainScreenCanvas.SetActive(true);
         infoSender.SendTurnOnMainScreen();
+
+        mainScreenCanvas.transform.Find("ReadyButton").GetComponent<Button>().interactable = true;
 
         ResetReadies();
         infoSender.SendResetReadies();

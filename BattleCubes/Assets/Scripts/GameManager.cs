@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
         mainScreenCanvas.SetActive(true);
         infoSender.SendTurnOnMainScreen();
 
-        mainScreenCanvas.transform.Find("ReadyButton").GetComponent<Button>().interactable = true;
+        //mainScreenCanvas.transform.Find("ReadyButton").GetComponent<Button>().interactable = true;
 
         ResetReadies();
         infoSender.SendResetReadies();

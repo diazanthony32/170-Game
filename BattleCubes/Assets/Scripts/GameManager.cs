@@ -188,6 +188,8 @@ public class GameManager : MonoBehaviour
         roundCountText.text = ConvertNumToText(roundCount);
 
         mainScreenCanvas.SetActive(true);
+        infoSender.SendTurnOnMainScreen();
+
         ResetReadies();
         infoSender.SendResetReadies();
     }
@@ -237,6 +239,9 @@ public class GameManager : MonoBehaviour
     //get
     public GameObject GetEnemyCanvas() {
         return enemyCanvas;
+    }
+    public GameObject GetMainCanvas() {
+        return mainScreenCanvas;
     }
     public TextMeshProUGUI GetRoundCountText() {
         return roundCountText;

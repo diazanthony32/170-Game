@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
 
         playerCanvas.transform.Find("PlayerName").gameObject.GetComponent<TextMeshProUGUI>().text = playerInfo[0];
 
-         
+        SpawnPlayerCube(cubeInfo);
         infoSender.SendCubeInfo(cubeInfo);
 
         //roundCountText = gameCanvas.transform.Find("RoundCount").gameObject.GetComponent<TextMeshProUGUI>();

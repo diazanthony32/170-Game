@@ -139,7 +139,6 @@ public class GameManager : MonoBehaviour
     //    rotationCanvas.SetActive(false);
     //}
     public void StartThrowDown() {
-        //infoSender.SendStartThrowDown();
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
@@ -160,6 +159,7 @@ public class GameManager : MonoBehaviour
             if (state == PLAN) {
                 outtaTimeCanvas.GetComponent<TweenController>().Notify();
                 infoSender.SendNotification(TIME_UP);
+                infoSender.SendStartThrowDown();
                 StartThrowDown();
             }
             else if (state == SETUP) {

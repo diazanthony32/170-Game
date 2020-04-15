@@ -49,8 +49,8 @@ public class InfoReceiver : MonoBehaviourPun {
         else if (eventCode == 2) {
             int[] content = (int[])photonEvent.CustomData;
 
-            gameManager.SetRemainingTimeText(content[0].ToString());
-            gameManager.SetRoundCountText(content[1].ToString());
+            gameManager.SetRemainingTimeText(content[0]);
+            gameManager.SetRoundCountText(content[1]);
             gameManager.SetState(content[2]);
         }
         //notifications

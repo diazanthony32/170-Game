@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
     //    rotationCanvas.SetActive(false);
     //}
     public void StartThrowDown() {
-        infoSender.SendStartThrowDown();
+        //infoSender.SendStartThrowDown();
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour
                 StartThrowDown();
             }
             else if (state == SETUP) {
+                infoSender.SendGetOutOfSetup();
                 GetOutOfSetUp();
             }
         }
@@ -204,11 +205,11 @@ public class GameManager : MonoBehaviour
     }
 
     //set
-    public void SetRoundCountText(string val) {
-        roundCountText.text =  val;
+    public void SetRoundCountText(int val) {
+        roundCountText.text =  ConvertNumToText(val);
     }
-    public void SetRemainingTimeText(string val) {
-        remainingTimeText.text = val;
+    public void SetRemainingTimeText(int val) {
+        remainingTimeText.text = val.ToString();
     }
     public void SetState(int val) {
         state = val;

@@ -98,12 +98,13 @@ public class GameManager : MonoBehaviour
     }
     public void CheckForReady() {
         if (readies[0] && readies[1]) {
-            if (state != SETUP) {
-                remainingTime = 0;
-            }
-            else {
-                GetOutOfSetUp();
-            }
+            remainingTime = 0;
+            //if (state != SETUP) {
+            //    remainingTime = 0;
+            //}
+            //else {
+            //    GetOutOfSetUp();
+            //}
         }
     }
 

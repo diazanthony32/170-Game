@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
     private void RunTimer() {
         int intTIME = 0;
 
-        if (remainingTime > 0) {
+        if (remainingTime >= 0) {
             remainingTime -= Time.deltaTime;
         }
         else {

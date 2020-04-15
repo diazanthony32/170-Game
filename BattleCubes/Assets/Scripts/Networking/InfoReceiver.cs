@@ -63,6 +63,7 @@ public class InfoReceiver : MonoBehaviourPun {
         else if (eventCode == 4) {
             gameManager.StartThrowDown();
         }
+        //notifications
         else if (eventCode == 5) {
             gameManager.GetOutOfSetUp();
         }
@@ -73,7 +74,7 @@ public class InfoReceiver : MonoBehaviourPun {
             gameManager.ResetReadies();
         }
         else {
-            print("No notification");
+            print("No event code: " + eventCode);
         }
     }
     //GameManager gameManager;

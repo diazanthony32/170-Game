@@ -134,6 +134,8 @@ public class GameManager : MonoBehaviour
 
         mainScreenCanvas.SetActive(true);
 
+        ResetReadies();
+        infoSender.SendResetReadies();
         //StartRound();
     }
     //void StartRound() {

@@ -6616,8 +6616,8 @@ MonoBehaviour:
   rotationCanvas: {fileID: 1375625657}
   attackCanvas: {fileID: 928976680}
   outtaTimeCanvas: {fileID: 2095026042}
-  enemyActionList: {fileID: 1028172908}
-  playerActionList: {fileID: 0}
+  enemyActionList: {fileID: 938326264}
+  playerActionList: {fileID: 1028172908}
   roundCountText: {fileID: 1664398367}
   remainingTimeText: {fileID: 1810035912}
 --- !u!4 &802822736

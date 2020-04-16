@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         SpawnPlayerCube(cubeInfo);
         infoSender.SendCubeInfo(cubeInfo);
 
-        rotationCanvas.transform.Find("swipePannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(true);
+        rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(true);
 
         remainingTime = SET_UP_TIME;
     }
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
 
         mainScreenCanvas.SetActive(true);
 
-        rotationCanvas.transform.Find("swipePannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
+        rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
         ResetReadies();
         infoSender.SendResetReadies();
@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
-        rotationCanvas.transform.Find("swipePannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
+        rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
         if (PhotonNetwork.LocalPlayer.IsMasterClient) {
             StartCoroutine(DoThrowdown());

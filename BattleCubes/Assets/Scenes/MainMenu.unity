@@ -3866,9 +3866,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d2bb2d02a633e4e981382b20641f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMainMenu: 1
+  isSetup: 0
+  isMainGameScene: 0
   cubeLocation: {fileID: 1114775184}
-  leftSwiper: {fileID: 762880117}
-  rightSwiper: {fileID: 764630147}
+  actionStorage: {fileID: 0}
 --- !u!1 &984430841
 GameObject:
   m_ObjectHideFlags: 0

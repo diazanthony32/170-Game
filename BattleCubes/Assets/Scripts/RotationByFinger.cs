@@ -5,7 +5,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class RotationByFinger : MonoBehaviour {
+    [SerializeField] bool isMainMenu;
+    [SerializeField] bool isSetup;
+    [SerializeField] bool isMainGameScene;
+    [Space(10)]
     [SerializeField] GameObject cubeLocation;
+    [SerializeField] ActionStorage actionStorage;
     RotateCube rotateCube;
     Vector3 prevPos = Vector3.zero;
     Vector3 posDelta = Vector3.zero;
@@ -16,7 +21,7 @@ public class RotationByFinger : MonoBehaviour {
     public void Start() {
         rotateCube = cubeLocation.transform.GetChild(0).GetComponent<RotateCube>();
 
-        if (SceneManager.GetActiveScene().name == "MainMenu") {
+        if (isMainMenu) {
             rotAllowed = true;
         }
     }
@@ -25,8 +30,20 @@ public class RotationByFinger : MonoBehaviour {
     }
     public void AttemptRotate(Vector2 final, Vector2 initial, int index) {
         if (rotAllowed) {
-            posDelta = final - initial;
-            RotateBySteps(final, initial, index);
+
+            if (isMainGameScene) {
+                if (actionStorage.GetActionListCount() < 5) {
+                    posDelta = final - initial;
+                    RotateBySteps(final, initial, index);
+                }
+            }
+            else {
+                if (isMainMenu || isSetup) {
+                    posDelta = final - initial;
+                    RotateBySteps(final, initial, index);
+                }
+            }
+            
         }
     }
     float AbsIt(float val) {
@@ -36,33 +53,53 @@ public class RotationByFinger : MonoBehaviour {
         rotateCube = cube.GetComponent<RotateCube>();
     }
     void RotateBySteps(Vector2 final, Vector2 initial, int index) {
+        string[] actionArray;
+
         horizontal = AbsIt(posDelta.x) > AbsIt(posDelta.y);
 
         if (horizontal) {
             if (final.x > initial.x) {
                 rotateCube.RequestRotation("turn_right");
+                actionArray = new string[] {"rotate", "turn_right"};
             }
             else {
                 rotateCube.RequestRotation("turn_left");
+                actionArray = new string[] { "rotate", "turn_left" };
+                //actionStorage.StoreAction(new string[] { "rotate", "turn_left" });
             }
         }
         else {
             if (index > 0) {
                 if (final.y > initial.y) {
                     rotateCube.RequestRotation("turn_R_up");
+                    actionArray = new string[] { "rotate", "turn_R_up" };
+
+                    //actionStorage.StoreAction(new string[] { "rotate", "turn_R_up" });
                 }
                 else {
                     rotateCube.RequestRotation("turn_R_down");
+                    actionArray = new string[] { "rotate", "turn_R_down" };
+
+                    //actionStorage.StoreAction(new string[] { "rotate", "turn_R_down" });
                 }
             }
             else {
                 if (final.y > initial.y) {
                     rotateCube.RequestRotation("turn_L_up");
+                    actionArray = new string[] { "rotate", "turn_L_up" };
+
+                    //actionStorage.StoreAction(new string[] { "rotate", "turn_L_up" });
                 }
                 else {
                     rotateCube.RequestRotation("turn_L_down");
+                    actionArray = new string[] { "rotate", "turn_L_down" };
+
+                    //actionStorage.StoreAction(new string[] { "rotate", "turn_L_down" });
                 }
             }
+        }
+        if (isMainGameScene) {
+            actionStorage.StoreAction(actionArray);
         }
     }
     public Vector3 GetPosDelta() {

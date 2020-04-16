@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showFloating: 0
   delayTime: 0
-  pulse: 1
+  pulse: 0
   notify: 0
 --- !u!114 &186836649
 MonoBehaviour:
@@ -3298,7 +3298,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d2bb2d02a633e4e981382b20641f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMainMenu: 0
+  isSetup: 0
+  isMainGameScene: 1
   cubeLocation: {fileID: 1903434421}
+  actionStorage: {fileID: 1028172911}
 --- !u!1 &413763599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3571,7 +3575,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d2bb2d02a633e4e981382b20641f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMainMenu: 0
+  isSetup: 1
+  isMainGameScene: 0
   cubeLocation: {fileID: 1903434421}
+  actionStorage: {fileID: 0}
 --- !u!1 &435474829
 GameObject:
   m_ObjectHideFlags: 0
@@ -12610,7 +12618,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d2bb2d02a633e4e981382b20641f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMainMenu: 0
+  isSetup: 0
+  isMainGameScene: 0
   cubeLocation: {fileID: 0}
+  actionStorage: {fileID: 0}
 --- !u!1 &1331180498
 GameObject:
   m_ObjectHideFlags: 0

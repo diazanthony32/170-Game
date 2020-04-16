@@ -204,6 +204,7 @@ public class GameManager : MonoBehaviour
 
         ResetReadies();
         infoSender.SendResetReadies();
+        playerActionList.GetComponent<ActionStorage>().ClearActionList();
     }
 
     string[] ListToStringArray(List<string> l) {

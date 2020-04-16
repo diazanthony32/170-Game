@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4283,7 +4283,6 @@ GameObject:
   - component: {fileID: 1114775186}
   - component: {fileID: 1114775185}
   - component: {fileID: 1114775189}
-  - component: {fileID: 1114775190}
   m_Layer: 0
   m_Name: CubeLocation
   m_TagString: PlayerCubePosition
@@ -4381,21 +4380,6 @@ MonoBehaviour:
   delayTime: 0
   pulse: 0
   notify: 0
---- !u!114 &1114775190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114775184}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bed3c9232223f524da30dd23d5f2f114, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snapBackStarted: 0
-  lerpToPlanned: 0
-  basePos: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1176481645
 GameObject:
   m_ObjectHideFlags: 0

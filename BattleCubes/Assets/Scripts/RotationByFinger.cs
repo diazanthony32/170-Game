@@ -2,37 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class RotationByFinger : MonoBehaviour {
     [SerializeField] GameObject cubeLocation;
     RotateCube rotateCube;
-    [SerializeField] Swiper leftSwiper;
-    [SerializeField] Swiper rightSwiper;
     Vector3 prevPos = Vector3.zero;
     Vector3 posDelta = Vector3.zero;
 
-    bool rotAllowed = true;
+    bool rotAllowed = false;
     bool horizontal;
 
     public void Start() {
         rotateCube = cubeLocation.transform.GetChild(0).GetComponent<RotateCube>();
+
+        if (SceneManager.GetActiveScene().name == "MainMenu") {
+            rotAllowed = true;
+        }
     }
 
     void Update() {
-        if (rotAllowed) {
-            
-        }
     }
-    public void CalculateDirection(Vector2 final, Vector2 initial, int index) {
-        posDelta = final - initial;
-
-        RotateBySteps(final, initial, index);
+    public void AttemptRotate(Vector2 final, Vector2 initial, int index) {
+        if (rotAllowed) {
+            posDelta = final - initial;
+            RotateBySteps(final, initial, index);
+        }
     }
     float AbsIt(float val) {
         return (val > 0) ? val : -val;
-    }
-    public void SetRotAllowed(bool val) {
-        rotAllowed = val;
     }
     public void ChangeCube(GameObject cube) {
         rotateCube = cube.GetComponent<RotateCube>();
@@ -78,5 +76,8 @@ public class RotationByFinger : MonoBehaviour {
     }
     public void SetPrevPos(Vector3 val) {
         posDelta = val;
+    }
+    public void SetRotAllowed(bool val) {
+        rotAllowed = val;
     }
 }

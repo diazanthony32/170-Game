@@ -26,6 +26,6 @@ public class Swiper : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHa
     public void OnEndDrag(PointerEventData eventData) {
         final = eventData.position;
         
-        rotationController.CalculateDirection(final, initial, index);
+        rotationController.AttemptRotate(final, initial, index);
     }
 }

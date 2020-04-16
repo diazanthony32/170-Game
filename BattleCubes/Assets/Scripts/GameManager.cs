@@ -63,9 +63,8 @@ public class GameManager : MonoBehaviour
         SpawnPlayerCube(cubeInfo);
         infoSender.SendCubeInfo(cubeInfo);
 
-        //roundCountText = gameCanvas.transform.Find("RoundCount").gameObject.GetComponent<TextMeshProUGUI>();
+        rotationCanvas.transform.Find("swipePannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(true);
 
-        //StartCoroutine(setupCorrutine());
         remainingTime = SET_UP_TIME;
     }
 
@@ -140,6 +139,8 @@ public class GameManager : MonoBehaviour
 
         mainScreenCanvas.SetActive(true);
 
+        rotationCanvas.transform.Find("swipePannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
+
         ResetReadies();
         infoSender.SendResetReadies();
         //StartRound();
@@ -153,6 +154,7 @@ public class GameManager : MonoBehaviour
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
+        rotationCanvas.transform.Find("swipePannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
         if (PhotonNetwork.LocalPlayer.IsMasterClient) {
             StartCoroutine(DoThrowdown());

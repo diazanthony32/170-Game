@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         SpawnPlayerCube(cubeInfo);
         infoSender.SendCubeInfo(cubeInfo);
 
-        rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(true);
+        setupCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(true);
 
         remainingTime = SET_UP_TIME;
     }

@@ -239,6 +239,7 @@ public class GameManager : MonoBehaviour
         readies[1] = false;
 
         if (state != SETUP) {
+            playerActionList.GetComponent<ActionStorage>().ClearActionList();
             enemyActionList.GetComponent<ActionStorage>().ClearActionList();
         }
         mainScreenCanvas.SetActive(true);

@@ -98,7 +98,7 @@ public class RotationByFinger : MonoBehaviour {
                 }
             }
         }
-        if (isMainGameScene) {
+        if (isMainGameScene && !LeanTween.isTweening(rotateCube.gameObject)) {
             actionStorage.StoreAction(actionArray);
         }
     }

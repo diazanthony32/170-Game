@@ -198,13 +198,6 @@ public class GameManager : MonoBehaviour
         state = THROWDOWN;
         //print("inside CORRUTINE");
         yield return new WaitForSeconds(3);
-        timeStopped = false;
-        state = PLAN;
-        remainingTime = ROUND_TIME;
-        roundCount++;
-        roundCountText.text = ConvertNumToText(roundCount);
-
-        mainScreenCanvas.SetActive(true);
 
         for (int i = 0; i < 5; i++) {
             print(i);
@@ -235,6 +228,13 @@ public class GameManager : MonoBehaviour
         //}
         //while (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
         //}
+        timeStopped = false;
+        state = PLAN;
+        remainingTime = ROUND_TIME;
+        roundCount++;
+        roundCountText.text = ConvertNumToText(roundCount);
+
+        mainScreenCanvas.SetActive(true);
 
         ResetRound();
         infoSender.SendResetRound();

@@ -149,13 +149,13 @@ public class GameManager : MonoBehaviour
         state = PLAN;
     }
 
-    public void StartThrowDown() {
+    public IEnumerator StartThrowDown() {
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
-        //yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3f);
         //playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend()
         if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
             infoSender.SendActionListArray(playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend());
@@ -181,8 +181,8 @@ public class GameManager : MonoBehaviour
 
                 infoSender.SendNotification(TIME_UP);
                 infoSender.SendStartThrowDown();
-                //StartCoroutine(StartThrowDown());
-                StartThrowDown();
+                StartCoroutine(StartThrowDown());
+                //StartThrowDown();
             }
             else if (state == SETUP) {
                 infoSender.SendGetOutOfSetup();
@@ -205,6 +205,8 @@ public class GameManager : MonoBehaviour
         roundCountText.text = ConvertNumToText(roundCount);
 
         mainScreenCanvas.SetActive(true);
+
+        //dothings
 
         ResetRound();
         infoSender.SendResetRound();

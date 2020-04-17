@@ -61,8 +61,8 @@ public class InfoReceiver : MonoBehaviourPun {
         }
         //do throwdown
         else if (eventCode == 4) {
-            //StartCoroutine(gameManager.StartThrowDown());
-            gameManager.StartThrowDown();
+            StartCoroutine(gameManager.StartThrowDown());
+            //gameManager.StartThrowDown();
         }
         else if (eventCode == 5) {
             gameManager.GetOutOfSetUp();

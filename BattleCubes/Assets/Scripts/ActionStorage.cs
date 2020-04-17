@@ -89,6 +89,8 @@ public class ActionStorage : MonoBehaviour
             transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BattleCubesLogo");
             transform.GetChild(i).GetComponent<TweenController>().CancelPulseHighlight();
         }
-        actionList.Clear();
+        if (actionList.Count != 0) {
+            actionList.Clear();
+        }
     }
 }

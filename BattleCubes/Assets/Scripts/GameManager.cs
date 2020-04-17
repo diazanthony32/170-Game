@@ -141,7 +141,9 @@ public class GameManager : MonoBehaviour
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
         ResetRound();
-        infoSender.SendResetRound();
+        if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+            infoSender.SendResetRound();
+        }
         state = PLAN;
     }
 

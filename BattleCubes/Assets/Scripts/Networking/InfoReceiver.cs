@@ -74,19 +74,29 @@ public class InfoReceiver : MonoBehaviourPun {
             gameManager.ResetRound();
         }
         //else if (eventCode == 8) {
-        //    gameManager.GetMainCanvas().SetActive(true);
+        //    string[] content = (string[])photonEvent.CustomData;
+
+
         //}
         else if (eventCode == 9) {
             string[] content = (string[])photonEvent.CustomData;
 
             gameManager.SpawnEnemyCube(content);
-
-            
         }
         else if (eventCode == 10) {
             string[][] content = (string[][])photonEvent.CustomData;
 
             gameManager.SetEnemyActionList(content);
+        }
+        else if (eventCode == 11) {
+            string content = (string)photonEvent.CustomData;
+
+            gameManager.TranslateRotateEnemyCube(content);
+        }
+        else if (eventCode == 12) {
+            string content = (string)photonEvent.CustomData;
+
+            gameManager.TranslateRotatePlayerCube(content);
         }
         else {
             print("No event code: " + eventCode);

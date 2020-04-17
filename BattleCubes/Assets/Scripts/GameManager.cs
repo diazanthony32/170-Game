@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     [SerializeField] TextMeshProUGUI roundCountText;
     [SerializeField] TextMeshProUGUI remainingTimeText;
+    GameObject playerCubePosition;
+    GameObject enemyCubePosition;
 
     List<string> playerInfo;
     bool[] readies = {false, false};
@@ -199,19 +201,76 @@ public class GameManager : MonoBehaviour
         //print("inside CORRUTINE");
         yield return new WaitForSeconds(3);
 
+        string[] host;
+        string[] client;
         for (int i = 0; i < 5; i++) {
             print(i);
 
             if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
                 print("both players have actions");
+                host = playerActionList.GetComponent<ActionStorage>().GetAt(i);
+                client = enemyActionList.GetComponent<ActionStorage>().GetAt(i);
+
+                if (host[0] == client[0]) {
+                    if (host[0] == "rotate") {
+                        //rotate both
+                        TranslateRotatePlayerCube(host[1]);
+                        TranslateRotateEnemyCube(client[1]);
+
+                        infoSender.SendPlayerTurningDir(host[1]);
+                        infoSender.SendEnemyTurningDir(client[1]);
+
+                        //playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().AssignDirection(host[1]);
+                        //enemyCubePosition.transform.GetChild(0).GetComponent<RotateCube>().AssignDirection(client[1]);
+                    }
+                    else if (host[0] == "attack") {
+                        //both attack
+                    }
+                    yield return new WaitForSeconds(3);
+                }
+                else {
+                    if (host[0] == "rotate") {
+                        //host rotates, client then attacks
+                        TranslateRotatePlayerCube(host[1]);
+                        infoSender.SendPlayerTurningDir(host[1]);
+                        yield return new WaitForSeconds(3);
+                    }
+                    else if (host[0] == "attack") {
+                        //rotate client , host then attacks
+                        TranslateRotateEnemyCube(client[1]);
+                        infoSender.SendEnemyTurningDir(client[1]);
+                        yield return new WaitForSeconds(3);
+                    }
+                    yield return new WaitForSeconds(3);
+                }
             }
             else if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
                 print("host has actions");
+                host = playerActionList.GetComponent<ActionStorage>().GetAt(i);
 
+                if (host[0] == "rotate") {
+                    //host rotates
+                    TranslateRotatePlayerCube(host[1]);
+                    infoSender.SendPlayerTurningDir(host[1]);
+                }
+                else if (host[0] == "attack") {
+                    //host attacks
+                }
+                yield return new WaitForSeconds(3);
             }
             else if (enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
                 print("client has actions");
+                client = enemyActionList.GetComponent<ActionStorage>().GetAt(i);
 
+                if (client[0] == "rotate") {
+                    //client rotates
+                    TranslateRotateEnemyCube(client[1]);
+                    infoSender.SendEnemyTurningDir(client[1]);
+                }
+                else if (client[0] == "attack") {
+                    //client attacks
+                }
+                yield return new WaitForSeconds(3);
             }
             else {
                 print("no more actions");
@@ -220,14 +279,6 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        //compare stuff
-        //while(playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0 && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
-        //    //do things
-        //}
-        //while (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
-        //}
-        //while (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
-        //}
         timeStopped = false;
         state = PLAN;
         remainingTime = ROUND_TIME;
@@ -240,7 +291,31 @@ public class GameManager : MonoBehaviour
         infoSender.SendResetRound();
     }
 
+    public void TranslateRotatePlayerCube(string direction) {
+        playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().AssignDirection(direction);
+    }
+    public void TranslateRotateEnemyCube(string direction) {
+        enemyCubePosition.transform.GetChild(0).GetComponent<RotateCube>().AssignDirection(direction);
+    }
 
+    void CompareActions(string[] host, string[] client) {
+        if (host[0] == client[0]) {
+            if (host[0] == "rotate") {
+                //rotate both
+            }
+            else if (host[0] == "attack") {
+                //both attack
+            }
+        }
+        else {
+            if (host[0] == "rotate") {
+                //host rotates, client then attacks
+            }
+            else if (host[0] == "attack") {
+                //rotate client , host then attacks
+            }
+        }
+    }
 
     string[] ListToStringArray(List<string> l) {
         string[] tmp;
@@ -278,7 +353,7 @@ public class GameManager : MonoBehaviour
     }
 
     void SpawnPlayerCube(string[] cubeInfo) {
-        GameObject playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
+        playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
 
         GameObject cube = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Cube"));
         cube.transform.position = playerCubePosition.transform.position;
@@ -288,7 +363,7 @@ public class GameManager : MonoBehaviour
         SpawnCubeTargetingSystem("PlayerCubePosition");
     }
     public void SpawnEnemyCube(string[] cubeInfo) {
-        GameObject playerCubePosition = GameObject.FindGameObjectWithTag("EnemyCubePosition");
+        enemyCubePosition = GameObject.FindGameObjectWithTag("EnemyCubePosition");
 
         GameObject cube = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Cube"));
         cube.transform.position = playerCubePosition.transform.position;

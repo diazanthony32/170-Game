@@ -66,6 +66,15 @@ public class InfoSender : MonoBehaviourPun {
     //    SendOptions sendOptions = new SendOptions { Reliability = true };
     //    PhotonNetwork.RaiseEvent(evCode, true, raiseEventOptions, sendOptions);
     //}
+    //public void SendTurnDirection(string host, string client) {
+    //    byte evCode = 8;
+
+    //    string[] content = new string[] {host, client};
+
+    //    RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+    //    SendOptions sendOptions = new SendOptions { Reliability = true };
+    //    PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
+    //}
     public void SendCubeInfo(string[] content) {
         byte evCode = 9;
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
@@ -74,6 +83,18 @@ public class InfoSender : MonoBehaviourPun {
     }
     public void SendActionListArray(string[][] content) {
         byte evCode = 10;
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
+    }
+    public void SendPlayerTurningDir(string content) {
+        byte evCode = 11;
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
+    }
+    public void SendEnemyTurningDir(string content) {
+        byte evCode = 12;
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
         SendOptions sendOptions = new SendOptions { Reliability = true };
         PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);

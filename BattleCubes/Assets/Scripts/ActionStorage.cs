@@ -94,4 +94,11 @@ public class ActionStorage : MonoBehaviour
                 actionList.Clear();
         }
     }
+    public string[] GetAt(int val) {
+        if (actionList != null) {
+            if (actionList.Count != 0)
+                return actionList[val];
+        }
+        return new string[0];
+    }
 }

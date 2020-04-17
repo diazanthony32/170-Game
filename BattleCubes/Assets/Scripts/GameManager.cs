@@ -241,6 +241,8 @@ public class GameManager : MonoBehaviour
         cube.transform.position = playerCubePosition.transform.position;
         cube.transform.rotation = playerCubePosition.transform.rotation;
         cube.transform.SetParent(playerCubePosition.transform);
+
+        SpawnCubeTargetingSystem("PlayerCubePosition");
     }
     public void SpawnEnemyCube(string[] cubeInfo) {
         GameObject playerCubePosition = GameObject.FindGameObjectWithTag("EnemyCubePosition");
@@ -249,6 +251,16 @@ public class GameManager : MonoBehaviour
         cube.transform.position = playerCubePosition.transform.position;
         cube.transform.rotation = playerCubePosition.transform.rotation;
         cube.transform.SetParent(playerCubePosition.transform);
+
+        SpawnCubeTargetingSystem("EnemyCubePosition");
+    }
+    void SpawnCubeTargetingSystem(string tag){
+        GameObject playerCubePosition = GameObject.FindGameObjectWithTag(tag);
+
+        GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("BaseCube/CubeTargeting"));
+        cubeTargeting.transform.position = playerCubePosition.transform.position;
+        cubeTargeting.transform.rotation = playerCubePosition.transform.rotation;
+        cubeTargeting.transform.SetParent(playerCubePosition.transform);
     }
 
     //set

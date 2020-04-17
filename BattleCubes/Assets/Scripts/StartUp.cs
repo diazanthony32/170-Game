@@ -42,5 +42,11 @@ public class StartUp : MonoBehaviour
             PlayerPrefs.SetString("CubeTheme", "Demons");
             PlayerPrefs.SetString("CubeColor", "DefaultCube");
         }
+
+        //Only for testing purposes. dont need this, this spawns the targetting system on the main menu cube
+        GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("BaseCube/CubeTargeting"));
+        cubeTargeting.transform.position = playerCubePosition.transform.position;
+        cubeTargeting.transform.rotation = playerCubePosition.transform.rotation;
+        cubeTargeting.transform.SetParent(playerCubePosition.transform);
     }
 }

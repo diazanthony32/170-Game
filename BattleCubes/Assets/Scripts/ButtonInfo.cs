@@ -11,7 +11,7 @@ public class ButtonInfo : MonoBehaviour
     public void ChangeCube() {
         GameObject playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
 
-        Destroy(playerCubePosition.transform.GetChild(0).gameObject);
+        Destroy(playerCubePosition.transform.Find("Cube(Clone)").gameObject);
 
         PlayerPrefs.SetString("CubeTheme", CubeTheme);
         PlayerPrefs.SetString("CubeColor", CubeColor);

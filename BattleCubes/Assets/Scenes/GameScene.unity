@@ -9918,7 +9918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showFloating: 0
   delayTime: 0
-  pulse: 1
+  pulse: 0
   notify: 0
 --- !u!114 &1062581663
 MonoBehaviour:

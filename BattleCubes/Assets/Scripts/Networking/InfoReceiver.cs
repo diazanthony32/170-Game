@@ -61,7 +61,7 @@ public class InfoReceiver : MonoBehaviourPun {
         }
         //do throwdown
         else if (eventCode == 4) {
-            gameManager.StartThrowDown();
+            StartCoroutine(gameManager.StartThrowDown());
         }
         else if (eventCode == 5) {
             gameManager.GetOutOfSetUp();
@@ -70,11 +70,11 @@ public class InfoReceiver : MonoBehaviourPun {
             gameManager.SetEnemyReady();
         }
         else if (eventCode == 7) {
-            gameManager.ResetReadies();
+            gameManager.ResetRound();
         }
-        else if (eventCode == 8) {
-            gameManager.GetMainCanvas().SetActive(true);
-        }
+        //else if (eventCode == 8) {
+        //    gameManager.GetMainCanvas().SetActive(true);
+        //}
         else if (eventCode == 9) {
             string[] content = (string[])photonEvent.CustomData;
 

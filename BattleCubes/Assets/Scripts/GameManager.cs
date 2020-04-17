@@ -104,8 +104,8 @@ public class GameManager : MonoBehaviour
     public void CheckForReady() {
         if (readies[0] && readies[1]) {
             remainingTime = 0;
-            ResetReadies();
-            infoSender.SendResetReadies();
+            ResetRound();
+            infoSender.SendResetRound();
             //if (state != SETUP) {
             //    remainingTime = 0;
             //}
@@ -141,27 +141,24 @@ public class GameManager : MonoBehaviour
 
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
-        ResetReadies();
-        infoSender.SendResetReadies();
-        //StartRound();
+        ResetRound();
+        infoSender.SendResetRound();
     }
-    //void StartRound() {
-    //    mainScreenCanvas.SetActive(true);
-    //    attackCanvas.SetActive(false);
-    //    rotationCanvas.SetActive(false);
-    //}
-    public void StartThrowDown() {
+
+    public IEnumerator StartThrowDown() {
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
+
+        yield return new WaitForSeconds(3);
         infoSender.SendActionListArray(playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend());
 
         if (PhotonNetwork.LocalPlayer.IsMasterClient) {
             StartCoroutine(DoThrowdown());
         }
     }
-
+    
     private void RunTimer() {
         int intTIME = 0;
 
@@ -174,9 +171,10 @@ public class GameManager : MonoBehaviour
             print(state);
             if (state == PLAN) {
                 outtaTimeCanvas.GetComponent<TweenController>().Notify();
+
                 infoSender.SendNotification(TIME_UP);
                 infoSender.SendStartThrowDown();
-                StartThrowDown();
+                StartCoroutine(StartThrowDown());
             }
             else if (state == SETUP) {
                 infoSender.SendGetOutOfSetup();
@@ -190,7 +188,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DoThrowdown() {
         state = THROWDOWN;
-        print("inside CORRUTINE");
+        //print("inside CORRUTINE");
         yield return new WaitForSeconds(3);
         timeStopped = false;
         state = PLAN;
@@ -199,11 +197,9 @@ public class GameManager : MonoBehaviour
         roundCountText.text = ConvertNumToText(roundCount);
 
         mainScreenCanvas.SetActive(true);
-        infoSender.SendTurnOnMainScreen();
 
-        ResetReadies();
-        infoSender.SendResetReadies();
-        playerActionList.GetComponent<ActionStorage>().ClearActionList();
+        ResetRound();
+        infoSender.SendResetRound();
     }
 
     string[] ListToStringArray(List<string> l) {
@@ -229,9 +225,12 @@ public class GameManager : MonoBehaviour
         readies[0] = true;
         infoSender.SendReady();
     }
-    public void ResetReadies() {
+    public void ResetRound() {
         readies[0] = false;
         readies[1] = false;
+
+        enemyActionList.GetComponent<ActionStorage>().ClearActionList();
+        mainScreenCanvas.SetActive(true);
     }
     void SpawnPlayerCube(string[] cubeInfo) {
         GameObject playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");

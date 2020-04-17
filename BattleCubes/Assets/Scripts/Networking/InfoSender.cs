@@ -52,20 +52,20 @@ public class InfoSender : MonoBehaviourPun {
         SendOptions sendOptions = new SendOptions { Reliability = true };
         PhotonNetwork.RaiseEvent(evCode, true, raiseEventOptions, sendOptions);
     }
-    public void SendResetReadies() {
+    public void SendResetRound() {
         byte evCode = 7;
 
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
         SendOptions sendOptions = new SendOptions { Reliability = true };
         PhotonNetwork.RaiseEvent(evCode, true, raiseEventOptions, sendOptions);
     }
-    public void SendTurnOnMainScreen() {
-        byte evCode = 8;
+    //public void SendTurnOnMainScreen() {
+    //    byte evCode = 8;
 
-        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
-        SendOptions sendOptions = new SendOptions { Reliability = true };
-        PhotonNetwork.RaiseEvent(evCode, true, raiseEventOptions, sendOptions);
-    }
+    //    RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+    //    SendOptions sendOptions = new SendOptions { Reliability = true };
+    //    PhotonNetwork.RaiseEvent(evCode, true, raiseEventOptions, sendOptions);
+    //}
     public void SendCubeInfo(string[] content) {
         byte evCode = 9;
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };

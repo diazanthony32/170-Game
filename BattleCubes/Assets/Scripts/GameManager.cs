@@ -157,7 +157,9 @@ public class GameManager : MonoBehaviour
 
         //yield return new WaitForSeconds(3f);
         //playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend()
-        infoSender.SendActionListArray(playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend());
+        if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
+            infoSender.SendActionListArray(playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend());
+        }
 
         if (PhotonNetwork.LocalPlayer.IsMasterClient) {
             StartCoroutine(DoThrowdown());
@@ -173,7 +175,7 @@ public class GameManager : MonoBehaviour
         else {
             timeStopped = true;
 
-            print(state);
+            //print(state);
             if (state == PLAN) {
                 outtaTimeCanvas.GetComponent<TweenController>().Notify();
 

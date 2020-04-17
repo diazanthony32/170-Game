@@ -126,7 +126,6 @@ public class GameManager : MonoBehaviour
 
     public void GetOutOfSetUp() {
         print("getting out of setup");
-        state = PLAN;
         remainingTime = ROUND_TIME;
         timeStopped = false;
         roundCount++;
@@ -143,6 +142,7 @@ public class GameManager : MonoBehaviour
 
         ResetRound();
         infoSender.SendResetRound();
+        state = PLAN;
     }
 
     public IEnumerator StartThrowDown() {

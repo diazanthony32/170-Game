@@ -229,7 +229,9 @@ public class GameManager : MonoBehaviour
         readies[0] = false;
         readies[1] = false;
 
-        enemyActionList.GetComponent<ActionStorage>().ClearActionList();
+        if (state != SETUP) {
+            enemyActionList.GetComponent<ActionStorage>().ClearActionList();
+        }
         mainScreenCanvas.SetActive(true);
     }
     void SpawnPlayerCube(string[] cubeInfo) {

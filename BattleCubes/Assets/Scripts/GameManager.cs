@@ -366,9 +366,9 @@ public class GameManager : MonoBehaviour
         enemyCubePosition = GameObject.FindGameObjectWithTag("EnemyCubePosition");
 
         GameObject cube = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Cube"));
-        cube.transform.position = playerCubePosition.transform.position;
-        cube.transform.rotation = playerCubePosition.transform.rotation;
-        cube.transform.SetParent(playerCubePosition.transform);
+        cube.transform.position = enemyCubePosition.transform.position;
+        cube.transform.rotation = enemyCubePosition.transform.rotation;
+        cube.transform.SetParent(enemyCubePosition.transform);
 
         SpawnCubeTargetingSystem("EnemyCubePosition");
     }

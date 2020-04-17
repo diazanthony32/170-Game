@@ -58,10 +58,10 @@ public class ActionStorage : MonoBehaviour
         for (int i = 0; i < array.Length; i++) {
             array[i] = actionList[i];
 
-            for (int j = 0; j < array[i].Length; j++)
-                print(array[i][j]);
+            //for (int j = 0; j < array[i].Length; j++)
+            //    print(array[i][j]);
 
-            print("\n");
+            //print("\n");
         }
 
         return array;
@@ -83,7 +83,7 @@ public class ActionStorage : MonoBehaviour
     public int GetActionListCount() {
         return actionList.Count;
     }
-    public void ClearActionList() {
+    public void ClearActionList() {//it gets called after setup. client only.. weird
 
         for (int i = 0; i < 5; i++) {
             transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BattleCubesLogo");

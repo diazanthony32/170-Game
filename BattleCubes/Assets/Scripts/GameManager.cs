@@ -104,8 +104,10 @@ public class GameManager : MonoBehaviour
     public void CheckForReady() {
         if (readies[0] && readies[1]) {
             remainingTime = 0;
-            ResetRound();
-            infoSender.SendResetRound();
+            readies[0] = false;
+            readies[1] = false;
+            //ResetRound();
+            //infoSender.SendResetRound();
             //if (state != SETUP) {
             //    remainingTime = 0;
             //}
@@ -227,6 +229,7 @@ public class GameManager : MonoBehaviour
         readies[0] = true;
         infoSender.SendReady();
     }
+
     public void ResetRound() {
         readies[0] = false;
         readies[1] = false;
@@ -236,6 +239,7 @@ public class GameManager : MonoBehaviour
         }
         mainScreenCanvas.SetActive(true);
     }
+
     void SpawnPlayerCube(string[] cubeInfo) {
         GameObject playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
 

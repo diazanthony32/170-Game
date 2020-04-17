@@ -52,6 +52,32 @@ public class ActionStorage : MonoBehaviour
         }
         print("action list size after: " + actionList.Count);
     }
+    public string[][] PrepareActionListForSend() {
+        string[][] array = new string[actionList.Count][];
+
+        for (int i = 0; i < array.Length; i++) {
+            array[i] = actionList[i];
+
+            //for (int j = 0; j < array[i].Length; j++)
+            //    print(array[i][j]);
+
+            //print("\n");
+        }
+
+        return array;
+    }
+
+    //set
+    public void SetActionListArray(string[][] array) {
+        for (int i = 0; i < array.Length; i++) {
+            StoreAction(array[i]);
+
+            for (int j = 0; j < array[i].Length; j++)
+                print(array[i][j]);
+
+            print("\n");
+        }
+    }
 
     //get
     public int GetActionListCount() {

@@ -155,6 +155,7 @@ public class GameManager : MonoBehaviour
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
+        infoSender.SendActionListArray(playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend());
 
         if (PhotonNetwork.LocalPlayer.IsMasterClient) {
             StartCoroutine(DoThrowdown());
@@ -199,8 +200,6 @@ public class GameManager : MonoBehaviour
 
         mainScreenCanvas.SetActive(true);
         infoSender.SendTurnOnMainScreen();
-
-        //mainScreenCanvas.transform.Find("ReadyButton").GetComponent<Button>().interactable = true;
 
         ResetReadies();
         infoSender.SendResetReadies();
@@ -275,6 +274,9 @@ public class GameManager : MonoBehaviour
     }
     public void SetEnemyReady() {
         readies[1] = true;
+    }
+    public void SetEnemyActionList(string[][] array) {
+        enemyActionList.GetComponent<ActionStorage>().SetActionListArray(array);
     }
 
     //get

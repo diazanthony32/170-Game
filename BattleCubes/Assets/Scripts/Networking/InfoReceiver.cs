@@ -82,6 +82,11 @@ public class InfoReceiver : MonoBehaviourPun {
 
             
         }
+        else if (eventCode == 10) {
+            string[][] content = (string[][])photonEvent.CustomData;
+
+            gameManager.SetEnemyActionList(content);
+        }
         else {
             print("No event code: " + eventCode);
         }

@@ -72,6 +72,13 @@ public class InfoSender : MonoBehaviourPun {
         SendOptions sendOptions = new SendOptions { Reliability = true };
         PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
     }
+    public void SendActionListArray(string[][] content) {
+        byte evCode = 10;
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
+    }
+
 
 
     //public void SendTurningInfo(string content) {

@@ -206,11 +206,41 @@ public class GameManager : MonoBehaviour
 
         mainScreenCanvas.SetActive(true);
 
-        //dothings
+        for (int i = 0; i < 5; i++) {
+            print(i);
+
+            if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+                print("both players have actions");
+            }
+            else if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+                print("host has actions");
+
+            }
+            else if (enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+                print("client has actions");
+
+            }
+            else {
+                print("no more actions");
+                break;
+            }
+            yield return new WaitForSeconds(1);
+        }
+
+        //compare stuff
+        //while(playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0 && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
+        //    //do things
+        //}
+        //while (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
+        //}
+        //while (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
+        //}
 
         ResetRound();
         infoSender.SendResetRound();
     }
+
+
 
     string[] ListToStringArray(List<string> l) {
         string[] tmp;

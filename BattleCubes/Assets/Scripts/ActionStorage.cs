@@ -58,10 +58,10 @@ public class ActionStorage : MonoBehaviour
         for (int i = 0; i < array.Length; i++) {
             array[i] = actionList[i];
 
-            //for (int j = 0; j < array[i].Length; j++)
-            //    print(array[i][j]);
+            for (int j = 0; j < array[i].Length; j++)
+                print(array[i][j]);
 
-            //print("\n");
+            print("\n");
         }
 
         return array;

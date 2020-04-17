@@ -156,6 +156,7 @@ public class GameManager : MonoBehaviour
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
         //yield return new WaitForSeconds(3f);
+        //playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend()
         infoSender.SendActionListArray(playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend());
 
         if (PhotonNetwork.LocalPlayer.IsMasterClient) {

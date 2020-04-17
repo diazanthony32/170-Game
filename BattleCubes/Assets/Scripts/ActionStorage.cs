@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class ActionStorage : MonoBehaviour
 {
-    List<string[]> actionList;
+    List<string[]> actionList = new List<string[]>();
 
     void Start()
     {
-        actionList = new List<string[]>();
+        //actionList = new List<string[]>();
 
         //for (int i = 0; i < 3; i++) {
 

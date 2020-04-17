@@ -149,13 +149,13 @@ public class GameManager : MonoBehaviour
         state = PLAN;
     }
 
-    public IEnumerator StartThrowDown() {
+    public void StartThrowDown() {
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
         infoSender.SendActionListArray(playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend());
 
         if (PhotonNetwork.LocalPlayer.IsMasterClient) {
@@ -178,7 +178,8 @@ public class GameManager : MonoBehaviour
 
                 infoSender.SendNotification(TIME_UP);
                 infoSender.SendStartThrowDown();
-                StartCoroutine(StartThrowDown());
+                //StartCoroutine(StartThrowDown());
+                StartThrowDown();
             }
             else if (state == SETUP) {
                 infoSender.SendGetOutOfSetup();

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ActionStorage : MonoBehaviour
 {
-    List<string[]> actionList;
+    List<string[]> actionList = null;
 
     void Start()
     {
@@ -89,8 +89,9 @@ public class ActionStorage : MonoBehaviour
             transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BattleCubesLogo");
             transform.GetChild(i).GetComponent<TweenController>().CancelPulseHighlight();
         }
-        if (actionList.Count != 0) {
-            actionList.Clear();
+        if (actionList != null) {
+            if (actionList.Count != 0)
+                actionList.Clear();
         }
     }
 }

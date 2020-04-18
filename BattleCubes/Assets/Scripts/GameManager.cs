@@ -151,6 +151,7 @@ public class GameManager : MonoBehaviour
             infoSender.SendResetRound();
         }
         state = PLAN;
+        infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
     }
 
     public IEnumerator StartThrowDown() {
@@ -387,6 +388,20 @@ public class GameManager : MonoBehaviour
         cubeTargeting.transform.rotation = playerCubePosition.transform.rotation;
         cubeTargeting.transform.SetParent(playerCubePosition.transform);
     }
+    public void CheckSync(float[] comp, Transform cube) {
+        if (cube.rotation.w != comp[0] || cube.rotation.x != comp[1] ||
+            cube.rotation.y != comp[2] || cube.rotation.z != comp[3]) {
+
+            cube.rotation = new Quaternion(comp[1], comp[2], comp[3], comp[0]);
+        }
+        
+    }
+    public float[] GetQuatComponentAry(Transform cube) {
+        float[] components = {cube.rotation.w, cube.rotation.x,
+            cube.rotation.y, cube.rotation.z};
+
+        return components;
+    }
 
     //set
     public void SetRoundCountText(int val) {
@@ -417,6 +432,9 @@ public class GameManager : MonoBehaviour
     }
     public TextMeshProUGUI GetRemainingTimeText() {
         return remainingTimeText;
+    }
+    public Transform GetEnemyCube() {
+        return enemyCubePosition.transform.GetChild(0);
     }
     public int GetState() {
         return state;

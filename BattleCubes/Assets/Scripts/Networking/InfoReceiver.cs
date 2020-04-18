@@ -98,6 +98,12 @@ public class InfoReceiver : MonoBehaviourPun {
 
             gameManager.TranslateRotatePlayerCube(content);
         }
+        //gets cube rotation
+        else if (eventCode == 13) {
+            float[] content = (float[])photonEvent.CustomData;
+
+            gameManager.CheckSync(content, gameManager.GetEnemyCube());
+        }
         else {
             print("No event code: " + eventCode);
         }

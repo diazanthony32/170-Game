@@ -11,6 +11,9 @@ TagManager:
   - gameCanvas
   - PlayerCubePosition
   - EnemyCubePosition
+  - target
+  - tankTarget
+  - unitSquare
   layers:
   - Default
   - TransparentFX

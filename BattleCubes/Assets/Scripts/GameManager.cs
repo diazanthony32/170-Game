@@ -375,7 +375,7 @@ public class GameManager : MonoBehaviour
     void SpawnCubeTargetingSystem(string tag){
         GameObject playerCubePosition = GameObject.FindGameObjectWithTag(tag);
 
-        GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("BaseCube/CubeTargeting"));
+        GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("MainCubePrefab/CubeTargeting"));
         cubeTargeting.transform.position = playerCubePosition.transform.position;
         cubeTargeting.transform.rotation = playerCubePosition.transform.rotation;
         cubeTargeting.transform.SetParent(playerCubePosition.transform);

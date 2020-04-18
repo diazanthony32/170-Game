@@ -44,7 +44,7 @@ public class StartUp : MonoBehaviour
         }
 
         //Only for testing purposes. dont need this, this spawns the targetting system on the main menu cube
-        GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("BaseCube/CubeTargeting"));
+        GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("MainCubePrefab/CubeTargeting"));
         cubeTargeting.transform.position = playerCubePosition.transform.position;
         cubeTargeting.transform.rotation = playerCubePosition.transform.rotation;
         cubeTargeting.transform.SetParent(playerCubePosition.transform);

@@ -345,6 +345,8 @@ public class GameManager : MonoBehaviour
         readies[0] = false;
         readies[1] = false;
 
+        playerCanvas.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
+
         if (state != SETUP) {
             playerActionList.GetComponent<ActionStorage>().ClearActionList();
             enemyActionList.GetComponent<ActionStorage>().ClearActionList();

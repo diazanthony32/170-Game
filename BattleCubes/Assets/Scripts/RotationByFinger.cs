@@ -117,4 +117,7 @@ public class RotationByFinger : MonoBehaviour {
     public void SetRotAllowed(bool val) {
         rotAllowed = val;
     }
+    public RotateCube GetRotateCube() {
+        return rotateCube;
+    }
 }

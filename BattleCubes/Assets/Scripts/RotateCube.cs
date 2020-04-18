@@ -191,9 +191,10 @@ public class RotateCube : MonoBehaviour {
             lerpToPlanned = false;
         }
     }
-    void LerpToPlannedPos() {
+    public void LerpToPlannedPos() {
         if (plannedStack.Count > 0) {
-            SnapTo(plannedStack.Peek());
+            //SnapTo(plannedStack.Peek());
+            gameObject.GetComponent<TweenController>().RotateBack(plannedStack.Pop());
         }
         else {
             SnapTo(basePos);
@@ -220,5 +221,8 @@ public class RotateCube : MonoBehaviour {
             basePos = plannedStack.Peek();
         }
         print("save");
+    }
+    public void PushToPlannedStack(Quaternion rotation) {
+        plannedStack.Push(rotation);
     }
 }

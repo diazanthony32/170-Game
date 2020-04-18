@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ActionStorage : MonoBehaviour
 {
+    [SerializeField] RotationByFinger rotationByFinger;
     List<string[]> actionList = null;
 
     void Start()
@@ -49,6 +50,8 @@ public class ActionStorage : MonoBehaviour
             if (actionList.Count - 1 >= 0) {
                 transform.GetChild(actionList.Count - 1).GetComponent<TweenController>().PulseHighlight();
             }
+
+            rotationByFinger.GetRotateCube().LerpToPlannedPos();
         }
         print("action list size after: " + actionList.Count);
     }

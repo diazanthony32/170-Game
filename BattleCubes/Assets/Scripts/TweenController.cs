@@ -13,9 +13,15 @@ public class TweenController : MonoBehaviour
 
 	[SerializeField] bool notify = false;
 
+    RotateCube rotateCube = null;
+
 	void Start()
     {
-        if(showFloating){
+        if (gameObject.GetComponent<RotateCube>()) {
+            rotateCube = gameObject.GetComponent<RotateCube>();
+        }
+
+        if (showFloating){
         	Float();
         }
         if(pulse){
@@ -104,8 +110,17 @@ public class TweenController : MonoBehaviour
         //print(rotDir);
         LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine();
     }
+    public void RotateAndStore(Vector3 rotDir) {
+        LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine().setOnComplete(PushToStack);
+    }
+    public void RotateBack(Quaternion rotation) {
+        LeanTween.rotateLocal(gameObject, rotation.eulerAngles, 0.6f);
+    }
+    public void PushToStack() {
+        rotateCube.PushToPlannedStack(transform.rotation);
+    }
 
-	public void StopTween()
+    public void StopTween()
 	{
 		LeanTween.cancel(gameObject);
 	}

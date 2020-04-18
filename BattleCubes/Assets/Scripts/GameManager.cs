@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
 
         ResetRound();
         if (PhotonNetwork.LocalPlayer.IsMasterClient) {
-            infoSender.SendResetRound();
+            //infoSender.SendResetRound();
         }
         state = PLAN;
         infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
@@ -360,10 +360,11 @@ public class GameManager : MonoBehaviour
         readies[0] = false;
         readies[1] = false;
 
+        print("Reseting round!!!");
+
         playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
 
-        //actionPoints += pointsPerRound + (roundCount % roundsForPointIncrease);
-        //AddActionPoints(pointsPerRound /*+ (roundCount % roundsForPointIncrease)*/);
+        AddActionPoints(pointsPerRound /*+ (roundCount % roundsForPointIncrease)*/);
 
         if (state != SETUP) {
             playerActionList.GetComponent<ActionStorage>().ClearActionList();

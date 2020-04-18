@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
         string[] host;
         string[] client;
         for (int i = 0; i < 5; i++) {
-            print(i);
+            //print(i);
 
             if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
                 print("both players have actions");

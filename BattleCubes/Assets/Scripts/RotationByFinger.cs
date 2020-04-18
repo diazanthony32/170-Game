@@ -101,6 +101,7 @@ public class RotationByFinger : MonoBehaviour {
         }
         if (isMainGameScene && !LeanTween.isTweening(rotateCube.gameObject)) {
             actionStorage.StoreAction(actionArray);
+            gameManager.AddActionPoints(-3);
         }
     }
     public Vector3 GetPosDelta() {

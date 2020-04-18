@@ -31,11 +31,9 @@ public class ActionStorage : MonoBehaviour
 
             if (array[0] == "rotate") {
                 transform.GetChild(actionList.Count - 1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BC_UI_Turn");
-                gameManager.AddActionPoints(-3);
             }
             if (array[0] == "attack") {
                 transform.GetChild(actionList.Count - 1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BC_UI_Attack");
-                //gameManager.AddActionPoints();
             }
             if (actionList.Count - 1 > 0) {
                 transform.GetChild(actionList.Count - 2).GetComponent<TweenController>().CancelPulseHighlight();

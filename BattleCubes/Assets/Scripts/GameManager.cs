@@ -161,8 +161,6 @@ public class GameManager : MonoBehaviour
         }
         state = PLAN;
         infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
-
-        actionPoints += pointsPerRound + (roundCount % roundsForPointIncrease); 
     }
 
     public IEnumerator StartThrowDown() {
@@ -364,7 +362,8 @@ public class GameManager : MonoBehaviour
 
         playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
 
-        actionPoints += pointsPerRound + (roundCount % roundsForPointIncrease);
+        //actionPoints += pointsPerRound + (roundCount % roundsForPointIncrease);
+        AddActionPoints(pointsPerRound + (roundCount % roundsForPointIncrease));
 
         if (state != SETUP) {
             playerActionList.GetComponent<ActionStorage>().ClearActionList();

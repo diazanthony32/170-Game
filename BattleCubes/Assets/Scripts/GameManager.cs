@@ -156,9 +156,7 @@ public class GameManager : MonoBehaviour
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
         ResetRound();
-        if (PhotonNetwork.LocalPlayer.IsMasterClient) {
-            //infoSender.SendResetRound();
-        }
+        
         state = PLAN;
         infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
     }
@@ -364,7 +362,8 @@ public class GameManager : MonoBehaviour
 
         playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
 
-        AddActionPoints(pointsPerRound /*+ (roundCount % roundsForPointIncrease)*/);
+        //print(roundCount % roundsForPointIncrease);
+        AddActionPoints(pointsPerRound);
 
         if (state != SETUP) {
             playerActionList.GetComponent<ActionStorage>().ClearActionList();

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ActionStorage : MonoBehaviour
 {
     [SerializeField] RotationByFinger rotationByFinger;
+    [SerializeField] GameManager gameManager;
     List<string[]> actionList = null;
 
     void Start()
@@ -30,9 +31,11 @@ public class ActionStorage : MonoBehaviour
 
             if (array[0] == "rotate") {
                 transform.GetChild(actionList.Count - 1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BC_UI_Turn");
+                gameManager.AddActionPoints(-3);
             }
             if (array[0] == "attack") {
                 transform.GetChild(actionList.Count - 1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BC_UI_Attack");
+                //gameManager.AddActionPoints();
             }
             if (actionList.Count - 1 > 0) {
                 transform.GetChild(actionList.Count - 2).GetComponent<TweenController>().CancelPulseHighlight();
@@ -43,6 +46,11 @@ public class ActionStorage : MonoBehaviour
     public void RemoveAction(int index) {
         print("action list size: " + actionList.Count);
         if (index == actionList.Count) {
+            string action = actionList[index - 1][0];
+
+            if (action == "rotate") { gameManager.AddActionPoints(3); }
+            if (action == "attack") { /*gameManager.AddActionPoints(3);*/ }
+
             actionList.RemoveAt(index - 1);
             transform.GetChild(index - 1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BattleCubesLogo");
             transform.GetChild(index - 1).GetComponent<TweenController>().CancelPulseHighlight();

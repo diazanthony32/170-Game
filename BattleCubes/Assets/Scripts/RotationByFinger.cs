@@ -11,6 +11,7 @@ public class RotationByFinger : MonoBehaviour {
     [Space(10)]
     [SerializeField] GameObject cubeLocation;
     [SerializeField] ActionStorage actionStorage;
+    [SerializeField] GameManager gameManager;
     RotateCube rotateCube;
     Vector3 prevPos = Vector3.zero;
     Vector3 posDelta = Vector3.zero;
@@ -32,7 +33,7 @@ public class RotationByFinger : MonoBehaviour {
         if (rotAllowed) {
 
             if (isMainGameScene) {
-                if (actionStorage.GetActionListCount() < 5) {
+                if (actionStorage.GetActionListCount() < 5 && gameManager.GetActionPoints() >= 3) {
                     posDelta = final - initial;
                     RotateBySteps(final, initial, index);
                 }

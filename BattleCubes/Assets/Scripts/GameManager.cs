@@ -52,6 +52,15 @@ public class GameManager : MonoBehaviour
     //round management
     int roundCount = 0;
 
+    //player points
+    int roundsForPointIncrease = 5;
+    int pointsPerRound = 3;
+    int actionPoints = 0;
+
+    //unit points
+    int unitPoints;
+    int remainingUnitCount;
+
     void Start() {
         string[] cubeInfo = {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
 
@@ -152,6 +161,8 @@ public class GameManager : MonoBehaviour
         }
         state = PLAN;
         infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
+
+        actionPoints += pointsPerRound + (roundCount % roundsForPointIncrease); 
     }
 
     public IEnumerator StartThrowDown() {
@@ -353,6 +364,8 @@ public class GameManager : MonoBehaviour
 
         playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
 
+        actionPoints += pointsPerRound + (roundCount % roundsForPointIncrease);
+
         if (state != SETUP) {
             playerActionList.GetComponent<ActionStorage>().ClearActionList();
             enemyActionList.GetComponent<ActionStorage>().ClearActionList();
@@ -419,6 +432,10 @@ public class GameManager : MonoBehaviour
     public void SetEnemyActionList(string[][] array) {
         enemyActionList.GetComponent<ActionStorage>().SetActionListArray(array);
     }
+    public void AddActionPoints(int val) {
+        actionPoints += val;
+        playerCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
+    }
 
     //get
     public GameObject GetEnemyCanvas() {
@@ -439,7 +456,13 @@ public class GameManager : MonoBehaviour
     public int GetState() {
         return state;
     }
-    
+    public int GetRoundCount() {
+        return roundCount;
+    }
+    public int GetActionPoints() {
+        return actionPoints;
+    }
+
 
     public string ConvertNumToText(int num) {
         if (num == 0) {

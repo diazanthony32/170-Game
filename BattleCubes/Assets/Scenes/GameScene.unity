@@ -3335,6 +3335,7 @@ MonoBehaviour:
   isMainGameScene: 1
   cubeLocation: {fileID: 1903434421}
   actionStorage: {fileID: 1028172911}
+  gameManager: {fileID: 802822735}
 --- !u!1 &413763599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3644,6 +3645,7 @@ MonoBehaviour:
   isMainGameScene: 0
   cubeLocation: {fileID: 1903434421}
   actionStorage: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!1 &435474829
 GameObject:
   m_ObjectHideFlags: 0
@@ -8250,6 +8252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationByFinger: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!114 &938326267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9707,6 +9710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationByFinger: {fileID: 392404569}
+  gameManager: {fileID: 802822735}
 --- !u!1 &1035257826
 GameObject:
   m_ObjectHideFlags: 0
@@ -12753,6 +12757,7 @@ MonoBehaviour:
   isMainGameScene: 0
   cubeLocation: {fileID: 0}
   actionStorage: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!1 &1331180498
 GameObject:
   m_ObjectHideFlags: 0

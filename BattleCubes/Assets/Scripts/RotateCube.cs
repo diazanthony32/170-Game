@@ -107,8 +107,13 @@ public class RotateCube : MonoBehaviour {
         //resets the arrow clicked to null
     }
     void DoTweenRotation() {
-        if (gameManager.GetState() == gameManager.PLAN) {
-            GetComponent<TweenController>().RotateAndStore(rotDir);
+        if (SceneManager.GetActiveScene().buildIndex == 1) {
+            if (gameManager.GetState() == gameManager.PLAN) {
+                GetComponent<TweenController>().RotateAndStore(rotDir);
+            }
+            else {
+                GetComponent<TweenController>().Rotate(rotDir);
+            }
         }
         else {
             GetComponent<TweenController>().Rotate(rotDir);

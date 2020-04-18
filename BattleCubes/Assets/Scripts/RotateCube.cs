@@ -210,8 +210,9 @@ public class RotateCube : MonoBehaviour {
 
     public void LerpToPlannedPos() {
         if (plannedStack.Count > 0) {
-            print("lerp to: " + plannedStack.Peek());
-            gameObject.GetComponent<TweenController>().RotateBack(plannedStack.Pop());
+            //print("lerp to: " + plannedStack.Peek());
+            plannedStack.Pop();
+            gameObject.GetComponent<TweenController>().RotateBack(plannedStack.Peek());
         }
         else {
             gameObject.GetComponent<TweenController>().RotateBack(basePos);

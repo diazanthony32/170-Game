@@ -46,7 +46,10 @@ public class ActionStorage : MonoBehaviour
         if (index == actionList.Count) {
             string action = actionList[index - 1][0];
 
-            if (action == "rotate") { gameManager.AddActionPoints(3); }
+            if (action == "rotate") {
+                rotationByFinger.GetRotateCube().LerpToPlannedPos();
+                gameManager.AddActionPoints(3);
+            }
             if (action == "attack") { /*gameManager.AddActionPoints(3);*/ }
 
             actionList.RemoveAt(index - 1);
@@ -56,8 +59,7 @@ public class ActionStorage : MonoBehaviour
             if (actionList.Count - 1 >= 0) {
                 transform.GetChild(actionList.Count - 1).GetComponent<TweenController>().PulseHighlight();
             }
-
-            rotationByFinger.GetRotateCube().LerpToPlannedPos();
+            
         }
         print("action list size after: " + actionList.Count);
     }

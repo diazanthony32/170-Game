@@ -21,12 +21,12 @@ public class RotateCube : MonoBehaviour {
     bool lerping;
     public bool snapBackStarted = false;
     public bool lerpToPlanned = false;
-    Vector3 rotDir;
+    //Vector3 rotDir;
     float counter = 0;
     string arrow = null;
 
     public Quaternion basePos;
-    Stack<Quaternion> plannedStack;
+    Stack<string> plannedStack;
 
     string newArrowName;
     string oldArrowName;
@@ -38,7 +38,7 @@ public class RotateCube : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         basePos = transform.rotation;
-        plannedStack = new Stack<Quaternion>();
+        plannedStack = new Stack<string>();
 
         if (SceneManager.GetActiveScene().buildIndex == 1) {
             gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
@@ -47,173 +47,162 @@ public class RotateCube : MonoBehaviour {
 
     // cube is continously checking to be rotated
     void Update() {
-        if (!string.IsNullOrEmpty(arrow) && !LeanTween.isTweening(gameObject)) {
-            CheckInput(arrow);
-        }
-        if (!rotDir.Equals( Vector3.zero)) {
-            //print(rotDir);
-            DoTweenRotation();
-            rotDir = Vector3.zero;
-        }
-        if (!LeanTween.isTweening(gameObject)) {
-            start = false;
-        }
+        //if (!string.IsNullOrEmpty(arrow) && !LeanTween.isTweening(gameObject)) {
+        //    CheckInput(arrow);
+        //}
+        //if (!rotDir.Equals( Vector3.zero)) {
+        //    //print(rotDir);
+        //    DoTweenRotation();
+        //    rotDir = Vector3.zero;
+        //}
+        //if (!LeanTween.isTweening(gameObject)) {
+        //    start = false;
+        //}
     }
 
     //checks which arrow was clicked
-    private void CheckInput(string s) {
+    private Vector3 GetVecDirFromStringDir(string s) {
         //------- X
         if (s == "turn_L_up") {
-            if (!start) {
-                rotDir = Vector3.back;
-                start = true;
-            }
+            return Vector3.back;
         }
         else if (s == "turn_L_down") {
-            if (!start) {
-                rotDir = Vector3.forward;
-                start = true;
-            }
+            return Vector3.forward;
         }
         //------- Y
         else if (s == "turn_R_up") {
-            if (!start) {
-                rotDir = Vector3.right;
-                start = true;
-            }
+            return Vector3.right;
         }
         else if (s == "turn_R_down") {
-            if (!start) {
-                rotDir = Vector3.left;
-                start = true;
-            }
+            return Vector3.left;
         }
         //--------- Z
         else if (s == "turn_left") {
-            if (!start) {
-                rotDir = Vector3.up;
-                start = true;
-            }
+            return Vector3.up;
+        }
+        else if (s == "turn_left") {
+            return Vector3.down;
         }
         else {
-            if (s == "turn_right") {
-                if (!start) {
-                    rotDir = Vector3.down;
-                    start = true;
-                }
-            }
-        }
-        arrow = null;
-        //resets the arrow clicked to null
-    }
-    void DoTweenRotation() {
-        if (SceneManager.GetActiveScene().buildIndex == 1) {
-            if (gameManager.GetState() == gameManager.PLAN) {
-                GetComponent<TweenController>().RotateAndStore(rotDir);
-            }
-            else {
-                GetComponent<TweenController>().Rotate(rotDir);
-            }
-        }
-        else {
-            GetComponent<TweenController>().Rotate(rotDir);
+            return Vector3.zero;
         }
     }
-    void DoRotation() {
-        float tmp;
-        float overshot;
+    //void DoRotation() {
+    //    float tmp;
+    //    float overshot;
 
-        if (counter >= 90) {
-            overshot = counter - 90;
-            transform.RotateAround(transform.position, rotDir, -overshot);
-            counter = 0;
+    //    if (counter >= 90) {
+    //        overshot = counter - 90;
+    //        transform.RotateAround(transform.position, rotDir, -overshot);
+    //        counter = 0;
 
-            start = false;
-            if (stackPush) {
-                plannedStack.Push(transform.rotation);
-                stackPush = false;
-            }
-        }
-        else {
-            if (start) {
-                tmp = 90.0f * Time.deltaTime * speed;
-                counter += tmp;
-                transform.RotateAround(transform.position, rotDir, tmp);
-            }
-        }
+    //        start = false;
+    //        if (stackPush) {
+    //            plannedStack.Push(transform.rotation);
+    //            stackPush = false;
+    //        }
+    //    }
+    //    else {
+    //        if (start) {
+    //            tmp = 90.0f * Time.deltaTime * speed;
+    //            counter += tmp;
+    //            transform.RotateAround(transform.position, rotDir, tmp);
+    //        }
+    //    }
 
-        if (snapBackStarted && !lerpToPlanned) {
-            SnapTo(basePos);
-            //print("snapping");
-        }
-        if (lerpToPlanned && !snapBackStarted) {
-            LerpToPlannedPos();
-        }
-    }
+    //    if (snapBackStarted && !lerpToPlanned) {
+    //        SnapTo(basePos);
+    //        //print("snapping");
+    //    }
+    //    if (lerpToPlanned && !snapBackStarted) {
+    //        LerpToPlannedPos();
+    //    }
+    //}
 
     // assigns the clicked arrow to the variable s to be used in Update function
     public void AssignDirection(string s) {
-        if (!string.IsNullOrEmpty(s) && !lerping) {
-            arrow = s;
-        }
+        DoTweenRotation(s);
+        //if (!string.IsNullOrEmpty(s) && !lerping) {
+        //    arrow = s;
+        //}
     }
     public void RequestRotation(string s) {
-        AssignDirection(s);
+        //AssignDirection(s);
         //print("assigning direction: " + s);
     }
 
     // assigns the clicked arrow to the variable s to be used in Update function
-    public void ArrowConfirmed() {
-        if (!string.IsNullOrEmpty(newArrowName)) arrow = newArrowName;
+    //public void ArrowConfirmed() {
+    //    if (!string.IsNullOrEmpty(newArrowName)) arrow = newArrowName;
 
-        GameObject unmoveables = transform.parent.gameObject.transform.Find("Unmoveables").gameObject;
-        GameObject turnDirections = unmoveables.transform.Find("Turn_Directions").gameObject;
-        GameObject targetArrow = turnDirections.transform.Find(newArrowName).gameObject;
+    //    GameObject unmoveables = transform.parent.gameObject.transform.Find("Unmoveables").gameObject;
+    //    GameObject turnDirections = unmoveables.transform.Find("Turn_Directions").gameObject;
+    //    GameObject targetArrow = turnDirections.transform.Find(newArrowName).gameObject;
 
-        var targetArrowRenderer = targetArrow.GetComponentInChildren<Renderer>();
+    //    var targetArrowRenderer = targetArrow.GetComponentInChildren<Renderer>();
 
-        newArrowName = null;
-    }
+    //    newArrowName = null;
+    //}
 
-    public void ResetTurn() {
+    //public void ResetTurn() {
 
-        if (newArrowName != null) {
+    //    if (newArrowName != null) {
 
-            //resets the arrow highlight
-            GameObject unmoveables = transform.parent.gameObject.transform.Find("Unmoveables").gameObject;
-            GameObject turnDirections = unmoveables.transform.Find("Turn_Directions").gameObject;
-            GameObject targetArrow = turnDirections.transform.Find(newArrowName).gameObject;
+    //        //resets the arrow highlight
+    //        GameObject unmoveables = transform.parent.gameObject.transform.Find("Unmoveables").gameObject;
+    //        GameObject turnDirections = unmoveables.transform.Find("Turn_Directions").gameObject;
+    //        GameObject targetArrow = turnDirections.transform.Find(newArrowName).gameObject;
 
-            var targetArrowRenderer = targetArrow.GetComponentInChildren<Renderer>();
-        }
+    //        var targetArrowRenderer = targetArrow.GetComponentInChildren<Renderer>();
+    //    }
 
-        newArrowName = null;
-        oldArrowName = null;
-    }
+    //    newArrowName = null;
+    //    oldArrowName = null;
+    //}
 
-    public void RotationStoreB(string s) {
-        List<string> rotationList = new List<string> { s };
+    //public void RotationStoreB(string s) {
+    //    List<string> rotationList = new List<string> { s };
 
-        ResetTurn();
-    }
-    void SnapTo(Quaternion pos) {
-        lerping = Quaternion.Angle(transform.rotation, pos) > 0.2f;
-        if (lerping) {
+    //    ResetTurn();
+    //}
+    //void SnapTo(Quaternion pos) {
+    //    lerping = Quaternion.Angle(transform.rotation, pos) > 0.2f;
+    //    if (lerping) {
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, pos, 0.1f);
+    //        transform.rotation = Quaternion.Lerp(transform.rotation, pos, 0.1f);
+    //    }
+    //    else {
+    //        snapBackStarted = false;
+    //        lerpToPlanned = false;
+    //    }
+    //}
+
+    void DoTweenRotation(string s) {
+        Vector3 vecDirection = GetVecDirFromStringDir(s);
+
+        if (SceneManager.GetActiveScene().buildIndex == 1) {
+            if (gameManager.GetState() == gameManager.PLAN) {
+                GetComponent<TweenController>().Rotate(vecDirection);
+                PushToPlannedStack(s);
+            }
+            else {
+                GetComponent<TweenController>().Rotate(vecDirection);
+            }
         }
         else {
-            snapBackStarted = false;
-            lerpToPlanned = false;
+            GetComponent<TweenController>().Rotate(vecDirection);
         }
     }
 
     public void LerpToPlannedPos() {
         if (plannedStack.Count > 0) {
             //print("lerp to: " + plannedStack.Peek());
+
+
             plannedStack.Pop();
             if (plannedStack.Count > 0) {
-                gameObject.GetComponent<TweenController>().RotateBack(plannedStack.Peek());
+                //gameObject.GetComponent<TweenController>().RotateBack(plannedStack.Peek());
+                GetComponent<TweenController>().Rotate(rotDir);
             }
             else {
                 gameObject.GetComponent<TweenController>().RotateBack(basePos);
@@ -250,7 +239,34 @@ public class RotateCube : MonoBehaviour {
         }
         print("save");
     }
-    public void PushToPlannedStack(Quaternion rotation) {
+    public void PushToPlannedStack(string rotation) {
         plannedStack.Push(rotation);
+    }
+
+    string GetOpositeRotation(string s) {
+        //------- X
+        if (s == "turn_L_up") {
+            return "turn_L_down";
+        }
+        else if (s == "turn_L_down") {
+            return "turn_L_up";
+        }
+        //------- Y
+        else if (s == "turn_R_up") {
+            return "turn_R_down";
+        }
+        else if (s == "turn_R_down") {
+            return "turn_R_up";
+        }
+        //--------- Z
+        else if (s == "turn_left") {
+            return "turn_right";
+        }
+        else if (s == "turn_right") {
+            return "turn_left";
+        }
+        else {
+            return "";
+        }
     }
 }

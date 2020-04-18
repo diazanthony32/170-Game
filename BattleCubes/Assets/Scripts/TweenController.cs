@@ -110,9 +110,9 @@ public class TweenController : MonoBehaviour
         //print(rotDir);
         LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine();
     }
-    public void RotateAndStore(Vector3 rotDir) {
-        LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine().setOnComplete(PushToStack);
-    }
+    //public void RotateAndStore(Vector3 rotDir) {
+    //    LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine().setOnComplete(PushToStack);
+    //}
     public void RotateBack(Quaternion rotation) {
         LeanTween.rotateLocal(gameObject, rotation.eulerAngles, 0.6f).setEaseInOutSine();
     }

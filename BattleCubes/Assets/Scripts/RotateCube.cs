@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RotateCube : MonoBehaviour {
     float speed = 2.5f;
@@ -30,6 +31,7 @@ public class RotateCube : MonoBehaviour {
     string newArrowName;
     string oldArrowName;
 
+    GameManager gameManager;
     bool storeInfo = false;
     bool stackPush = false;
 
@@ -37,6 +39,10 @@ public class RotateCube : MonoBehaviour {
     void Start() {
         basePos = transform.rotation;
         plannedStack = new Stack<Quaternion>();
+
+        if (SceneManager.GetActiveScene().buildIndex == 1) {
+            gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
+        }
     }
 
     // cube is continously checking to be rotated
@@ -101,7 +107,12 @@ public class RotateCube : MonoBehaviour {
         //resets the arrow clicked to null
     }
     void DoTweenRotation() {
-        GetComponent<TweenController>().Rotate(rotDir);
+        if (gameManager.GetState() == gameManager.PLAN) {
+            GetComponent<TweenController>().RotateAndStore(rotDir);
+        }
+        else {
+            GetComponent<TweenController>().Rotate(rotDir);
+        }
     }
     void DoRotation() {
         float tmp;
@@ -194,13 +205,13 @@ public class RotateCube : MonoBehaviour {
 
     public void LerpToPlannedPos() {
         if (plannedStack.Count > 0) {
-            print(plannedStack.Peek());
+            print("lerp to: " + plannedStack.Peek());
             gameObject.GetComponent<TweenController>().RotateBack(plannedStack.Pop());
         }
         else {
             gameObject.GetComponent<TweenController>().RotateBack(basePos);
+            print("lerp to base");
         }
-        print("lerp");
     }
     public void SnapToBaseRotation() {
         gameObject.GetComponent<TweenController>().RotateBack(basePos);

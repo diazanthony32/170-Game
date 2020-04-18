@@ -30,11 +30,11 @@ public class GameManager : MonoBehaviour
     bool[] readies = {false, false};
 
     //states
-    const int SETUP = 0;
-    const int PLAN = 1;
-    const int THROWDOWN = 2;
-    const int GAMEEND = 3;
-    int state = SETUP;
+    public readonly int SETUP = 0;
+    public readonly int PLAN = 1;
+    public readonly int THROWDOWN = 2;
+    public readonly int GAMEEND = 3;
+    int state;
 
     //notifications
     const int TIME_UP = 0;
@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour
 
     void Start() {
         string[] cubeInfo = {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
+
+        state = SETUP;
 
         playerInfo = new List<string>();
         playerInfo.Add(PlayerPrefs.GetString("PlayerName"));
@@ -415,6 +417,9 @@ public class GameManager : MonoBehaviour
     }
     public TextMeshProUGUI GetRemainingTimeText() {
         return remainingTimeText;
+    }
+    public int GetState() {
+        return state;
     }
     
 

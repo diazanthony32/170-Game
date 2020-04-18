@@ -363,7 +363,7 @@ public class GameManager : MonoBehaviour
         playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
 
         //actionPoints += pointsPerRound + (roundCount % roundsForPointIncrease);
-        AddActionPoints(pointsPerRound /*+ (roundCount % roundsForPointIncrease)*/);
+        //AddActionPoints(pointsPerRound /*+ (roundCount % roundsForPointIncrease)*/);
 
         if (state != SETUP) {
             playerActionList.GetComponent<ActionStorage>().ClearActionList();

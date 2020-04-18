@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
         yield return new WaitForSeconds(1.5f);
-        playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().snapToBaseRotation();
+        playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SnapToBaseRotation();
         yield return new WaitForSeconds(1.5f);
 
         //playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend()

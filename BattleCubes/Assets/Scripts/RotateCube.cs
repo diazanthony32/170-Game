@@ -194,15 +194,15 @@ public class RotateCube : MonoBehaviour {
 
     public void LerpToPlannedPos() {
         if (plannedStack.Count > 0) {
-            //SnapTo(plannedStack.Peek());
+            print(plannedStack.Peek());
             gameObject.GetComponent<TweenController>().RotateBack(plannedStack.Pop());
         }
         else {
-            SnapTo(basePos);
+            gameObject.GetComponent<TweenController>().RotateBack(basePos);
         }
         print("lerp");
     }
-    public void snapToBaseRotation() {
+    public void SnapToBaseRotation() {
         gameObject.GetComponent<TweenController>().RotateBack(basePos);
     }
 

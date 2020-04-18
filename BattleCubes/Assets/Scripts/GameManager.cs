@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
         yield return new WaitForSeconds(1.5f);
-        playerCanvas.transform.GetChild(0).GetComponent<RotateCube>().snapToBaseRotation();
+        playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().snapToBaseRotation();
         yield return new WaitForSeconds(1.5f);
 
         //playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend()
@@ -348,7 +348,7 @@ public class GameManager : MonoBehaviour
         readies[0] = false;
         readies[1] = false;
 
-        playerCanvas.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
+        playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
 
         if (state != SETUP) {
             playerActionList.GetComponent<ActionStorage>().ClearActionList();

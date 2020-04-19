@@ -116,9 +116,9 @@ public class TweenController : MonoBehaviour
     public void RotateBack(Quaternion rotation) {
         LeanTween.rotateLocal(gameObject, rotation.eulerAngles, 0.6f).setEaseInOutSine();
     }
-    public void PushToStack() {
-        rotateCube.PushToPlannedStack(transform.rotation);
-    }
+    //public void PushToStack() {
+    //    rotateCube.PushToPlannedStack(transform.rotation);
+    //}
 
     public void StopTween()
 	{

@@ -80,7 +80,7 @@ public class RotateCube : MonoBehaviour {
         else if (s == "turn_left") {
             return Vector3.up;
         }
-        else if (s == "turn_left") {
+        else if (s == "turn_right") {
             return Vector3.down;
         }
         else {
@@ -121,12 +121,15 @@ public class RotateCube : MonoBehaviour {
 
     // assigns the clicked arrow to the variable s to be used in Update function
     public void AssignDirection(string s) {
-        DoTweenRotation(s);
+        
         //if (!string.IsNullOrEmpty(s) && !lerping) {
         //    arrow = s;
         //}
     }
     public void RequestRotation(string s) {
+        if (!LeanTween.isTweening(gameObject)) {
+            DoTweenRotation(s);
+        }
         //AssignDirection(s);
         //print("assigning direction: " + s);
     }
@@ -183,7 +186,8 @@ public class RotateCube : MonoBehaviour {
         if (SceneManager.GetActiveScene().buildIndex == 1) {
             if (gameManager.GetState() == gameManager.PLAN) {
                 GetComponent<TweenController>().Rotate(vecDirection);
-                PushToPlannedStack(s);
+                plannedStack.Push(s);
+                gameManager.AddAction(new string[] { "rotate", s }, 3);
             }
             else {
                 GetComponent<TweenController>().Rotate(vecDirection);
@@ -198,15 +202,16 @@ public class RotateCube : MonoBehaviour {
         if (plannedStack.Count > 0) {
             //print("lerp to: " + plannedStack.Peek());
 
+            GetComponent<TweenController>().Rotate(GetVecDirFromStringDir(GetOpositeRotation(plannedStack.Pop())));
 
-            plannedStack.Pop();
-            if (plannedStack.Count > 0) {
-                //gameObject.GetComponent<TweenController>().RotateBack(plannedStack.Peek());
-                GetComponent<TweenController>().Rotate(rotDir);
-            }
-            else {
-                gameObject.GetComponent<TweenController>().RotateBack(basePos);
-            }
+            //plannedStack.Pop();
+            //if (plannedStack.Count > 0) {
+            //    //gameObject.GetComponent<TweenController>().RotateBack(plannedStack.Peek());
+            //    GetComponent<TweenController>().Rotate();
+            //}
+            //else {
+            //    gameObject.GetComponent<TweenController>().RotateBack(basePos);
+            //}
         }
         else {
             gameObject.GetComponent<TweenController>().RotateBack(basePos);
@@ -233,15 +238,15 @@ public class RotateCube : MonoBehaviour {
         }
         print("clear");
     }
-    public void SaveBasePos() {
-        if (plannedStack.Count > 0) {
-            basePos = plannedStack.Peek();
-        }
-        print("save");
-    }
-    public void PushToPlannedStack(string rotation) {
-        plannedStack.Push(rotation);
-    }
+    //public void SaveBasePos() {
+    //    if (plannedStack.Count > 0) {
+    //        basePos = plannedStack.Peek();
+    //    }
+    //    print("save");
+    //}
+    //public void PushToPlannedStack(string rotation) {
+    //    plannedStack.Push(rotation);
+    //}
 
     string GetOpositeRotation(string s) {
         //------- X

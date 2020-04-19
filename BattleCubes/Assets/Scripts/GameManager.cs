@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
     //player points
     int roundsForPointIncrease = 5;
     int pointsPerRound = 3;
-    int actionPoints = 0;
+    int actionPoints = 100;
 
     //unit points
     int unitPoints;
@@ -157,11 +157,11 @@ public class GameManager : MonoBehaviour
 
         ResetRound();
         
-        state = PLAN;
         infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
     }
 
     public IEnumerator StartThrowDown() {
+        state = THROWDOWN;
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
@@ -210,7 +210,6 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator DoThrowdown() {
-        state = THROWDOWN;
         //print("inside CORRUTINE");
         yield return new WaitForSeconds(3);
 
@@ -293,7 +292,6 @@ public class GameManager : MonoBehaviour
         }
 
         timeStopped = false;
-        state = PLAN;
         remainingTime = ROUND_TIME;
         roundCount++;
         roundCountText.text = ConvertNumToText(roundCount);
@@ -305,10 +303,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void TranslateRotatePlayerCube(string direction) {
-        playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().AssignDirection(direction);
+        playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().RequestRotation(direction);
     }
     public void TranslateRotateEnemyCube(string direction) {
-        enemyCubePosition.transform.GetChild(0).GetComponent<RotateCube>().AssignDirection(direction);
+        enemyCubePosition.transform.GetChild(0).GetComponent<RotateCube>().RequestRotation(direction);
     }
 
     void CompareActions(string[] host, string[] client) {
@@ -370,6 +368,7 @@ public class GameManager : MonoBehaviour
             enemyActionList.GetComponent<ActionStorage>().ClearActionList();
         }
         mainScreenCanvas.SetActive(true);
+        state = PLAN;
     }
 
     void SpawnPlayerCube(string[] cubeInfo) {
@@ -414,6 +413,10 @@ public class GameManager : MonoBehaviour
 
         return components;
     }
+    public void AddAction(string[] actionArray, int cost) {
+        playerActionList.GetComponent<ActionStorage>().StoreAction(actionArray);
+        AddActionPoints(-cost);
+    }
 
     //set
     public void SetRoundCountText(int val) {
@@ -452,6 +455,7 @@ public class GameManager : MonoBehaviour
     public Transform GetEnemyCube() {
         return enemyCubePosition.transform.GetChild(0);
     }
+
     public int GetState() {
         return state;
     }

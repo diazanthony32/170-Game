@@ -35,13 +35,13 @@ public class RotationByFinger : MonoBehaviour {
             if (isMainGameScene) {
                 if (actionStorage.GetActionListCount() < 5 && gameManager.GetActionPoints() >= 3) {
                     posDelta = final - initial;
-                    RotateBySteps(final, initial, index);
+                    DetermineDirection(final, initial, index);
                 }
             }
             else {
                 if (isMainMenu || isSetup) {
                     posDelta = final - initial;
-                    RotateBySteps(final, initial, index);
+                    DetermineDirection(final, initial, index);
                 }
             }
             
@@ -53,7 +53,7 @@ public class RotationByFinger : MonoBehaviour {
     public void ChangeCube(GameObject cube) {
         rotateCube = cube.GetComponent<RotateCube>();
     }
-    void RotateBySteps(Vector2 final, Vector2 initial, int index) {
+    void DetermineDirection(Vector2 final, Vector2 initial, int index) {
         string[] actionArray;
 
         horizontal = AbsIt(posDelta.x) > AbsIt(posDelta.y);
@@ -99,10 +99,10 @@ public class RotationByFinger : MonoBehaviour {
                 }
             }
         }
-        if (isMainGameScene && !LeanTween.isTweening(rotateCube.gameObject)) {
-            actionStorage.StoreAction(actionArray);
-            gameManager.AddActionPoints(-3);
-        }
+        //if (isMainGameScene && !LeanTween.isTweening(rotateCube.gameObject)) {
+        //    actionStorage.StoreAction(actionArray);
+        //    gameManager.AddActionPoints(-3);
+        //}
     }
     public Vector3 GetPosDelta() {
         return posDelta;

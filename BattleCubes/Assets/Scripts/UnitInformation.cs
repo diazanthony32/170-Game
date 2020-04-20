@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnitInformation : MonoBehaviour
 {
@@ -28,17 +29,19 @@ public class UnitInformation : MonoBehaviour
 	*/
 
 	// contains all the important Unit Info ----
+	public string folder;
+	[Space(10)]
 	public string unitName;
 	public int unitSpawnCost;
 	public int unitHealth;
 	int unitCurrentHealth;
-
+	[Space(10)]
 	public string attackName;
 	public int attackCost;
 	public int attackDmg;
-
+	[Space(10)]
 	public Sprite unitImage;
-
+	[Space(10)]
 	public AudioClip unitSpawnNoise;
 	public AudioClip unitIdleNoise;
 	public AudioClip unitHitNoise;
@@ -53,11 +56,14 @@ public class UnitInformation : MonoBehaviour
 
 	//-------
 
+	GameManager gameManager;
+	InfoSender infoSender;
+
 	// contains the unit health ratio
 	float oldheathRatio;
 
 	// sends info to other player
-	[SerializeField] bool isTower = false;
+	public bool isTower = false;
 	bool isVulnerable = true;
 
 	GameObject parentPlane;
@@ -65,11 +71,14 @@ public class UnitInformation : MonoBehaviour
 	// runs once the unit is created inside of the DragNDropUnits Script
 	void Start(){
 
-		// unitAudioSource = GetComponent<AudioSource>();
-		// unitAnimator = GetComponent<Animator>();
-		// //unitAudioSource.volume = 0.1f;
+		gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
+		infoSender = GameObject.FindGameObjectWithTag("infoSender").GetComponent<InfoSender>();
 
-		// unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<Renderer>();
+		unitAudioSource = GetComponent<AudioSource>();
+		// unitAnimator = GetComponent<Animator>();
+		//unitAudioSource.volume = 0.1f;
+
+		unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<Renderer>();
 		// oc = this.transform.root.GetComponent<objectClicker>();
 		// parentPlane = this.transform.parent.gameObject;
 
@@ -119,6 +128,23 @@ public class UnitInformation : MonoBehaviour
 
 	}
 
+	// runs when the player clicks an attack to do
+	public void OnMouseDown()
+	{
+		if(gameManager.GetState() == gameManager.SETUP){
+			Destroy(gameObject);
+			infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
+			gameManager.remainingUnitPoints += unitSpawnCost;
+
+			if(isTower){
+				gameManager.towerCount--;
+			}
+			else if(!isTower){
+				gameManager.unitCount--;
+			}
+		}
+	}
+
 	IEnumerator Die() {
 
 
@@ -127,7 +153,7 @@ public class UnitInformation : MonoBehaviour
 
     	yield return new WaitForSeconds(1.0f);
 
-		// Destroy(unitGameObject);
+		Destroy(gameObject);
 
     }
 }

@@ -15,6 +15,7 @@ TagManager:
   - tankTarget
   - unitSquare
   - gameManager
+  - infoSender
   layers:
   - Default
   - TransparentFX

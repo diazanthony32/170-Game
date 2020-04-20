@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Photon.Pun;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     [SerializeField] TextMeshProUGUI roundCountText;
     [SerializeField] TextMeshProUGUI remainingTimeText;
+    [Space(10)]
+    [SerializeField] GameObject preventClick;
     GameObject playerCubePosition;
     GameObject enemyCubePosition;
 
@@ -58,11 +61,24 @@ public class GameManager : MonoBehaviour
     int actionPoints = 100;
 
     //unit points
-    int unitPoints;
-    int remainingUnitCount;
+    public int totalUnitPoints = 12;
+    public int remainingUnitPoints = 12;
+
+    public int towerCount = 0;
+    public int unitCount = 0;
+
+    string[] enemyCubeInfo;
+
+    [SerializeField] AudioMixer audioMixer;
+    [SerializeField] Slider musicSlider;
 
     void Start() {
         string[] cubeInfo = {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
+
+        if(PlayerPrefs.HasKey("MusicVolume")){
+            audioMixer.SetFloat("Music", PlayerPrefs.GetFloat("MusicVolume"));
+            musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        }
 
         state = SETUP;
 
@@ -161,6 +177,7 @@ public class GameManager : MonoBehaviour
     }
 
     public IEnumerator StartThrowDown() {
+        preventClick.SetActive(true);
         state = THROWDOWN;
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
@@ -368,6 +385,9 @@ public class GameManager : MonoBehaviour
             enemyActionList.GetComponent<ActionStorage>().ClearActionList();
         }
         mainScreenCanvas.SetActive(true);
+        
+        preventClick.SetActive(false);
+
         state = PLAN;
     }
 
@@ -383,6 +403,7 @@ public class GameManager : MonoBehaviour
     }
     public void SpawnEnemyCube(string[] cubeInfo) {
         enemyCubePosition = GameObject.FindGameObjectWithTag("EnemyCubePosition");
+        enemyCubeInfo = cubeInfo;
 
         GameObject cube = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Cube"));
         cube.transform.position = enemyCubePosition.transform.position;
@@ -437,6 +458,20 @@ public class GameManager : MonoBehaviour
     public void AddActionPoints(int val) {
         actionPoints += val;
         playerCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
+    }
+
+    public void SpawnEnemyUnit(string[] unitArray){
+        GameObject plane = enemyCubePosition.transform.GetChild(0).Find(unitArray[1]).Find(unitArray[2]).gameObject;
+        GameObject unit = Instantiate(Resources.Load<GameObject>(enemyCubeInfo[0] + "/" + enemyCubeInfo[1] + "/Units/" + unitArray[0] + "/Prefab"));
+
+        unit.transform.position = plane.transform.position;
+        unit.transform.rotation = plane.transform.rotation;
+        unit.transform.SetParent(plane.transform);
+    }
+
+    public void RemoveEnemyUnit(string[] unitArray){
+        GameObject plane = enemyCubePosition.transform.GetChild(0).Find(unitArray[0]).Find(unitArray[1]).gameObject;
+        Destroy(plane.transform.GetChild(0).gameObject);
     }
 
     //get

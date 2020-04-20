@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class StartUp : MonoBehaviour
 {
     [SerializeField] GameObject playerCubePosition;
+    [SerializeField] AudioMixer audioMixer;
+    [SerializeField] Slider musicSlider;
     
 
     void Start()
@@ -41,6 +45,11 @@ public class StartUp : MonoBehaviour
 
             PlayerPrefs.SetString("CubeTheme", "Demons");
             PlayerPrefs.SetString("CubeColor", "DefaultCube");
+        }
+
+        if(PlayerPrefs.HasKey("MusicVolume")){
+            audioMixer.SetFloat("Music", PlayerPrefs.GetFloat("MusicVolume"));
+            musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         }
 
         //Only for testing purposes. dont need this, this spawns the targetting system on the main menu cube

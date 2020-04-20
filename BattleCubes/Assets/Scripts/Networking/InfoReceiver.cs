@@ -104,6 +104,16 @@ public class InfoReceiver : MonoBehaviourPun {
 
             gameManager.CheckSync(content, gameManager.GetEnemyCube());
         }
+        else if (eventCode == 14) {
+            string[] content = (string[])photonEvent.CustomData;
+
+            gameManager.SpawnEnemyUnit(content);
+        }
+        else if (eventCode == 15) {
+            string[] content = (string[])photonEvent.CustomData;
+
+            gameManager.RemoveEnemyUnit(content);
+        }
         else {
             print("No event code: " + eventCode);
         }

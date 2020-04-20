@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4595842247319051314}
   - component: {fileID: 3102106106663920783}
   - component: {fileID: 6028684828106123750}
+  - component: {fileID: 8364121329748909611}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -43,7 +44,8 @@ AudioSource:
   m_GameObject: {fileID: 1890405386919292845}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7006435589108108676, guid: 552a3eff42471c14a8d150896525f7bc,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -142,6 +144,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d72c5add95ba948af49e26e057dbff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  folder: 
+  unitName: 
+  unitSpawnCost: 0
+  unitHealth: 0
+  attackName: 
+  attackCost: 0
+  attackDmg: 0
+  unitImage: {fileID: 0}
+  unitSpawnNoise: {fileID: 0}
+  unitIdleNoise: {fileID: 0}
+  unitHitNoise: {fileID: 0}
+  unitDeathNoise: {fileID: 0}
+  unitAttackNoise: {fileID: 0}
+  isTower: 0
+--- !u!65 &8364121329748909611
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890405386919292845}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.23579082, y: 0.43281007, z: 0.34966907}
+  m_Center: {x: 0, y: 0.28359497, z: 0}
 --- !u!1 &2579104860525107234
 GameObject:
   m_ObjectHideFlags: 0

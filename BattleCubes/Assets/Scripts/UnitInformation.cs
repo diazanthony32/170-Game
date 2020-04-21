@@ -68,6 +68,12 @@ public class UnitInformation : MonoBehaviour
 
 	GameObject parentPlane;
 
+	bool pointerDown;
+	float pointerDownTimer;
+	float requiredHoldTime = 1;
+
+	bool executed = false;
+
 	// runs once the unit is created inside of the DragNDropUnits Script
 	void Start(){
 
@@ -93,6 +99,65 @@ public class UnitInformation : MonoBehaviour
 
 		// unitCurrentHealth = unitHealth;
 		// gameObject.GetComponentInChildren<Renderer>().material.SetFloat("Vector1_A2DEF370", 0.0f);
+	}
+
+	void Update(){
+		if(pointerDown){
+			pointerDownTimer += Time.deltaTime;
+
+			RaycastHit[] hits;
+			hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 5.0f);
+
+			for (int i = 0; i < hits.Length; i++){
+				RaycastHit hitPlane = hits[i];
+				print(hits[i].transform.gameObject.name);
+				
+				if(hitPlane.transform.gameObject == gameObject)
+				{
+					if(pointerDownTimer > requiredHoldTime && !executed){
+						print("Removing Unit");
+						executed = true;
+
+						if(gameManager.GetState() == gameManager.SETUP){
+							Destroy(gameObject);
+							infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
+							gameManager.remainingUnitPoints += unitSpawnCost;
+
+							if(isTower){
+								gameManager.towerCount--;
+							}
+							else if(!isTower){
+								gameManager.unitCount--;
+							}
+						}
+					}
+					break;
+				}
+				else{
+					//reset timer if not hovering over the unit
+					pointerDownTimer = 0;
+				}
+
+			}
+
+			// if(pointerDownTimer > requiredHoldTime && !executed){
+			// 	print("Removing Unit");
+			// 	executed = true;
+
+			// 	if(gameManager.GetState() == gameManager.SETUP){
+			// 		Destroy(gameObject);
+			// 		infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
+			// 		gameManager.remainingUnitPoints += unitSpawnCost;
+
+			// 		if(isTower){
+			// 			gameManager.towerCount--;
+			// 		}
+			// 		else if(!isTower){
+			// 			gameManager.unitCount--;
+			// 		}
+			// 	}
+			// }
+		}
 	}
 
 	public void TakeDamage(int damageAmount){
@@ -131,18 +196,28 @@ public class UnitInformation : MonoBehaviour
 	// runs when the player clicks an attack to do
 	public void OnMouseDown()
 	{
-		if(gameManager.GetState() == gameManager.SETUP){
-			Destroy(gameObject);
-			infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
-			gameManager.remainingUnitPoints += unitSpawnCost;
+		pointerDown = true;
 
-			if(isTower){
-				gameManager.towerCount--;
-			}
-			else if(!isTower){
-				gameManager.unitCount--;
-			}
-		}
+		// if(gameManager.GetState() == gameManager.SETUP){
+		// 	Destroy(gameObject);
+		// 	infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
+		// 	gameManager.remainingUnitPoints += unitSpawnCost;
+
+		// 	if(isTower){
+		// 		gameManager.towerCount--;
+		// 	}
+		// 	else if(!isTower){
+		// 		gameManager.unitCount--;
+		// 	}
+		// }
+	}
+
+	// runs when the player clicks an attack to do
+	public void OnMouseUp()
+	{
+		pointerDown = false;
+		pointerDownTimer = 0;
+		
 	}
 
 	IEnumerator Die() {

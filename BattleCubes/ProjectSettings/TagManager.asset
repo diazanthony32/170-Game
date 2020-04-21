@@ -16,6 +16,7 @@ TagManager:
   - unitSquare
   - gameManager
   - infoSender
+  - unit
   layers:
   - Default
   - TransparentFX

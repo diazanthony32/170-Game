@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     //timeming
     public readonly float ROUND_TIME = 10;
-    public readonly float SET_UP_TIME = 20;
+    public readonly float SET_UP_TIME = 150;
     float remainingTime;
     bool timeStopped = false;
 

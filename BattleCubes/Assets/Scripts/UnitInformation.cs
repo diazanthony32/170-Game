@@ -70,7 +70,7 @@ public class UnitInformation : MonoBehaviour
 
 	bool pointerDown;
 	float pointerDownTimer;
-	float requiredHoldTime = 1;
+	float requiredHoldTime = 0.5f;
 
 	bool executed = false;
 

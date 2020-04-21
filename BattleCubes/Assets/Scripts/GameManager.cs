@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject rotationCanvas;
     [SerializeField] GameObject attackCanvas;
     [SerializeField] GameObject outtaTimeCanvas;
+    [SerializeField] GameObject outtaSetupCanvas;
     [Space(10)]
     [SerializeField] GameObject enemyActionList;
     [SerializeField] GameObject playerActionList;
@@ -155,28 +156,35 @@ public class GameManager : MonoBehaviour
     //    GetOutOfSetUp();
     //}
 
-    public void GetOutOfSetUp() {
+    public IEnumerator GetOutOfSetUp() {
         print("getting out of setup");
-        remainingTime = ROUND_TIME;
-        timeStopped = false;
-        roundCount++;
-        roundCountText.text = ConvertNumToText(roundCount);
 
         setupCanvas.SetActive(false);
         enemyActionList.SetActive(true);
         playerActionList.SetActive(true);
         enemyCanvas.SetActive(true);
 
-        mainScreenCanvas.SetActive(true);
-
         rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
-        ResetRound();
-        
+        outtaSetupCanvas.GetComponent<TweenController>().Notify();
+
+        yield return new WaitForSeconds(3f);
         infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
+        
+        mainScreenCanvas.SetActive(true);
+
+        remainingTime = ROUND_TIME;
+        timeStopped = false;
+
+        roundCount++;
+        roundCountText.text = ConvertNumToText(roundCount);
+
+        ResetRound();
     }
 
     public IEnumerator StartThrowDown() {
+        outtaTimeCanvas.GetComponent<TweenController>().Notify();
+
         preventClick.SetActive(true);
         state = THROWDOWN;
         mainScreenCanvas.SetActive(false);
@@ -209,8 +217,6 @@ public class GameManager : MonoBehaviour
 
             //print(state);
             if (state == PLAN) {
-                outtaTimeCanvas.GetComponent<TweenController>().Notify();
-
                 infoSender.SendNotification(TIME_UP);
                 infoSender.SendStartThrowDown();
                 StartCoroutine(StartThrowDown());
@@ -218,7 +224,7 @@ public class GameManager : MonoBehaviour
             }
             else if (state == SETUP) {
                 infoSender.SendGetOutOfSetup();
-                GetOutOfSetUp();
+                StartCoroutine(GetOutOfSetUp());
             }
         }
         intTIME = Mathf.CeilToInt(remainingTime);

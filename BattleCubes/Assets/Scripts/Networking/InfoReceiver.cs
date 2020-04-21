@@ -65,7 +65,7 @@ public class InfoReceiver : MonoBehaviourPun {
             //gameManager.StartThrowDown();
         }
         else if (eventCode == 5) {
-            gameManager.GetOutOfSetUp();
+            StartCoroutine(gameManager.GetOutOfSetUp()); 
         }
         else if (eventCode == 6) {
             gameManager.SetEnemyReady();

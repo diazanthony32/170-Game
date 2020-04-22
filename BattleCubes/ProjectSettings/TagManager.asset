@@ -17,6 +17,7 @@ TagManager:
   - gameManager
   - infoSender
   - unit
+  - playerActionList
   layers:
   - Default
   - TransparentFX

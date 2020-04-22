@@ -47,6 +47,8 @@ public class UnitInformation : MonoBehaviour
 	public AudioClip unitHitNoise;
 	public AudioClip unitDeathNoise;
 	public AudioClip unitAttackNoise;
+	[Space(10)]
+	public string targetSystem;
 
 	//this gets the render of the prefab its attached to
 	Renderer unitRenderer;

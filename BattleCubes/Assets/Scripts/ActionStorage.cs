@@ -7,6 +7,7 @@ public class ActionStorage : MonoBehaviour
 {
     [SerializeField] RotationByFinger rotationByFinger;
     [SerializeField] GameManager gameManager;
+    [SerializeField] AttackHandler attackHandler;
     List<string[]> actionList = null;
 
     void Start()
@@ -50,7 +51,10 @@ public class ActionStorage : MonoBehaviour
                 rotationByFinger.GetRotateCube().LerpToPlannedPos();
                 gameManager.AddActionPoints(3);
             }
-            if (action == "attack") { /*gameManager.AddActionPoints(3);*/ }
+            if (action == "attack") { 
+                UnitInformation unitInfo = attackHandler.GetAttackUnit("Host", actionList[index - 1][1]);
+                gameManager.AddActionPoints(unitInfo.attackCost);
+            }
 
             actionList.RemoveAt(index - 1);
             transform.GetChild(index - 1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BattleCubesLogo");
@@ -63,6 +67,13 @@ public class ActionStorage : MonoBehaviour
         }
         print("action list size after: " + actionList.Count);
     }
+
+    public void resetUIPulses(){
+        for(int i = 0; i < transform.childCount; i++){
+            transform.GetChild(i).GetComponent<TweenController>().CancelPulseHighlight();
+        }
+    }
+
     public string[][] PrepareActionListForSend() {
         string[][] array = new string[actionList.Count][];
 

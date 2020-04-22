@@ -174,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: attackName
-      value: Tail Whip
+      value: Tail Spike
       objectReference: {fileID: 0}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
@@ -196,6 +196,16 @@ PrefabInstance:
         type: 3}
       propertyPath: folder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: TargetSystem
+      value: SingleAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: targetSystem
+      value: SingleAttack
       objectReference: {fileID: 0}
     - target: {fileID: 8342402923615587709, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}

@@ -271,6 +271,9 @@ public class GameManager : MonoBehaviour
         playerActionList.GetComponent<ActionStorage>().resetUIPulses();
         enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
 
+        playerActionList.GetComponent<TweenController>().slideXOver((Screen.width * -0.034f));
+        enemyActionList.GetComponent<TweenController>().slideXOver((Screen.width * 0.034f));
+
         if (PhotonNetwork.LocalPlayer.IsMasterClient) {
             StartCoroutine(DoThrowdown());
         }
@@ -302,9 +305,22 @@ public class GameManager : MonoBehaviour
         infoSender.SendGameStatus(new int[] { intTIME, roundCount, state });
     }
 
+    public void HighlightThrowdownAction(int i){
+        playerActionList.GetComponent<ActionStorage>().resetUIPulses();
+        enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
+
+        // playerActionList.GetComponent<ActionStorage>().resetUIPulses();
+        playerActionList.transform.GetChild(i).GetComponent<TweenController>().PulseHighlight();
+        enemyActionList.transform.GetChild(i).GetComponent<TweenController>().PulseHighlight();
+    }
+
     IEnumerator DoThrowdown() {
         //print("inside CORRUTINE");
         // attackHandler.TurnOnTargetting();
+        // playerActionList.GetComponent<TweenController>().slideXOver(-65.0f);
+        // enemyActionList.GetComponent<TweenController>().slideXOver(65.0f);
+
+
         yield return new WaitForSeconds(3.5f);
 
         // attackHandler.TurnOnTargetting();
@@ -312,13 +328,14 @@ public class GameManager : MonoBehaviour
         string[] host;
         string[] client;
         for (int i = 0; i < 5; i++) {
-
-            playerActionList.GetComponent<ActionStorage>().resetUIPulses();
-            enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
-
+            HighlightThrowdownAction(i);
+            infoSender.SendThrowdownHighlight(i);
             // playerActionList.GetComponent<ActionStorage>().resetUIPulses();
-            playerActionList.transform.GetChild(i).GetComponent<TweenController>().PulseHighlight();
-            enemyActionList.transform.GetChild(i).GetComponent<TweenController>().PulseHighlight();
+            // enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
+
+            // // playerActionList.GetComponent<ActionStorage>().resetUIPulses();
+            // playerActionList.transform.GetChild(i).GetComponent<TweenController>().PulseHighlight();
+            // enemyActionList.transform.GetChild(i).GetComponent<TweenController>().PulseHighlight();
             // transform.GetChild(actionList.Count - 1).GetComponent<TweenController>().PulseHighlight();
             // enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
             //print(i);
@@ -530,6 +547,9 @@ public class GameManager : MonoBehaviour
         AddActionPoints(pointsPerRound);
 
         if (state != SETUP) {
+            playerActionList.GetComponent<TweenController>().slideXOver((Screen.width * 0.034f));
+            enemyActionList.GetComponent<TweenController>().slideXOver((Screen.width * -0.034f));
+
             playerActionList.GetComponent<ActionStorage>().ClearActionList();
             enemyActionList.GetComponent<ActionStorage>().ClearActionList();
             TurnOffTargetting();

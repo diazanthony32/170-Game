@@ -125,6 +125,10 @@ public class TweenController : MonoBehaviour
 		LeanTween.cancel(gameObject);
 	}
 
+	public void slideXOver(float x){
+		LeanTween.moveX(gameObject, gameObject.transform.position.x+x, 0.5f).setEaseInOutSine();
+	}
+
 
 
 	void DisableGameObject()

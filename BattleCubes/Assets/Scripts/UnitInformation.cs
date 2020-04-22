@@ -261,13 +261,16 @@ public class UnitInformation : MonoBehaviour
 		print("Im dead :(");
 
     	yield return new WaitForSeconds(1.0f);
+    	print(transform.parent.parent.parent.parent.gameObject.tag);
 
-    	if(isTower){
-			gameManager.towerCount--;
-		}
-		else if(!isTower){
-			gameManager.AddUnitCount(-1);
-		}
+    	if(transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition"){
+    		if(isTower){
+				gameManager.towerCount--;
+			}
+			else if(!isTower){
+				gameManager.AddUnitCount(-1);
+			}
+    	}
 
 		Destroy(gameObject);
 

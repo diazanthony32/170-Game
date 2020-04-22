@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
         playerInfo.Add(PlayerPrefs.GetString("PlayerName"));
 
         infoSender.SendPlayerStats(ListToStringArray(playerInfo));
+        //infoSender.SendCubePrefs(ListToStringArray(playerInfo));
 
         playerCanvas.transform.Find("PlayerName").gameObject.GetComponent<TextMeshProUGUI>().text = playerInfo[0];
 
@@ -166,6 +167,49 @@ public class GameManager : MonoBehaviour
     //    GetOutOfSetUp();
     //}
 
+    public void TurnOnTargetting(){
+        //print("Turning on targets");
+
+        for(int j = 0; j < enemyCubePosition.transform.GetChild(1).childCount-1; j++){
+            enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(true);
+            // targetsystems.SetActive(false);
+            //print("turning enemy targets on");
+        }
+
+        for(int i = 0; i < playerCubePosition.transform.GetChild(1).childCount-1; i++){
+            playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
+            // targetsystems.SetActive(false);
+            //print("turning player targets on");
+
+        }
+
+        //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
+
+    }
+    public void SetEnemyCubePrefs(string[] cubeInfo){
+        enemyCubeInfo = cubeInfo;
+    }
+    public void TurnOffTargetting(){
+        //print("Turning off targets");
+
+
+        for(int j = 0; j < enemyCubePosition.transform.GetChild(1).childCount-1; j++){
+            enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(false);
+            //print("turning enemy targets off");
+            // targetsystems.SetActive(false);
+        }
+
+        for(int i = 0; i < playerCubePosition.transform.GetChild(1).childCount-1; i++){
+            playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+            // targetsystems.SetActive(false);
+            //print("turning player targets off");
+
+        }
+
+        //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
+
+    }
+
     public IEnumerator GetOutOfSetUp() {
         print("getting out of setup");
 
@@ -189,6 +233,8 @@ public class GameManager : MonoBehaviour
         roundCount++;
         roundCountText.text = ConvertNumToText(roundCount);
 
+        //infoSender.SendCubePrefs(cubeInfo);
+
         ResetRound();
     }
 
@@ -205,6 +251,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SnapToBaseRotation();
         yield return new WaitForSeconds(1.5f);
+        TurnOnTargetting();
 
         //playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend()
         if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
@@ -249,7 +296,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DoThrowdown() {
         //print("inside CORRUTINE");
-        attackHandler.TurnOnTargetting();
+        // attackHandler.TurnOnTargetting();
         yield return new WaitForSeconds(3.5f);
 
         // attackHandler.TurnOnTargetting();
@@ -260,7 +307,6 @@ public class GameManager : MonoBehaviour
 
             playerActionList.GetComponent<ActionStorage>().resetUIPulses();
             enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
-            yield return new WaitForSeconds(0.25f);
 
             // playerActionList.GetComponent<ActionStorage>().resetUIPulses();
             playerActionList.transform.GetChild(i).GetComponent<TweenController>().PulseHighlight();
@@ -271,6 +317,7 @@ public class GameManager : MonoBehaviour
 
             //both players have actions
             if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+                yield return new WaitForSeconds(0.5f);
                 print("both players have actions");
                 host = playerActionList.GetComponent<ActionStorage>().GetAt(i);
                 client = enemyActionList.GetComponent<ActionStorage>().GetAt(i);
@@ -295,30 +342,42 @@ public class GameManager : MonoBehaviour
 
                         attackHandler.DoAttack("Host", host);
                         attackHandler.DoAttack("Client", client);
+
+                        infoSender.SendPlayerAttackInfo(host);
+                        infoSender.SendEnemyAttackInfo(client);
                     }
                     yield return new WaitForSeconds(3);
                 }
                 else {
+                    yield return new WaitForSeconds(0.5f);
                     if (host[0] == "rotate") {
                         print("Host rotate, client attack");
 
                         //host rotates, client then attacks
                         TranslateRotatePlayerCube(host[1]);
                         infoSender.SendPlayerTurningDir(host[1]);
+                        
                         yield return new WaitForSeconds(3);
+
                         attackHandler.DoAttack("Client", client);
+                        infoSender.SendEnemyAttackInfo(client);
                         //infosender
                         yield return new WaitForSeconds(3);
 
                     }
                     else if (host[0] == "attack") {
+                        yield return new WaitForSeconds(0.5f);
                         print("Client rotate, Host attack");
 
                         //rotate client , host then attacks
                         TranslateRotateEnemyCube(client[1]);
                         infoSender.SendEnemyTurningDir(client[1]);
+                        
                         yield return new WaitForSeconds(3);
+
                         attackHandler.DoAttack("Host", host);
+                        infoSender.SendPlayerAttackInfo(host);
+
                         //infosender
                         yield return new WaitForSeconds(3);
 
@@ -328,6 +387,7 @@ public class GameManager : MonoBehaviour
             }
             //only host has actions
             else if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+                yield return new WaitForSeconds(0.5f);
                 print("host has actions");
                 host = playerActionList.GetComponent<ActionStorage>().GetAt(i);
 
@@ -341,12 +401,15 @@ public class GameManager : MonoBehaviour
                 else if (host[0] == "attack") {
                     print("Host attack");
                     attackHandler.DoAttack("Host", host);
+                    infoSender.SendPlayerAttackInfo(host);
+
                     //infosender
                 }
                 yield return new WaitForSeconds(3);
             }
             //only client has actions
             else if (enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+                yield return new WaitForSeconds(0.5f);
                 print("client has actions");
                 client = enemyActionList.GetComponent<ActionStorage>().GetAt(i);
 
@@ -359,8 +422,11 @@ public class GameManager : MonoBehaviour
                 }
                 else if (client[0] == "attack") {
                     print("client attack");
+                    //print(client[1] + " "+ client[2] + " "+ client[3]);
 
                     attackHandler.DoAttack("Client", client);
+                    infoSender.SendEnemyAttackInfo(client);
+
                     //infosender
                 }
                 yield return new WaitForSeconds(3);
@@ -373,7 +439,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        attackHandler.TurnOffTargetting();
+        // attackHandler.TurnOffTargetting();
 
         timeStopped = false;
         remainingTime = ROUND_TIME;
@@ -391,6 +457,14 @@ public class GameManager : MonoBehaviour
     }
     public void TranslateRotateEnemyCube(string direction) {
         enemyCubePosition.transform.GetChild(0).GetComponent<RotateCube>().RequestRotation(direction);
+    }
+
+
+    public void TranslateAttackOnEnemyCube(string[] array) {
+        attackHandler.DoAttack("Client", array);
+    }
+    public void TranslateAttackOnPlayerCube(string[] array) {
+        attackHandler.DoAttack("Host", array);
     }
 
     // void CompareActions(string[] host, string[] client) {
@@ -450,6 +524,7 @@ public class GameManager : MonoBehaviour
         if (state != SETUP) {
             playerActionList.GetComponent<ActionStorage>().ClearActionList();
             enemyActionList.GetComponent<ActionStorage>().ClearActionList();
+            TurnOffTargetting();
         }
         mainScreenCanvas.SetActive(true);
         
@@ -481,6 +556,7 @@ public class GameManager : MonoBehaviour
         cube.transform.SetParent(enemyCubePosition.transform);
 
         SpawnCubeTargetingSystem("EnemyCubePosition");
+        // enemyCubeInfo = cubeInfo;
 
         enemyTargettingSystem = GameObject.FindGameObjectWithTag("EnemyCubePosition").transform.GetChild(1).gameObject;
         //enemyTargettingSystem.SetActive(false);

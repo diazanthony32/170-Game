@@ -42,13 +42,18 @@ public class UnitInformation : MonoBehaviour
 	[Space(10)]
 	public Sprite unitImage;
 	[Space(10)]
-	public AudioClip unitSpawnNoise;
-	public AudioClip unitIdleNoise;
-	public AudioClip unitHitNoise;
-	public AudioClip unitDeathNoise;
-	public AudioClip unitAttackNoise;
+	public AudioClip unitSpawnNoise = null;
+	public AudioClip unitIdleNoise = null;
+	public AudioClip unitHitNoise = null;
+	public AudioClip unitDeathNoise = null;
+	public AudioClip unitAttackNoise = null;
+	public AudioClip towerShieldSfx = null;
+
 	[Space(10)]
 	public string targetSystem;
+	[Space(10)]
+	public GameObject AttackParticle = null;
+	public bool shakeScreen = false;
 
 	//this gets the render of the prefab its attached to
 	Renderer unitRenderer;
@@ -99,7 +104,7 @@ public class UnitInformation : MonoBehaviour
 
 		// oc.unitPoints -= unitCost;
 
-		// unitCurrentHealth = unitHealth;
+		unitCurrentHealth = unitHealth;
 		// gameObject.GetComponentInChildren<Renderer>().material.SetFloat("Vector1_A2DEF370", 0.0f);
 	}
 
@@ -164,34 +169,32 @@ public class UnitInformation : MonoBehaviour
 
 	public void TakeDamage(int damageAmount){
 
-		// if(unitBehavior.isVulnerable){
-		// 	unitBehavior.unitCurrentHealth -= attackDamage;
-		// 	audioSource.PlayOneShot(hitEnemySfx);
+		if(isVulnerable){
+			unitCurrentHealth -= damageAmount;
+			//audioSource.PlayOneShot(hitEnemySfx);
 
-		// 	// audioSource.PlayOneShot(unitBehavior.unitHitNoise);
-		// 	if(unitBehavior.unitCurrentHealth >= 1){
-		// 		unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitHitNoise);
-		// 		unitBehavior.unitAnimator.SetTrigger("Hit");
-		// 	}
+			// audioSource.PlayOneShot(unitBehavior.unitHitNoise);
+			if(unitCurrentHealth >= 1){
 
-		// 	//Handheld.Vibrate();
+				if(unitHitNoise != null){
+					unitAudioSource.PlayOneShot(unitHitNoise);
+					//unitAnimator.SetTrigger("Hit");
 
-		// 	GameObject character = Instantiate(oc.hitParticle);
-		// 	var characterTransformer = character.GetComponent<Transform>();
+					//Handheld.Vibrate();
+				}
+				
+			}
+			else if(unitCurrentHealth <= 0){
+				StartCoroutine(Die());
+			}
 
-		// 	characterTransformer.transform.position = hitUnitPlaneTransformer.transform.position;
-		// 	characterTransformer.transform.rotation = hitUnitPlaneTransformer.transform.rotation;
-		// }
-		// else if(!unitBehavior.isVulnerable && unitBehavior.tower){
-		// 	audioSource.PlayOneShot(towerShieldSfx);
-		// }
+		}
+		else if(!isVulnerable && isTower){
 
-		// if(unitCurrentHealth < 1)
-		// {
-		// 	StartCoroutine(Die());
-		// 	// unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
-		// 	// Destroy(unitGameObject);
-		// }
+			if(towerShieldSfx != null){
+				unitAudioSource.PlayOneShot(towerShieldSfx);
+			}
+		}
 
 	}
 
@@ -227,8 +230,16 @@ public class UnitInformation : MonoBehaviour
 
   //   	unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
   //   	unitBehavior.unitAnimator.SetTrigger("Death");
+		print("Im dead :(");
 
     	yield return new WaitForSeconds(1.0f);
+
+    	if(isTower){
+			gameManager.towerCount--;
+		}
+		else if(!isTower){
+			gameManager.unitCount--;
+		}
 
 		Destroy(gameObject);
 

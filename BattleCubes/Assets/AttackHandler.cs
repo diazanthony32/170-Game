@@ -5,14 +5,14 @@ using Photon.Pun;
 
 public class AttackHandler : MonoBehaviour
 {
-	GameManager gameManager;
+	[SerializeField] GameManager gameManager;
 	public string[] attackArray = null;
 	public int attackCost = -1;
 
     // Start is called before the first frame update
     void Start()
     {
-    	gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
+    	//gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
         
     }
 
@@ -74,8 +74,16 @@ public class AttackHandler : MonoBehaviour
     	if(unitInfo.targetSystem == "SingleAttack"){
     		GameObject attackedPlane = GetTargettedPlane(player, array[2], array[3]);
 
+    		if(unitInfo.AttackParticle != null){
+    			GameObject particle = Instantiate(unitInfo.AttackParticle);
+    			particle.transform.position = attackedPlane.transform.position;
+				particle.transform.rotation = attackedPlane.transform.rotation;
+    		}
+
     		if(attackedPlane.transform.childCount > 0){
 				print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
+				UnitInformation hitUnitInfo = attackedPlane.transform.GetChild(0).GetComponent<UnitInformation>();
+				hitUnitInfo.TakeDamage(unitInfo.attackDmg);
 			}
 			else{
 				print("You missed...");
@@ -84,8 +92,16 @@ public class AttackHandler : MonoBehaviour
     	else if(unitInfo.targetSystem == "TankAttack"){
     		GameObject[] attackedPlanes = GetTankTargettedPlaneArray(player, array[2], array[3]);
     		for(int i = 0; i < 4; i++){
+    			if(unitInfo.AttackParticle != null){
+	    			GameObject particle = Instantiate(unitInfo.AttackParticle);
+	    			particle.transform.position = attackedPlanes[i].transform.position;
+					particle.transform.rotation = attackedPlanes[i].transform.rotation;
+	    		}
+
     			if(attackedPlanes[i].transform.childCount > 0){
 					print("You hit a Unit: " + attackedPlanes[i].transform.GetChild(0).name);
+					UnitInformation hitUnitInfo = attackedPlanes[i].transform.GetChild(0).GetComponent<UnitInformation>();
+					hitUnitInfo.TakeDamage(unitInfo.attackDmg);
 				}
 				else{
 					print("You missed...");
@@ -103,8 +119,11 @@ public class AttackHandler : MonoBehaviour
     	
     	if(player == "Host"){
 
-    		UnitInformation unitInfo;
+    		// UnitInformation unitInfo;
     		for(int i = 0; i <= 3; i++){
+
+    			UnitInformation unitInfo = null;
+
     			if(i == 0){
     				unitInfo = Resources.Load<GameObject>(gameManager.cubeInfo[0] + "/" + gameManager.cubeInfo[1] + "/Units/Tower/Prefab" ).GetComponent<UnitInformation>();
     			}
@@ -112,16 +131,20 @@ public class AttackHandler : MonoBehaviour
     				unitInfo = Resources.Load<GameObject>(gameManager.cubeInfo[0] + "/" + gameManager.cubeInfo[1] + "/Units/"+ i + "/Prefab").GetComponent<UnitInformation>();
     			}
 
-    			if(unitInfo.attackName == attackName){
+    			if(unitInfo != null && unitInfo.attackName == attackName){
     				return unitInfo;
     			}
     		}
     	}
 
     	if(player == "Client"){
-    		UnitInformation unitInfo;
+    		//UnitInformation unitInfo;
+    		print("Enemy Cube Info: " + gameManager.enemyCubeInfo[0] + " " + gameManager.enemyCubeInfo[1]);
 
     		for(int i = 0; i <= 3; i++){
+    			
+    			UnitInformation unitInfo = null;
+
     			if(i == 0){
     				unitInfo = Resources.Load<GameObject>(gameManager.enemyCubeInfo[0] + "/" + gameManager.enemyCubeInfo[1] + "/Units/Tower/Prefab" ).GetComponent<UnitInformation>();
     			}
@@ -129,7 +152,7 @@ public class AttackHandler : MonoBehaviour
     				unitInfo = Resources.Load<GameObject>(gameManager.enemyCubeInfo[0] + "/" + gameManager.enemyCubeInfo[1] + "/Units/"+ i + "/Prefab").GetComponent<UnitInformation>();
     			}
 
-    			if(unitInfo.attackName == attackName){
+    			if(unitInfo != null && unitInfo.attackName == attackName){
     				return unitInfo;
     			}
     		}
@@ -218,45 +241,45 @@ public class AttackHandler : MonoBehaviour
 
 
 
-    public void TurnOnTargetting(){
-		//print("Turning on targets");
+  //   public void TurnOnTargetting(){
+		// //print("Turning on targets");
 
-    	for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
-			gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(true);
-			// targetsystems.SetActive(false);
-			//print("turning enemy targets on");
-		}
+  //   	for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
+		// 	gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(true);
+		// 	// targetsystems.SetActive(false);
+		// 	//print("turning enemy targets on");
+		// }
 
-		for(int i = 0; i < gameManager.playerCubePosition.transform.GetChild(1).childCount-1; i++){
-			gameManager.playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
-			// targetsystems.SetActive(false);
-			//print("turning player targets on");
+		// for(int i = 0; i < gameManager.playerCubePosition.transform.GetChild(1).childCount-1; i++){
+		// 	gameManager.playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
+		// 	// targetsystems.SetActive(false);
+		// 	//print("turning player targets on");
 
-		}
+		// }
 
-		//gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
+		// //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
 
-    }
-    public void TurnOffTargetting(){
-		//print("Turning off targets");
+  //   }
+  //   public void TurnOffTargetting(){
+		// //print("Turning off targets");
 
 
-    	for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
-			gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(false);
-			//print("turning enemy targets off");
-			// targetsystems.SetActive(false);
-		}
+  //   	for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
+		// 	gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(false);
+		// 	//print("turning enemy targets off");
+		// 	// targetsystems.SetActive(false);
+		// }
 
-		for(int i = 0; i < gameManager.playerCubePosition.transform.GetChild(1).childCount-1; i++){
-			gameManager.playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
-			// targetsystems.SetActive(false);
-			//print("turning player targets off");
+		// for(int i = 0; i < gameManager.playerCubePosition.transform.GetChild(1).childCount-1; i++){
+		// 	gameManager.playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+		// 	// targetsystems.SetActive(false);
+		// 	//print("turning player targets off");
 
-		}
+		// }
 
-		//gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
+		// //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
 
-    }
+  //   }
 
     public bool CheckAttackAvalibility(){
     	return false;

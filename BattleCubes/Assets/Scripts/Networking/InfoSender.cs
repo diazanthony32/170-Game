@@ -120,6 +120,27 @@ public class InfoSender : MonoBehaviourPun {
         PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
     }
 
+    //not used
+    public void SendCubePrefs(string[] content) {
+        byte evCode = 16;
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
+    }
+
+    public void SendPlayerAttackInfo(string[] content) {
+        byte evCode = 17;
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
+    }
+    public void SendEnemyAttackInfo(string[] content) {
+        byte evCode = 18;
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
+    }
+
 
 
     //public void SendTurningInfo(string content) {

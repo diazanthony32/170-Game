@@ -114,6 +114,23 @@ public class InfoReceiver : MonoBehaviourPun {
 
             gameManager.RemoveEnemyUnit(content);
         }
+        //not really used
+        else if (eventCode == 16) {
+            string[] content = (string[])photonEvent.CustomData;
+
+            gameManager.SetEnemyCubePrefs(content);
+        }
+
+        else if (eventCode == 17) {
+            string[] content = (string[])photonEvent.CustomData;
+
+            gameManager.TranslateAttackOnEnemyCube(content);
+        }
+        else if (eventCode == 18) {
+            string[] content = (string[])photonEvent.CustomData;
+
+            gameManager.TranslateAttackOnPlayerCube(content);
+        }
         else {
             print("No event code: " + eventCode);
         }

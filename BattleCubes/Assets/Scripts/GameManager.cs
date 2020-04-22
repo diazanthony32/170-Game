@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [Space(10)]
     [SerializeField] GameObject preventClick;
     [SerializeField] AttackHandler attackHandler;
+
     public GameObject playerCubePosition;
     public GameObject enemyCubePosition;
 
@@ -95,6 +96,7 @@ public class GameManager : MonoBehaviour
         //infoSender.SendCubePrefs(ListToStringArray(playerInfo));
 
         playerCanvas.transform.Find("PlayerName").gameObject.GetComponent<TextMeshProUGUI>().text = playerInfo[0];
+        playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
 
         SpawnPlayerCube(cubeInfo);
         infoSender.SendCubeInfo(cubeInfo);
@@ -141,7 +143,13 @@ public class GameManager : MonoBehaviour
         //else {
         //    roundText.text = "Round " + ConvertNumToText(roundCount);
         //}
+        // UpdateUI();
     }
+
+    // void UpdateUnitCount(){
+    //     playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+    // }
+
     public void CheckForReady() {
         if (readies[0] && readies[1]) {
             remainingTime = 0;
@@ -607,6 +615,12 @@ public class GameManager : MonoBehaviour
     public void AddActionPoints(int val) {
         actionPoints += val;
         playerCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
+    }
+
+    public void AddUnitCount(int val) {
+        unitCount += val;
+        print(unitCount);
+        playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
     }
 
     public void SpawnEnemyUnit(string[] unitArray){

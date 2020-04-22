@@ -95,12 +95,9 @@ public class UnitInformation : MonoBehaviour
 		// oc = this.transform.root.GetComponent<objectClicker>();
 		// parentPlane = this.transform.parent.gameObject;
 
-		// if(!tower){
-		// 	oc.currentNumUnits += 1;
-		// }
-		// else{
-		// 	oc.towerCount += 1;
-		// }
+		if(isTower){
+			isVulnerable = false;
+		}
 
 		// oc.unitPoints -= unitCost;
 
@@ -134,7 +131,7 @@ public class UnitInformation : MonoBehaviour
 								gameManager.towerCount--;
 							}
 							else if(!isTower){
-								gameManager.unitCount--;
+								gameManager.AddUnitCount(-1);
 							}
 						}
 					}
@@ -168,6 +165,11 @@ public class UnitInformation : MonoBehaviour
 	}
 
 	public void TakeDamage(int damageAmount){
+		
+		if(isTower){
+			CheckIfVulnerable();
+		}
+		//CheckIfVulnerable();
 
 		if(isVulnerable){
 			unitCurrentHealth -= damageAmount;
@@ -196,6 +198,32 @@ public class UnitInformation : MonoBehaviour
 			}
 		}
 
+	}
+
+	void CheckIfVulnerable(){
+		bool safe = false;
+
+		for(int i = 0; i < transform.parent.parent.childCount; i++) {
+
+			var plane = transform.parent.parent.GetChild(i);
+
+			if(plane.gameObject.transform.childCount > 0){
+				for(int x = 0 ; x < plane.gameObject.transform.childCount ; x++ ){
+
+					if(!(plane.transform.GetChild(x).gameObject.GetComponent<UnitInformation>().isTower)){
+
+						isVulnerable = false;
+						safe = true;
+					}
+
+				}
+
+			}
+		}
+
+		if(!safe){
+			isVulnerable = true;
+		}
 	}
 
 	// runs when the player clicks an attack to do
@@ -238,7 +266,7 @@ public class UnitInformation : MonoBehaviour
 			gameManager.towerCount--;
 		}
 		else if(!isTower){
-			gameManager.unitCount--;
+			gameManager.AddUnitCount(-1);
 		}
 
 		Destroy(gameObject);

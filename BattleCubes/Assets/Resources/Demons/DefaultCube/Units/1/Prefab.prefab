@@ -65,17 +65,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 64430f7be0a37ef4c9cf36a89ab8fcf2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.2
+      value: 2.88
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 64430f7be0a37ef4c9cf36a89ab8fcf2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.2
+      value: 2.88
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 64430f7be0a37ef4c9cf36a89ab8fcf2,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.2
+      value: 2.88
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 64430f7be0a37ef4c9cf36a89ab8fcf2,
         type: 3}
@@ -212,6 +212,26 @@ PrefabInstance:
       propertyPath: AttackParticle
       value: 
       objectReference: {fileID: 100000, guid: 975b8ca8a54e0d544b74d7e1fc8f985c, type: 3}
+    - target: {fileID: 8364121329748909611, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.33380544
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364121329748909611, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.14612323
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364121329748909611, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.16564526
+      objectReference: {fileID: 0}
+    - target: {fileID: 8364121329748909611, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7fa984414860f845ad282cfeb54bdb0, type: 3}
 --- !u!4 &4434435961590423545 stripped

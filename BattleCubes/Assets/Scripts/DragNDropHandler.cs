@@ -25,6 +25,8 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
 	bool active = true;
 
+	[SerializeField] Button readyButton = null;
+
     // Start is called before the first frame update
     void Start(){
 
@@ -82,6 +84,16 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 	        	active = true;
 	        }
     	}
+
+    	if(readyButton != null){
+    		if((gameManager.remainingUnitPoints == 0) && (gameManager.towerCount == 3)){
+    			readyButton.interactable = true;
+    		}
+    		else{
+    			readyButton.interactable = false;
+    		}
+    	}
+    	
     }
 
     // runs when the player clicks an attack to do
@@ -137,7 +149,8 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 						// Set unit as a child of the unitPlane
 						unit.transform.SetParent(hitPlane.transform);
 						gameManager.remainingUnitPoints -= unitInformation.unitSpawnCost;
-						gameManager.unitCount++;
+						// gameManager.unitCount++;
+						gameManager.AddUnitCount(1);
 
 						infoSender.SendUnitPlacement(new string[]{unitInformation.folder, hitPlane.transform.parent.name, hitPlane.transform.name});
 

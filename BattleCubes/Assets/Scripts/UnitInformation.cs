@@ -128,7 +128,7 @@ public class UnitInformation : MonoBehaviour
 							gameManager.remainingUnitPoints += unitSpawnCost;
 
 							if(isTower){
-								gameManager.towerCount--;
+								gameManager.AddTowerCount(-1);
 							}
 							else if(!isTower){
 								gameManager.AddUnitCount(-1);
@@ -261,14 +261,22 @@ public class UnitInformation : MonoBehaviour
 		print("Im dead :(");
 
     	yield return new WaitForSeconds(1.0f);
-    	print(transform.parent.parent.parent.parent.gameObject.tag);
+    	//print(transform.parent.parent.parent.parent.gameObject.tag);
 
     	if(transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition"){
     		if(isTower){
-				gameManager.towerCount--;
+				gameManager.AddTowerCount(-1);
 			}
-			else if(!isTower){
+			else{
 				gameManager.AddUnitCount(-1);
+			}
+    	}
+    	else if(transform.parent.parent.parent.parent.gameObject.tag == "EnemyCubePosition"){
+    		if(isTower){
+				gameManager.AddEnemyTowerCount(-1);
+			}
+			else{
+				gameManager.AddEnemyUnitCount(-1);
 			}
     	}
 

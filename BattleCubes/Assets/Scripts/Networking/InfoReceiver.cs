@@ -136,6 +136,11 @@ public class InfoReceiver : MonoBehaviourPun {
 
             gameManager.HighlightThrowdownAction(content);
         }
+        else if (eventCode == 20) {
+            string content = (string)photonEvent.CustomData;
+
+            gameManager.GameEndPopUp(content);
+        }
         else {
             print("No event code: " + eventCode);
         }

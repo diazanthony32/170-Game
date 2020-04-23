@@ -147,6 +147,12 @@ public class InfoSender : MonoBehaviourPun {
         PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
     }
 
+    public void SendGameOver(string content) {
+        byte evCode = 20;
+        RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
+        SendOptions sendOptions = new SendOptions { Reliability = true };
+        PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
+    }
 
 
     //public void SendTurningInfo(string content) {

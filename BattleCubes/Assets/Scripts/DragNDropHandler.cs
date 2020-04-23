@@ -197,7 +197,7 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 							// Set unit as a child of the unitPlane
 							unit.transform.SetParent(hitPlane.transform);
 
-							gameManager.towerCount++;
+							gameManager.AddTowerCount(1);
 
 							infoSender.SendUnitPlacement(new string[]{unitInformation.folder, hitPlane.transform.parent.name, hitPlane.transform.name});
 

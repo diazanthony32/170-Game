@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject attackCanvas;
     [SerializeField] GameObject outtaTimeCanvas;
     [SerializeField] GameObject outtaSetupCanvas;
+    [SerializeField] GameObject gameOverCanvas;
+    [SerializeField] GameObject pauseCanvas;
     [Space(10)]
     [SerializeField] GameObject enemyActionList;
     [SerializeField] GameObject playerActionList;
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
     public readonly int PLAN = 1;
     public readonly int THROWDOWN = 2;
     public readonly int GAMEEND = 3;
-    int state;
+    public int state;
 
     //notifications
     const int TIME_UP = 0;
@@ -72,6 +74,9 @@ public class GameManager : MonoBehaviour
 
     public int towerCount = 0;
     public int unitCount = 0;
+
+    public int enemyTowerCount = 0;
+    public int enemyUnitCount = 0;
 
     public string[] enemyCubeInfo;
     public string[] cubeInfo;
@@ -221,29 +226,64 @@ public class GameManager : MonoBehaviour
     public IEnumerator GetOutOfSetUp() {
         print("getting out of setup");
 
-        setupCanvas.SetActive(false);
-        enemyActionList.SetActive(true);
-        playerActionList.SetActive(true);
-        enemyCanvas.SetActive(true);
+        if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+            CheckWinCondition();
+        }
 
-        rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
+        if(state != GAMEEND){
+            setupCanvas.SetActive(false);
+            enemyActionList.SetActive(true);
+            playerActionList.SetActive(true);
+            enemyCanvas.SetActive(true);
 
-        outtaSetupCanvas.GetComponent<TweenController>().Notify();
+            rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
 
-        yield return new WaitForSeconds(3f);
-        infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
+            outtaSetupCanvas.GetComponent<TweenController>().Notify();
+            yield return new WaitForSeconds(1.0f);
+
+            enemyCubePosition.GetComponent<TweenController>().slideEnemyUp();
+            
+            yield return new WaitForSeconds(3.0f);
+            infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
+            
+            mainScreenCanvas.SetActive(true);
+
+            remainingTime = ROUND_TIME;
+            timeStopped = false;
+
+            roundCount++;
+            roundCountText.text = ConvertNumToText(roundCount);
+
+            ResetRound();
+        }
+
+        // setupCanvas.SetActive(false);
+        // enemyActionList.SetActive(true);
+        // playerActionList.SetActive(true);
+        // enemyCanvas.SetActive(true);
+
+        // rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
+
+        // outtaSetupCanvas.GetComponent<TweenController>().Notify();
+
+        // yield return new WaitForSeconds(3f);
+        // infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
         
-        mainScreenCanvas.SetActive(true);
+        // mainScreenCanvas.SetActive(true);
 
-        remainingTime = ROUND_TIME;
-        timeStopped = false;
+        // remainingTime = ROUND_TIME;
+        // timeStopped = false;
 
-        roundCount++;
-        roundCountText.text = ConvertNumToText(roundCount);
+        // roundCount++;
+        // roundCountText.text = ConvertNumToText(roundCount);
 
         //infoSender.SendCubePrefs(cubeInfo);
 
-        ResetRound();
+        // if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+        //     CheckWinCondition();
+        // }
+
+        // ResetRound();
     }
 
     public IEnumerator StartThrowDown() {
@@ -327,7 +367,7 @@ public class GameManager : MonoBehaviour
 
         string[] host;
         string[] client;
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5 && state == THROWDOWN; i++) {
             HighlightThrowdownAction(i);
             infoSender.SendThrowdownHighlight(i);
             // playerActionList.GetComponent<ActionStorage>().resetUIPulses();
@@ -340,6 +380,8 @@ public class GameManager : MonoBehaviour
             // enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
             //print(i);
 
+            CheckWinCondition();
+
             //both players have actions
             if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
                 yield return new WaitForSeconds(0.5f);
@@ -348,6 +390,8 @@ public class GameManager : MonoBehaviour
                 client = enemyActionList.GetComponent<ActionStorage>().GetAt(i);
 
                 if (host[0] == client[0]) {
+                    yield return new WaitForSeconds(0.5f);
+
                     if (host[0] == "rotate") {
                         print("Players both rotate");
 
@@ -387,7 +431,7 @@ public class GameManager : MonoBehaviour
                         attackHandler.DoAttack("Client", client);
                         infoSender.SendEnemyAttackInfo(client);
                         //infosender
-                        yield return new WaitForSeconds(3);
+                        //yield return new WaitForSeconds(3);
 
                     }
                     else if (host[0] == "attack") {
@@ -404,7 +448,7 @@ public class GameManager : MonoBehaviour
                         infoSender.SendPlayerAttackInfo(host);
 
                         //infosender
-                        yield return new WaitForSeconds(3);
+                        //yield return new WaitForSeconds(3);
 
                     }
                     yield return new WaitForSeconds(3);
@@ -465,16 +509,17 @@ public class GameManager : MonoBehaviour
         }
 
         // attackHandler.TurnOffTargetting();
+        if(state == THROWDOWN){
+            timeStopped = false;
+            remainingTime = ROUND_TIME;
+            roundCount++;
+            roundCountText.text = ConvertNumToText(roundCount);
 
-        timeStopped = false;
-        remainingTime = ROUND_TIME;
-        roundCount++;
-        roundCountText.text = ConvertNumToText(roundCount);
+            mainScreenCanvas.SetActive(true);
 
-        mainScreenCanvas.SetActive(true);
-
-        ResetRound();
-        infoSender.SendResetRound();
+            ResetRound();
+            infoSender.SendResetRound();
+        }
     }
 
     public void TranslateRotatePlayerCube(string direction) {
@@ -490,6 +535,83 @@ public class GameManager : MonoBehaviour
     }
     public void TranslateAttackOnPlayerCube(string[] array) {
         attackHandler.DoAttack("Host", array);
+    }
+
+    public void CheckWinCondition(){
+
+        if(roundCount >= 20 || unitCount <= 0 || towerCount < 3 || enemyUnitCount <= 0 || enemyTowerCount < 3){
+            
+            timeStopped = true;
+            // state = GAMEEND;
+
+            //mainScreenCanvas.SetActive(false);
+
+            // pauseCanvas.SetActive(false);
+            // gameOverCanvas.SetActive(true);
+
+            if(state != SETUP){
+
+                if(unitCount <= 0 || towerCount < 3){
+                    GameEndPopUp("You Lose: All Units or Tower Destroyed");
+                    infoSender.SendGameOver("You Win!: Opponent Units or Tower Destroyed");
+                    // gameCanvas.transform.GetChild(1).GetChild(0).Find("GameOverText").GetComponent<TextMeshProUGUI>().text;
+                }
+                else if(enemyUnitCount <= 0 || enemyTowerCount < 3){
+                    GameEndPopUp("You Win!: Opponent Units or Tower Destroyed");
+                    infoSender.SendGameOver("You Lose: All Units or Tower Destroyed");
+                }
+                else if(roundCount >= 20){
+                    if(unitCount > enemyUnitCount){
+                        GameEndPopUp("You Win!: More units");
+                        infoSender.SendGameOver("You Lose: Less units");
+                    }
+                    else if(unitCount < enemyUnitCount){
+                        GameEndPopUp("You Lose: Less units");
+                        infoSender.SendGameOver("You Win!: More units");
+                    }
+                    else if(unitCount == enemyUnitCount){
+                        GameEndPopUp("Game Tie");
+                        infoSender.SendGameOver("Game Tie");
+                    }
+                    else{
+                        GameEndPopUp("ERROR 1: Unknown game end condition");
+                        infoSender.SendGameOver("ERROR 1: Unknown game end condition");
+                    }
+                }
+            }
+            else{
+                if((unitCount <= 0 || towerCount < 3) && (enemyUnitCount <= 0 || enemyTowerCount < 3)){
+                    GameEndPopUp("Both players did not finish setup in time...");
+                    infoSender.SendGameOver("Both players did not finish setup in time...");
+                }
+                else if(unitCount <= 0 || towerCount < 3){
+                    GameEndPopUp("You did not finish setup in time...");
+                    infoSender.SendGameOver("Opponent did not finish setup in time...");
+                }
+                else if(enemyUnitCount <= 0 || enemyTowerCount < 3){
+                    GameEndPopUp("Opponent did not finish setup in time...");
+                    infoSender.SendGameOver("You did not finish setup in time...");
+                }
+                else{
+                    GameEndPopUp("ERROR 2: Unknown game end condition");
+                    infoSender.SendGameOver("ERROR 2: Unknown game end condition");
+                }
+            }
+
+        }
+    }
+
+    public void GameEndPopUp(string condition){
+        //mainScreenCanvas.SetActive(false);
+        pauseCanvas.SetActive(false);
+        gameOverCanvas.SetActive(true);
+        state = GAMEEND;
+
+        TextMeshProUGUI gameOverText = gameOverCanvas.transform.GetChild(1).GetChild(0).Find("GameOverText").GetComponent<TextMeshProUGUI>();
+        gameOverText.text = condition;
+
+        state = GAMEEND;
+
     }
 
     // void CompareActions(string[] host, string[] client) {
@@ -540,6 +662,7 @@ public class GameManager : MonoBehaviour
         readies[1] = false;
 
         print("Reseting round!!!");
+        // CheckWinCondition();
 
         playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
 
@@ -639,8 +762,24 @@ public class GameManager : MonoBehaviour
 
     public void AddUnitCount(int val) {
         unitCount += val;
-        print(unitCount);
+        print("Unit Count: " + unitCount);
         playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+    }
+    public void AddTowerCount(int val) {
+        towerCount += val;
+        print("Tower Count: " + towerCount);
+        //playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+    }
+
+    public void AddEnemyUnitCount(int val) {
+        enemyUnitCount += val;
+        print("Enemy Unit Count: " + enemyUnitCount);
+        //playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+    }
+    public void AddEnemyTowerCount(int val) {
+        enemyTowerCount += val;
+        print("Enemy Tower Count: " + enemyTowerCount);
+        //playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
     }
 
     public void SpawnEnemyUnit(string[] unitArray){
@@ -650,6 +789,14 @@ public class GameManager : MonoBehaviour
         unit.transform.position = plane.transform.position;
         unit.transform.rotation = plane.transform.rotation;
         unit.transform.SetParent(plane.transform);
+
+        if(unit.GetComponent<UnitInformation>().isTower){
+            AddEnemyTowerCount(1);
+        }
+        else{
+            AddEnemyUnitCount(1);
+        }
+        // AddEnemyUnitCount(1);
     }
 
     public void RemoveEnemyUnit(string[] unitArray){

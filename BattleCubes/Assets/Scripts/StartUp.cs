@@ -20,7 +20,7 @@ public class StartUp : MonoBehaviour
         }
         else {
             GameObject.FindGameObjectWithTag("loginMenu").SetActive(true);
-            gameObject.SetActive(false);
+            GameObject.FindGameObjectWithTag("mainMenu").SetActive(false);
         }
 
         if (PlayerPrefs.HasKey("CubeTheme")) {

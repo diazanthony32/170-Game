@@ -18,6 +18,8 @@ TagManager:
   - infoSender
   - unit
   - playerActionList
+  - FxTemporaire
+  - mainMenu
   layers:
   - Default
   - TransparentFX

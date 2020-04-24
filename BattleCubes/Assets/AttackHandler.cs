@@ -67,7 +67,7 @@ public class AttackHandler : MonoBehaviour
     	// 	else{
     	// 		print("You missed...");
     	// 	}
-    	// }
+    	// } 
 
     	UnitInformation unitInfo = GetAttackUnit(player, array[1]);
 

@@ -256,7 +256,7 @@ public class UnitInformation : MonoBehaviour
 	void OnTriggerEnter(Collider trigger)
 	{
 		if (trigger.CompareTag("attackChecker")) { 
-			print("can attack");
+			//print("can attack");
 			for (int i = 0; i < gameManager.attackList.Count; i++)
 				if (gameManager.attackList[i][0] == attackName) {
 					gameManager.attackList[i][1] = "true";
@@ -269,7 +269,7 @@ public class UnitInformation : MonoBehaviour
 	{
 		if (trigger.CompareTag("attackChecker"))
 		{
-			print("can attack");
+			//print("can attack");
 		}
 	}
 
@@ -277,7 +277,7 @@ public class UnitInformation : MonoBehaviour
 	{
 		if (trigger.CompareTag("attackChecker"))
 		{
-			print("cant attack");
+			//print("cant attack");
 		}
 	}
 

@@ -799,12 +799,14 @@ public class GameManager : MonoBehaviour
 
     void OnApplicationPause(bool pauseStatus) {
         if (pauseStatus) {
-            if (PhotonNetwork.LocalPlayer.IsMasterClient) {
-                if (!timeStopped) {
-                    CheckForReady();
-                    RunTimer();
-                }
-            }
+            //maybe switch master
+            //Maybe disconnect function HERE!!! but not for now
+            //if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+            //    if (!timeStopped) {
+            //        CheckForReady();
+            //        RunTimer();
+            //    }
+            //}
         }
     }
 

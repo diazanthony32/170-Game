@@ -798,18 +798,13 @@ public class GameManager : MonoBehaviour
     }
 
     void OnApplicationPause(bool pauseStatus) {
-        if (pauseStatus) {
-            //if (PhotonNetwork.LocalPlayer.IsMasterClient) {
-            //    if (!timeStopped) {
-            //        CheckForReady();
-            //        RunTimer();
-            //    }
-            //}
-            //Update();
-            print("Aplication paused");
-        }
-        else {
-            // app is foreground again
+        while (pauseStatus) {
+            if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+                if (!timeStopped) {
+                    CheckForReady();
+                    RunTimer();
+                }
+            }
         }
     }
 

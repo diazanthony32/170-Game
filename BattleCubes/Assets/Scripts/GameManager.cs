@@ -126,32 +126,7 @@ public class GameManager : MonoBehaviour
                 CheckForReady();
                 RunTimer();
             }
-            //else {
-            //    if (throwDownStart) {
-            //        ResetReadies();
-            //        if (roundCount > 0) {
-            //            DoThrowDown();
-            //        }
-            //        throwDownStart = false;
-            //    }
-            //    if (throwDownStopped) {
-            //        RestartTime();
-            //        nextRound();
-            //        throwDownStopped = false;
-            //        throwDownStart = true;
-            //    }
-            //}
         }
-        //if (roundCount == 0) {
-        //    roundText.text = "Setup";
-        //}
-        //else if (showEnemy == false && roundCount != 0) {
-        //    ShowEnemyStuff();
-        //}
-        //else {
-        //    roundText.text = "Round " + ConvertNumToText(roundCount);
-        //}
-        // UpdateUI();
     }
 
     // void UpdateUnitCount(){
@@ -820,6 +795,22 @@ public class GameManager : MonoBehaviour
             AddEnemyUnitCount(1);
         }
         // AddEnemyUnitCount(1);
+    }
+
+    void OnApplicationPause(bool pauseStatus) {
+        if (pauseStatus) {
+            //if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+            //    if (!timeStopped) {
+            //        CheckForReady();
+            //        RunTimer();
+            //    }
+            //}
+            //Update();
+            print("Aplication paused");
+        }
+        else {
+            // app is foreground again
+        }
     }
 
     public void RemoveEnemyUnit(string[] unitArray){

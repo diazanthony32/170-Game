@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerTargettingSystem;
     public GameObject enemyTargettingSystem;
 
+    public List<string[]> attackList = new List<string[]>();
+
     List<string> playerInfo;
     bool[] readies = {false, false};
 
@@ -108,10 +110,11 @@ public class GameManager : MonoBehaviour
 
         setupCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(true);
 
-        playerTargettingSystem = GameObject.FindGameObjectWithTag("PlayerCubePosition").transform.GetChild(1).gameObject;
+        //playerTargettingSystem = GameObject.FindGameObjectWithTag("PlayerCubePosition").transform.GetChild(1).gameObject;
         // playerTargettingSystem.SetActive(false);
         // attackHandler.TurnOffTargetting();
 
+        FillAttackList();
 
         remainingTime = SET_UP_TIME;
     }
@@ -684,6 +687,15 @@ public class GameManager : MonoBehaviour
         state = PLAN;
     }
 
+    void FillAttackList() {
+        for (int i = 1; i <= 3; i++) {
+            GameObject unitPrefab = Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Units/" + i + "/Prefab");
+            UnitInformation unitInformation = unitPrefab.GetComponent<UnitInformation>();
+            attackList.Add(new string[] { unitInformation.attackName, "false" });
+            print(attackList[i-1][0]);
+        }
+    }
+
     void SpawnPlayerCube(string[] cubeInfo) {
         playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
 
@@ -693,6 +705,7 @@ public class GameManager : MonoBehaviour
         cube.transform.SetParent(playerCubePosition.transform);
 
         SpawnCubeTargetingSystem("PlayerCubePosition");
+        SpawnAttackChecker("PlayerCubePosition");
 
         playerTargettingSystem = GameObject.FindGameObjectWithTag("PlayerCubePosition").transform.GetChild(1).gameObject;
         //playerTargettingSystem.SetActive(false);
@@ -707,18 +720,28 @@ public class GameManager : MonoBehaviour
         cube.transform.SetParent(enemyCubePosition.transform);
 
         SpawnCubeTargetingSystem("EnemyCubePosition");
+        SpawnAttackChecker("EnemyCubePosition");
         // enemyCubeInfo = cubeInfo;
 
         enemyTargettingSystem = GameObject.FindGameObjectWithTag("EnemyCubePosition").transform.GetChild(1).gameObject;
         //enemyTargettingSystem.SetActive(false);
     }
     void SpawnCubeTargetingSystem(string tag){
-        GameObject playerCubePosition = GameObject.FindGameObjectWithTag(tag);
+        GameObject CubePosition = GameObject.FindGameObjectWithTag(tag);
 
         GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("MainCubePrefab/CubeTargeting"));
-        cubeTargeting.transform.position = playerCubePosition.transform.position;
-        cubeTargeting.transform.rotation = playerCubePosition.transform.rotation;
-        cubeTargeting.transform.SetParent(playerCubePosition.transform);
+        cubeTargeting.transform.position = CubePosition.transform.position;
+        cubeTargeting.transform.rotation = CubePosition.transform.rotation;
+        cubeTargeting.transform.SetParent(CubePosition.transform);
+    }
+    void SpawnAttackChecker(string tag)
+    {
+        GameObject CubePosition = GameObject.FindGameObjectWithTag(tag);
+
+        GameObject attackChecker = Instantiate(Resources.Load<GameObject>("MainCubePrefab/AttackChecker"));
+        attackChecker.transform.position = CubePosition.transform.position;
+        attackChecker.transform.rotation = CubePosition.transform.rotation;
+        attackChecker.transform.SetParent(CubePosition.transform);
     }
     public void CheckSync(float[] comp, Transform cube) {
         if (cube.rotation.w != comp[0] || cube.rotation.x != comp[1] ||

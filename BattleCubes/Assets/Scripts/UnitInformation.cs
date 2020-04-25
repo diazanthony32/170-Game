@@ -253,34 +253,62 @@ public class UnitInformation : MonoBehaviour
 		
 	}
 
+	void OnTriggerEnter(Collider trigger)
+	{
+		if (trigger.CompareTag("attackChecker")) { 
+			print("can attack");
+			for (int i = 0; i < gameManager.attackList.Count; i++)
+				if (gameManager.attackList[i][0] == attackName) {
+					gameManager.attackList[i][1] = "true";
+				}
+		}
+		
+	}
+
+	void OnTriggerStay(Collider trigger)
+	{
+		if (trigger.CompareTag("attackChecker"))
+		{
+			print("can attack");
+		}
+	}
+
+	void OnTriggerExit(Collider trigger)
+	{
+		if (trigger.CompareTag("attackChecker"))
+		{
+			print("cant attack");
+		}
+	}
+
 	IEnumerator Die() {
 
 
-  //   	unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
-  //   	unitBehavior.unitAnimator.SetTrigger("Death");
+//   	unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
+//   	unitBehavior.unitAnimator.SetTrigger("Death");
 		print("Im dead :(");
 
-    	yield return new WaitForSeconds(1.0f);
-    	//print(transform.parent.parent.parent.parent.gameObject.tag);
+		yield return new WaitForSeconds(1.0f);
+		//print(transform.parent.parent.parent.parent.gameObject.tag);
 
-    	if(transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition"){
+		if(transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition"){
     		if(isTower){
 				gameManager.AddTowerCount(-1);
 			}
 			else{
 				gameManager.AddUnitCount(-1);
 			}
-    	}
-    	else if(transform.parent.parent.parent.parent.gameObject.tag == "EnemyCubePosition"){
+		}
+		else if(transform.parent.parent.parent.parent.gameObject.tag == "EnemyCubePosition"){
     		if(isTower){
 				gameManager.AddEnemyTowerCount(-1);
 			}
 			else{
 				gameManager.AddEnemyUnitCount(-1);
 			}
-    	}
+		}
 
 		Destroy(gameObject);
 
-    }
+	}
 }

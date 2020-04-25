@@ -57,5 +57,10 @@ public class StartUp : MonoBehaviour
         cubeTargeting.transform.position = playerCubePosition.transform.position;
         cubeTargeting.transform.rotation = playerCubePosition.transform.rotation;
         cubeTargeting.transform.SetParent(playerCubePosition.transform);
+
+        GameObject cubeAttackChecker = Instantiate(Resources.Load<GameObject>("MainCubePrefab/AttackChecker"));
+        cubeAttackChecker.transform.position = playerCubePosition.transform.position;
+        cubeAttackChecker.transform.rotation = playerCubePosition.transform.rotation;
+        cubeAttackChecker.transform.SetParent(playerCubePosition.transform);
     }
 }

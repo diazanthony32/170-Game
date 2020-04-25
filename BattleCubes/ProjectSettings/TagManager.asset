@@ -20,6 +20,7 @@ TagManager:
   - playerActionList
   - FxTemporaire
   - mainMenu
+  - attackChecker
   layers:
   - Default
   - TransparentFX

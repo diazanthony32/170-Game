@@ -798,7 +798,7 @@ public class GameManager : MonoBehaviour
     }
 
     void OnApplicationPause(bool pauseStatus) {
-        while (pauseStatus) {
+        if (pauseStatus) {
             if (PhotonNetwork.LocalPlayer.IsMasterClient) {
                 if (!timeStopped) {
                     CheckForReady();

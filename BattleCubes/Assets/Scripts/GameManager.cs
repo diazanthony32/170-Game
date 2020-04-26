@@ -814,6 +814,9 @@ public class GameManager : MonoBehaviour
         GameObject plane = enemyCubePosition.transform.GetChild(0).Find(unitArray[0]).Find(unitArray[1]).gameObject;
         Destroy(plane.transform.GetChild(0).gameObject);
     }
+    public bool IsCubeTweening() {
+        return LeanTween.isTweening(playerCubePosition.transform.GetChild(0).gameObject); 
+    }
 
     //get
     public GameObject GetEnemyCanvas() {

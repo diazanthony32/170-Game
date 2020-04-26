@@ -44,27 +44,29 @@ public class ActionStorage : MonoBehaviour
     }
     public void RemoveAction(int index) {
         print("action list size: " + actionList.Count);
-        if (index == actionList.Count) {
-            string action = actionList[index - 1][0];
+        if (gameManager.IsCubeTweening()) {
+            if (index == actionList.Count) {
+                string action = actionList[index - 1][0];
 
-            if (action == "rotate") {
-                rotationByFinger.GetRotateCube().LerpToPlannedPos();
-                gameManager.AddActionPoints(3);
-            }
-            if (action == "attack") { 
-                UnitInformation unitInfo = attackHandler.GetAttackUnit("Host", actionList[index - 1][1]);
-                gameManager.AddActionPoints(unitInfo.attackCost);
-            }
+                if (action == "rotate") {
+                    rotationByFinger.GetRotateCube().LerpToPlannedPos();
+                    gameManager.AddActionPoints(3);
+                }
+                if (action == "attack") {
+                    UnitInformation unitInfo = attackHandler.GetAttackUnit("Host", actionList[index - 1][1]);
+                    gameManager.AddActionPoints(unitInfo.attackCost);
+                }
 
-            actionList.RemoveAt(index - 1);
-            transform.GetChild(index - 1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BattleCubesLogo");
-            transform.GetChild(index - 1).GetComponent<TweenController>().CancelPulseHighlight();
+                actionList.RemoveAt(index - 1);
+                transform.GetChild(index - 1).GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("actionIcons/BattleCubesLogo");
+                transform.GetChild(index - 1).GetComponent<TweenController>().CancelPulseHighlight();
 
-            if (actionList.Count - 1 >= 0) {
-                transform.GetChild(actionList.Count - 1).GetComponent<TweenController>().PulseHighlight();
+                if (actionList.Count - 1 >= 0) {
+                    transform.GetChild(actionList.Count - 1).GetComponent<TweenController>().PulseHighlight();
+                }
             }
-            
         }
+        
         print("action list size after: " + actionList.Count);
     }
 

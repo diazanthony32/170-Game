@@ -5,10 +5,12 @@ using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class MatchMakeHandler : MonoBehaviourPunCallbacks 
 {
+    [SerializeField] private TMP_InputField roomNameInputField = null;
     [SerializeField] TextMeshProUGUI searchText;
     private bool isConnecting = false;
     private const string GameVersion = "0.1.4"; //Change with the gameVersion
@@ -32,7 +34,13 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
             //roomOptions.IsVisible = false;
 
             //PhotonNetwork.JoinOrCreateRoom("nose", roomOptions, TypedLobby.Default);
-            PhotonNetwork.JoinRoom("nose", null);
+            if (roomNameInputField.text != null) {
+                PhotonNetwork.JoinRoom(roomNameInputField.text, null);
+            }
+            else {
+                PhotonNetwork.JoinRandomRoom();
+            }
+
         }
         else 
         {
@@ -45,7 +53,12 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
         Debug.Log("connected to master");
         if (isConnecting) {
             //PhotonNetwork.JoinRandomRoom();
-            PhotonNetwork.JoinRoom("nose", null);
+            if (roomNameInputField.text != null) {
+                PhotonNetwork.JoinRoom(roomNameInputField.text, null);
+            }
+            else {
+                PhotonNetwork.JoinRandomRoom();
+            }
         }
     }
 
@@ -55,16 +68,16 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
         Debug.Log($"Disconnected due to {cause}");
     }
 
-    //public override void OnJoinRandomFailed(short returnCode, string message) {
-    //    Debug.Log("No clients waiting, creating new room");
+    public override void OnJoinRandomFailed(short returnCode, string message) {
+        Debug.Log("No clients waiting, creating new room");
 
-    //    PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
-    //}
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
+    }
 
     public override void OnJoinRoomFailed(short returnCode, string message) {
         Debug.Log("No clients waiting, creating new room");
 
-        PhotonNetwork.CreateRoom("nose", new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
+        PhotonNetwork.CreateRoom(roomNameInputField.text, new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
     }
 
     //this what player 2 does
@@ -101,6 +114,10 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
             PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
+
+    //public void ChangeRoomName(string rName) {
+    //    roomName = rName;
+    //}
 
     public void GoToTutorialScene() {
         PhotonNetwork.LoadLevel("Tutorial");

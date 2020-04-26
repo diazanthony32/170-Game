@@ -28,10 +28,11 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsConnected) 
         {
             //PhotonNetwork.JoinRandomRoom();
-            RoomOptions roomOptions = new RoomOptions();
-            roomOptions.IsVisible = false;
+            //RoomOptions roomOptions = new RoomOptions();
+            //roomOptions.IsVisible = false;
 
-            PhotonNetwork.JoinOrCreateRoom("lol", roomOptions, TypedLobby.Default);
+            //PhotonNetwork.JoinOrCreateRoom("nose", roomOptions, TypedLobby.Default);
+            PhotonNetwork.JoinRoom("lol", null);
         }
         else 
         {
@@ -55,10 +56,16 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
         Debug.Log($"Disconnected due to {cause}");
     }
 
-    public override void OnJoinRandomFailed(short returnCode, string message) {
+    //public override void OnJoinRandomFailed(short returnCode, string message) {
+    //    Debug.Log("No clients waiting, creating new room");
+
+    //    PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
+    //}
+
+    public override void OnJoinRoomFailed(short returnCode, string message) {
         Debug.Log("No clients waiting, creating new room");
 
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
+        PhotonNetwork.CreateRoom("lol", new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
     }
 
     //this what player 2 does

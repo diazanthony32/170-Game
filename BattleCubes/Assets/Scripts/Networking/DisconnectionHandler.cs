@@ -14,13 +14,18 @@ public class DisconnectionHandler : MonoBehaviourPunCallbacks {
     }
 
     public void Update() {
-        if(gameManager.state != gameManager.GAMEEND){
+        if (gameManager.state != gameManager.GAMEEND) {
             if (PhotonNetwork.CurrentRoom == null) {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             }
-            else if (PhotonNetwork.CurrentRoom.PlayerCount < 2) { 
+            else if (PhotonNetwork.CurrentRoom.PlayerCount < 2) {
                 PhotonNetwork.Disconnect();
                 print("Randomly Disconnected");
+            }
+        }
+        else {
+            if (PhotonNetwork.CurrentRoom == null) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
             }
         }
     }

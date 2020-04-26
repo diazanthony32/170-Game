@@ -77,7 +77,10 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short returnCode, string message) {
         Debug.Log("No clients waiting, creating new room");
 
-        PhotonNetwork.CreateRoom(roomNameInputField.text, new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
+        RoomOptions roomOptions = new RoomOptions { MaxPlayers = MaxPlayersPerRoom };
+        roomOptions.IsVisible = false;
+
+        PhotonNetwork.CreateRoom(roomNameInputField.text, roomOptions);
     }
 
     //this what player 2 does

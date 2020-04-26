@@ -32,7 +32,7 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
             //roomOptions.IsVisible = false;
 
             //PhotonNetwork.JoinOrCreateRoom("nose", roomOptions, TypedLobby.Default);
-            PhotonNetwork.JoinRoom("lol", null);
+            PhotonNetwork.JoinRoom("nose", null);
         }
         else 
         {
@@ -45,7 +45,7 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
         Debug.Log("connected to master");
         if (isConnecting) {
             //PhotonNetwork.JoinRandomRoom();
-            PhotonNetwork.JoinRoom("lol", null);
+            PhotonNetwork.JoinRoom("nose", null);
         }
     }
 
@@ -64,7 +64,7 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
     public override void OnJoinRoomFailed(short returnCode, string message) {
         Debug.Log("No clients waiting, creating new room");
 
-        PhotonNetwork.CreateRoom("lol", new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
+        PhotonNetwork.CreateRoom("nose", new RoomOptions { MaxPlayers = MaxPlayersPerRoom });
     }
 
     //this what player 2 does

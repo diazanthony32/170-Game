@@ -41,14 +41,13 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
         }
     }
 
-    //public override void OnConnectedToMaster() 
-    //{
-    //    Debug.Log("connected to master");
-    //    if (isConnecting) 
-    //    {
-    //        PhotonNetwork.JoinRandomRoom();
-    //    }
-    //}
+    public override void OnConnectedToMaster() {
+        Debug.Log("connected to master");
+        if (isConnecting) {
+            //PhotonNetwork.JoinRandomRoom();
+            PhotonNetwork.JoinRoom("lol", null);
+        }
+    }
 
     public override void OnDisconnected(DisconnectCause cause) {
         //we may need to change stuff inside the panels

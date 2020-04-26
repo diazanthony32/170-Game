@@ -34,7 +34,7 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
             //roomOptions.IsVisible = false;
 
             //PhotonNetwork.JoinOrCreateRoom("nose", roomOptions, TypedLobby.Default);
-            if (roomNameInputField.text != null) {
+            if (!string.IsNullOrEmpty(roomNameInputField.text)) {
                 PhotonNetwork.JoinRoom(roomNameInputField.text, null);
             }
             else {
@@ -53,7 +53,7 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
         Debug.Log("connected to master");
         if (isConnecting) {
             //PhotonNetwork.JoinRandomRoom();
-            if (roomNameInputField.text != null) {
+            if (!string.IsNullOrEmpty(roomNameInputField.text)) {
                 PhotonNetwork.JoinRoom(roomNameInputField.text, null);
             }
             else {

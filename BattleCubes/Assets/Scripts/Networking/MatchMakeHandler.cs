@@ -27,7 +27,11 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsConnected) 
         {
-            PhotonNetwork.JoinRandomRoom();
+            //PhotonNetwork.JoinRandomRoom();
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.IsVisible = false;
+
+            PhotonNetwork.JoinOrCreateRoom("lol", roomOptions, TypedLobby.Default);
         }
         else 
         {

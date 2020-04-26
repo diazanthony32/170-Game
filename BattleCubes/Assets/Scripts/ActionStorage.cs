@@ -44,7 +44,7 @@ public class ActionStorage : MonoBehaviour
     }
     public void RemoveAction(int index) {
         print("action list size: " + actionList.Count);
-        if (gameManager.IsCubeTweening()) {
+        if (!gameManager.IsCubeTweening()) {
             if (index == actionList.Count) {
                 string action = actionList[index - 1][0];
 

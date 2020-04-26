@@ -37,7 +37,7 @@ public class RotationByFinger : MonoBehaviour {
             if (isMainGameScene) {
                 if (actionStorage.GetActionListCount() < 5 && gameManager.GetActionPoints() >= 3) {
                     posDelta = final - initial;
-                    print(posDelta.magnitude);
+                    //print(posDelta.magnitude);
                     if (posDelta.magnitude >= MINDRAG) {
                         DetermineDirection(final, initial, index);
                     }
@@ -46,7 +46,7 @@ public class RotationByFinger : MonoBehaviour {
             else {
                 if (isMainMenu || isSetup) {
                     posDelta = final - initial;
-                    print(posDelta.magnitude);
+                    //print(posDelta.magnitude);
                     if (posDelta.magnitude >= MINDRAG) {
                         DetermineDirection(final, initial, index);
                     }

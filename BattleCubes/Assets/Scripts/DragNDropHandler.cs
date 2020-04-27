@@ -21,8 +21,6 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 	Image unitImage;
 	TextMeshProUGUI unitName;
 
-	string[] enemyCubeInfo;
-
 	bool active = true;
 
 	[SerializeField] Button readyButton = null;

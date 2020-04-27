@@ -80,9 +80,12 @@ public class UnitInformation : MonoBehaviour
 	float requiredHoldTime = 0.5f;
 
 	bool executed = false;
+	LayerMask mask;
 
 	// runs once the unit is created inside of the DragNDropUnits Script
 	void Start(){
+
+		mask = LayerMask.GetMask("unit");
 
 		gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
 		infoSender = GameObject.FindGameObjectWithTag("infoSender").GetComponent<InfoSender>();
@@ -110,7 +113,7 @@ public class UnitInformation : MonoBehaviour
 			pointerDownTimer += Time.deltaTime;
 
 			RaycastHit[] hits;
-			hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 5.0f);
+			hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 5.0f, mask);
 
 			for (int i = 0; i < hits.Length; i++){
 				RaycastHit hitPlane = hits[i];
@@ -134,6 +137,19 @@ public class UnitInformation : MonoBehaviour
 								gameManager.AddUnitCount(-1);
 							}
 						}
+
+						//print("can attack");
+						for (int j = 0; j < gameManager.attackList.Count; j++)
+						{
+
+							if (gameManager.attackList[j][0] == attackName)
+							{
+								gameManager.attackList[j][1] = "false";
+								print(gameManager.attackList[j][0] + " : " + gameManager.attackList[j][1]);
+
+							}
+						}
+
 					}
 					break;
 				}
@@ -141,26 +157,11 @@ public class UnitInformation : MonoBehaviour
 					//reset timer if not hovering over the unit
 					pointerDownTimer = 0;
 				}
-
 			}
-
-			// if(pointerDownTimer > requiredHoldTime && !executed){
-			// 	print("Removing Unit");
-			// 	executed = true;
-
-			// 	if(gameManager.GetState() == gameManager.SETUP){
-			// 		Destroy(gameObject);
-			// 		infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
-			// 		gameManager.remainingUnitPoints += unitSpawnCost;
-
-			// 		if(isTower){
-			// 			gameManager.towerCount--;
-			// 		}
-			// 		else if(!isTower){
-			// 			gameManager.unitCount--;
-			// 		}
-			// 	}
-			// }
+			if (hits.Length == 0) {
+				//reset timer if not hovering over the unit
+				pointerDownTimer = 0;
+			}
 		}
 	}
 
@@ -255,29 +256,64 @@ public class UnitInformation : MonoBehaviour
 
 	void OnTriggerEnter(Collider trigger)
 	{
-		if (trigger.CompareTag("attackChecker")) { 
-			//print("can attack");
-			for (int i = 0; i < gameManager.attackList.Count; i++)
-				if (gameManager.attackList[i][0] == attackName) {
-					gameManager.attackList[i][1] = "true";
+		if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition") {
+			
+			if (trigger.CompareTag("attackChecker"))
+			{
+				//print("can attack");
+				for (int i = 0; i < gameManager.attackList.Count; i++){
+
+					if (gameManager.attackList[i][0] == attackName)
+					{
+						gameManager.attackList[i][1] = "true";
+						print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+
+					}
 				}
+			}
 		}
 		
 	}
 
 	void OnTriggerStay(Collider trigger)
 	{
-		if (trigger.CompareTag("attackChecker"))
+		if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
 		{
-			//print("can attack");
+
+			if (trigger.CompareTag("attackChecker"))
+			{
+				//print("can attack");
+				for (int i = 0; i < gameManager.attackList.Count; i++) {
+
+					if (gameManager.attackList[i][0] == attackName)
+					{
+						gameManager.attackList[i][1] = "true";
+						print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+
+					}
+				}
+			}
 		}
 	}
 
 	void OnTriggerExit(Collider trigger)
 	{
-		if (trigger.CompareTag("attackChecker"))
+		if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
 		{
-			//print("cant attack");
+
+			if (trigger.CompareTag("attackChecker"))
+			{
+				//print("can attack");
+				for (int i = 0; i < gameManager.attackList.Count; i++) {
+
+					if (gameManager.attackList[i][0] == attackName)
+					{
+						gameManager.attackList[i][1] = "false";
+						print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+
+					}
+				}
+			}
 		}
 	}
 
@@ -309,6 +345,18 @@ public class UnitInformation : MonoBehaviour
 		}
 
 		Destroy(gameObject);
+
+		//print("can attack");
+		for (int i = 0; i < gameManager.attackList.Count; i++)
+		{
+
+			if (gameManager.attackList[i][0] == attackName)
+			{
+				gameManager.attackList[i][1] = "false";
+				print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+
+			}
+		}
 
 	}
 }

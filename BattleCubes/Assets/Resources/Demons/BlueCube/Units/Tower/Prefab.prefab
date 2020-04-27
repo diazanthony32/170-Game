@@ -12,6 +12,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1890405386919292845, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2579104860525107234, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4524730613152269489, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4595842247319051314, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -112,10 +127,15 @@ PrefabInstance:
       propertyPath: folder
       value: Tower
       objectReference: {fileID: 0}
+    - target: {fileID: 7594360421447855703, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8342402923615587709, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 191a934179e668545bfd5b5b0a51bec7, type: 2}
+      objectReference: {fileID: 2100000, guid: fa213828dac418449812d1ea755ee194, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7fa984414860f845ad282cfeb54bdb0, type: 3}

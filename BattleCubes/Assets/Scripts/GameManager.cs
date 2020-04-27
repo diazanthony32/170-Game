@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         //infoSender.SendCubePrefs(ListToStringArray(playerInfo));
 
         playerCanvas.transform.Find("PlayerName").gameObject.GetComponent<TextMeshProUGUI>().text = playerInfo[0];
-        playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+        playerCanvas.transform.Find("PlayerUnitCounter").Find("Count").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
 
         SpawnPlayerCube(cubeInfo);
         infoSender.SendCubeInfo(cubeInfo);
@@ -115,6 +115,8 @@ public class GameManager : MonoBehaviour
         // attackHandler.TurnOffTargetting();
 
         FillAttackList();
+
+        playerCanvas.transform.Find("PlayerAPCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
 
         remainingTime = SET_UP_TIME;
     }
@@ -359,6 +361,7 @@ public class GameManager : MonoBehaviour
             //print(i);
 
             CheckWinCondition();
+            yield return new WaitForSeconds(0.1f);
 
             //both players have actions
             if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
@@ -486,8 +489,11 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
+        CheckWinCondition();
+        yield return new WaitForSeconds(0.1f);
+
         // attackHandler.TurnOffTargetting();
-        if(state == THROWDOWN){
+        if (state == THROWDOWN){
             timeStopped = false;
             remainingTime = ROUND_TIME;
             roundCount++;
@@ -667,7 +673,7 @@ public class GameManager : MonoBehaviour
             GameObject unitPrefab = Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Units/" + i + "/Prefab");
             UnitInformation unitInformation = unitPrefab.GetComponent<UnitInformation>();
             attackList.Add(new string[] { unitInformation.attackName, "false" });
-            print(attackList[i-1][0]);
+            print(attackList[i-1][0] + " : "+ attackList[i - 1][1]);
         }
     }
 
@@ -755,13 +761,13 @@ public class GameManager : MonoBehaviour
     }
     public void AddActionPoints(int val) {
         actionPoints += val;
-        playerCanvas.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
+        playerCanvas.transform.Find("PlayerAPCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
     }
 
     public void AddUnitCount(int val) {
         unitCount += val;
         print("Unit Count: " + unitCount);
-        playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+        playerCanvas.transform.Find("PlayerUnitCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
     }
     public void AddTowerCount(int val) {
         towerCount += val;
@@ -772,7 +778,7 @@ public class GameManager : MonoBehaviour
     public void AddEnemyUnitCount(int val) {
         enemyUnitCount += val;
         print("Enemy Unit Count: " + enemyUnitCount);
-        //playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+        enemyCanvas.transform.Find("EnemyUnitCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = enemyUnitCount.ToString();
     }
     public void AddEnemyTowerCount(int val) {
         enemyTowerCount += val;
@@ -810,8 +816,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RemoveEnemyUnit(string[] unitArray){
+    public void RemoveEnemyUnit(string[] unitArray) {
         GameObject plane = enemyCubePosition.transform.GetChild(0).Find(unitArray[0]).Find(unitArray[1]).gameObject;
+        if (plane.transform.GetChild(0).GetComponent<UnitInformation>().isTower) {
+            AddEnemyTowerCount(-1);
+        }
+        else {
+            AddEnemyUnitCount(-1);
+        }
+
         Destroy(plane.transform.GetChild(0).gameObject);
     }
     public bool IsCubeTweening() {

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using System;
 
 public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 {
@@ -31,6 +32,8 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 	public bool active = true;
 
 	public bool isSelected = false;
+
+	public bool attackAllowed = false;
 
 	string[] attackArray = null;
 
@@ -71,7 +74,21 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
     //Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
+		if (gameManager.attackList[Convert.ToInt32(unitFolder)-1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "true" && attackAllowed == false)
+		{
+			attackAllowed = true;
+			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
+			gameObject.GetComponent<CanvasGroup>().interactable = true;
+
+		}
+		else if(gameManager.attackList[Convert.ToInt32(unitFolder) - 1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "false" && attackAllowed == true)
+		{
+			attackAllowed = false;
+			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);
+			gameObject.GetComponent<CanvasGroup>().interactable = false;
+		}
+
+		if (Input.GetMouseButtonDown(0) && attackAllowed == true){
 
         	if(active && isSelected){
 
@@ -207,7 +224,7 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
         //Output the name of the GameObject that is being clicked
         //Debug.Log(name + "Game Object Click in Progress");
 
-        if(active && !isSelected){
+        if(active && !isSelected && attackAllowed){
 
         	ResetHighlights();
 

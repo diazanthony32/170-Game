@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9171810378517154020}
   - component: {fileID: 6863473552049170293}
   - component: {fileID: 8495960895259257186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: attackChecker
   m_Icon: {fileID: 0}
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536109593303078277}
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0767433}
-  m_LocalScale: {x: 0.11620393, y: 0.031003926, z: 0.11620393}
+  m_LocalPosition: {x: 0, y: 0, z: -0.06}
+  m_LocalScale: {x: 0.11620393, y: 0.01, z: 0.11620393}
   m_Children: []
   m_Father: {fileID: 6594358655579130914}
   m_RootOrder: 0
@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 3127422588986440453}
   - component: {fileID: 6621533816929380545}
   - component: {fileID: 3351871589134103979}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: attackChecker
   m_Icon: {fileID: 0}
@@ -134,8 +134,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567761619452219990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0767433, z: 0}
-  m_LocalScale: {x: 0.11620393, y: 0.031003926, z: 0.11620393}
+  m_LocalPosition: {x: 0, y: 0.06, z: 0}
+  m_LocalScale: {x: 0.11620393, y: 0.01, z: 0.11620393}
   m_Children: []
   m_Father: {fileID: 6594358655579130914}
   m_RootOrder: 1
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 7988909808057361474}
   - component: {fileID: 6335943318451966950}
   - component: {fileID: 4871583417632236774}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: attackChecker
   m_Icon: {fileID: 0}
@@ -240,8 +240,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3619997700476130297}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.0767433, y: 0, z: 0}
-  m_LocalScale: {x: 0.11620392, y: 0.031003924, z: 0.11620393}
+  m_LocalPosition: {x: -0.06, y: 0, z: 0}
+  m_LocalScale: {x: 0.11620392, y: 0.01, z: 0.11620393}
   m_Children: []
   m_Father: {fileID: 6594358655579130914}
   m_RootOrder: 2
@@ -327,7 +327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6594358655579130914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

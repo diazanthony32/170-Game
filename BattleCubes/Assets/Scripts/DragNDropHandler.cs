@@ -146,7 +146,8 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 						unit.transform.Rotate(0.0f,(rand * 90.0f), 0.0f);
 						// Set unit as a child of the unitPlane
 						unit.transform.SetParent(hitPlane.transform);
-						gameManager.remainingUnitPoints -= unitInformation.unitSpawnCost;
+						//gameManager.remainingUnitPoints -= unitInformation.unitSpawnCost;
+						gameManager.AddUnitPoints(-unitInformation.unitSpawnCost);
 						// gameManager.unitCount++;
 						gameManager.AddUnitCount(1);
 

@@ -128,9 +128,10 @@ public class UnitInformation : MonoBehaviour
 						if(gameManager.GetState() == gameManager.SETUP){
 							Destroy(gameObject);
 							infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
-							gameManager.remainingUnitPoints += unitSpawnCost;
+							//gameManager.remainingUnitPoints += unitSpawnCost;
+							gameManager.AddUnitPoints(unitSpawnCost);
 
-							if(isTower){
+							if (isTower){
 								gameManager.AddTowerCount(-1);
 							}
 							else if(!isTower){

@@ -220,11 +220,12 @@ public class GameManager : MonoBehaviour
 
             outtaSetupCanvas.GetComponent<TweenController>().Notify();
             yield return new WaitForSeconds(1.0f);
-
+            infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
+            yield return new WaitForSeconds(0.25f);
             enemyCubePosition.GetComponent<TweenController>().slideEnemyUp();
             
             yield return new WaitForSeconds(3.0f);
-            infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
+            //infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
             
             mainScreenCanvas.SetActive(true);
 
@@ -773,6 +774,12 @@ public class GameManager : MonoBehaviour
         towerCount += val;
         print("Tower Count: " + towerCount);
         //playerCanvas.transform.Find("PlayerUnitCount").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+    }
+    public void AddUnitPoints(int val)
+    {
+        remainingUnitPoints += val;
+        print("Unit Points Remaining: " + towerCount);
+        setupCanvas.transform.Find("DragNDropSide").Find("UnitPoints").gameObject.GetComponent<TextMeshProUGUI>().text = ("Unit Points Left: <color=yellow>" + remainingUnitPoints.ToString());
     }
 
     public void AddEnemyUnitCount(int val) {

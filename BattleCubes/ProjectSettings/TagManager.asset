@@ -21,6 +21,7 @@ TagManager:
   - FxTemporaire
   - mainMenu
   - attackChecker
+  - hideUnit
   layers:
   - Default
   - TransparentFX

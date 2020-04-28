@@ -688,6 +688,7 @@ public class GameManager : MonoBehaviour
 
         SpawnCubeTargetingSystem("PlayerCubePosition");
         SpawnAttackChecker("PlayerCubePosition");
+        SpawnHideUnit("PlayerCubePosition");
 
         playerTargettingSystem = GameObject.FindGameObjectWithTag("PlayerCubePosition").transform.GetChild(1).gameObject;
         //playerTargettingSystem.SetActive(false);
@@ -703,6 +704,7 @@ public class GameManager : MonoBehaviour
 
         SpawnCubeTargetingSystem("EnemyCubePosition");
         SpawnAttackChecker("EnemyCubePosition");
+        SpawnHideUnit("EnemyCubePosition");
         // enemyCubeInfo = cubeInfo;
 
         enemyTargettingSystem = GameObject.FindGameObjectWithTag("EnemyCubePosition").transform.GetChild(1).gameObject;
@@ -721,6 +723,15 @@ public class GameManager : MonoBehaviour
         GameObject CubePosition = GameObject.FindGameObjectWithTag(tag);
 
         GameObject attackChecker = Instantiate(Resources.Load<GameObject>("MainCubePrefab/AttackChecker"));
+        attackChecker.transform.position = CubePosition.transform.position;
+        attackChecker.transform.rotation = CubePosition.transform.rotation;
+        attackChecker.transform.SetParent(CubePosition.transform);
+    }
+    void SpawnHideUnit(string tag)
+    {
+        GameObject CubePosition = GameObject.FindGameObjectWithTag(tag);
+
+        GameObject attackChecker = Instantiate(Resources.Load<GameObject>("MainCubePrefab/HideUnits"));
         attackChecker.transform.position = CubePosition.transform.position;
         attackChecker.transform.rotation = CubePosition.transform.rotation;
         attackChecker.transform.SetParent(CubePosition.transform);

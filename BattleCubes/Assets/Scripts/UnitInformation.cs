@@ -98,6 +98,8 @@ public class UnitInformation : MonoBehaviour
 		// oc = this.transform.root.GetComponent<objectClicker>();
 		// parentPlane = this.transform.parent.gameObject;
 
+		unitRenderer = GetComponentInChildren<MeshRenderer>();
+
 		if(isTower){
 			isVulnerable = false;
 		}
@@ -117,12 +119,12 @@ public class UnitInformation : MonoBehaviour
 
 			for (int i = 0; i < hits.Length; i++){
 				RaycastHit hitPlane = hits[i];
-				print(hits[i].transform.gameObject.name);
+				//print(hits[i].transform.gameObject.name);
 				
 				if(hitPlane.transform.gameObject == gameObject)
 				{
 					if(pointerDownTimer > requiredHoldTime && !executed){
-						print("Removing Unit");
+						//print("Removing Unit");
 						executed = true;
 
 						if(gameManager.GetState() == gameManager.SETUP){
@@ -146,7 +148,7 @@ public class UnitInformation : MonoBehaviour
 							if (gameManager.attackList[j][0] == attackName)
 							{
 								gameManager.attackList[j][1] = "false";
-								print(gameManager.attackList[j][0] + " : " + gameManager.attackList[j][1]);
+								//print(gameManager.attackList[j][0] + " : " + gameManager.attackList[j][1]);
 
 							}
 						}
@@ -267,10 +269,13 @@ public class UnitInformation : MonoBehaviour
 					if (gameManager.attackList[i][0] == attackName)
 					{
 						gameManager.attackList[i][1] = "true";
-						print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+						//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
 
 					}
 				}
+			}
+			else if (trigger.CompareTag("hideUnit")) {
+				unitRenderer.enabled = false;
 			}
 		}
 		
@@ -289,10 +294,14 @@ public class UnitInformation : MonoBehaviour
 					if (gameManager.attackList[i][0] == attackName)
 					{
 						gameManager.attackList[i][1] = "true";
-						print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+						//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
 
 					}
 				}
+			}
+			else if (trigger.CompareTag("hideUnit"))
+			{
+				unitRenderer.enabled = false;
 			}
 		}
 	}
@@ -310,10 +319,14 @@ public class UnitInformation : MonoBehaviour
 					if (gameManager.attackList[i][0] == attackName)
 					{
 						gameManager.attackList[i][1] = "false";
-						print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+						//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
 
 					}
 				}
+			}
+			else if (trigger.CompareTag("hideUnit"))
+			{
+				unitRenderer.enabled = true;
 			}
 		}
 	}
@@ -323,7 +336,7 @@ public class UnitInformation : MonoBehaviour
 
 //   	unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
 //   	unitBehavior.unitAnimator.SetTrigger("Death");
-		print("Im dead :(");
+		//print("Im dead :(");
 
 		yield return new WaitForSeconds(1.0f);
 		//print(transform.parent.parent.parent.parent.gameObject.tag);
@@ -354,7 +367,7 @@ public class UnitInformation : MonoBehaviour
 			if (gameManager.attackList[i][0] == attackName)
 			{
 				gameManager.attackList[i][1] = "false";
-				print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+				//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
 
 			}
 		}

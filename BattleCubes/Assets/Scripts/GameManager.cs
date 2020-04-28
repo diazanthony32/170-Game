@@ -1,10 +1,10 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using Photon.Pun;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
     //player points
     int roundsForPointIncrease = 5;
     int pointsPerRound = 3;
-    int actionPoints = 100;
+    int actionPoints = 0;
 
     //unit points
     public int totalUnitPoints = 12;
@@ -227,13 +227,13 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(3.0f);
             //infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
             
-            mainScreenCanvas.SetActive(true);
+            //mainScreenCanvas.SetActive(true);
 
-            remainingTime = ROUND_TIME;
-            timeStopped = false;
+            //remainingTime = ROUND_TIME;
+            //timeStopped = false;
 
-            roundCount++;
-            roundCountText.text = ConvertNumToText(roundCount);
+            //roundCount++;
+            //roundCountText.text = ConvertNumToText(roundCount);
 
             ResetRound();
         }
@@ -272,6 +272,8 @@ public class GameManager : MonoBehaviour
 
         preventClick.SetActive(true);
         state = THROWDOWN;
+
+        //attackHandler.ResetChooseAttackHandlers();
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
@@ -349,8 +351,11 @@ public class GameManager : MonoBehaviour
         string[] host;
         string[] client;
         for (int i = 0; i < 5 && state == THROWDOWN; i++) {
-            HighlightThrowdownAction(i);
-            infoSender.SendThrowdownHighlight(i);
+
+            if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i || enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+                HighlightThrowdownAction(i);
+                infoSender.SendThrowdownHighlight(i);
+            }
             // playerActionList.GetComponent<ActionStorage>().resetUIPulses();
             // enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
 
@@ -495,12 +500,12 @@ public class GameManager : MonoBehaviour
 
         // attackHandler.TurnOffTargetting();
         if (state == THROWDOWN){
-            timeStopped = false;
-            remainingTime = ROUND_TIME;
-            roundCount++;
-            roundCountText.text = ConvertNumToText(roundCount);
+            //timeStopped = false;
+            //remainingTime = ROUND_TIME;
+            //roundCount++;
+            //roundCountText.text = ConvertNumToText(roundCount);
 
-            mainScreenCanvas.SetActive(true);
+            //mainScreenCanvas.SetActive(true);
 
             ResetRound();
             infoSender.SendResetRound();
@@ -654,7 +659,7 @@ public class GameManager : MonoBehaviour
         //print(roundCount % roundsForPointIncrease);
         AddActionPoints(pointsPerRound);
 
-        if (state != SETUP) {
+        if (state != SETUP && roundCount >= 1) {
             playerActionList.GetComponent<TweenController>().slideXOver((Screen.width * 0.034f));
             enemyActionList.GetComponent<TweenController>().slideXOver((Screen.width * -0.034f));
 
@@ -662,8 +667,15 @@ public class GameManager : MonoBehaviour
             enemyActionList.GetComponent<ActionStorage>().ClearActionList();
             TurnOffTargetting();
         }
+
+        remainingTime = ROUND_TIME;
+        timeStopped = false;
+
+        roundCount++;
+        roundCountText.text = ConvertNumToText(roundCount);
+
         mainScreenCanvas.SetActive(true);
-        
+
         preventClick.SetActive(false);
 
         state = PLAN;

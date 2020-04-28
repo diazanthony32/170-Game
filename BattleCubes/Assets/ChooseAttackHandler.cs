@@ -74,14 +74,14 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
     //Update is called once per frame
     void Update()
     {
-		if (gameManager.attackList[Convert.ToInt32(unitFolder)-1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "true" && attackAllowed == false)
+		if ((gameManager.attackList[Convert.ToInt32(unitFolder)-1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "true" && attackAllowed == false) && gameManager.GetActionPoints() >= unitInformation.attackCost)
 		{
 			attackAllowed = true;
 			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
 			gameObject.GetComponent<CanvasGroup>().interactable = true;
 
 		}
-		else if(gameManager.attackList[Convert.ToInt32(unitFolder) - 1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "false" && attackAllowed == true)
+		else if((gameManager.attackList[Convert.ToInt32(unitFolder) - 1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "false" && attackAllowed == true) || gameManager.GetActionPoints() < unitInformation.attackCost)
 		{
 			attackAllowed = false;
 			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);

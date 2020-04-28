@@ -29,7 +29,7 @@ public class AttackHandler : MonoBehaviour
     	ResetChooseAttackHandlers();
     }
 
-    void ResetChooseAttackHandlers(){
+    public void ResetChooseAttackHandlers(){
     	//if (PhotonNetwork.LocalPlayer.IsMasterClient) {
 	    	for(int i = 0; i < transform.childCount ; i++){
 	    		ChooseAttackHandler chooseAttackHandler = transform.GetChild(i).GetComponent<ChooseAttackHandler>();

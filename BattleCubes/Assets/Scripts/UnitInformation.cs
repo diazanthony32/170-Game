@@ -274,11 +274,13 @@ public class UnitInformation : MonoBehaviour
 					}
 				}
 			}
-			else if (trigger.CompareTag("hideUnit")) {
-				unitRenderer.enabled = false;
-			}
 		}
-		
+
+		if (trigger.CompareTag("hideUnit"))
+		{
+			unitRenderer.enabled = false;
+		}
+
 	}
 
 	void OnTriggerStay(Collider trigger)
@@ -299,10 +301,11 @@ public class UnitInformation : MonoBehaviour
 					}
 				}
 			}
-			else if (trigger.CompareTag("hideUnit"))
-			{
-				unitRenderer.enabled = false;
-			}
+		}
+
+		if (trigger.CompareTag("hideUnit"))
+		{
+			unitRenderer.enabled = false;
 		}
 	}
 
@@ -324,10 +327,11 @@ public class UnitInformation : MonoBehaviour
 					}
 				}
 			}
-			else if (trigger.CompareTag("hideUnit"))
-			{
-				unitRenderer.enabled = true;
-			}
+		}
+		
+		if (trigger.CompareTag("hideUnit"))
+		{
+			unitRenderer.enabled = true;
 		}
 	}
 

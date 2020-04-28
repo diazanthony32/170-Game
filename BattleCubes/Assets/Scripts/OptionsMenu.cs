@@ -17,4 +17,8 @@ public class OptionsMenu : MonoBehaviour
         audioMixer.SetFloat("SFX", volume);
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
+
+    public void QuitGame() {
+        Application.Quit();
+    }
 }

@@ -91,6 +91,10 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
     			readyButton.interactable = false;
     		}
     	}
+
+		if (unitInformation.isTower) {
+			unitName.text = unitInformation.unitName + " \n <color=yellow>" + "Need to Place: " + (3 - gameManager.towerCount);
+		}
     	
     }
 
@@ -199,6 +203,8 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 							gameManager.AddTowerCount(1);
 
 							infoSender.SendUnitPlacement(new string[]{unitInformation.folder, hitPlane.transform.parent.name, hitPlane.transform.name});
+
+							//unitName.text = unitInformation.unitName + " \n <color=yellow>" + "Need to Place: " + (3-gameManager.towerCount);
 
 						}
 

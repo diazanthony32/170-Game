@@ -10,7 +10,8 @@ public class StartUp : MonoBehaviour
     [SerializeField] GameObject playerCubePosition;
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider musicSlider;
-    
+    [SerializeField] Slider sfxSlider;
+
 
     void Start()
     {
@@ -52,6 +53,12 @@ public class StartUp : MonoBehaviour
             musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         }
 
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            audioMixer.SetFloat("SFX", PlayerPrefs.GetFloat("SFXVolume"));
+            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+        }
+
         //Only for testing purposes. dont need this, this spawns the targetting system on the main menu cube
         GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("MainCubePrefab/CubeTargeting"));
         cubeTargeting.transform.position = playerCubePosition.transform.position;
@@ -62,5 +69,10 @@ public class StartUp : MonoBehaviour
         cubeAttackChecker.transform.position = playerCubePosition.transform.position;
         cubeAttackChecker.transform.rotation = playerCubePosition.transform.rotation;
         cubeAttackChecker.transform.SetParent(playerCubePosition.transform);
+
+        GameObject cubeHideUnits = Instantiate(Resources.Load<GameObject>("MainCubePrefab/HideUnits"));
+        cubeHideUnits.transform.position = playerCubePosition.transform.position;
+        cubeHideUnits.transform.rotation = playerCubePosition.transform.rotation;
+        cubeHideUnits.transform.SetParent(playerCubePosition.transform);
     }
 }

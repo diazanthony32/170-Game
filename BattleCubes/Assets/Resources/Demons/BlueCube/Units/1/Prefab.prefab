@@ -27,6 +27,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3102106106663920783, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 4524730613152269489, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_IsActive
@@ -148,6 +153,16 @@ PrefabInstance:
       propertyPath: AttackParticle
       value: 
       objectReference: {fileID: 100000, guid: c3267b43d9bfed14db99749a7dd24695, type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: unitHitNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 1615cf1f1b8bff4428919677b5fe735f, type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: unitDeathNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 1615cf1f1b8bff4428919677b5fe735f, type: 3}
     - target: {fileID: 7594360421447855703, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_Layer

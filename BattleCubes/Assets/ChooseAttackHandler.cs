@@ -37,7 +37,7 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
 	string[] attackArray = null;
 
-	AttackHandler attackHandler;
+	[SerializeField] AttackHandler attackHandler;
 
 	List<GameObject> oldTargets = new List<GameObject>();
 

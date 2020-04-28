@@ -3999,7 +3999,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8344098275013752693, guid: 552a3eff42471c14a8d150896525f7bc,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: ce1e4a71f189e2f4c8a1c2c56688c97b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dff955ca153e25640978ccf488b92eb3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8
   m_Pitch: 1
@@ -5316,6 +5316,7 @@ MonoBehaviour:
   playerCubePosition: {fileID: 1114775184}
   audioMixer: {fileID: 24100000, guid: 552a3eff42471c14a8d150896525f7bc, type: 2}
   musicSlider: {fileID: 799629793}
+  sfxSlider: {fileID: 984430843}
 --- !u!1001 &847629900
 PrefabInstance:
   m_ObjectHideFlags: 0

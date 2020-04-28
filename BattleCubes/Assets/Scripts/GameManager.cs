@@ -85,13 +85,21 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider musicSlider;
+    [SerializeField] Slider sfxSlider;
 
     void Start() {
         cubeInfo = new string[] {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
 
-        if(PlayerPrefs.HasKey("MusicVolume")){
+        if (PlayerPrefs.HasKey("MusicVolume"))
+        {
             audioMixer.SetFloat("Music", PlayerPrefs.GetFloat("MusicVolume"));
             musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
+        }
+
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            audioMixer.SetFloat("SFX", PlayerPrefs.GetFloat("SFXVolume"));
+            sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
         }
 
         state = SETUP;
@@ -273,7 +281,7 @@ public class GameManager : MonoBehaviour
         preventClick.SetActive(true);
         state = THROWDOWN;
 
-        //attackHandler.ResetChooseAttackHandlers();
+        attackHandler.ResetChooseAttackHandlers();
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);

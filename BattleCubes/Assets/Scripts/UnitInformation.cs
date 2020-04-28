@@ -176,21 +176,31 @@ public class UnitInformation : MonoBehaviour
 		//CheckIfVulnerable();
 
 		if(isVulnerable){
+			
 			unitCurrentHealth -= damageAmount;
 			//audioSource.PlayOneShot(hitEnemySfx);
 
 			// audioSource.PlayOneShot(unitBehavior.unitHitNoise);
-			if(unitCurrentHealth >= 1){
+			if(unitCurrentHealth > 0){
 
 				if(unitHitNoise != null){
 					unitAudioSource.PlayOneShot(unitHitNoise);
 					//unitAnimator.SetTrigger("Hit");
-
-					//Handheld.Vibrate();
+					
+					if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+					{
+						Handheld.Vibrate();
+					}
 				}
 				
 			}
 			else if(unitCurrentHealth <= 0){
+
+				if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+				{
+					Handheld.Vibrate();
+				}
+
 				StartCoroutine(Die());
 			}
 
@@ -235,18 +245,6 @@ public class UnitInformation : MonoBehaviour
 	{
 		pointerDown = true;
 
-		// if(gameManager.GetState() == gameManager.SETUP){
-		// 	Destroy(gameObject);
-		// 	infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
-		// 	gameManager.remainingUnitPoints += unitSpawnCost;
-
-		// 	if(isTower){
-		// 		gameManager.towerCount--;
-		// 	}
-		// 	else if(!isTower){
-		// 		gameManager.unitCount--;
-		// 	}
-		// }
 	}
 
 	// runs when the player clicks an attack to do
@@ -337,9 +335,10 @@ public class UnitInformation : MonoBehaviour
 
 	IEnumerator Die() {
 
+		unitAudioSource.PlayOneShot(unitDeathNoise);
 
-//   	unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
-//   	unitBehavior.unitAnimator.SetTrigger("Death");
+		//unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
+		//unitBehavior.unitAnimator.SetTrigger("Death");
 		//print("Im dead :(");
 
 		yield return new WaitForSeconds(1.0f);

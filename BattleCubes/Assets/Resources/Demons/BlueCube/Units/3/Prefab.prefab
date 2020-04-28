@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 84.586, y: 84.586, z: 84.586}
   m_Children: []
   m_Father: {fileID: 4434435961590423545}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8705498625151756854
 MeshFilter:
@@ -233,6 +233,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1040608886635896, guid: 9450546df7641934281999ca27780c40,
         type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: unitHitNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 4917c85f492bc674787b8d9b5600a7dc, type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: unitDeathNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 4917c85f492bc674787b8d9b5600a7dc, type: 3}
     - target: {fileID: 7594360421447855703, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_Layer

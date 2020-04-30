@@ -49,7 +49,10 @@
                 // sample the texture
                 //fixed4 col = tex2D(_MainTex, i.uv + float2(0, sin(i.vertex.x / 100 + _Time[1] / 10) / 50));
 				fixed4 col = tex2D(_MainTex, i.uv);
-				//col.g -= 0.02;
+				/*col.r = 0.0;
+				col.g = 8.0;
+				col.b = 0.0;*/
+
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

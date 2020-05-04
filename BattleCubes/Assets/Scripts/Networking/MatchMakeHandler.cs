@@ -12,6 +12,9 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TMP_InputField roomNameInputField = null;
     [SerializeField] TextMeshProUGUI searchText;
+
+    [SerializeField] private Button privateSearchButton = null;
+
     private bool isConnecting = false;
     private const string GameVersion = "0.1.4"; //Change with the gameVersion
     private const int MaxPlayersPerRoom = 2;
@@ -34,7 +37,7 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
             //roomOptions.IsVisible = false;
 
             //PhotonNetwork.JoinOrCreateRoom("nose", roomOptions, TypedLobby.Default);
-            if (!string.IsNullOrEmpty(roomNameInputField.text)) {
+            if (!string.IsNullOrEmpty(roomNameInputField.text) && roomNameInputField.text.Length <= 3) {
                 PhotonNetwork.JoinRoom(roomNameInputField.text, null);
             }
             else {
@@ -47,6 +50,13 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
             PhotonNetwork.GameVersion = GameVersion;
             PhotonNetwork.ConnectUsingSettings();
         }
+    }
+
+    public void SetRoomCode(string name)
+    {
+        //For some reason using just the player name doesn't work
+
+        privateSearchButton.interactable = (roomNameInputField.text.Length >= 3) ? true : false;
     }
 
     public override void OnConnectedToMaster() {

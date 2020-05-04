@@ -57,7 +57,7 @@ public class TweenController : MonoBehaviour
 
 	public void Float()
 	{
-		LeanTween.moveY(gameObject, 0.125f, 2.5f).setEaseInOutSine().setLoopPingPong().setDelay(delayTime);
+		LeanTween.moveY(gameObject, 0.125f, 3.0f).setEaseInOutSine().setLoopPingPong().setDelay(delayTime);
 	}
 
 	public void Pulse()

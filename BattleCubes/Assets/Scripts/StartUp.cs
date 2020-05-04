@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class StartUp : MonoBehaviour
 {
+    [SerializeField] GameObject newPlayerMenu;
+    [SerializeField] GameObject mainMenu;
+    [Space(10)]
     [SerializeField] GameObject playerCubePosition;
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider musicSlider;
@@ -17,11 +20,13 @@ public class StartUp : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("PlayerName")) {
             GameObject.FindGameObjectWithTag("playerName").GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetString("PlayerName", "no name");
-            GameObject.FindGameObjectWithTag("loginMenu").SetActive(false);
+            newPlayerMenu.SetActive(false);
+            mainMenu.SetActive(true);
+
         }
         else {
-            GameObject.FindGameObjectWithTag("loginMenu").SetActive(true);
-            GameObject.FindGameObjectWithTag("mainMenu").SetActive(false);
+            newPlayerMenu.SetActive(true);
+            mainMenu.SetActive(false);
         }
 
         if (PlayerPrefs.HasKey("CubeTheme")) {

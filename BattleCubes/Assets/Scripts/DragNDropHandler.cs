@@ -21,6 +21,8 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 	Image unitImage;
 	TextMeshProUGUI unitName;
 
+	TextMeshProUGUI unitCost;
+
 	bool active = true;
 
 	[SerializeField] Button readyButton = null;
@@ -46,18 +48,23 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
     	unitImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
     	unitImage.sprite = unitInformation.unitImage;
 
-    	unitName = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+		if (!unitInformation.isTower)
+		{
+			unitCost = transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>();
+			unitCost.text = unitInformation.unitSpawnCost.ToString();
+		}
+		//unitName = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 
-    	if(unitInformation.isTower){
-    		unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Need to Place: 3"*/;
-    	}
-    	else{
-    		unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Cost to Place: "+ unitInformation.unitSpawnCost*/;
-    	}
-    	// unitName.text = unitInformation.unitName + " \n " + "Cost to Place: "+ unitInformation.unitSpawnCost;
+		//if(unitInformation.isTower){
+		//unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Need to Place: 3"*/;
+		//}
+		//else{
+		//unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Cost to Place: "+ unitInformation.unitSpawnCost*/;
+		//}
+		// unitName.text = unitInformation.unitName + " \n " + "Cost to Place: "+ unitInformation.unitSpawnCost;
 
-        
-    }
+
+	}
 
     // Update is called once per frame
     void Update(){
@@ -92,9 +99,9 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
     		}
     	}
 
-		if (unitInformation.isTower) {
-			unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Need to Place: " + (3 - gameManager.towerCount)*/;
-		}
+		//if (unitInformation.isTower) {
+			//unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Need to Place: " + (3 - gameManager.towerCount)*/;
+		//}
     	
     }
 

@@ -527,6 +527,9 @@ public class GameManager : MonoBehaviour
         enemyCubePosition.transform.GetChild(0).GetComponent<RotateCube>().RequestRotation(direction);
     }
 
+    public void UpdateUnitCount() { 
+        
+    }
 
     public void TranslateAttackOnEnemyCube(string[] array) {
         attackHandler.DoAttack("Client", array);
@@ -799,7 +802,18 @@ public class GameManager : MonoBehaviour
     public void AddUnitCount(int val) {
         unitCount += val;
         print("Unit Count: " + unitCount);
-        playerCanvas.transform.Find("PlayerUnitCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+
+        for (int i = 0; i < playerCanvas.transform.Find("PlayerUnitCount").childCount; i++)
+        {
+            playerCanvas.transform.Find("PlayerUnitCount").GetChild(i).gameObject.SetActive(false);
+        }
+
+        for (int j = 0; j < unitCount; j++) {
+            playerCanvas.transform.Find("PlayerUnitCount").GetChild(j).gameObject.SetActive(true);
+        }
+
+        //playerCanvas.transform.Find("PlayerUnitCount").Find("Count").GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
+
     }
     public void AddTowerCount(int val) {
         towerCount += val;
@@ -810,13 +824,26 @@ public class GameManager : MonoBehaviour
     {
         remainingUnitPoints += val;
         print("Unit Points Remaining: " + towerCount);
-        setupCanvas.transform.Find("DragNDropSide").Find("UnitPoints").gameObject.GetComponent<TextMeshProUGUI>().text = ("Unit Points Left: <color=yellow>" + remainingUnitPoints.ToString());
+
+        setupCanvas.transform.Find("DragNDropSide").Find("PlayerUnitPointCounter").Find("Count").gameObject.GetComponent<TextMeshProUGUI>().text = remainingUnitPoints.ToString();
+        //setupCanvas.transform.Find("DragNDropSide").Find("UnitPoints").gameObject.GetComponent<TextMeshProUGUI>().text = ("Unit Points Left: <color=yellow>" + remainingUnitPoints.ToString());
     }
 
     public void AddEnemyUnitCount(int val) {
         enemyUnitCount += val;
         print("Enemy Unit Count: " + enemyUnitCount);
-        enemyCanvas.transform.Find("EnemyUnitCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = enemyUnitCount.ToString();
+
+        for (int i = 0; i < enemyCanvas.transform.Find("EnemyUnitCount").childCount; i++)
+        {
+            enemyCanvas.transform.Find("EnemyUnitCount").GetChild(i).gameObject.SetActive(false);
+        }
+
+        for (int j = 0; j < enemyUnitCount; j++)
+        {
+            enemyCanvas.transform.Find("EnemyUnitCount").GetChild(j).gameObject.SetActive(true);
+        }
+
+        //enemyCanvas.transform.Find("EnemyUnitCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = enemyUnitCount.ToString();
     }
     public void AddEnemyTowerCount(int val) {
         enemyTowerCount += val;

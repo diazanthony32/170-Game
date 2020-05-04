@@ -21,4 +21,10 @@ public class OptionsMenu : MonoBehaviour
     public void QuitGame() {
         Application.Quit();
     }
+
+    public void OpenTwitter()
+    {
+        Application.OpenURL("https://twitter.com/BattleCubesGame");
+
+    }
 }

@@ -49,10 +49,10 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
     	unitName = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
 
     	if(unitInformation.isTower){
-    		unitName.text = unitInformation.unitName + " \n <color=yellow>" + "Need to Place: 3";
+    		unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Need to Place: 3"*/;
     	}
     	else{
-    		unitName.text = unitInformation.unitName + " \n <color=yellow>" + "Cost to Place: "+ unitInformation.unitSpawnCost;
+    		unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Cost to Place: "+ unitInformation.unitSpawnCost*/;
     	}
     	// unitName.text = unitInformation.unitName + " \n " + "Cost to Place: "+ unitInformation.unitSpawnCost;
 
@@ -93,7 +93,7 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
     	}
 
 		if (unitInformation.isTower) {
-			unitName.text = unitInformation.unitName + " \n <color=yellow>" + "Need to Place: " + (3 - gameManager.towerCount);
+			unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Need to Place: " + (3 - gameManager.towerCount)*/;
 		}
     	
     }

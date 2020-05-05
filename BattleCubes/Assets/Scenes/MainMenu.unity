@@ -3389,7 +3389,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30.00003
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -4041,7 +4041,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -12162,7 +12162,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30.00003
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}

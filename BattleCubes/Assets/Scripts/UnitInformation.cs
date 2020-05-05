@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UnitInformation : MonoBehaviour
 {
@@ -33,8 +34,8 @@ public class UnitInformation : MonoBehaviour
 	[Space(10)]
 	public string unitName;
 	public int unitSpawnCost;
-	public int unitHealth;
-	int unitCurrentHealth;
+	public float unitHealth;
+	public float unitCurrentHealth;
 	[Space(10)]
 	public string attackName;
 	public int attackCost;
@@ -60,6 +61,7 @@ public class UnitInformation : MonoBehaviour
 
 	AudioSource unitAudioSource;
 	Animator unitAnimator;
+	Image unitHealthBar;
 
 	//-------
 
@@ -99,6 +101,8 @@ public class UnitInformation : MonoBehaviour
 		// parentPlane = this.transform.parent.gameObject;
 
 		unitRenderer = GetComponentInChildren<MeshRenderer>();
+
+		unitHealthBar = GetComponentInChildren<Image>();
 
 		if(isTower){
 			isVulnerable = false;
@@ -166,6 +170,8 @@ public class UnitInformation : MonoBehaviour
 				pointerDownTimer = 0;
 			}
 		}
+
+		unitHealthBar.fillAmount = unitCurrentHealth / unitHealth;
 	}
 
 	public void TakeDamage(int damageAmount){

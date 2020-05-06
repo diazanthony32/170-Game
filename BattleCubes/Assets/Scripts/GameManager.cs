@@ -926,7 +926,7 @@ public class GameManager : MonoBehaviour
 
     public string ConvertNumToText(int num) {
         if (num == 0) {
-            return "Setup";
+            return "Setup Phase";
         }
         else if (num == 1) {
             return "Round One";

@@ -71,21 +71,21 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
     	if(!unitInformation.isTower){
     		if((gameManager.remainingUnitPoints < unitInformation.unitSpawnCost) && active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.25f);
 	        	active = false;
 	        }
 	        else if((gameManager.remainingUnitPoints >= unitInformation.unitSpawnCost) && !active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.25f);
 	        	active = true;
 	        }
     	}
     	else if(unitInformation.isTower){
     		if((gameManager.towerCount == 3) && active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.25f);
 	        	active = false;
 	        }
 	        else if((gameManager.towerCount < 3) && !active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.25f);
 	        	active = true;
 	        }
     	}
@@ -99,9 +99,10 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
     		}
     	}
 
-		//if (unitInformation.isTower) {
-			//unitName.text = unitInformation.unitName /*+ " \n <color=yellow>" + "Need to Place: " + (3 - gameManager.towerCount)*/;
-		//}
+		if (unitInformation.isTower) {
+			//unitName.text = ag /*+ " \n <color=yellow>" + "Need to Place: " + (3 - gameManager.towerCount)*/;
+			GameObject.FindGameObjectWithTag("towerText").GetComponent<TextMeshProUGUI>().text = "Towers Remaining: <color=yellow>" + (3 - gameManager.towerCount);
+		}
     	
     }
 

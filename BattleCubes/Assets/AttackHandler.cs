@@ -32,7 +32,7 @@ public class AttackHandler : MonoBehaviour
     public void ResetChooseAttackHandlers(){
     	//if (PhotonNetwork.LocalPlayer.IsMasterClient) {
 	    	for(int i = 0; i < transform.childCount ; i++){
-	    		ChooseAttackHandler chooseAttackHandler = transform.GetChild(i).GetComponent<ChooseAttackHandler>();
+	    		ChooseAttackHandler chooseAttackHandler = transform.GetChild(i).GetChild(0).GetComponent<ChooseAttackHandler>();
 	    		chooseAttackHandler.ResetHighlights();
 	    		chooseAttackHandler.isSelected = false;
 				chooseAttackHandler.GetComponent<TweenController>().CancelPulseHighlight();

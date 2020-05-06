@@ -50,7 +50,9 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
 		if (!unitInformation.isTower)
 		{
-			unitCost = transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>();
+			//print(transform.parent.GetChild(1).GetChild(1).GetChild(2).name);
+			unitCost = transform.parent.GetChild(1).GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>();
+			//print(transform.parent.name);
 			unitCost.text = unitInformation.unitSpawnCost.ToString();
 		}
 		//unitName = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -71,21 +73,21 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
     	if(!unitInformation.isTower){
     		if((gameManager.remainingUnitPoints < unitInformation.unitSpawnCost) && active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.25f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);
 	        	active = false;
 	        }
 	        else if((gameManager.remainingUnitPoints >= unitInformation.unitSpawnCost) && !active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.25f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
 	        	active = true;
 	        }
     	}
     	else if(unitInformation.isTower){
     		if((gameManager.towerCount == 3) && active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.25f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);
 	        	active = false;
 	        }
 	        else if((gameManager.towerCount < 3) && !active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.25f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
 	        	active = true;
 	        }
     	}

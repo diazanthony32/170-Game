@@ -25,7 +25,9 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
 	GameObject unitIconParent;
 	Image unitImage;
-	TextMeshProUGUI unitName;
+	TextMeshProUGUI attackName;
+
+	TextMeshProUGUI attackCost;
 
 	string[] enemyCubeInfo;
 
@@ -48,7 +50,7 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
     {
         // unitPrefab = Resources.Load<GameObject>(enemyCubeInfo[0] + "/" + enemyCubeInfo[1] + "/Units/" + unitArray[0] + "/Prefab");
 
-        attackHandler = transform.parent.GetComponent<AttackHandler>();
+        attackHandler = transform.parent.parent.GetComponent<AttackHandler>();
 
     	string[] cubeInfo = {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
 
@@ -66,10 +68,18 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
     	unitImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
     	unitImage.sprite = unitInformation.unitImage;
 
-    	unitName = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
+    	attackName = transform.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
 
-    	unitName.text = unitInformation.attackName + " \n <color=yellow>" + "Cost to Use: " + unitInformation.attackCost;
-    }
+		attackName.text = unitInformation.attackName;
+
+		if (!unitInformation.isTower)
+		{
+			//print(transform.parent.GetChild(1).GetChild(1).GetChild(2).name);
+			attackCost = transform.parent.GetChild(1).GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>();
+			//print(transform.parent.name);
+			attackCost.text = unitInformation.attackCost.ToString();
+		}
+	}
 
     //Update is called once per frame
     void Update()
@@ -77,14 +87,14 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 		if ((gameManager.attackList[Convert.ToInt32(unitFolder)-1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "true" && attackAllowed == false) && gameManager.GetActionPoints() >= unitInformation.attackCost)
 		{
 			attackAllowed = true;
-			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.25f);
+			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
 			gameObject.GetComponent<CanvasGroup>().interactable = true;
 
 		}
 		else if((gameManager.attackList[Convert.ToInt32(unitFolder) - 1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "false" && attackAllowed == true) || gameManager.GetActionPoints() < unitInformation.attackCost)
 		{
 			attackAllowed = false;
-			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.25f);
+			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);
 			gameObject.GetComponent<CanvasGroup>().interactable = false;
 		}
 
@@ -175,12 +185,17 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
     }
 
     public void ResetHighlights(){
-    	foreach(GameObject plane in oldTargets){
-    		var tempColor = plane.GetComponent<MeshRenderer>().material.color;
-    		tempColor.a = 0f;
-    		plane.GetComponent<MeshRenderer>().material.color = tempColor;
-    		// oldTargets.Remove(plane);
-    	}
+
+		if (oldTargets != null)
+		{
+			foreach (GameObject plane in oldTargets)
+			{
+				var tempColor = plane.GetComponent<MeshRenderer>().material.color;
+				tempColor.a = 0f;
+				plane.GetComponent<MeshRenderer>().material.color = tempColor;
+				// oldTargets.Remove(plane);
+			}
+		}
 
     	oldTargets.Clear();
     	selectedPlane = null;
@@ -228,10 +243,10 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
         	ResetHighlights();
 
-			for(int i = 0; i < transform.parent.childCount; i++){
+			for(int i = 0; i < transform.parent.parent.childCount; i++){
 				// selected = false;
-				transform.parent.GetChild(i).GetComponent<ChooseAttackHandler>().isSelected = false;
-				transform.parent.GetChild(i).GetComponent<TweenController>().CancelPulseHighlight();
+				transform.parent.parent.GetChild(i).GetChild(0).GetComponent<ChooseAttackHandler>().isSelected = false;
+				transform.parent.parent.GetChild(i).GetChild(0).GetComponent<TweenController>().CancelPulseHighlight();
 			}
 
 			tweenController.Highlight();

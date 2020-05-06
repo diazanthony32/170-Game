@@ -10,6 +10,7 @@ public class PlayerNameInput : MonoBehaviour
 {
     [SerializeField] private TMP_InputField nameInputField = null;
     [SerializeField] private Button continueButton = null;
+    [SerializeField] TextMeshProUGUI introText;
 
     private const string PlayerPrefsNameKey = "PlayerName";
 
@@ -43,5 +44,19 @@ public class PlayerNameInput : MonoBehaviour
         PlayerPrefs.SetString(PlayerPrefsNameKey, playerName);
 
         GameObject.FindGameObjectWithTag("playerName").GetComponent<TextMeshProUGUI>().text = playerName;
+    }
+
+    public void InitalSavePlayerName()
+    {
+        string playerName = nameInputField.text;
+
+        //PhotonNetwork.NickName = playerName;
+
+        PlayerPrefs.SetString(PlayerPrefsNameKey, playerName);
+
+        GameObject.FindGameObjectWithTag("playerName").GetComponent<TextMeshProUGUI>().text = playerName;
+
+        string v = "Welcome to the Battlegrounds, \n <color=yellow>" + playerName + "</color>!";
+        introText.text = v;
     }
 }

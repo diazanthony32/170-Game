@@ -37,20 +37,20 @@ public class StartUp : MonoBehaviour
                 cube.transform.SetParent(playerCubePosition.transform);
             }
             else {
-                GameObject cube = Instantiate(Resources.Load<GameObject>(PlayerPrefs.GetString("CubeTheme") + "/DefaultCube/Cube"));
+                GameObject cube = Instantiate(Resources.Load<GameObject>(PlayerPrefs.GetString("CubeTheme") + "/RedCube/Cube"));
                 cube.transform.position = playerCubePosition.transform.position;
                 cube.transform.rotation = playerCubePosition.transform.rotation;
                 cube.transform.SetParent(playerCubePosition.transform);
             }
         }
         else {
-            GameObject cube = Instantiate(Resources.Load<GameObject>("Demons/DefaultCube/Cube"));
+            GameObject cube = Instantiate(Resources.Load<GameObject>("Demons/RedCube/Cube"));
             cube.transform.position = playerCubePosition.transform.position;
             cube.transform.rotation = playerCubePosition.transform.rotation;
             cube.transform.SetParent(playerCubePosition.transform);
 
             PlayerPrefs.SetString("CubeTheme", "Demons");
-            PlayerPrefs.SetString("CubeColor", "DefaultCube");
+            PlayerPrefs.SetString("CubeColor", "RedCube");
         }
 
         if(PlayerPrefs.HasKey("MusicVolume")){

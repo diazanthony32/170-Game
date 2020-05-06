@@ -23,6 +23,7 @@ TagManager:
   - attackChecker
   - hideUnit
   - towerText
+  - introText
   layers:
   - Default
   - TransparentFX

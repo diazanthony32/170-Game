@@ -209,7 +209,7 @@ PrefabInstance:
         type: 3}
       propertyPath: unitImage
       value: 
-      objectReference: {fileID: 21300000, guid: 0c519666d6b40394f93faba24682bab2,
+      objectReference: {fileID: 21300000, guid: afef175a09f3c744bb74dfdc0835a3e0,
         type: 3}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
@@ -246,6 +246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842834485630409258, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8342402923615587709, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}

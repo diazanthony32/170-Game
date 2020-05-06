@@ -16,7 +16,7 @@ public class DisconnectionHandler : MonoBehaviourPunCallbacks {
     public void Update() {
         if (gameManager.state != gameManager.GAMEEND) {
             if (PhotonNetwork.CurrentRoom == null) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+                SceneManager.LoadScene(0);
             }
             else if (PhotonNetwork.CurrentRoom.PlayerCount < 2) {
                 PhotonNetwork.Disconnect();
@@ -25,7 +25,7 @@ public class DisconnectionHandler : MonoBehaviourPunCallbacks {
         }
         else {
             if (PhotonNetwork.CurrentRoom == null) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+                SceneManager.LoadScene(0);
             }
         }
     }
@@ -33,5 +33,13 @@ public class DisconnectionHandler : MonoBehaviourPunCallbacks {
     {
         PhotonNetwork.Disconnect();
         Debug.Log("Disconnected from opponent");
+    }
+
+    public void ExitTutorial()
+    {
+        PhotonNetwork.Disconnect();
+        Debug.Log("Disconnected from opponent");
+
+        SceneManager.LoadScene(0);
     }
 }

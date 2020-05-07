@@ -1,23 +1,11 @@
 fileFormatVersion: 2
-guid: 4c599a334d76eca499de766345a321cf
+guid: 429a381cbf4930a42b464605023c0969
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
-      74: -7071055131897936725
-    second: get hit02
-  - first:
       74: 4781951162920444690
     second: Armature|ArmatureAction
-  - first:
-      74: 4723146814002874508
-    second: Armature|Attack
-  - first:
-      74: 1014566209636810728
-    second: Armature|get hit
-  - first:
-      74: 6432576997629242917
-    second: Armature|get hit02
   externalObjects: {}
   materials:
     materialImportMode: 1

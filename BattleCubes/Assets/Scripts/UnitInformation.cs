@@ -93,14 +93,14 @@ public class UnitInformation : MonoBehaviour
 		infoSender = GameObject.FindGameObjectWithTag("infoSender").GetComponent<InfoSender>();
 
 		unitAudioSource = GetComponent<AudioSource>();
-		// unitAnimator = GetComponent<Animator>();
+		unitAnimator = transform.Find("UnitScaler").GetComponentInChildren<Animator>();
 		//unitAudioSource.volume = 0.1f;
 
-		unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<Renderer>();
+		unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<SkinnedMeshRenderer>();
 		// oc = this.transform.root.GetComponent<objectClicker>();
 		// parentPlane = this.transform.parent.gameObject;
 
-		unitRenderer = GetComponentInChildren<MeshRenderer>();
+		//unitRenderer = GetComponentInChildren<MeshRenderer>();
 
 		unitHealthBar = GetComponentInChildren<Image>();
 
@@ -197,6 +197,10 @@ public class UnitInformation : MonoBehaviour
 					{
 						Handheld.Vibrate();
 					}
+				}
+
+				if (unitAnimator) {
+					unitAnimator.SetTrigger("hit");
 				}
 				
 			}
@@ -342,12 +346,17 @@ public class UnitInformation : MonoBehaviour
 	IEnumerator Die() {
 
 		unitAudioSource.PlayOneShot(unitDeathNoise);
+		
+		if (unitAnimator)
+		{
+			unitAnimator.SetTrigger("death");
+		}
 
 		//unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
 		//unitBehavior.unitAnimator.SetTrigger("Death");
 		//print("Im dead :(");
 
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(1.5f);
 		//print(transform.parent.parent.parent.parent.gameObject.tag);
 
 		if(transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition"){

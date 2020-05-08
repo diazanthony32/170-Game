@@ -6301,9 +6301,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Swipe on the your Cube in the direction you want to Rotate. \n\nTo cancel
-    an action, click the highlighted action on your action list.\n\n<size=35>* Remember,
-    you will ONLY be able to use the attacks for the units visible on your cube."
+  m_text: "<color=yellow>Swipe</color> on the your Cube in the direction you want
+    to Rotate. \n\nTo <color=yellow>cancel an action</color>, click the highlighted
+    action on your action list.\n\n<size=35>* Remember, you will ONLY be able to
+    use the attacks for the units visible on your cube."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -32527,6 +32528,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AP
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796643107917264921, guid: 96fe3c57407b4d44a90199aff9dbc435,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2796643108338821118, guid: 96fe3c57407b4d44a90199aff9dbc435,
         type: 3}

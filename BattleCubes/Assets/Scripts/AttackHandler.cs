@@ -44,70 +44,86 @@ public class AttackHandler : MonoBehaviour
 
     public void DoAttack(string player, string[] array){
 
-    	//TurnOnTargetting();
+        //TurnOnTargetting();
+        bool attackAllowed = false;
 
-    	// if(player == "Host"){
-    	// 	UnitInformation unitInfo = GetAttackUnit(player, array[1]);
-    	// 	GameObject attackedPlane = GetTargettedPlane(player, array[2], array[3]);
+        attackAllowed = CheckForAttackUnit(player, array[1]);
 
-    	// 	if(attackedPlane.transform.childCount > 0){
-    	// 		print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
-    	// 	}
-    	// 	else{
-    	// 		print("You missed...");
-    	// 	}
-    	// }
-    	// else if(player == "Client"){
-    	// 	UnitInformation unitInfo = GetAttackUnit(player, array[1]);
-    	// 	GameObject attackedPlane = GetTargettedPlane(player, array[2], array[3]);
+        // if(player == "Host"){
+        // 	UnitInformation unitInfo = GetAttackUnit(player, array[1]);
+        // 	GameObject attackedPlane = GetTargettedPlane(player, array[2], array[3]);
 
-    	// 	if(attackedPlane.transform.childCount > 0){
-    	// 		print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
-    	// 	}
-    	// 	else{
-    	// 		print("You missed...");
-    	// 	}
-    	// } 
+        // 	if(attackedPlane.transform.childCount > 0){
+        // 		print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
+        // 	}
+        // 	else{
+        // 		print("You missed...");
+        // 	}
+        // }
+        // else if(player == "Client"){
+        // 	UnitInformation unitInfo = GetAttackUnit(player, array[1]);
+        // 	GameObject attackedPlane = GetTargettedPlane(player, array[2], array[3]);
 
-    	UnitInformation unitInfo = GetAttackUnit(player, array[1]);
+        // 	if(attackedPlane.transform.childCount > 0){
+        // 		print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
+        // 	}
+        // 	else{
+        // 		print("You missed...");
+        // 	}
+        // } 
 
-    	if(unitInfo.targetSystem == "SingleAttack"){
-    		GameObject attackedPlane = GetTargettedPlane(player, array[2], array[3]);
+        if (attackAllowed)
+        {
 
-    		if(unitInfo.AttackParticle != null){
-    			GameObject particle = Instantiate(unitInfo.AttackParticle);
-    			particle.transform.position = attackedPlane.transform.position;
-				particle.transform.rotation = attackedPlane.transform.rotation;
-    		}
+            UnitInformation unitInfo = GetAttackUnit(player, array[1]);
 
-    		if(attackedPlane.transform.childCount > 0){
-				print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
-				UnitInformation hitUnitInfo = attackedPlane.transform.GetChild(0).GetComponent<UnitInformation>();
-				hitUnitInfo.TakeDamage(unitInfo.attackDmg);
-			}
-			else{
-				print("You missed...");
-			}
-    	}
-    	else if(unitInfo.targetSystem == "TankAttack"){
-    		GameObject[] attackedPlanes = GetTankTargettedPlaneArray(player, array[2], array[3]);
-    		for(int i = 0; i < 4; i++){
-    			if(unitInfo.AttackParticle != null){
-	    			GameObject particle = Instantiate(unitInfo.AttackParticle);
-	    			particle.transform.position = attackedPlanes[i].transform.position;
-					particle.transform.rotation = attackedPlanes[i].transform.rotation;
-	    		}
+            if (unitInfo.targetSystem == "SingleAttack")
+            {
+                GameObject attackedPlane = GetTargettedPlane(player, array[2], array[3]);
 
-    			if(attackedPlanes[i].transform.childCount > 0){
-					print("You hit a Unit: " + attackedPlanes[i].transform.GetChild(0).name);
-					UnitInformation hitUnitInfo = attackedPlanes[i].transform.GetChild(0).GetComponent<UnitInformation>();
-					hitUnitInfo.TakeDamage(unitInfo.attackDmg);
-				}
-				else{
-					print("You missed...");
-				}
-    		}
-    	}
+                if (unitInfo.AttackParticle != null)
+                {
+                    GameObject particle = Instantiate(unitInfo.AttackParticle);
+                    particle.transform.position = attackedPlane.transform.position;
+                    particle.transform.rotation = attackedPlane.transform.rotation;
+                }
+
+                if (attackedPlane.transform.childCount > 0)
+                {
+                    print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
+                    UnitInformation hitUnitInfo = attackedPlane.transform.GetChild(0).GetComponent<UnitInformation>();
+                    hitUnitInfo.TakeDamage(unitInfo.attackDmg);
+                }
+                else
+                {
+                    print("You missed...");
+                }
+            }
+            else if (unitInfo.targetSystem == "TankAttack")
+            {
+                GameObject[] attackedPlanes = GetTankTargettedPlaneArray(player, array[2], array[3]);
+                for (int i = 0; i < 4; i++)
+                {
+                    if (unitInfo.AttackParticle != null)
+                    {
+                        GameObject particle = Instantiate(unitInfo.AttackParticle);
+                        particle.transform.position = attackedPlanes[i].transform.position;
+                        particle.transform.rotation = attackedPlanes[i].transform.rotation;
+                    }
+
+                    if (attackedPlanes[i].transform.childCount > 0)
+                    {
+                        print("You hit a Unit: " + attackedPlanes[i].transform.GetChild(0).name);
+                        UnitInformation hitUnitInfo = attackedPlanes[i].transform.GetChild(0).GetComponent<UnitInformation>();
+                        hitUnitInfo.TakeDamage(unitInfo.attackDmg);
+                    }
+                    else
+                    {
+                        print("You missed...");
+                    }
+                }
+            }
+        }
 
     	//TurnOffTargetting();
 		// attackArray = new string[]{"attack", unitInformation.attackName, hitPlane.transform.parent.name, hitPlane.transform.name};
@@ -239,6 +255,75 @@ public class AttackHandler : MonoBehaviour
     	return targetPlanes;
     }
 
+    public bool CheckForAttackUnit(string player, string attackName) {
+
+        Transform attackOrigin = null;
+        if (player == "Host")
+        {
+            attackOrigin = gameManager.playerCubePosition.transform.GetChild(1).Find("HighlightAttacks");
+        }
+        else if (player == "Client")
+        {
+            attackOrigin = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks");
+        }
+
+        List<GameObject> frontTargettingPlanes = new List<GameObject>{};
+
+        frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes1").GetChild(4).gameObject);
+        frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes2").GetChild(4).gameObject);
+        frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes5").GetChild(4).gameObject);
+
+
+        for (int x = 0 ; x < frontTargettingPlanes.Count ; x++) {
+
+            RaycastHit[] hits;
+            hits = Physics.RaycastAll(frontTargettingPlanes[x].transform.position, -frontTargettingPlanes[x].transform.up, 0.25f);
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                //stored info from the enemy's unitPlane underneath
+                RaycastHit hit = hits[i];
+                var hitPlane = hit.transform.gameObject;
+
+                //print(hitPlane.name);
+                //this is where we filter out the weird self hits
+                if (hitPlane.tag == "unitSquare")
+                {
+                    //return hitPlane.gameObject;
+
+                    for( int y = 0 ; y < hitPlane.transform.parent.childCount ; y++)
+                    {
+                        if (hitPlane.transform.parent.GetChild(y).childCount > 0) {
+
+                            for (int z = 0; z < hitPlane.transform.parent.GetChild(y).childCount; z++)
+                            {
+                                UnitInformation unit = hitPlane.transform.parent.GetChild(y).GetChild(z).GetComponent<UnitInformation>();
+
+                                if (unit.attackName == attackName)
+                                {
+                                    print("FOUND A UNIT");
+                                    unit.DoAttackAnimation();
+
+                                    frontTargettingPlanes.Clear();
+
+                                    return true;
+                                }
+                            }
+
+                        }
+                    }
+
+                }
+
+            }
+        }
+
+        print("couldnt find unit");
+        frontTargettingPlanes.Clear();
+        return false;
+    }
+
+
 
 
   //   public void TurnOnTargetting(){
@@ -280,8 +365,4 @@ public class AttackHandler : MonoBehaviour
 		// //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
 
   //   }
-
-    public bool CheckAttackAvalibility(){
-    	return false;
-    }
 }

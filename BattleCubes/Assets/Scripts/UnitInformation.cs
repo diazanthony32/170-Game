@@ -190,9 +190,17 @@ public class UnitInformation : MonoBehaviour
 			if(unitCurrentHealth > 0){
 
 				if(unitHitNoise != null){
-					unitAudioSource.PlayOneShot(unitHitNoise);
+
+					if (unitAudioSource)
+					{
+						//unitAudioSource.PlayOneShot(unitDeathNoise);
+						unitAudioSource.PlayOneShot(unitHitNoise);
+
+					}
+
+					//unitAudioSource.PlayOneShot(unitHitNoise);
 					//unitAnimator.SetTrigger("Hit");
-					
+
 					if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
 					{
 						Handheld.Vibrate();
@@ -217,8 +225,12 @@ public class UnitInformation : MonoBehaviour
 		}
 		else if(!isVulnerable && isTower){
 
-			if(towerShieldSfx != null){
-				unitAudioSource.PlayOneShot(towerShieldSfx);
+            if (unitAudioSource)
+            {
+				if (towerShieldSfx != null)
+				{
+					unitAudioSource.PlayOneShot(towerShieldSfx);
+				}
 			}
 		}
 
@@ -291,6 +303,19 @@ public class UnitInformation : MonoBehaviour
 
 	}
 
+	public void DoAttackAnimation() {
+
+		if (unitAudioSource)
+		{
+			unitAudioSource.PlayOneShot(unitAttackNoise);
+		}
+
+		if (unitAnimator)
+		{
+			unitAnimator.SetTrigger("attack");
+		}
+	}
+
 	void OnTriggerStay(Collider trigger)
 	{
 		if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
@@ -345,8 +370,11 @@ public class UnitInformation : MonoBehaviour
 
 	IEnumerator Die() {
 
-		unitAudioSource.PlayOneShot(unitDeathNoise);
-		
+		if (unitAudioSource)
+		{
+			unitAudioSource.PlayOneShot(unitDeathNoise);
+		}
+
 		if (unitAnimator)
 		{
 			unitAnimator.SetTrigger("death");

@@ -62,7 +62,8 @@ public class TweenController : MonoBehaviour
 
 	public void Pulse()
 	{
-		LeanTween.scale(gameObject, new Vector3(1.10f, 1.10f, 1.10f), 0.5f).setEaseInOutSine().setLoopPingPong();
+		gameObject.GetComponent<Image>().color = Color.yellow;
+		LeanTween.scale(gameObject, new Vector3(1.05f, 1.05f, 1.05f), 0.75f).setEaseInOutSine().setLoopPingPong();
 	}
 
 	public void PulseHighlight()

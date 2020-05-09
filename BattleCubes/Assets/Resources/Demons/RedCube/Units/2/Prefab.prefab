@@ -177,7 +177,12 @@ PrefabInstance:
         type: 3}
       propertyPath: unitDeathNoise
       value: 
-      objectReference: {fileID: 8300000, guid: b958739b9ffa0a0439000a0acd71ed7c, type: 3}
+      objectReference: {fileID: 8300000, guid: af77d28d90333a846ab9420ee6c0ec5b, type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: unitSpawnNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a3341b6e0ffb56499f592c0349f54e8, type: 3}
     - target: {fileID: 7594360421447855703, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_Layer

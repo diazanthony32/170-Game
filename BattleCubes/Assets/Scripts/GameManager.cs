@@ -404,8 +404,9 @@ public class GameManager : MonoBehaviour
                         //both attack
                         print("Players both attack");
 
-                        attackHandler.DoAttack("Host", host);
-                        attackHandler.DoAttack("Client", client);
+                        StartCoroutine(attackHandler.DoAttack("Host", host));
+                        StartCoroutine(attackHandler.DoAttack("Client", client));
+
 
                         infoSender.SendPlayerAttackInfo(host);
                         infoSender.SendEnemyAttackInfo(client);
@@ -423,7 +424,7 @@ public class GameManager : MonoBehaviour
                         
                         yield return new WaitForSeconds(3);
 
-                        attackHandler.DoAttack("Client", client);
+                        StartCoroutine(attackHandler.DoAttack("Client", client));
                         infoSender.SendEnemyAttackInfo(client);
                         //infosender
                         //yield return new WaitForSeconds(3);
@@ -439,7 +440,7 @@ public class GameManager : MonoBehaviour
                         
                         yield return new WaitForSeconds(3);
 
-                        attackHandler.DoAttack("Host", host);
+                        StartCoroutine(attackHandler.DoAttack("Host", host));
                         infoSender.SendPlayerAttackInfo(host);
 
                         //infosender
@@ -464,7 +465,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (host[0] == "attack") {
                     print("Host attack");
-                    attackHandler.DoAttack("Host", host);
+                    StartCoroutine(attackHandler.DoAttack("Host", host));
                     infoSender.SendPlayerAttackInfo(host);
 
                     //infosender
@@ -488,7 +489,7 @@ public class GameManager : MonoBehaviour
                     print("client attack");
                     //print(client[1] + " "+ client[2] + " "+ client[3]);
 
-                    attackHandler.DoAttack("Client", client);
+                    StartCoroutine(attackHandler.DoAttack("Client", client));
                     infoSender.SendEnemyAttackInfo(client);
 
                     //infosender
@@ -532,10 +533,10 @@ public class GameManager : MonoBehaviour
     }
 
     public void TranslateAttackOnEnemyCube(string[] array) {
-        attackHandler.DoAttack("Client", array);
+        StartCoroutine(attackHandler.DoAttack("Client", array));
     }
     public void TranslateAttackOnPlayerCube(string[] array) {
-        attackHandler.DoAttack("Host", array);
+        StartCoroutine(attackHandler.DoAttack("Host", array));
     }
 
     public void CheckWinCondition(){

@@ -96,7 +96,7 @@ public class UnitInformation : MonoBehaviour
 		unitAnimator = transform.Find("UnitScaler").GetComponentInChildren<Animator>();
 		//unitAudioSource.volume = 0.1f;
 
-		unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<SkinnedMeshRenderer>();
+		//unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<SkinnedMeshRenderer>();
 		// oc = this.transform.root.GetComponent<objectClicker>();
 		// parentPlane = this.transform.parent.gameObject;
 
@@ -104,8 +104,18 @@ public class UnitInformation : MonoBehaviour
 
 		unitHealthBar = GetComponentInChildren<Image>();
 
-		if(isTower){
+		if (isTower)
+		{
 			isVulnerable = false;
+			unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<MeshRenderer>();
+		}
+		else {
+			unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<SkinnedMeshRenderer>();
+		}
+
+		if (unitAudioSource)
+		{
+			unitAudioSource.PlayOneShot(unitSpawnNoise);
 		}
 
 		// oc.unitPoints -= unitCost;

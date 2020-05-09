@@ -42,7 +42,7 @@ public class AttackHandler : MonoBehaviour
     	//}
     }
 
-    public void DoAttack(string player, string[] array){
+    public IEnumerator DoAttack(string player, string[] array){
 
         //TurnOnTargetting();
         bool attackAllowed = false;
@@ -74,6 +74,8 @@ public class AttackHandler : MonoBehaviour
 
         if (attackAllowed)
         {
+
+            yield return new WaitForSeconds(0.5f);
 
             UnitInformation unitInfo = GetAttackUnit(player, array[1]);
 
@@ -269,10 +271,11 @@ public class AttackHandler : MonoBehaviour
 
         List<GameObject> frontTargettingPlanes = new List<GameObject>{};
 
-        frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes1").GetChild(4).gameObject);
-        frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes2").GetChild(4).gameObject);
-        frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes5").GetChild(4).gameObject);
+        frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes2").GetChild(4).gameObject); //top of cube
+        frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes5").GetChild(4).gameObject); //left of cube
+        frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes1").GetChild(4).gameObject); //right of cube
 
+        //int randomIndex = Random.Range(0, 3);
 
         for (int x = 0 ; x < frontTargettingPlanes.Count ; x++) {
 
@@ -301,6 +304,8 @@ public class AttackHandler : MonoBehaviour
 
                                 if (unit.attackName == attackName)
                                 {
+                                    // potentially randomize what unit does the attack ????????
+
                                     print("FOUND A UNIT");
                                     unit.DoAttackAnimation();
 

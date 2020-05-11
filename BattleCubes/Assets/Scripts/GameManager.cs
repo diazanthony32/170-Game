@@ -64,12 +64,12 @@ public class GameManager : MonoBehaviour
     bool setupCorrutineRunning = false;
 
     //round management
-    int roundCount = 0;
+    int roundCount = 18;
 
     //player points
     int roundsForPointIncrease = 5;
     int pointsPerRound = 3;
-    int actionPoints = 0;
+    int actionPoints = 15;
 
     //unit points
     public int totalUnitPoints = 12;
@@ -381,7 +381,7 @@ public class GameManager : MonoBehaviour
             // enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
             //print(i);
 
-            CheckWinCondition();
+            //CheckWinCondition();
             yield return new WaitForSeconds(0.1f);
 
             //both players have actions
@@ -508,11 +508,14 @@ public class GameManager : MonoBehaviour
                 print("no more actions");
                 break;
             }
-            yield return new WaitForSeconds(1);
+
+            yield return new WaitForSeconds(0.25f);
+            CheckWinCondition();
+            yield return new WaitForSeconds(1f);
         }
 
         CheckWinCondition();
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.25f);
 
         // attackHandler.TurnOffTargetting();
         if (state == THROWDOWN){
@@ -526,6 +529,9 @@ public class GameManager : MonoBehaviour
             ResetRound();
             infoSender.SendResetRound();
         }
+
+        yield return new WaitForSeconds(0.25f);
+        CheckWinCondition();
     }
 
     public void TranslateRotatePlayerCube(string direction) {
@@ -578,7 +584,7 @@ public class GameManager : MonoBehaviour
 
     public void CheckWinCondition(){
 
-        if(roundCount >= 20 || unitCount <= 0 || towerCount < 3 || enemyUnitCount <= 0 || enemyTowerCount < 3){
+        if(roundCount > 20 || unitCount <= 0 || towerCount < 3 || enemyUnitCount <= 0 || enemyTowerCount < 3){
             
             timeStopped = true;
             // state = GAMEEND;
@@ -1034,7 +1040,7 @@ public class GameManager : MonoBehaviour
             return "Round Twenty";
         }
         else {
-            return "RCAP";
+            return "Game Over";
         }
     }
 }

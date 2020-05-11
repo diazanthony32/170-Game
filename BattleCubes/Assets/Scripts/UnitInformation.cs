@@ -188,7 +188,7 @@ public class UnitInformation : MonoBehaviour
 
 	public void TakeDamage(int damageAmount){
 		
-		if(isTower){
+		if(isTower && !isVulnerable){
 			CheckIfVulnerable();
 		}
 		//CheckIfVulnerable();

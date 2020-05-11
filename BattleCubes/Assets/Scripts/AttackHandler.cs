@@ -75,7 +75,7 @@ public class AttackHandler : MonoBehaviour
         if (attackAllowed)
         {
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.75f);
 
             UnitInformation unitInfo = GetAttackUnit(player, array[1]);
 

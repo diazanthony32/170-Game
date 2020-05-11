@@ -9,21 +9,58 @@ public class ActionStorage : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] AttackHandler attackHandler;
     List<string[]> actionList = null;
+    [Space(10)]
+    [SerializeField] GameObject readyButtonHighlight = null;
+    [SerializeField] GameObject preventClick = null;
+
+    Button readyButton = null;
+    bool isHighlighted = false;
+
 
     void Start()
     {
         actionList = new List<string[]>();
+        if (transform.tag == "playerActionList")
+        {
+            readyButton = readyButtonHighlight.GetComponentInChildren<Button>();
+        }
 
         //for (int i = 0; i < 3; i++) {
 
         //    actionList.Add(new string[] {"Thing" + i});
         //} 
-        
+
     }
 
     void Update()
     {
-        
+        //if (actionList.Count > 0 && transform.tag == "playerActionList") {
+            
+            if (readyButton != null && transform.tag == "playerActionList")
+            {
+
+                if (actionList.Count > 0 && !isHighlighted)
+                {
+                    //readyButton.interactable = true;
+                    //LeanTween.alphaCanvas(readyButtonHighlight.GetComponent<CanvasGroup>(), 1f, 0.0f);
+                    //readyButtonHighlight.GetComponent<CanvasGroup>().interactable = true;
+                    readyButtonHighlight.GetComponent<TweenController>().Pulse();
+
+                    isHighlighted = true;
+
+                }
+                else if (actionList.Count <= 0 && isHighlighted)
+                {
+                    //readyButton.interactable = false;
+                    //LeanTween.alphaCanvas(readyButtonHighlight.GetComponent<CanvasGroup>(), 0.25f, 0.0f);
+                    //readyButtonHighlight.GetComponent<CanvasGroup>().interactable = false;
+                    readyButtonHighlight.GetComponent<TweenController>().CancelPulseHighlight();
+
+                    isHighlighted = false;
+
+                }
+            }
+        //}
     }
 
     public void StoreAction(string[] array) {
@@ -49,6 +86,8 @@ public class ActionStorage : MonoBehaviour
                 string action = actionList[index - 1][0];
 
                 if (action == "rotate") {
+                    StartCoroutine(preventFromClicking());
+                    
                     rotationByFinger.GetRotateCube().LerpToPlannedPos();
                     gameManager.AddActionPoints(3);
                 }
@@ -66,8 +105,9 @@ public class ActionStorage : MonoBehaviour
                 }
             }
         }
-        
+
         print("action list size after: " + actionList.Count);
+        
     }
 
     public void resetUIPulses(){
@@ -125,5 +165,17 @@ public class ActionStorage : MonoBehaviour
         }
         // print("ERROR");
         return new string[0];
+    }
+
+    IEnumerator preventFromClicking() {
+
+
+        preventClick.SetActive(true);
+        attackHandler.ResetChooseAttackHandlers();
+
+        yield return new WaitForSeconds(0.6f);
+
+        preventClick.SetActive(false);
+
     }
 }

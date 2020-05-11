@@ -11,6 +11,7 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
 	[SerializeField] string unitFolder;
 
+	public GameObject highlightConfirmButton;
 	public Button ConfirmButton;
 
 	//[SerializeField] Gradient colorQuad;
@@ -87,15 +88,18 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 		if ((gameManager.attackList[Convert.ToInt32(unitFolder)-1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "true" && attackAllowed == false) && gameManager.GetActionPoints() >= unitInformation.attackCost)
 		{
 			attackAllowed = true;
-			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
-			gameObject.GetComponent<CanvasGroup>().interactable = true;
+			//LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.4f);
+			GetComponent<CanvasGroup>().interactable = true;
+			LeanTween.alphaCanvas(GetComponent<CanvasGroup>(), 1f, 0.4f);
+
 
 		}
 		else if((gameManager.attackList[Convert.ToInt32(unitFolder) - 1][0] == unitInformation.attackName && gameManager.attackList[Convert.ToInt32(unitFolder) - 1][1] == "false" && attackAllowed == true) || gameManager.GetActionPoints() < unitInformation.attackCost)
 		{
 			attackAllowed = false;
-			LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);
-			gameObject.GetComponent<CanvasGroup>().interactable = false;
+			//LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.25f, 0.4f);
+			GetComponent<CanvasGroup>().interactable = false;
+			LeanTween.alphaCanvas(GetComponent<CanvasGroup>(), 0.35f, 0.4f);
 		}
 
 		if (Input.GetMouseButtonDown(0) && attackAllowed == true){
@@ -154,6 +158,10 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 						//hitPlane.transform.gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
 
 			        	ConfirmButton.interactable = true;
+
+						LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
+						highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
+						highlightConfirmButton.GetComponent<TweenController>().Pulse();
 					}
 
 					else if(hitPlane.transform.gameObject.tag == "target" && unitInformation.targetSystem == "SingleAttack" && selectedPlane != hitPlane.transform.gameObject){
@@ -167,6 +175,10 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 						attackHandler.attackCost = unitInformation.attackCost;
 
 						ConfirmButton.interactable = true;
+
+						LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
+						highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
+						highlightConfirmButton.GetComponent<TweenController>().Pulse();
 					}
 				}
 	        	
@@ -207,7 +219,11 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
 		ConfirmButton.interactable = false;
 
-    }
+		LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 0.25f, 0.0f);
+		highlightConfirmButton.GetComponent<CanvasGroup>().interactable = false;
+		highlightConfirmButton.GetComponent<TweenController>().CancelHighlight();
+
+	}
 
  //    public void OnMouseDown()
 	// {
@@ -250,6 +266,8 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 			}
 
 			tweenController.Highlight();
+			//LeanTween.alphaCanvas(transform.parent.GetComponent<CanvasGroup>(), 1f, 0.0f);
+			//transform.parent.GetComponent<CanvasGroup>().interactable = true;
 			isSelected = true;
 
 			//print("Selected Attack: " + unitInformation.attackName);

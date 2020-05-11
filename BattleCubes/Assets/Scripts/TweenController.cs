@@ -69,7 +69,7 @@ public class TweenController : MonoBehaviour
 	public void PulseHighlight()
 	{
 		gameObject.GetComponent<Image>().color = Color.yellow;
-		LeanTween.scale(gameObject, new Vector3(1.10f, 1.10f, 1.10f), 0.5f).setEaseInOutSine().setLoopPingPong();
+		LeanTween.scale(gameObject, new Vector3(1.10f, 1.10f, 1.10f), 0.75f).setEaseInOutSine().setLoopPingPong();
 	}
 
 	public void Highlight()
@@ -83,7 +83,19 @@ public class TweenController : MonoBehaviour
         LeanTween.scale(gameObject, new Vector3(1.0f, 1.0f, 1.0f), 0.0f);
     }
 
-    public void Notify()
+	public void CancelHighlight()
+	{
+		LeanTween.cancel(gameObject);
+		//gameObject.GetComponent<Image>().color = Color.gray;
+
+		var tempColor = gameObject.GetComponent<Image>().color;
+		tempColor.a = 0f;
+		gameObject.GetComponent<Image>().color = tempColor;
+
+		LeanTween.scale(gameObject, new Vector3(1.0f, 1.0f, 1.0f), 0.0f);
+	}
+
+	public void Notify()
 	{
 
 		//TextMeshProUGUI text = GetComponentInChildren<TextMeshProUGUI>();

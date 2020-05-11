@@ -79,7 +79,7 @@ public class UnitInformation : MonoBehaviour
 
 	bool pointerDown;
 	float pointerDownTimer;
-	float requiredHoldTime = 0.5f;
+	float requiredHoldTime = 0.25f;
 
 	bool executed = false;
 	LayerMask mask;
@@ -113,9 +113,11 @@ public class UnitInformation : MonoBehaviour
 			unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<SkinnedMeshRenderer>();
 		}
 
-		if (unitAudioSource)
+		if (unitAudioSource && unitAnimator && transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
 		{
 			unitAudioSource.PlayOneShot(unitSpawnNoise);
+			unitAnimator.SetTrigger("spawn");
+
 		}
 
 		// oc.unitPoints -= unitCost;

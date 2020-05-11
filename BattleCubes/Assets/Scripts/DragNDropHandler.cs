@@ -25,10 +25,23 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
 	bool active = true;
 
-	[SerializeField] Button readyButton = null;
+	[SerializeField] GameObject readyButtonHighlight = null;
+	Button readyButton = null;
 
-    // Start is called before the first frame update
-    void Start(){
+	bool isActive = false;
+
+	Color m_MouseOverColor = Color.yellow;
+
+	//This stores the GameObject’s original color
+	Color planeOriginalColor;
+
+	//Get the GameObject’s mesh renderer to access the GameObject’s material and color
+	MeshRenderer m_Renderer;
+
+	List<Transform> oldPlanes;
+
+	// Start is called before the first frame update
+	void Start(){
 
     	// unitPrefab = Resources.Load<GameObject>(enemyCubeInfo[0] + "/" + enemyCubeInfo[1] + "/Units/" + unitArray[0] + "/Prefab");
 
@@ -47,6 +60,10 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
     	unitImage = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
     	unitImage.sprite = unitInformation.unitImage;
+
+		readyButton = readyButtonHighlight.GetComponentInChildren<Button>();
+
+		oldPlanes = new List<Transform>();
 
 		if (!unitInformation.isTower)
 		{
@@ -73,33 +90,48 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
     	if(!unitInformation.isTower){
     		if((gameManager.remainingUnitPoints < unitInformation.unitSpawnCost) && active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.25f, 0.4f);
 	        	active = false;
 	        }
 	        else if((gameManager.remainingUnitPoints >= unitInformation.unitSpawnCost) && !active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.4f);
 	        	active = true;
 	        }
     	}
     	else if(unitInformation.isTower){
     		if((gameManager.towerCount == 3) && active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.5f, 0.5f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.25f, 0.4f);
 	        	active = false;
 	        }
 	        else if((gameManager.towerCount < 3) && !active){
-	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.5f);
+	        	LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 1f, 0.4f);
 	        	active = true;
 	        }
     	}
 
     	if(readyButton != null){
-    		if((gameManager.remainingUnitPoints == 0) && (gameManager.towerCount == 3)){
+
+    		if((gameManager.remainingUnitPoints == 0) && (gameManager.towerCount == 3) && !isActive)
+			{
     			readyButton.interactable = true;
-    		}
-    		else{
+				LeanTween.alphaCanvas(readyButtonHighlight.GetComponent<CanvasGroup>(), 1f, 0.0f);
+				readyButtonHighlight.GetComponent<CanvasGroup>().interactable = true;
+				readyButtonHighlight.GetComponent<TweenController>().Pulse();
+
+				isActive = true;
+
+			}
+			else if(((gameManager.remainingUnitPoints != 0) || (gameManager.towerCount != 3)) && isActive)
+			{
     			readyButton.interactable = false;
-    		}
-    	}
+				LeanTween.alphaCanvas(readyButtonHighlight.GetComponent<CanvasGroup>(), 0.25f, 0.0f);
+				readyButtonHighlight.GetComponent<CanvasGroup>().interactable = false;
+				readyButtonHighlight.GetComponent<TweenController>().CancelHighlight();
+
+				isActive = false;
+
+			}
+		}
 
 		if (unitInformation.isTower) {
 			//unitName.text = ag /*+ " \n <color=yellow>" + "Need to Place: " + (3 - gameManager.towerCount)*/;
@@ -125,19 +157,97 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
     // updates continously while a player is dragging
 	public void OnDrag(PointerEventData eventData){
 		// updates the units image to the players position
-		if(active){
+		if (active)
+		{
 			unitImage.transform.position = eventData.position;
+
+			var tempColor = unitImage.color;
+			tempColor.a = 0.5f;
+			unitImage.color = tempColor;
+
+			//if (transform.parent.gameObject.tag == "PlayerCubePosition")
+			//{
+
+				RaycastHit[] hits;
+				hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 5.0f);
+
+				if (hits.Length != 0)
+				{
+
+					for (int i = 0; i < hits.Length; i++)
+					{
+						RaycastHit hitPlane = hits[i];
+
+						if (hitPlane.transform.gameObject.tag == "unitSquare")
+						{
+							if (oldPlanes.Count < 1)
+							{
+								// Change the color of the GameObject to red when the mouse is over GameObject
+								planeOriginalColor = hitPlane.transform.GetComponent<MeshRenderer>().material.color;
+								hitPlane.transform.GetComponent<MeshRenderer>().material.color = m_MouseOverColor;
+								// m_OriginalColor = hitPlane.transform.GetComponent<MeshRenderer>().material.color;
+
+								oldPlanes.Add(hitPlane.transform);
+							}
+
+							break;
+						}
+						else
+						{
+							// Reset the color of the GameObject back to normal
+							//hitPlane.GetComponent<MeshRenderer>() = m_OriginalColor;
+							for (int j = 0; j < oldPlanes.Count; j++)
+							{
+								Transform plane = oldPlanes[j];
+								plane.GetComponent<MeshRenderer>().material.color = planeOriginalColor;
+
+								oldPlanes.RemoveAt(j);
+							}
+							//hitPlane.transform.GetComponent<MeshRenderer>().material.color = Color.blue;
+						}
+
+					}
+
+				}
+				else
+				{
+					// Reset the color of the GameObject back to normal
+					//hitPlane.GetComponent<MeshRenderer>() = m_OriginalColor;
+					for (int j = 0; j < oldPlanes.Count; j++)
+					{
+						Transform plane = oldPlanes[j];
+						plane.GetComponent<MeshRenderer>().material.color = planeOriginalColor;
+
+						oldPlanes.RemoveAt(j);
+					}
+					//hitPlane.transform.GetComponent<MeshRenderer>().material.color = Color.blue;
+				}
+
+			//}
 		}
 
 	}
 
 	// only runs once player stops dragging
 	public void OnEndDrag(PointerEventData eventData){
-		if(active){
+
+		for (int j = 0; j < oldPlanes.Count; j++)
+		{
+			Transform plane = oldPlanes[j];
+			plane.GetComponent<MeshRenderer>().material.color = planeOriginalColor;
+
+			oldPlanes.RemoveAt(j);
+		}
+
+		if (active){
 	    	unitImage.transform.position = unitIconParent.transform.position;
 	    	tweenController.CancelPulseHighlight();
 
-	    	if(gameManager.GetState() == gameManager.SETUP && gameManager.remainingUnitPoints >= unitInformation.unitSpawnCost){
+			var tempColor = unitImage.color;
+			tempColor.a = 1.0f;
+			unitImage.color = tempColor;
+
+			if (gameManager.GetState() == gameManager.SETUP && gameManager.remainingUnitPoints >= unitInformation.unitSpawnCost){
 
 	    		RaycastHit[] hits;
 				hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 5.0f);

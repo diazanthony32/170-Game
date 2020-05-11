@@ -26,57 +26,58 @@ public class planeScript : MonoBehaviour
 
     void Update(){
 
-    	//if(gameManager.GetState() == gameManager.SETUP){
+    	if(transform.parent.gameObject.tag == "PlayerCubePosition")
+        {
 
     		RaycastHit[] hits;
-			hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 10.0f);
+			hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 5.0f);
 
 			if(hits.Length != 0){
 
-			for (int i = 0; i < hits.Length; i++){
-				RaycastHit hitPlane = hits[i];
+			    for (int i = 0; i < hits.Length; i++){
+				    RaycastHit hitPlane = hits[i];
 				
-				if(hitPlane.transform.gameObject.tag == "unitSquare")
-				{
-					if(oldPlanes.Count < 1){
-						// Change the color of the GameObject to red when the mouse is over GameObject
-	        			planeOriginalColor = hitPlane.transform.GetComponent<MeshRenderer>().material.color;
-	        			hitPlane.transform.GetComponent<MeshRenderer>().material.color = m_MouseOverColor;
-	        			// m_OriginalColor = hitPlane.transform.GetComponent<MeshRenderer>().material.color;
+				    if(hitPlane.transform.gameObject.tag == "unitSquare")
+				    {
+					    if(oldPlanes.Count < 1){
+						    // Change the color of the GameObject to red when the mouse is over GameObject
+	        			    planeOriginalColor = hitPlane.transform.GetComponent<MeshRenderer>().material.color;
+	        			    hitPlane.transform.GetComponent<MeshRenderer>().material.color = m_MouseOverColor;
+	        			    // m_OriginalColor = hitPlane.transform.GetComponent<MeshRenderer>().material.color;
 	        			
-	        			oldPlanes.Add(hitPlane.transform);
-					}
+	        			    oldPlanes.Add(hitPlane.transform);
+					    }
 
-        			break;
-				}
-				else{
-					// Reset the color of the GameObject back to normal
-        			//hitPlane.GetComponent<MeshRenderer>() = m_OriginalColor;
-        			for(int j = 0; j < oldPlanes.Count ; j++){
-        				Transform plane = oldPlanes[j];
-        				plane.GetComponent<MeshRenderer>().material.color = planeOriginalColor;
+        			    break;
+				    }
+				    else{
+					    // Reset the color of the GameObject back to normal
+        			    //hitPlane.GetComponent<MeshRenderer>() = m_OriginalColor;
+        			    for(int j = 0; j < oldPlanes.Count ; j++){
+        				    Transform plane = oldPlanes[j];
+        				    plane.GetComponent<MeshRenderer>().material.color = planeOriginalColor;
 
-        				oldPlanes.RemoveAt(j);
-        			}
-        			//hitPlane.transform.GetComponent<MeshRenderer>().material.color = Color.blue;
-				}
+        				    oldPlanes.RemoveAt(j);
+        			    }
+        			    //hitPlane.transform.GetComponent<MeshRenderer>().material.color = Color.blue;
+				    }
 
-			}
+			    }
 
-		}
-		else{
-			// Reset the color of the GameObject back to normal
-			//hitPlane.GetComponent<MeshRenderer>() = m_OriginalColor;
-			for(int j = 0; j < oldPlanes.Count ; j++){
-				Transform plane = oldPlanes[j];
-				plane.GetComponent<MeshRenderer>().material.color = planeOriginalColor;
+		    }
+		    else{
+			    // Reset the color of the GameObject back to normal
+			    //hitPlane.GetComponent<MeshRenderer>() = m_OriginalColor;
+			    for(int j = 0; j < oldPlanes.Count ; j++){
+				    Transform plane = oldPlanes[j];
+				    plane.GetComponent<MeshRenderer>().material.color = planeOriginalColor;
 
-				oldPlanes.RemoveAt(j);
-			}
-			//hitPlane.transform.GetComponent<MeshRenderer>().material.color = Color.blue;
-		}
+				    oldPlanes.RemoveAt(j);
+			    }
+			    //hitPlane.transform.GetComponent<MeshRenderer>().material.color = Color.blue;
+		    }
 
-    	//}
+    	}
 
     }
 

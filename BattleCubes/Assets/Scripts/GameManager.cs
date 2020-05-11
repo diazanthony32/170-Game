@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject outtaSetupCanvas;
     [SerializeField] GameObject gameOverCanvas;
     [SerializeField] GameObject pauseCanvas;
+    [SerializeField] GameObject playerApCounter;
     [Space(10)]
     [SerializeField] GameObject enemyActionList;
     [SerializeField] GameObject playerActionList;
@@ -150,8 +151,10 @@ public class GameManager : MonoBehaviour
             readies[1] = false;
             //ResetRound();
             //infoSender.SendResetRound();
-            //if (state != SETUP) {
-            //    remainingTime = 0;
+            //if (state == SETUP) {
+                //    remainingTime = 0;
+                //playerApCounter.SetActive(true);
+                
             //}
             //else {
             //    GetOutOfSetUp();
@@ -219,6 +222,9 @@ public class GameManager : MonoBehaviour
         }
 
         if(state != GAMEEND){
+
+            playerApCounter.SetActive(true);
+
             setupCanvas.SetActive(false);
             enemyActionList.SetActive(true);
             playerActionList.SetActive(true);

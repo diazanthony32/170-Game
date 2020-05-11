@@ -123,7 +123,7 @@ public class TweenController : MonoBehaviour
 		//gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
 
 		var tempColor = gameObject.GetComponent<MeshRenderer>().material.color;
-		tempColor.a = 0.5f;
+		tempColor.a = 0.2f;
 		gameObject.GetComponent<MeshRenderer>().material.color = tempColor;
 
 		LeanTween.scale(gameObject, new Vector3(0.8f, 0.8f, 0.8f), 0.5f).setEaseInOutSine().setLoopPingPong();

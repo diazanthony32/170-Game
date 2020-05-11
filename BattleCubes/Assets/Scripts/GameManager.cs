@@ -64,12 +64,12 @@ public class GameManager : MonoBehaviour
     bool setupCorrutineRunning = false;
 
     //round management
-    int roundCount = 18;
+    int roundCount = 0;
 
     //player points
     int roundsForPointIncrease = 5;
     int pointsPerRound = 3;
-    int actionPoints = 15;
+    int actionPoints = 0;
 
     //unit points
     public int totalUnitPoints = 12;
@@ -711,8 +711,10 @@ public class GameManager : MonoBehaviour
 
         playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SetBasePos();
 
-        //print(roundCount % roundsForPointIncrease);
-        AddActionPoints(pointsPerRound);
+        //int extraPoints = ((roundCount - (roundCount % roundsForPointIncrease))/roundsForPointIncrease);
+        //print("Extra points: " + extraPoints);
+
+        //AddActionPoints(pointsPerRound + extraPoints);
 
         if (state != SETUP && roundCount >= 1) {
             playerActionList.GetComponent<TweenController>().slideXOver((Screen.width * 0.034f));
@@ -728,6 +730,11 @@ public class GameManager : MonoBehaviour
 
         roundCount++;
         roundCountText.text = ConvertNumToText(roundCount);
+
+        int extraPoints = ((roundCount - (roundCount % roundsForPointIncrease)) / roundsForPointIncrease);
+        print("Extra points: " + extraPoints);
+
+        AddActionPoints(pointsPerRound + extraPoints);
 
         mainScreenCanvas.SetActive(true);
 

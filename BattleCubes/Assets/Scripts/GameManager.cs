@@ -534,8 +534,38 @@ public class GameManager : MonoBehaviour
         enemyCubePosition.transform.GetChild(0).GetComponent<RotateCube>().RequestRotation(direction);
     }
 
-    public void UpdateUnitCount() { 
-        
+    public void CreateFloatingText(string text, Transform location, string type)
+    {
+        FloatingText instance = Instantiate(Resources.Load<FloatingText>("Prefabs/PopupTextParent"));
+        instance.transform.SetParent(GameObject.Find("GameCanvas").transform, true);
+
+        //Vector2 screenPosition = Camera.main.WorldToScreenPoint(new Vector2(location.position.x/*+ Random.Range(-0.5f, 0.5f)*/, location.position.y/*+ Random.Range(-0.5f, 0.5f)*/));
+        //Vector3 sc = Camera.main.WorldToViewportPoint(location.position);
+
+        //instance.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
+        //print(sc.x + " " + sc.y + " " + sc.z);
+        //Vector3 tmp = instance.transform.position;
+        //tmp.x = (sc.x * Screen.width);
+        //tmp.y = (sc.y * Screen.height);
+
+        if (type == "attack")
+        {
+            Vector3 sc = Camera.main.WorldToViewportPoint(location.position);
+
+            //instance.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
+            print(sc.x + " " + sc.y + " " + sc.z);
+            Vector3 tmp = instance.transform.position;
+            tmp.x = (sc.x * Screen.width);
+            tmp.y = (sc.y * Screen.height);
+
+            instance.transform.position = tmp;
+        }
+
+        else if (type == "points") {
+            instance.transform.position = location.position;
+        }
+
+        instance.SetText(text);
     }
 
     public void TranslateAttackOnEnemyCube(string[] array) {
@@ -804,6 +834,13 @@ public class GameManager : MonoBehaviour
     public void AddActionPoints(int val) {
         actionPoints += val;
         playerCanvas.transform.Find("PlayerAPCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
+        //CreateFloatingText();
+        if (val > 0) {
+            CreateFloatingText("+ "+ val.ToString(), GameObject.Find("PlayerAPCounter").transform, "points");
+        }
+        else{ 
+            CreateFloatingText(val.ToString(), GameObject.Find("PlayerAPCounter").transform, "points");
+        }
     }
 
     public void AddUnitCount(int val) {

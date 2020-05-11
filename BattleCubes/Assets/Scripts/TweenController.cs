@@ -13,33 +13,33 @@ public class TweenController : MonoBehaviour
 
 	[SerializeField] bool notify = false;
 
-    RotateCube rotateCube = null;
+	RotateCube rotateCube = null;
 
 	void Start()
-    {
-        if (gameObject.GetComponent<RotateCube>()) {
-            rotateCube = gameObject.GetComponent<RotateCube>();
-        }
+	{
+		if (gameObject.GetComponent<RotateCube>()) {
+			rotateCube = gameObject.GetComponent<RotateCube>();
+		}
 
-        if (showFloating){
-        	Float();
-        }
-        if(pulse){
-        	PulseHighlight();
-        }
-        if(notify){
-        	Notify();
-        }
-    }
+		if (showFloating) {
+			Float();
+		}
+		if (pulse) {
+			PulseHighlight();
+		}
+		if (notify) {
+			Notify();
+		}
+	}
 
 	public void PopInUI()
 	{
-		if(!gameObject.activeSelf)
+		if (!gameObject.activeSelf)
 		{
 			gameObject.SetActive(true);
 		}
 
-		if(gameObject.transform.localScale != new Vector3(0, 0, 0))
+		if (gameObject.transform.localScale != new Vector3(0, 0, 0))
 		{
 			LeanTween.alpha(gameObject, 0, 0);
 			LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0);
@@ -77,11 +77,11 @@ public class TweenController : MonoBehaviour
 		gameObject.GetComponent<Image>().color = Color.yellow;
 		//LeanTween.scale(gameObject, new Vector3(1.10f, 1.10f, 1.10f), 0.5f).setEaseInOutSine().setLoopPingPong();
 	}
-    public void CancelPulseHighlight() {
-        LeanTween.cancel(gameObject);
-        gameObject.GetComponent<Image>().color = Color.gray;
-        LeanTween.scale(gameObject, new Vector3(1.0f, 1.0f, 1.0f), 0.0f);
-    }
+	public void CancelPulseHighlight() {
+		LeanTween.cancel(gameObject);
+		gameObject.GetComponent<Image>().color = Color.gray;
+		LeanTween.scale(gameObject, new Vector3(1.0f, 1.0f, 1.0f), 0.0f);
+	}
 
 	public void CancelHighlight()
 	{
@@ -100,22 +100,28 @@ public class TweenController : MonoBehaviour
 
 		//TextMeshProUGUI text = GetComponentInChildren<TextMeshProUGUI>();
 
-		if(!gameObject.activeSelf)
+		if (!gameObject.activeSelf)
 		{
 			gameObject.SetActive(true);
 		}
 
 		LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0);
-		
+
 
 		//LeanTween.alpha(gameObject, 1, 1f);
-		LeanTween.scale(gameObject, new Vector3(1.0f,1.0f,1.0f), 0.4f);
+		LeanTween.scale(gameObject, new Vector3(1.0f, 1.0f, 1.0f), 0.4f);
 
 		LeanTween.scale(gameObject, new Vector3(1.05f, 1.05f, 1.05f), 0.5f).setEaseInOutSine().setLoopPingPong().setDelay(0.41f);
 
 		//LeanTween.alpha(gameObject, 0, 1f).setDelay(2);
 		LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0.4f).setOnComplete(DisableGameObject).setDelay(3);
 
+	}
+
+	public void PopupNumber(){
+		LeanTween.moveLocalY(gameObject.transform.GetChild(0).gameObject, 100.0f, 1.0f);
+		LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.0f, 0.5f).setDelay(1.0f);
+		LeanTween.moveLocalY(gameObject.transform.GetChild(0).gameObject, -50.0f, 1.0f).setDelay(1.0f).setOnComplete(DestroyGameObject);
 	}
 
 	public void PulseTargets()
@@ -181,4 +187,11 @@ public class TweenController : MonoBehaviour
 		LeanTween.cancel(gameObject);
 		gameObject.SetActive(false);
 	}
+
+	void DestroyGameObject()
+	{
+		LeanTween.cancel(gameObject);
+		Destroy(gameObject);
+	}
 }
+

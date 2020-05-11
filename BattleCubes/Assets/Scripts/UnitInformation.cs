@@ -196,10 +196,11 @@ public class UnitInformation : MonoBehaviour
 		if(isVulnerable){
 			
 			unitCurrentHealth -= damageAmount;
+			gameManager.CreateFloatingText(("-" + damageAmount.ToString()), transform.parent, "attack");
 			//audioSource.PlayOneShot(hitEnemySfx);
 
 			// audioSource.PlayOneShot(unitBehavior.unitHitNoise);
-			if(unitCurrentHealth > 0){
+			if (unitCurrentHealth > 0){
 
 				if(unitHitNoise != null){
 

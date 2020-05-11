@@ -1605,7 +1605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &91444939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16449,6 +16449,7 @@ MonoBehaviour:
   unitFolder: 3
   highlightConfirmButton: {fileID: 226787344}
   ConfirmButton: {fileID: 665598855}
+  gameManager: {fileID: 802822735}
   active: 1
   isSelected: 0
   attackAllowed: 0
@@ -22400,6 +22401,7 @@ MonoBehaviour:
   unitFolder: 1
   highlightConfirmButton: {fileID: 226787344}
   ConfirmButton: {fileID: 665598855}
+  gameManager: {fileID: 802822735}
   active: 1
   isSelected: 0
   attackAllowed: 0
@@ -25955,6 +25957,7 @@ MonoBehaviour:
   unitFolder: 2
   highlightConfirmButton: {fileID: 226787344}
   ConfirmButton: {fileID: 665598855}
+  gameManager: {fileID: 802822735}
   active: 1
   isSelected: 0
   attackAllowed: 0

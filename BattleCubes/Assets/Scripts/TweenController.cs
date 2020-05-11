@@ -118,7 +118,29 @@ public class TweenController : MonoBehaviour
 
 	}
 
-    public void Rotate(Vector3 rotDir) {
+	public void PulseTargets()
+	{
+		//gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+
+		var tempColor = gameObject.GetComponent<MeshRenderer>().material.color;
+		tempColor.a = 0.5f;
+		gameObject.GetComponent<MeshRenderer>().material.color = tempColor;
+
+		LeanTween.scale(gameObject, new Vector3(0.8f, 0.8f, 0.8f), 0.5f).setEaseInOutSine().setLoopPingPong();
+	}
+
+	public void StopPulseTargets()
+	{
+		LeanTween.cancel(gameObject);
+
+		var tempColor = gameObject.GetComponent<MeshRenderer>().material.color;
+		tempColor.a = 0f;
+		gameObject.GetComponent<MeshRenderer>().material.color = tempColor;
+
+		LeanTween.scale(gameObject, new Vector3(.9f, .9f, .9f), 0.0f);
+	}
+
+	public void Rotate(Vector3 rotDir) {
         //LeanTween.rotateAroundLocal(gameObject, rotDir, 90, 1);
         //print(rotDir);
         LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine();

@@ -16,7 +16,7 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
 	//[SerializeField] Gradient colorQuad;
 	GameObject unitPrefab;
-	GameManager gameManager;
+	[SerializeField] GameManager gameManager;
 
 	InfoSender infoSender;
 
@@ -57,7 +57,7 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
     	unitPrefab = Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Units/" + unitFolder + "/Prefab");
 
-    	gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
+    	//gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
 
     	infoSender = GameObject.FindGameObjectWithTag("infoSender").GetComponent<InfoSender>();
 
@@ -117,11 +117,12 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 					
 					if(hitPlane.transform.gameObject.tag == "target" && unitInformation.targetSystem == "TankAttack" && selectedPlane != hitPlane.transform.gameObject)
 					{
-						ResetHighlights();
+						ResetHighlights(false, false);
+						print("reset not all");
 
 						//print("we In");
 
-						if(hitPlane.transform.name == "1"){
+						if (hitPlane.transform.name == "1"){
 							//gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(hitPlane.transform.parent.name).Find(hitPlane.transform.name);
 							HighlightPlane(hitPlane.transform.parent.name, "1");
 							HighlightPlane(hitPlane.transform.parent.name, "2");
@@ -165,7 +166,8 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 					}
 
 					else if(hitPlane.transform.gameObject.tag == "target" && unitInformation.targetSystem == "SingleAttack" && selectedPlane != hitPlane.transform.gameObject){
-						ResetHighlights();
+						ResetHighlights(false, false);
+						print("reset not all");
 						HighlightPlane(hitPlane.transform.parent.name, hitPlane.transform.name);
 
 						selectedPlane = hitPlane.transform.gameObject;
@@ -186,7 +188,8 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
         }
 
         if(!isSelected && oldTargets.Count > 0 ){
-        	ResetHighlights();
+			//print("reset all update");
+        	ResetHighlights(false, false);
         }
     }
 
@@ -196,7 +199,7 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
     	oldTargets.Add(plane);
     }
 
-    public void ResetHighlights(){
+    public void ResetHighlights(bool resetFace, bool resetTargetPulses){
 
 		if (oldTargets != null)
 		{
@@ -212,9 +215,11 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
     	oldTargets.Clear();
     	selectedPlane = null;
 
-    	//isSelected = false;
+		ResetTargetHighlightPulse(resetFace, resetTargetPulses);
 
-    	attackHandler.attackArray = null;
+		//isSelected = false;
+
+		attackHandler.attackArray = null;
 		attackHandler.attackCost = -1;
 
 		ConfirmButton.interactable = false;
@@ -225,7 +230,36 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
 	}
 
- //    public void OnMouseDown()
+
+	public void ResetTargetHighlightPulse(bool resetFace, bool resetTargetPulses)
+	{
+		for (int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount - 1; j++)
+		{
+			GameObject removeTargetFace = gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject;
+
+			for (int x = 0; x < removeTargetFace.transform.childCount; x++)
+			{
+				for (int y = 0; y < removeTargetFace.transform.GetChild(x).childCount; y++)
+				{
+					//print(removeTargetFace.transform.GetChild(x).GetChild(y).name);
+					if (resetTargetPulses)
+					{
+						removeTargetFace.transform.GetChild(x).GetChild(y).GetComponent<TweenController>().StopPulseTargets();
+					}
+					//removeTargetFace.transform.GetChild(x).GetChild(y).GetComponent<TweenController>().StopPulseTargets();
+				}
+			}
+
+			if (resetFace)
+			{
+				removeTargetFace.SetActive(false);
+			}
+
+			// targetsystems.SetActive(false);
+		}
+	}
+
+	//    public void OnMouseDown()
 	// {
 	// 	if(active && isSelected){
 
@@ -233,33 +267,34 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
 	// 	 	RaycastHit[] hits;
 	// 		hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 10.0f);
-        	
- //    		for (int x = 0; x < hits.Length; x++){
-				
+
+	//    		for (int x = 0; x < hits.Length; x++){
+
 	// 			RaycastHit hitPlane = hits[x];
 
 	// 			print(hitPlane.transform.gameObject.name);
-				
+
 	// 			if(hitPlane.transform.gameObject.tag == "target")
 	// 			{
 	// 				print(unitInformation.targetSystem + ": " + hitPlane.transform.parent.name +", "+ hitPlane.transform.name);
 	// 			}
 	// 		}
-        	
- //        }
+
+	//        }
 	// }
 
-    //Detect current clicks on the GameObject (the one with the script attached)
-    public void OnPointerDown(PointerEventData pointerEventData)
+	//Detect current clicks on the GameObject (the one with the script attached)
+	public void OnPointerDown(PointerEventData pointerEventData)
     {
         //Output the name of the GameObject that is being clicked
         //Debug.Log(name + "Game Object Click in Progress");
 
         if(active && !isSelected && attackAllowed){
 
-        	ResetHighlights();
+        	ResetHighlights(true, true);
+			print("reset all");
 
-			for(int i = 0; i < transform.parent.parent.childCount; i++){
+			for (int i = 0; i < transform.parent.parent.childCount; i++){
 				// selected = false;
 				transform.parent.parent.GetChild(i).GetChild(0).GetComponent<ChooseAttackHandler>().isSelected = false;
 				transform.parent.parent.GetChild(i).GetChild(0).GetComponent<TweenController>().CancelPulseHighlight();
@@ -270,14 +305,37 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 			//transform.parent.GetComponent<CanvasGroup>().interactable = true;
 			isSelected = true;
 
+			//ResetTargetHighlightPulse(true);
 			//print("Selected Attack: " + unitInformation.attackName);
 
-			for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
-				gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(false);
-				// targetsystems.SetActive(false);
-			}
+			//for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
+			//GameObject removeTargetFace = gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject;
 
-			gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
+			//for (int x = 0; x < removeTargetFace.transform.childCount; x++)
+			//{
+			//for (int y = 0; y < removeTargetFace.transform.GetChild(x).childCount; y++)
+			//{
+			//	print(removeTargetFace.transform.GetChild(x).GetChild(y).name);
+			//	removeTargetFace.transform.GetChild(x).GetChild(y).GetComponent<TweenController>().StopPulseTargets();
+			//}
+			//}
+
+			//removeTargetFace.SetActive(false);
+
+			// targetsystems.SetActive(false);
+			//}
+
+			GameObject targetSystem = gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject;
+			targetSystem.SetActive(true);
+			print("new attack chosen");
+
+			for (int x = 0; x < targetSystem.transform.childCount; x++) {
+				for (int y = 0; y < targetSystem.transform.GetChild(x).childCount; y++) {
+					targetSystem.transform.GetChild(x).GetChild(y).GetComponent<TweenController>().PulseTargets();
+					print(targetSystem.transform.GetChild(x).GetChild(y).name);
+				}
+				
+			}
 			// targetsystem.SetActive(true);
 
 		}

@@ -119,9 +119,9 @@ public class TweenController : MonoBehaviour
 	}
 
 	public void PopupNumber(){
-		LeanTween.moveLocalY(gameObject.transform.GetChild(0).gameObject, 100.0f, 1.0f);
-		LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.0f, 0.5f).setDelay(1.0f);
-		LeanTween.moveLocalY(gameObject.transform.GetChild(0).gameObject, -50.0f, 1.0f).setDelay(1.0f).setOnComplete(DestroyGameObject);
+		LeanTween.moveLocalY(gameObject.transform.GetChild(0).gameObject, 100.0f, 1.0f).setEaseInOutSine();
+		LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.0f, 0.5f).setEaseInOutSine().setDelay(1.0f);
+		LeanTween.moveLocalY(gameObject.transform.GetChild(0).gameObject, -50.0f, 1.0f).setEaseInOutSine().setDelay(1.0f).setOnComplete(DestroyGameObject);
 	}
 
 	public void PulseTargets()
@@ -150,13 +150,23 @@ public class TweenController : MonoBehaviour
         //LeanTween.rotateAroundLocal(gameObject, rotDir, 90, 1);
         //print(rotDir);
         LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine();
-    }
-    //public void RotateAndStore(Vector3 rotDir) {
-    //    LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine().setOnComplete(PushToStack);
-    //}
-    public void RotateBack(Quaternion rotation) {
-        LeanTween.rotateLocal(gameObject, rotation.eulerAngles, 0.6f).setEaseInOutSine();
-    }
+		gameObject.GetComponent<CubeInformation>().PlayRandomRotateSound();
+
+	}
+	//public void RotateAndStore(Vector3 rotDir) {
+	//    LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine().setOnComplete(PushToStack);
+	//}
+	public void RotateBack(Quaternion rotation) {
+		
+		if (gameObject.transform.rotation.eulerAngles != rotation.eulerAngles)
+		{
+			gameObject.GetComponent<CubeInformation>().PlayRandomRotateSound();
+
+		}
+
+		LeanTween.rotateLocal(gameObject, rotation.eulerAngles, 0.6f).setEaseInOutSine();
+		//gameObject.GetComponent<CubeInformation>().PlayRandomRotateSound();
+	}
     //public void PushToStack() {
     //    rotateCube.PushToPlannedStack(transform.rotation);
     //}

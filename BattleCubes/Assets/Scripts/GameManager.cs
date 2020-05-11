@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     public List<string[]> attackList = new List<string[]>();
 
     List<string> playerInfo;
-    bool[] readies = {false, false};
+    public bool[] readies = {false, false};
 
     //states
     public readonly int SETUP = 0;
@@ -250,6 +250,7 @@ public class GameManager : MonoBehaviour
             //roundCountText.text = ConvertNumToText(roundCount);
 
             ResetRound();
+            preventClick.SetActive(false);
         }
 
         // setupCanvas.SetActive(false);

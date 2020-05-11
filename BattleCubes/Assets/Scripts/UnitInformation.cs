@@ -143,7 +143,7 @@ public class UnitInformation : MonoBehaviour
 						//print("Removing Unit");
 						executed = true;
 
-						if(gameManager.GetState() == gameManager.SETUP){
+						if(gameManager.GetState() == gameManager.SETUP && !gameManager.readies[0]){
 							Destroy(gameObject);
 							infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
 							//gameManager.remainingUnitPoints += unitSpawnCost;
@@ -199,6 +199,8 @@ public class UnitInformation : MonoBehaviour
 			gameManager.CreateFloatingText(("-" + damageAmount.ToString()), transform.parent, "attack");
 			//audioSource.PlayOneShot(hitEnemySfx);
 
+			Handheld.Vibrate();
+
 			// audioSource.PlayOneShot(unitBehavior.unitHitNoise);
 			if (unitCurrentHealth > 0){
 
@@ -214,10 +216,10 @@ public class UnitInformation : MonoBehaviour
 					//unitAudioSource.PlayOneShot(unitHitNoise);
 					//unitAnimator.SetTrigger("Hit");
 
-					if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
-					{
-						Handheld.Vibrate();
-					}
+					//if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+					//{
+						//Handheld.Vibrate();
+					//}
 				}
 
 				if (unitAnimator) {
@@ -227,10 +229,10 @@ public class UnitInformation : MonoBehaviour
 			}
 			else if(unitCurrentHealth <= 0){
 
-				if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
-				{
-					Handheld.Vibrate();
-				}
+				//if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+				//{
+					//Handheld.Vibrate();
+				//}
 
 				StartCoroutine(Die());
 			}

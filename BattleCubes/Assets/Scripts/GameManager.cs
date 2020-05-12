@@ -84,6 +84,9 @@ public class GameManager : MonoBehaviour
     public string[] enemyCubeInfo;
     public string[] cubeInfo;
 
+    int tmpTime;
+    bool tmpTimeChange = false;
+
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
@@ -339,8 +342,27 @@ public class GameManager : MonoBehaviour
             }
         }
         intTIME = Mathf.CeilToInt(remainingTime);
-        remainingTimeText.text = intTIME.ToString();
-        infoSender.SendGameStatus(new int[] { intTIME, roundCount, state });
+
+        if (!tmpTimeChange) {
+            tmpTime = intTIME;
+
+            remainingTimeText.text = intTIME.ToString();
+            infoSender.SendGameStatus(new int[] { intTIME, roundCount, state });
+
+            tmpTimeChange = true;
+        }
+        else {
+            if (tmpTime != intTIME) {
+                tmpTime = intTIME;
+
+                remainingTimeText.text = intTIME.ToString();
+                infoSender.SendGameStatus(new int[] { intTIME, roundCount, state });
+
+                tmpTimeChange = false;
+            }
+        }
+
+        
     }
 
     public void HighlightThrowdownAction(int i){

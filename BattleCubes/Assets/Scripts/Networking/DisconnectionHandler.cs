@@ -42,4 +42,11 @@ public class DisconnectionHandler : MonoBehaviourPunCallbacks {
 
         SceneManager.LoadScene(0);
     }
+
+    public override void OnDisconnected(DisconnectCause cause) {
+        //we may need to change stuff inside the panels
+
+        //Debug.Log($"Disconnected due to {cause}");
+        print($"Disconnected due to {cause}");
+    }
 }

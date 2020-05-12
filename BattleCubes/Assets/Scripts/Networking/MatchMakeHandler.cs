@@ -72,11 +72,12 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnDisconnected(DisconnectCause cause) {
-        //we may need to change stuff inside the panels
+    //public override void OnDisconnected(DisconnectCause cause) {
+    //    //we may need to change stuff inside the panels
 
-        Debug.Log($"Disconnected due to {cause}");
-    }
+    //    //Debug.Log($"Disconnected due to {cause}");
+    //    print($"Disconnected due to {cause}");
+    //}
 
     public override void OnJoinRandomFailed(short returnCode, string message) {
         Debug.Log("No clients waiting, creating new room");

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UnitInformation : MonoBehaviour
 {
-    /*
+	/*
 
 	1.) This Script is added to a prefab of a game-unit so they can be "disabled"/
 		become hidden once touching and remaining inside of the Hidden_Bounds Boxes.
@@ -57,7 +57,7 @@ public class UnitInformation : MonoBehaviour
 	public bool shakeScreen = false;
 
 	//this gets the render of the prefab its attached to
-	Renderer unitRenderer;
+	[SerializeField] Renderer unitRenderer;
 
 	AudioSource unitAudioSource;
 	Animator unitAnimator;
@@ -107,11 +107,11 @@ public class UnitInformation : MonoBehaviour
 		if (isTower)
 		{
 			isVulnerable = false;
-			unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<MeshRenderer>();
+			//unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<MeshRenderer>();
 		}
-		else {
-			unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<SkinnedMeshRenderer>();
-		}
+		//else {
+			//unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<SkinnedMeshRenderer>();
+		//}
 
 		if (unitAudioSource && unitAnimator && transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
 		{

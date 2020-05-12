@@ -382,7 +382,7 @@ public class GameManager : MonoBehaviour
             //print(i);
 
             //CheckWinCondition();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.25f);
 
             //both players have actions
             if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
@@ -418,7 +418,7 @@ public class GameManager : MonoBehaviour
                         infoSender.SendPlayerAttackInfo(host);
                         infoSender.SendEnemyAttackInfo(client);
                     }
-                    yield return new WaitForSeconds(3);
+                    yield return new WaitForSeconds(3.5f);
                 }
                 else {
                     yield return new WaitForSeconds(0.5f);
@@ -429,7 +429,7 @@ public class GameManager : MonoBehaviour
                         TranslateRotatePlayerCube(host[1]);
                         infoSender.SendPlayerTurningDir(host[1]);
                         
-                        yield return new WaitForSeconds(3);
+                        yield return new WaitForSeconds(3.5f);
 
                         StartCoroutine(attackHandler.DoAttack("Client", client));
                         infoSender.SendEnemyAttackInfo(client);
@@ -445,7 +445,7 @@ public class GameManager : MonoBehaviour
                         TranslateRotateEnemyCube(client[1]);
                         infoSender.SendEnemyTurningDir(client[1]);
                         
-                        yield return new WaitForSeconds(3);
+                        yield return new WaitForSeconds(3.5f);
 
                         StartCoroutine(attackHandler.DoAttack("Host", host));
                         infoSender.SendPlayerAttackInfo(host);
@@ -454,7 +454,7 @@ public class GameManager : MonoBehaviour
                         //yield return new WaitForSeconds(3);
 
                     }
-                    yield return new WaitForSeconds(3);
+                    yield return new WaitForSeconds(3.5f);
                 }
             }
             //only host has actions
@@ -477,7 +477,7 @@ public class GameManager : MonoBehaviour
 
                     //infosender
                 }
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(3.5f);
             }
             //only client has actions
             else if (enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
@@ -501,7 +501,7 @@ public class GameManager : MonoBehaviour
 
                     //infosender
                 }
-                yield return new WaitForSeconds(3);
+                yield return new WaitForSeconds(3.5f);
             }
             //no more actions
             else {

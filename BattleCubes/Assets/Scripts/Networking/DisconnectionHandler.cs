@@ -28,6 +28,7 @@ public class DisconnectionHandler : MonoBehaviourPunCallbacks {
                 SceneManager.LoadScene(0);
             }
         }
+        //print(PhotonNetwork.NetworkingClient.LoadBalancingPeer.RoundTripTime); //PING
     }
     public void Disconnect() 
     {

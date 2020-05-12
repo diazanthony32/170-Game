@@ -146,7 +146,7 @@ namespace Photon.Pun.UtilityScripts
                     gls.LongestEventCallbackCode,
                     gls.LongestOpResponseCallback,
                     gls.LongestOpResponseCallbackOpCode,
-                    PhotonNetwork.NetworkingClient.LoadBalancingPeer.RoundTripTime,
+                    PhotonNetwork.NetworkingClient.LoadBalancingPeer.RoundTripTime,//PING
                     PhotonNetwork.NetworkingClient.LoadBalancingPeer.RoundTripTimeVariance,
                     PhotonNetwork.NetworkingClient.LoadBalancingPeer.ResentReliableCommands);
                 GUILayout.Label(healthStats);

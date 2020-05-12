@@ -361,8 +361,6 @@ public class GameManager : MonoBehaviour
                 tmpTimeChange = false;
             }
         }
-
-        
     }
 
     public void HighlightThrowdownAction(int i){

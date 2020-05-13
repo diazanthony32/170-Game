@@ -765,7 +765,7 @@ public class GameManager : MonoBehaviour
 
     void FillAttackList() {
         for (int i = 1; i <= 3; i++) {
-            GameObject unitPrefab = Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Units/" + i + "/Prefab");
+            GameObject unitPrefab = Resources.Load<GameObject>("Themes/" + cubeInfo[0] + "/Units/"+ i + "/Prefab");
             UnitInformation unitInformation = unitPrefab.GetComponent<UnitInformation>();
             attackList.Add(new string[] { unitInformation.attackName, "false" });
             print(attackList[i-1][0] + " : "+ attackList[i - 1][1]);
@@ -931,7 +931,7 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemyUnit(string[] unitArray){
         GameObject plane = enemyCubePosition.transform.GetChild(0).Find(unitArray[1]).Find(unitArray[2]).gameObject;
-        GameObject unit = Instantiate(Resources.Load<GameObject>(enemyCubeInfo[0] + "/" + enemyCubeInfo[1] + "/Units/" + unitArray[0] + "/Prefab"));
+        GameObject unit = Instantiate(Resources.Load<GameObject>("Themes/" + enemyCubeInfo[0] + "/Units/" + unitArray[0] + "/Prefab"));
 
         unit.transform.position = plane.transform.position;
         unit.transform.rotation = plane.transform.rotation;

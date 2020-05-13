@@ -143,13 +143,15 @@ public class AttackHandler : MonoBehaviour
     			UnitInformation unitInfo = null;
 
     			if(i == 0){
-    				unitInfo = Resources.Load<GameObject>(gameManager.cubeInfo[0] + "/" + gameManager.cubeInfo[1] + "/Units/Tower/Prefab" ).GetComponent<UnitInformation>();
-    			}
+    				unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.cubeInfo[0] + "/Units/Tower/Prefab").GetComponent<UnitInformation>();
+                    //("Themes/" + gameManager.cubeInfo[0] + "/Units/Tower/Prefab")
+                }
     			else{
-    				unitInfo = Resources.Load<GameObject>(gameManager.cubeInfo[0] + "/" + gameManager.cubeInfo[1] + "/Units/"+ i + "/Prefab").GetComponent<UnitInformation>();
-    			}
+    				unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.cubeInfo[0] + "/Units/" + i + "/Prefab").GetComponent<UnitInformation>();
+                    //("Themes/" + gameManager.cubeInfo[0] + "/Units/" + i + "/Prefab")
+                }
 
-    			if(unitInfo != null && unitInfo.attackName == attackName){
+                if (unitInfo != null && unitInfo.attackName == attackName){
     				return unitInfo;
     			}
     		}
@@ -164,13 +166,15 @@ public class AttackHandler : MonoBehaviour
     			UnitInformation unitInfo = null;
 
     			if(i == 0){
-    				unitInfo = Resources.Load<GameObject>(gameManager.enemyCubeInfo[0] + "/" + gameManager.enemyCubeInfo[1] + "/Units/Tower/Prefab" ).GetComponent<UnitInformation>();
-    			}
+    				unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/Tower/Prefab").GetComponent<UnitInformation>();
+                    //("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/Tower/Prefab")
+                }
     			else{
-    				unitInfo = Resources.Load<GameObject>(gameManager.enemyCubeInfo[0] + "/" + gameManager.enemyCubeInfo[1] + "/Units/"+ i + "/Prefab").GetComponent<UnitInformation>();
-    			}
+    				unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/" + i + "/Prefab").GetComponent<UnitInformation>();
+                    //("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/" + i + "/Prefab")
+                }
 
-    			if(unitInfo != null && unitInfo.attackName == attackName){
+                if (unitInfo != null && unitInfo.attackName == attackName){
     				return unitInfo;
     			}
     		}

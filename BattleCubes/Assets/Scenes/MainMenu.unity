@@ -22935,7 +22935,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: " - New PatchNote System\n - Friendly Tips/Updates Scrolling\n - Adjusted
     the Layout Slightly\n - New Website Button Link\n - Random Unit Placing on Menu
-    Cube"
+    Cube\n - Redid Unit Color Selection (no more 3 prefabs)\n - Reset Game Button
+    in Options"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -23005,12 +23006,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2071197041}
-    characterCount: 117
+    characterCount: 203
     spriteCount: 0
-    spaceCount: 21
-    wordCount: 20
+    spaceCount: 39
+    wordCount: 36
     linkCount: 0
-    lineCount: 4
+    lineCount: 6
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

@@ -24,6 +24,7 @@ TagManager:
   - hideUnit
   - towerText
   - introText
+  - innerUnitSquare
   layers:
   - Default
   - TransparentFX

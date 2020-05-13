@@ -291,7 +291,8 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
 							var plane = hitPlane.transform.parent.GetChild(y);
 
-							if(plane.gameObject.transform.childCount > 0){
+							if(plane.gameObject.transform.childCount > 0 && plane.gameObject.CompareTag("unitSquare"))
+							{
 								for(int x = 0 ; x < plane.gameObject.transform.childCount ; x++ ){
 
 									if((plane.transform.GetChild(x).gameObject.GetComponent<UnitInformation>().isTower)){

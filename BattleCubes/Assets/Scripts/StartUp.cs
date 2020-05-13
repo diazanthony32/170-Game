@@ -135,7 +135,7 @@ public class StartUp : MonoBehaviour
                                 {
                                     var plane = playerCubeTransform.GetChild(x).GetChild(i).transform.parent.GetChild(y);
 
-                                    if (plane.gameObject.transform.childCount > 0)
+                                    if (plane.gameObject.transform.childCount > 0 && plane.gameObject.CompareTag("unitSquare"))
                                     {
                                         for (int z = 0; z < plane.gameObject.transform.childCount; z++)
                                         {

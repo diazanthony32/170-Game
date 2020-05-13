@@ -475,24 +475,38 @@ public class UnitInformation : MonoBehaviour
 					if (i == 4)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body"));
-						//print("set body color");
-					}
-					else if (i < 4 || i == 5 || i == 8)
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body").shader;
+
+                        //print("set body color");
+                    }
+                    else if (i < 4 || i == 5 || i == 8)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts"));
-						//print("set bone colors");
-					}
-					else if (i == 7)
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts").shader;
+
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts");
+
+                        //print("set bone colors");
+                    }
+                    else if (i == 7)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns"));
-						//print("set bone colors");
-					}
-					else if (i == 6 || i == 9)
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns").shader;
+
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns");
+
+                        //print("set bone colors");
+                    }
+                    else if (i == 6 || i == 9)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes"));
-						//print("set bone colors");
-					}
-					else
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes").shader;
+
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
+
+                        //print("set bone colors");
+                    }
+                    else
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/ERROR"));
 						//print("set bone colors");
@@ -503,19 +517,30 @@ public class UnitInformation : MonoBehaviour
 					if (i == 0 || i == 2)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes"));
-						//print("set body color");
-					}
-					else if (i == 1)
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes").shader;
+
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
+
+                        //print("set body color");
+                    }
+                    else if (i == 1)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts"));
-						//print("set body color");
-					}
-					else if (i == 4)
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts").shader;
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts");
+
+                        //print("set body color");
+                    }
+                    else if (i == 4)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body"));
-						//print("set body color");
-					}
-					else
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body").shader;
+
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
+
+                        //print("set body color");
+                    }
+                    else
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/ERROR"));
 						//print("set bone colors");
@@ -526,24 +551,38 @@ public class UnitInformation : MonoBehaviour
 					if (i == 0 || i == 2 || i == 3 || i == 8)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts"));
-						//print("set body color");
-					}
-					else if (i == 1)
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts").shader;
+
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts");
+                        //print("set body color");
+                    }
+                    else if (i == 1)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body"));
-						//print("set body color");
-					}
-					else if (i == 4)
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body").shader;
+
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
+
+                        //print("set body color");
+                    }
+                    else if (i == 4)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns"));
-						//print("set body color");
-					}
-					else if (5 <= i && i <= 7)
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns").shader;
+
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns");
+
+                        //print("set body color");
+                    }
+                    else if (5 <= i && i <= 7)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes"));
-						//print("set body color");
-					}
-					else
+                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes").shader;
+
+                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
+                        //print("set body color");
+                    }
+                    else
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/ERROR"));
 						//print("set bone colors");

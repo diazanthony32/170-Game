@@ -47,7 +47,7 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
     	string[] cubeInfo = {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
 
-    	unitPrefab = Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Units/" + unitFolder + "/Prefab");
+    	unitPrefab = Resources.Load<GameObject>("Themes/" + cubeInfo[0] + "/Units/"+ unitFolder + "/Prefab");
 
     	gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
 

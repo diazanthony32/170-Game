@@ -31,26 +31,26 @@ public class StartUp : MonoBehaviour
 
         if (PlayerPrefs.HasKey("CubeTheme")) {
             if (PlayerPrefs.HasKey("CubeColor")) {
-                GameObject cube = Instantiate(Resources.Load<GameObject>(PlayerPrefs.GetString("CubeTheme") + "/" + PlayerPrefs.GetString("CubeColor") + "/Cube"));
+                GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Cube/Prefab"));
                 cube.transform.position = playerCubePosition.transform.position;
                 cube.transform.rotation = playerCubePosition.transform.rotation;
                 cube.transform.SetParent(playerCubePosition.transform);
             }
             else {
-                GameObject cube = Instantiate(Resources.Load<GameObject>(PlayerPrefs.GetString("CubeTheme") + "/RedCube/Cube"));
+                GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Cube/Prefab"));
                 cube.transform.position = playerCubePosition.transform.position;
                 cube.transform.rotation = playerCubePosition.transform.rotation;
                 cube.transform.SetParent(playerCubePosition.transform);
             }
         }
         else {
-            GameObject cube = Instantiate(Resources.Load<GameObject>("Demons/RedCube/Cube"));
+            GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/Demon/Cube/Prefab"));
             cube.transform.position = playerCubePosition.transform.position;
             cube.transform.rotation = playerCubePosition.transform.rotation;
             cube.transform.SetParent(playerCubePosition.transform);
 
-            PlayerPrefs.SetString("CubeTheme", "Demons");
-            PlayerPrefs.SetString("CubeColor", "RedCube");
+            PlayerPrefs.SetString("CubeTheme", "Demon");
+            PlayerPrefs.SetString("CubeColor", "DefaultColor");
         }
 
         if(PlayerPrefs.HasKey("MusicVolume")){
@@ -113,10 +113,10 @@ public class StartUp : MonoBehaviour
 
                         if (unitFolder == 4)
                         {
-                            unitPrefab = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Units/Tower/Prefab"));
+                            unitPrefab = Instantiate(Resources.Load<GameObject>("Themes/" + cubeInfo[0] + "/Units/Tower/Prefab"));
                         }
                         else {
-                            unitPrefab = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Units/" + unitFolder + "/Prefab"));
+                            unitPrefab = Instantiate(Resources.Load<GameObject>("Themes/" + cubeInfo[0] + "/Units/" + unitFolder + "/Prefab"));
                         }
 
                         print("spawned a " + unitPrefab.GetComponent<UnitInformation>().unitName);

@@ -133,6 +133,9 @@ public class UnitInformation : MonoBehaviour
 
 		unitCurrentHealth = unitHealth;
 		// gameObject.GetComponentInChildren<Renderer>().material.SetFloat("Vector1_A2DEF370", 0.0f);
+
+		ReColorUnit();
+
 	}
 
 	void Update(){
@@ -457,6 +460,97 @@ public class UnitInformation : MonoBehaviour
 				//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
 
 			}
+		}
+
+	}
+
+	public void ReColorUnit() 
+	{
+
+		for (int i = 0 ; i < unitRenderer.materials.Length ; i++) {
+			if (PlayerPrefs.GetString("CubeTheme") == "Demon") 
+			{
+				if (unitName == "TankBoi")
+				{
+					if (i == 4)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body"));
+						//print("set body color");
+					}
+					else if (i < 4 || i == 5 || i == 8)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts"));
+						//print("set bone colors");
+					}
+					else if (i == 7)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns"));
+						//print("set bone colors");
+					}
+					else if (i == 6 || i == 9)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes"));
+						//print("set bone colors");
+					}
+					else
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/ERROR"));
+						//print("set bone colors");
+					}
+				}
+				else if (unitName == "SniperBoi")
+				{
+					if (i == 0 || i == 2)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes"));
+						//print("set body color");
+					}
+					else if (i == 1)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts"));
+						//print("set body color");
+					}
+					else if (i == 4)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body"));
+						//print("set body color");
+					}
+					else
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/ERROR"));
+						//print("set bone colors");
+					}
+				}
+				else if (unitName == "SingleBoi")
+				{
+					if (i == 0 || i == 2 || i == 3 || i == 8)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts"));
+						//print("set body color");
+					}
+					else if (i == 1)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body"));
+						//print("set body color");
+					}
+					else if (i == 4)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns"));
+						//print("set body color");
+					}
+					else if (5 <= i && i <= 7)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes"));
+						//print("set body color");
+					}
+					else
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/ERROR"));
+						//print("set bone colors");
+					}
+				}
+			}
+			//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demons/Colors/" + PlayerPrefs.GetString("CubeColor") + "Body");
 		}
 
 	}

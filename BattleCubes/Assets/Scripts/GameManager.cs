@@ -775,7 +775,7 @@ public class GameManager : MonoBehaviour
     void SpawnPlayerCube(string[] cubeInfo) {
         playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
 
-        GameObject cube = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Cube"));
+        GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/"+ cubeInfo[0] +"/Cube/Prefab"));
         cube.transform.position = playerCubePosition.transform.position;
         cube.transform.rotation = playerCubePosition.transform.rotation;
         cube.transform.SetParent(playerCubePosition.transform);
@@ -791,7 +791,7 @@ public class GameManager : MonoBehaviour
         enemyCubePosition = GameObject.FindGameObjectWithTag("EnemyCubePosition");
         enemyCubeInfo = cubeInfo;
 
-        GameObject cube = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Cube"));
+        GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/" + cubeInfo[0] + "/Cube/Prefab"));
         cube.transform.position = enemyCubePosition.transform.position;
         cube.transform.rotation = enemyCubePosition.transform.rotation;
         cube.transform.SetParent(enemyCubePosition.transform);

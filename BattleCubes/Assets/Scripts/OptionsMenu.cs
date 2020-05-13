@@ -21,6 +21,11 @@ public class OptionsMenu : MonoBehaviour
     public void QuitGame() {
         Application.Quit();
     }
+    public void ResetGame()
+    {
+        PlayerPrefs.DeleteAll();
+        Application.Quit();
+    }
 
     public void OpenTwitter()
     {

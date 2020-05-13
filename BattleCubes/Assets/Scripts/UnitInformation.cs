@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class UnitInformation : MonoBehaviour
 {
@@ -89,8 +91,15 @@ public class UnitInformation : MonoBehaviour
 
 		mask = LayerMask.GetMask("unit");
 
-		gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
-		infoSender = GameObject.FindGameObjectWithTag("infoSender").GetComponent<InfoSender>();
+		if (SceneManager.GetActiveScene().buildIndex != 0)
+		{
+			gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
+		}
+
+		if (SceneManager.GetActiveScene().buildIndex != 0)
+		{
+			infoSender = GameObject.FindGameObjectWithTag("infoSender").GetComponent<InfoSender>();
+		}
 
 		unitAudioSource = GetComponent<AudioSource>();
 		unitAnimator = transform.Find("UnitScaler").GetComponentInChildren<Animator>();
@@ -113,7 +122,7 @@ public class UnitInformation : MonoBehaviour
 			//unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<SkinnedMeshRenderer>();
 		//}
 
-		if (unitAudioSource && unitAnimator && transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+		if (unitAudioSource && unitAnimator && transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition" && SceneManager.GetActiveScene().buildIndex != 0)
 		{
 			unitAudioSource.PlayOneShot(unitSpawnNoise);
 			unitAnimator.SetTrigger("spawn");
@@ -139,7 +148,8 @@ public class UnitInformation : MonoBehaviour
 				
 				if(hitPlane.transform.gameObject == gameObject)
 				{
-					if(pointerDownTimer > requiredHoldTime && !executed){
+					if(pointerDownTimer > requiredHoldTime && !executed && SceneManager.GetActiveScene().buildIndex != 0)
+					{
 						//print("Removing Unit");
 						executed = true;
 
@@ -183,7 +193,11 @@ public class UnitInformation : MonoBehaviour
 			}
 		}
 
-		unitHealthBar.fillAmount = unitCurrentHealth / unitHealth;
+		if (SceneManager.GetActiveScene().buildIndex != 0) 
+		{
+			unitHealthBar.fillAmount = unitCurrentHealth / unitHealth;
+		}
+
 	}
 
 	public void TakeDamage(int damageAmount){
@@ -294,18 +308,23 @@ public class UnitInformation : MonoBehaviour
 
 	void OnTriggerEnter(Collider trigger)
 	{
-		if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition") {
-			
-			if (trigger.CompareTag("attackChecker"))
+		if (SceneManager.GetActiveScene().buildIndex != 0)
+		{
+			if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
 			{
-				//print("can attack");
-				for (int i = 0; i < gameManager.attackList.Count; i++){
 
-					if (gameManager.attackList[i][0] == attackName)
+				if (trigger.CompareTag("attackChecker"))
+				{
+					//print("can attack");
+					for (int i = 0; i < gameManager.attackList.Count; i++)
 					{
-						gameManager.attackList[i][1] = "true";
-						//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
 
+						if (gameManager.attackList[i][0] == attackName)
+						{
+							gameManager.attackList[i][1] = "true";
+							//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+
+						}
 					}
 				}
 			}
@@ -333,22 +352,26 @@ public class UnitInformation : MonoBehaviour
 
 	void OnTriggerStay(Collider trigger)
 	{
-		if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+		if (SceneManager.GetActiveScene().buildIndex != 0 && transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
 		{
 
-			if (trigger.CompareTag("attackChecker"))
-			{
-				//print("can attack");
-				for (int i = 0; i < gameManager.attackList.Count; i++) {
-
-					if (gameManager.attackList[i][0] == attackName)
+			if (SceneManager.GetActiveScene().buildIndex != 0) {
+				if (trigger.CompareTag("attackChecker"))
+				{
+					//print("can attack");
+					for (int i = 0; i < gameManager.attackList.Count; i++)
 					{
-						gameManager.attackList[i][1] = "true";
-						//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
 
+						if (gameManager.attackList[i][0] == attackName)
+						{
+							gameManager.attackList[i][1] = "true";
+							//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+
+						}
 					}
 				}
 			}
+
 		}
 
 		if (trigger.CompareTag("hideUnit"))
@@ -361,17 +384,20 @@ public class UnitInformation : MonoBehaviour
 	{
 		if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
 		{
-
-			if (trigger.CompareTag("attackChecker"))
+			if (SceneManager.GetActiveScene().buildIndex != 0)
 			{
-				//print("can attack");
-				for (int i = 0; i < gameManager.attackList.Count; i++) {
-
-					if (gameManager.attackList[i][0] == attackName)
+				if (trigger.CompareTag("attackChecker"))
+				{
+					//print("can attack");
+					for (int i = 0; i < gameManager.attackList.Count; i++)
 					{
-						gameManager.attackList[i][1] = "false";
-						//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
 
+						if (gameManager.attackList[i][0] == attackName)
+						{
+							gameManager.attackList[i][1] = "false";
+							//print(gameManager.attackList[i][0] + " : " + gameManager.attackList[i][1]);
+
+						}
 					}
 				}
 			}

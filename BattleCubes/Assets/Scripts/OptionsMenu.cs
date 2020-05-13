@@ -27,4 +27,10 @@ public class OptionsMenu : MonoBehaviour
         Application.OpenURL("https://twitter.com/BattleCubesGame");
 
     }
+
+    public void OpenWebsite()
+    {
+        Application.OpenURL("https://battlecubes.sites.ucsc.edu/");
+
+    }
 }

@@ -79,5 +79,118 @@ public class StartUp : MonoBehaviour
         cubeHideUnits.transform.position = playerCubePosition.transform.position;
         cubeHideUnits.transform.rotation = playerCubePosition.transform.rotation;
         cubeHideUnits.transform.SetParent(playerCubePosition.transform);
+
+        RandomUnitPlacement();
+
+    }
+
+    public void RandomUnitPlacement()
+    {
+        Transform playerCubeTransform = playerCubePosition.transform.GetChild(0);
+        int unitPoints = 12;
+        int towerCount = 3;
+        while (unitPoints != 0 || towerCount != 0) {
+
+            //print("unit points: " + unitPoints);
+            //print("tower count: " + towerCount);
+
+            for (int x = 0; x < playerCubeTransform.childCount; x++)
+            {
+                for (int i = 0; i < playerCubeTransform.GetChild(x).childCount; i++)
+                {
+                    int randomIndex = Random.Range(0, 8);
+
+                    if (playerCubeTransform.GetChild(x).GetChild(i).tag == "unitSquare" && randomIndex == 1)
+                    {
+                        string[] cubeInfo = { PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor") };
+
+                        int unitFolder = Random.Range(1, 5);
+                        GameObject unitPrefab;
+
+                        if (unitPoints <= 0) {
+                            unitFolder = 4;
+                        }
+
+                        if (unitFolder == 4)
+                        {
+                            unitPrefab = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Units/Tower/Prefab"));
+                        }
+                        else {
+                            unitPrefab = Instantiate(Resources.Load<GameObject>(cubeInfo[0] + "/" + cubeInfo[1] + "/Units/" + unitFolder + "/Prefab"));
+                        }
+
+                        print("spawned a " + unitPrefab.GetComponent<UnitInformation>().unitName);
+
+                        if (unitPoints >= unitPrefab.GetComponent<UnitInformation>().unitSpawnCost) {
+                            //unitPrefab.transform.SetParent(playerCubeTransform.GetChild(x).GetChild(i));
+                            print("inside placement check");
+                            if (unitPrefab.GetComponent<UnitInformation>().isTower && towerCount != 0) {
+
+                                // the variable responible for allowing the Tower to be Placed on a face
+                                bool safeToPlace = true;
+
+                                // checks if there is another tower on the same face of where the tower wants to be placed
+                                // if so, the tower placement is invalid
+                                for (int y = 0; y < playerCubeTransform.GetChild(x).GetChild(i).transform.parent.childCount; y++)
+                                {
+                                    var plane = playerCubeTransform.GetChild(x).GetChild(i).transform.parent.GetChild(y);
+
+                                    if (plane.gameObject.transform.childCount > 0)
+                                    {
+                                        for (int z = 0; z < plane.gameObject.transform.childCount; z++)
+                                        {
+                                            if (plane.gameObject.transform.GetChild(z).gameObject.GetComponent<UnitInformation>().isTower)
+                                            {
+                                                safeToPlace = false;
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+
+                                if (safeToPlace) 
+                                {
+                                    unitPrefab.transform.position = playerCubeTransform.GetChild(x).GetChild(i).transform.position;
+                                    unitPrefab.transform.rotation = playerCubeTransform.GetChild(x).GetChild(i).transform.rotation;
+
+                                    var rand = Random.Range(0, 4);
+                                    unitPrefab.transform.Rotate(0.0f, (rand * 90.0f), 0.0f);
+
+                                    unitPrefab.transform.SetParent(playerCubeTransform.GetChild(x).GetChild(i).transform);
+                                    towerCount--;
+                                }
+                            }
+                            else if (!unitPrefab.GetComponent<UnitInformation>().isTower && playerCubeTransform.GetChild(x).GetChild(i).childCount < 1)
+                            {
+                                unitPrefab.transform.position = playerCubeTransform.GetChild(x).GetChild(i).transform.position;
+                                unitPrefab.transform.rotation = playerCubeTransform.GetChild(x).GetChild(i).transform.rotation;
+
+                                var rand = Random.Range(0, 4);
+                                unitPrefab.transform.Rotate(0.0f, (rand * 90.0f), 0.0f);
+
+                                unitPrefab.transform.SetParent(playerCubeTransform.GetChild(x).GetChild(i).transform);
+                                unitPoints -= unitPrefab.GetComponent<UnitInformation>().unitSpawnCost;
+                            }
+                            else
+                            {
+                                print("destroyed a " + unitPrefab.GetComponent<UnitInformation>().unitName);
+                                Destroy(unitPrefab);
+                            }
+                        }
+                        else
+                        {
+                            print("destroyed a " + unitPrefab.GetComponent<UnitInformation>().unitName);
+                            Destroy(unitPrefab);
+                        }
+                    }
+                }
+
+                print("unit points: " + unitPoints);
+                print("tower count: " + towerCount);
+
+            }
+        }
     }
 }

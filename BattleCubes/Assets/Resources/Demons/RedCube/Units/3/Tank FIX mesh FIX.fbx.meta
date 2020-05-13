@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bbf13d17c188b054ca24f1b0d1e123a9
+guid: 0e59caaf72009d14a89a417ac182b6f9
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
@@ -10,20 +10,41 @@ ModelImporter:
       74: -7386473106184555527
     second: Armature|Attack02
   - first:
+      74: 3914040679887338526
+    second: Armature|Attack02.002
+  - first:
+      74: 4882633219502185184
+    second: Armature|body ideal
+  - first:
       74: 6151719909873191375
     second: Armature|death01
+  - first:
+      74: -4186694861164250263
+    second: Armature|death01.001
   - first:
       74: -5936829284080135236
     second: Armature|Death02
   - first:
-      74: -4819994600752919788
-    second: Armature|For sam
-  - first:
-      74: 1014566209636810728
-    second: Armature|get hit
-  - first:
       74: 6432576997629242917
     second: Armature|get hit02
+  - first:
+      74: -2569665297301669077
+    second: Armature|get hit02-refine
+  - first:
+      74: -2511403823509417284
+    second: Armature|get hit02-refine.001
+  - first:
+      74: 2838352273813918726
+    second: Armature|ideling hand
+  - first:
+      74: 8692785141704842161
+    second: Armature|play around
+  - first:
+      74: -1752103929359501887
+    second: Armature|spwan01
+  - first:
+      74: 9019033338303878609
+    second: Armature|spwan02
   externalObjects: {}
   materials:
     materialImportMode: 1

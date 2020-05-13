@@ -124,6 +124,13 @@ public class TweenController : MonoBehaviour
 		LeanTween.moveLocalY(gameObject.transform.GetChild(0).gameObject, -50.0f, 1.0f).setEaseInOutSine().setDelay(1.0f).setOnComplete(DestroyGameObject);
 	}
 
+	public void ScrollText(float time)
+	{
+		LeanTween.moveLocalX(gameObject.transform.GetChild(0).gameObject, 100.0f, time).setEaseInOutSine();
+		LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.0f, time/2).setEaseInOutSine().setDelay(time);
+		LeanTween.moveLocalX(gameObject.transform.GetChild(0).gameObject, -50.0f, time).setEaseInOutSine().setDelay(time);
+	}
+
 	public void PulseTargets()
 	{
 		//gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;

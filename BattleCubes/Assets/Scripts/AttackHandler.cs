@@ -5,44 +5,50 @@ using Photon.Pun;
 
 public class AttackHandler : MonoBehaviour
 {
-	[SerializeField] GameManager gameManager;
-	public string[] attackArray = null;
-	public int attackCost = -1;
+    [SerializeField] GameManager gameManager;
+    public string[] attackArray = null;
+    public int attackCost = -1;
+    [Space(10)]
+    [SerializeField] GameObject hideButton;
+    [SerializeField] GameObject showButton;
+
+
+    List<GameObject> hiddenFrontFaces = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-    	//gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
-        
+        //gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void StoreAttack(){
-    	if(attackArray != null && attackCost != -1){
-    		gameManager.AddAction(attackArray, attackCost);
-    	}
-    	ResetChooseAttackHandlers();
+    public void StoreAttack() {
+        if (attackArray != null && attackCost != -1) {
+            gameManager.AddAction(attackArray, attackCost);
+        }
+        ResetChooseAttackHandlers();
     }
 
-    public void ResetChooseAttackHandlers(){
-    	//if (PhotonNetwork.LocalPlayer.IsMasterClient) {
-	    	for(int i = 0; i < transform.childCount ; i++){
-	    		ChooseAttackHandler chooseAttackHandler = transform.GetChild(i).GetChild(0).GetComponent<ChooseAttackHandler>();
-	    		chooseAttackHandler.ResetHighlights(true, true);
-	    		chooseAttackHandler.isSelected = false;
-				chooseAttackHandler.GetComponent<TweenController>().CancelPulseHighlight();
+    public void ResetChooseAttackHandlers() {
+        //if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+        for (int i = 0; i < transform.childCount; i++) {
+            ChooseAttackHandler chooseAttackHandler = transform.GetChild(i).GetChild(0).GetComponent<ChooseAttackHandler>();
+            chooseAttackHandler.ResetHighlights(true, true);
+            chooseAttackHandler.isSelected = false;
+            chooseAttackHandler.GetComponent<TweenController>().CancelPulseHighlight();
 
-	    		//chooseAttackHandler.isSelected = false;
-	    	}
-    	//}
+            //chooseAttackHandler.isSelected = false;
+        }
+        //}
     }
 
-    public IEnumerator DoAttack(string player, string[] array){
+    public IEnumerator DoAttack(string player, string[] array) {
 
         //TurnOnTargetting();
         bool attackAllowed = false;
@@ -127,138 +133,138 @@ public class AttackHandler : MonoBehaviour
             }
         }
 
-    	//TurnOffTargetting();
-		// attackArray = new string[]{"attack", unitInformation.attackName, hitPlane.transform.parent.name, hitPlane.transform.name};
-		//gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
-    	
+        //TurnOffTargetting();
+        // attackArray = new string[]{"attack", unitInformation.attackName, hitPlane.transform.parent.name, hitPlane.transform.name};
+        //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
+
     }
 
-    public UnitInformation GetAttackUnit(string player, string attackName){
-    	
-    	if(player == "Host"){
+    public UnitInformation GetAttackUnit(string player, string attackName) {
 
-    		// UnitInformation unitInfo;
-    		for(int i = 0; i <= 3; i++){
+        if (player == "Host") {
 
-    			UnitInformation unitInfo = null;
+            // UnitInformation unitInfo;
+            for (int i = 0; i <= 3; i++) {
 
-    			if(i == 0){
-    				unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.cubeInfo[0] + "/Units/Tower/Prefab").GetComponent<UnitInformation>();
+                UnitInformation unitInfo = null;
+
+                if (i == 0) {
+                    unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.cubeInfo[0] + "/Units/Tower/Prefab").GetComponent<UnitInformation>();
                     //("Themes/" + gameManager.cubeInfo[0] + "/Units/Tower/Prefab")
                 }
-    			else{
-    				unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.cubeInfo[0] + "/Units/" + i + "/Prefab").GetComponent<UnitInformation>();
+                else {
+                    unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.cubeInfo[0] + "/Units/" + i + "/Prefab").GetComponent<UnitInformation>();
                     //("Themes/" + gameManager.cubeInfo[0] + "/Units/" + i + "/Prefab")
                 }
 
-                if (unitInfo != null && unitInfo.attackName == attackName){
-    				return unitInfo;
-    			}
-    		}
-    	}
+                if (unitInfo != null && unitInfo.attackName == attackName) {
+                    return unitInfo;
+                }
+            }
+        }
 
-    	if(player == "Client"){
-    		//UnitInformation unitInfo;
-    		print("Enemy Cube Info: " + gameManager.enemyCubeInfo[0] + " " + gameManager.enemyCubeInfo[1]);
+        if (player == "Client") {
+            //UnitInformation unitInfo;
+            print("Enemy Cube Info: " + gameManager.enemyCubeInfo[0] + " " + gameManager.enemyCubeInfo[1]);
 
-    		for(int i = 0; i <= 3; i++){
-    			
-    			UnitInformation unitInfo = null;
+            for (int i = 0; i <= 3; i++) {
 
-    			if(i == 0){
-    				unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/Tower/Prefab").GetComponent<UnitInformation>();
+                UnitInformation unitInfo = null;
+
+                if (i == 0) {
+                    unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/Tower/Prefab").GetComponent<UnitInformation>();
                     //("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/Tower/Prefab")
                 }
-    			else{
-    				unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/" + i + "/Prefab").GetComponent<UnitInformation>();
+                else {
+                    unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/" + i + "/Prefab").GetComponent<UnitInformation>();
                     //("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/" + i + "/Prefab")
                 }
 
-                if (unitInfo != null && unitInfo.attackName == attackName){
-    				return unitInfo;
-    			}
-    		}
-    	}
-    	return null;
+                if (unitInfo != null && unitInfo.attackName == attackName) {
+                    return unitInfo;
+                }
+            }
+        }
+        return null;
     }
 
-    GameObject GetTargettedPlane(string player, string planeParent, string plane){
+    GameObject GetTargettedPlane(string player, string planeParent, string plane) {
 
-    // 	void HighlightPlane(string parentName, string i){
-    // 	GameObject plane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(parentName).Find(i).gameObject;
-    // 	plane.GetComponent<MeshRenderer>().material.color = Color.yellow;
-    // 	oldTargets.Add(plane);
-    // }
-    	GameObject targetPlane = null;
-    	if(player == "Host"){
-    		targetPlane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find(plane).gameObject;
-    	}
-    	else if(player == "Client"){
-    		targetPlane = gameManager.playerCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find(plane).gameObject;
-    	}
+        // 	void HighlightPlane(string parentName, string i){
+        // 	GameObject plane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(parentName).Find(i).gameObject;
+        // 	plane.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        // 	oldTargets.Add(plane);
+        // }
+        GameObject targetPlane = null;
+        if (player == "Host") {
+            targetPlane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find(plane).gameObject;
+        }
+        else if (player == "Client") {
+            targetPlane = gameManager.playerCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find(plane).gameObject;
+        }
 
-    	RaycastHit[] hits;
- 		hits = Physics.RaycastAll(targetPlane.transform.position, -targetPlane.transform.up, 0.25f);
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(targetPlane.transform.position, -targetPlane.transform.up, 0.25f);
 
- 		for (int i = 0; i < hits.Length; i++)
- 		{
-			//stored info from the enemy's unitPlane underneath
- 			RaycastHit hit = hits[i];
- 			var hitPlane = hit.transform.gameObject;
+        for (int i = 0; i < hits.Length; i++)
+        {
+            //stored info from the enemy's unitPlane underneath
+            RaycastHit hit = hits[i];
+            var hitPlane = hit.transform.gameObject;
 
-			//print(hitPlane.name);
-			//this is where we filter out the weird self hits
- 			if(hitPlane.tag == "unitSquare")
- 			{
- 				return hitPlane.gameObject;
- 			}
+            //print(hitPlane.name);
+            //this is where we filter out the weird self hits
+            if (hitPlane.tag == "unitSquare")
+            {
+                return hitPlane.gameObject;
+            }
 
- 		}
+        }
 
-    	return null;
+        return null;
     }
 
-    GameObject[] GetTankTargettedPlaneArray(string player, string planeParent, string plane){
+    GameObject[] GetTankTargettedPlaneArray(string player, string planeParent, string plane) {
 
-    // 	void HighlightPlane(string parentName, string i){
-    // 	GameObject plane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(parentName).Find(i).gameObject;
-    // 	plane.GetComponent<MeshRenderer>().material.color = Color.yellow;
-    // 	oldTargets.Add(plane);
-    // }
-    	GameObject targetPlane1 = null;
-    	GameObject targetPlane2 = null;
-    	GameObject targetPlane3 = null;
-    	GameObject targetPlane4 = null;
+        // 	void HighlightPlane(string parentName, string i){
+        // 	GameObject plane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(parentName).Find(i).gameObject;
+        // 	plane.GetComponent<MeshRenderer>().material.color = Color.yellow;
+        // 	oldTargets.Add(plane);
+        // }
+        GameObject targetPlane1 = null;
+        GameObject targetPlane2 = null;
+        GameObject targetPlane3 = null;
+        GameObject targetPlane4 = null;
 
-    	if(plane == "1"){
-    		targetPlane1 = GetTargettedPlane(player, planeParent, "1");
-    		targetPlane2 = GetTargettedPlane(player, planeParent, "2");
-    		targetPlane3 = GetTargettedPlane(player, planeParent, "4");
-    		targetPlane4 = GetTargettedPlane(player, planeParent, "5");
+        if (plane == "1") {
+            targetPlane1 = GetTargettedPlane(player, planeParent, "1");
+            targetPlane2 = GetTargettedPlane(player, planeParent, "2");
+            targetPlane3 = GetTargettedPlane(player, planeParent, "4");
+            targetPlane4 = GetTargettedPlane(player, planeParent, "5");
 
-    	}
-    	else if(plane == "3"){
-    		targetPlane1 = GetTargettedPlane(player, planeParent, "2");
-    		targetPlane2 = GetTargettedPlane(player, planeParent, "3");
-    		targetPlane3 = GetTargettedPlane(player, planeParent, "5");
-    		targetPlane4 = GetTargettedPlane(player, planeParent, "6");
-    	}
-    	else if(plane == "7"){
-    		targetPlane1 = GetTargettedPlane(player, planeParent, "4");
-    		targetPlane2 = GetTargettedPlane(player, planeParent, "5");
-    		targetPlane3 = GetTargettedPlane(player, planeParent, "7");
-    		targetPlane4 = GetTargettedPlane(player, planeParent, "8");
-    	}
-    	else if(plane == "9"){
-    		targetPlane1 = GetTargettedPlane(player, planeParent, "5");
-    		targetPlane2 = GetTargettedPlane(player, planeParent, "6");
-    		targetPlane3 = GetTargettedPlane(player, planeParent, "8");
-    		targetPlane4 = GetTargettedPlane(player, planeParent, "9");
-    	}
+        }
+        else if (plane == "3") {
+            targetPlane1 = GetTargettedPlane(player, planeParent, "2");
+            targetPlane2 = GetTargettedPlane(player, planeParent, "3");
+            targetPlane3 = GetTargettedPlane(player, planeParent, "5");
+            targetPlane4 = GetTargettedPlane(player, planeParent, "6");
+        }
+        else if (plane == "7") {
+            targetPlane1 = GetTargettedPlane(player, planeParent, "4");
+            targetPlane2 = GetTargettedPlane(player, planeParent, "5");
+            targetPlane3 = GetTargettedPlane(player, planeParent, "7");
+            targetPlane4 = GetTargettedPlane(player, planeParent, "8");
+        }
+        else if (plane == "9") {
+            targetPlane1 = GetTargettedPlane(player, planeParent, "5");
+            targetPlane2 = GetTargettedPlane(player, planeParent, "6");
+            targetPlane3 = GetTargettedPlane(player, planeParent, "8");
+            targetPlane4 = GetTargettedPlane(player, planeParent, "9");
+        }
 
-    	GameObject[] targetPlanes = new GameObject[]{targetPlane1, targetPlane2, targetPlane3, targetPlane4};
+        GameObject[] targetPlanes = new GameObject[] { targetPlane1, targetPlane2, targetPlane3, targetPlane4 };
 
-    	return targetPlanes;
+        return targetPlanes;
     }
 
     public bool CheckForAttackUnit(string player, string attackName) {
@@ -273,7 +279,7 @@ public class AttackHandler : MonoBehaviour
             attackOrigin = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks");
         }
 
-        List<GameObject> frontTargettingPlanes = new List<GameObject>{};
+        List<GameObject> frontTargettingPlanes = new List<GameObject> { };
 
         frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes2").GetChild(4).gameObject); //top of cube
         frontTargettingPlanes.Add(attackOrigin.Find("TargettingPlanes5").GetChild(4).gameObject); //left of cube
@@ -281,7 +287,7 @@ public class AttackHandler : MonoBehaviour
 
         //int randomIndex = Random.Range(0, 3);
 
-        for (int x = 0 ; x < frontTargettingPlanes.Count ; x++) {
+        for (int x = 0; x < frontTargettingPlanes.Count; x++) {
 
             RaycastHit[] hits;
             hits = Physics.RaycastAll(frontTargettingPlanes[x].transform.position, -frontTargettingPlanes[x].transform.up, 0.25f);
@@ -298,7 +304,7 @@ public class AttackHandler : MonoBehaviour
                 {
                     //return hitPlane.gameObject;
 
-                    for( int y = 0 ; y < hitPlane.transform.parent.childCount ; y++)
+                    for (int y = 0; y < hitPlane.transform.parent.childCount; y++)
                     {
                         if (hitPlane.transform.parent.GetChild(y).childCount > 0) {
 
@@ -333,45 +339,120 @@ public class AttackHandler : MonoBehaviour
     }
 
 
+    public void HideEnemyFront()
+    {
+
+        Transform enemyCubeTargetting = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks");
+
+        List<GameObject> targetFrontFaces = new List<GameObject>();
+
+        targetFrontFaces.Add(enemyCubeTargetting.Find("TargettingPlanes2").GetChild(4).gameObject); //top of cube
+        targetFrontFaces.Add(enemyCubeTargetting.Find("TargettingPlanes5").GetChild(4).gameObject); //left of cube
+        targetFrontFaces.Add(enemyCubeTargetting.Find("TargettingPlanes1").GetChild(4).gameObject); //right of cube
+
+        for (int x = 0; x < targetFrontFaces.Count; x++)
+        {
+            RaycastHit[] hits;
+            hits = Physics.RaycastAll(targetFrontFaces[x].transform.position, -targetFrontFaces[x].transform.up, 0.25f);
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                //stored info from the enemy's unitPlane underneath
+                RaycastHit hit = hits[i];
+                var hitPlane = hit.transform.gameObject;
+
+                //print(hitPlane.name);
+                //this is where we filter out the weird self hits
+                if (hitPlane.tag == "unitSquare")
+                {
+                    print("hiding face");
+                    hitPlane.transform.parent.gameObject.SetActive(false);
+                    hiddenFrontFaces.Add(hitPlane.transform.parent.gameObject);
+
+                }
+            }
+
+            targetFrontFaces[x].transform.parent.gameObject.SetActive(false);
+            hiddenFrontFaces.Add(targetFrontFaces[x].transform.parent.gameObject);
+
+        }
+
+        //hides front single spot attack targetting
+        Transform enemyCubeSingleTargetting = gameManager.enemyCubePosition.transform.GetChild(1).Find("SingleAttack");
+
+        enemyCubeSingleTargetting.Find("TargettingPlanes1").gameObject.SetActive(false);
+        hiddenFrontFaces.Add(enemyCubeSingleTargetting.Find("TargettingPlanes1").gameObject);
+        enemyCubeSingleTargetting.Find("TargettingPlanes2").gameObject.SetActive(false);
+        hiddenFrontFaces.Add(enemyCubeSingleTargetting.Find("TargettingPlanes2").gameObject);
+        enemyCubeSingleTargetting.Find("TargettingPlanes5").gameObject.SetActive(false);
+        hiddenFrontFaces.Add(enemyCubeSingleTargetting.Find("TargettingPlanes5").gameObject);
 
 
-  //   public void TurnOnTargetting(){
-		// //print("Turning on targets");
+        //hides front tank attack targetting
+        Transform enemyCubeTankTargetting = gameManager.enemyCubePosition.transform.GetChild(1).Find("TankAttack");
 
-  //   	for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
-		// 	gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(true);
-		// 	// targetsystems.SetActive(false);
-		// 	//print("turning enemy targets on");
-		// }
+        enemyCubeTankTargetting.Find("TargettingPlanes1").gameObject.SetActive(false);
+        hiddenFrontFaces.Add(enemyCubeTankTargetting.Find("TargettingPlanes1").gameObject);
+        enemyCubeTankTargetting.Find("TargettingPlanes2").gameObject.SetActive(false);
+        hiddenFrontFaces.Add(enemyCubeTankTargetting.Find("TargettingPlanes2").gameObject);
+        enemyCubeTankTargetting.Find("TargettingPlanes5").gameObject.SetActive(false);
+        hiddenFrontFaces.Add(enemyCubeTankTargetting.Find("TargettingPlanes5").gameObject);
 
-		// for(int i = 0; i < gameManager.playerCubePosition.transform.GetChild(1).childCount-1; i++){
-		// 	gameManager.playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
-		// 	// targetsystems.SetActive(false);
-		// 	//print("turning player targets on");
+    }
 
-		// }
+    public void ShowHidden()
+    {
+        for (int x = 0; x < hiddenFrontFaces.Count; x++)
+        {
+            print("showing face");
+            hiddenFrontFaces[x].SetActive(true);
+        }
+        hiddenFrontFaces.Clear();
+    }
 
-		// //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
+    public void ResetAttackBack(){
+        ShowHidden();
+        hideButton.SetActive(true);
+        showButton.SetActive(false);
+    }
 
-  //   }
-  //   public void TurnOffTargetting(){
-		// //print("Turning off targets");
+    //   public void TurnOnTargetting(){
+    // //print("Turning on targets");
+
+    //   	for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
+    // 	gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(true);
+    // 	// targetsystems.SetActive(false);
+    // 	//print("turning enemy targets on");
+    // }
+
+    // for(int i = 0; i < gameManager.playerCubePosition.transform.GetChild(1).childCount-1; i++){
+    // 	gameManager.playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
+    // 	// targetsystems.SetActive(false);
+    // 	//print("turning player targets on");
+
+    // }
+
+    // //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
+
+    //   }
+    //   public void TurnOffTargetting(){
+    // //print("Turning off targets");
 
 
-  //   	for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
-		// 	gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(false);
-		// 	//print("turning enemy targets off");
-		// 	// targetsystems.SetActive(false);
-		// }
+    //   	for(int j = 0; j < gameManager.enemyCubePosition.transform.GetChild(1).childCount-1; j++){
+    // 	gameManager.enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(false);
+    // 	//print("turning enemy targets off");
+    // 	// targetsystems.SetActive(false);
+    // }
 
-		// for(int i = 0; i < gameManager.playerCubePosition.transform.GetChild(1).childCount-1; i++){
-		// 	gameManager.playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
-		// 	// targetsystems.SetActive(false);
-		// 	//print("turning player targets off");
+    // for(int i = 0; i < gameManager.playerCubePosition.transform.GetChild(1).childCount-1; i++){
+    // 	gameManager.playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
+    // 	// targetsystems.SetActive(false);
+    // 	//print("turning player targets off");
 
-		// }
+    // }
 
-		// //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
+    // //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
 
-  //   }
+    //   }
 }

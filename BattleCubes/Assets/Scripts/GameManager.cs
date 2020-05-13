@@ -292,6 +292,8 @@ public class GameManager : MonoBehaviour
         state = THROWDOWN;
 
         attackHandler.ResetChooseAttackHandlers();
+        attackHandler.ResetAttackBack();
+
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);

@@ -150,7 +150,7 @@ public class StartUp : MonoBehaviour
 
                                 }
 
-                                if (safeToPlace) 
+                                if (safeToPlace && playerCubeTransform.GetChild(x).GetChild(i).childCount < 1) 
                                 {
                                     unitPrefab.transform.position = playerCubeTransform.GetChild(x).GetChild(i).transform.position;
                                     unitPrefab.transform.rotation = playerCubeTransform.GetChild(x).GetChild(i).transform.rotation;
@@ -160,6 +160,11 @@ public class StartUp : MonoBehaviour
 
                                     unitPrefab.transform.SetParent(playerCubeTransform.GetChild(x).GetChild(i).transform);
                                     towerCount--;
+                                }
+                                else
+                                {
+                                    print("destroyed a " + unitPrefab.GetComponent<UnitInformation>().unitName);
+                                    Destroy(unitPrefab);
                                 }
                             }
                             else if (!unitPrefab.GetComponent<UnitInformation>().isTower && playerCubeTransform.GetChild(x).GetChild(i).childCount < 1)

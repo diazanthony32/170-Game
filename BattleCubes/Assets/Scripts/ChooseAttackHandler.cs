@@ -121,66 +121,142 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 						print("reset not all");
 
 						//print("we In");
+						if (hitPlane.transform.parent.name != "GameObject") 
+						{
+							if (hitPlane.transform.name == "1")
+							{
+								//gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(hitPlane.transform.parent.name).Find(hitPlane.transform.name);
+								HighlightPlane(hitPlane.transform.parent.name, "1");
+								HighlightPlane(hitPlane.transform.parent.name, "2");
+								HighlightPlane(hitPlane.transform.parent.name, "4");
+								HighlightPlane(hitPlane.transform.parent.name, "5");
 
-						if (hitPlane.transform.name == "1"){
-							//gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(hitPlane.transform.parent.name).Find(hitPlane.transform.name);
-							HighlightPlane(hitPlane.transform.parent.name, "1");
-							HighlightPlane(hitPlane.transform.parent.name, "2");
-							HighlightPlane(hitPlane.transform.parent.name, "4");
-							HighlightPlane(hitPlane.transform.parent.name, "5");
+							}
+							else if (hitPlane.transform.name == "3")
+							{
+								HighlightPlane(hitPlane.transform.parent.name, "2");
+								HighlightPlane(hitPlane.transform.parent.name, "3");
+								HighlightPlane(hitPlane.transform.parent.name, "5");
+								HighlightPlane(hitPlane.transform.parent.name, "6");
+							}
+							else if (hitPlane.transform.name == "7")
+							{
+								HighlightPlane(hitPlane.transform.parent.name, "4");
+								HighlightPlane(hitPlane.transform.parent.name, "5");
+								HighlightPlane(hitPlane.transform.parent.name, "7");
+								HighlightPlane(hitPlane.transform.parent.name, "8");
+							}
+							else if (hitPlane.transform.name == "9")
+							{
+								HighlightPlane(hitPlane.transform.parent.name, "5");
+								HighlightPlane(hitPlane.transform.parent.name, "6");
+								HighlightPlane(hitPlane.transform.parent.name, "8");
+								HighlightPlane(hitPlane.transform.parent.name, "9");
+							}
 
+							selectedPlane = hitPlane.transform.gameObject;
+
+							attackArray = new string[] { "attack", unitInformation.attackName, hitPlane.transform.parent.name, hitPlane.transform.name };
+
+							attackHandler.attackArray = attackArray;
+							attackHandler.attackCost = unitInformation.attackCost;
+							//print(unitInformation.targetSystem + " "+ unitInformation.attackName + ": " + hitPlane.transform.parent.name +", "+ hitPlane.transform.name);
+							//hitPlane.transform.gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+
+							ConfirmButton.interactable = true;
+
+							LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
+							highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
+							highlightConfirmButton.GetComponent<TweenController>().Pulse();
 						}
-						else if(hitPlane.transform.name == "3"){
-							HighlightPlane(hitPlane.transform.parent.name, "2");
-							HighlightPlane(hitPlane.transform.parent.name, "3");
-							HighlightPlane(hitPlane.transform.parent.name, "5");
-							HighlightPlane(hitPlane.transform.parent.name, "6");
+						else if (hitPlane.transform.parent.name == "GameObject") 
+						{
+							if (hitPlane.transform.name == "1")
+							{
+								//gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(hitPlane.transform.parent.name).Find(hitPlane.transform.name);
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "1");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "2");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "4");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "5");
+
+							}
+							else if (hitPlane.transform.name == "3")
+							{
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "2");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "3");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "5");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "6");
+							}
+							else if (hitPlane.transform.name == "7")
+							{
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "4");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "5");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "7");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "8");
+							}
+							else if (hitPlane.transform.name == "9")
+							{
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "5");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "6");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "8");
+								HighlightInnerPlane(hitPlane.transform.parent.parent.name, "9");
+							}
+
+							selectedPlane = hitPlane.transform.gameObject;
+
+							attackArray = new string[] { "attack", unitInformation.attackName, hitPlane.transform.parent.parent.name, hitPlane.transform.name, "attackBack" };
+
+							attackHandler.attackArray = attackArray;
+							attackHandler.attackCost = unitInformation.attackCost;
+							//print(unitInformation.targetSystem + " "+ unitInformation.attackName + ": " + hitPlane.transform.parent.name +", "+ hitPlane.transform.name);
+							//hitPlane.transform.gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+
+							ConfirmButton.interactable = true;
+
+							LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
+							highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
+							highlightConfirmButton.GetComponent<TweenController>().Pulse();
 						}
-						else if(hitPlane.transform.name == "7"){
-							HighlightPlane(hitPlane.transform.parent.name, "4");
-							HighlightPlane(hitPlane.transform.parent.name, "5");
-							HighlightPlane(hitPlane.transform.parent.name, "7");
-							HighlightPlane(hitPlane.transform.parent.name, "8");
-						}
-						else if(hitPlane.transform.name == "9"){
-							HighlightPlane(hitPlane.transform.parent.name, "5");
-							HighlightPlane(hitPlane.transform.parent.name, "6");
-							HighlightPlane(hitPlane.transform.parent.name, "8");
-							HighlightPlane(hitPlane.transform.parent.name, "9");
-						}
-						
-						selectedPlane = hitPlane.transform.gameObject;
 
-						attackArray = new string[]{"attack", unitInformation.attackName, hitPlane.transform.parent.name, hitPlane.transform.name};
-
-						attackHandler.attackArray = attackArray;
-						attackHandler.attackCost = unitInformation.attackCost;
-						//print(unitInformation.targetSystem + " "+ unitInformation.attackName + ": " + hitPlane.transform.parent.name +", "+ hitPlane.transform.name);
-						//hitPlane.transform.gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
-
-			        	ConfirmButton.interactable = true;
-
-						LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
-						highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
-						highlightConfirmButton.GetComponent<TweenController>().Pulse();
 					}
 
-					else if(hitPlane.transform.gameObject.tag == "target" && unitInformation.targetSystem == "SingleAttack" && selectedPlane != hitPlane.transform.gameObject){
+					else if(hitPlane.transform.gameObject.tag == "target" && unitInformation.targetSystem == "SingleAttack" && selectedPlane != hitPlane.transform.gameObject)
+					{
 						ResetHighlights(false, false);
 						print("reset not all");
-						HighlightPlane(hitPlane.transform.parent.name, hitPlane.transform.name);
 
-						selectedPlane = hitPlane.transform.gameObject;
-						attackArray = new string[]{"attack", unitInformation.attackName, hitPlane.transform.parent.name, hitPlane.transform.name};
+						if (hitPlane.transform.parent.name != "GameObject")
+						{
+							HighlightPlane(hitPlane.transform.parent.name, hitPlane.transform.name);
 
-						attackHandler.attackArray = attackArray;
-						attackHandler.attackCost = unitInformation.attackCost;
+							selectedPlane = hitPlane.transform.gameObject;
+							attackArray = new string[] { "attack", unitInformation.attackName, hitPlane.transform.parent.name, hitPlane.transform.name };
 
-						ConfirmButton.interactable = true;
+							attackHandler.attackArray = attackArray;
+							attackHandler.attackCost = unitInformation.attackCost;
 
-						LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
-						highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
-						highlightConfirmButton.GetComponent<TweenController>().Pulse();
+							ConfirmButton.interactable = true;
+
+							LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
+							highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
+							highlightConfirmButton.GetComponent<TweenController>().Pulse();
+						}
+						else if (hitPlane.transform.parent.name == "GameObject")
+						{
+							HighlightInnerPlane(hitPlane.transform.parent.parent.name, hitPlane.transform.name);
+
+							selectedPlane = hitPlane.transform.gameObject;
+							attackArray = new string[] { "attack", unitInformation.attackName, hitPlane.transform.parent.parent.name, hitPlane.transform.name, "attackBack" };
+
+							attackHandler.attackArray = attackArray;
+							attackHandler.attackCost = unitInformation.attackCost;
+
+							ConfirmButton.interactable = true;
+
+							LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
+							highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
+							highlightConfirmButton.GetComponent<TweenController>().Pulse();
+						}
 					}
 				}
 	        	
@@ -199,7 +275,17 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
     	oldTargets.Add(plane);
     }
 
-    public void ResetHighlights(bool resetFace, bool resetTargetPulses){
+	void HighlightInnerPlane(string parentName, string i)
+	{
+		print(parentName);
+		print(i);
+
+		GameObject plane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(parentName).Find("GameObject").Find(i).gameObject;
+		plane.GetComponent<MeshRenderer>().material.color = Color.yellow;
+		oldTargets.Add(plane);
+	}
+
+	public void ResetHighlights(bool resetFace, bool resetTargetPulses){
 
 		if (oldTargets != null)
 		{
@@ -242,7 +328,7 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 				for (int y = 0; y < removeTargetFace.transform.GetChild(x).childCount; y++)
 				{
 					//print(removeTargetFace.transform.GetChild(x).GetChild(y).name);
-					if (resetTargetPulses)
+					if (resetTargetPulses && removeTargetFace.transform.GetChild(x).GetChild(y).CompareTag("target"))
 					{
 						removeTargetFace.transform.GetChild(x).GetChild(y).GetComponent<TweenController>().StopPulseTargets();
 					}
@@ -331,8 +417,18 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
 			for (int x = 0; x < targetSystem.transform.childCount; x++) {
 				for (int y = 0; y < targetSystem.transform.GetChild(x).childCount; y++) {
-					targetSystem.transform.GetChild(x).GetChild(y).GetComponent<TweenController>().PulseTargets();
-					print(targetSystem.transform.GetChild(x).GetChild(y).name);
+
+					if (targetSystem.transform.GetChild(x).GetChild(y).CompareTag("target"))
+					{
+						targetSystem.transform.GetChild(x).GetChild(y).GetComponent<TweenController>().PulseTargets();
+						//print(targetSystem.transform.GetChild(x).GetChild(y).name);
+					}
+					else if (targetSystem.transform.GetChild(x).GetChild(y).name == "GameObject") {
+						for (int j=0 ; j < targetSystem.transform.GetChild(x).GetChild(y).childCount ; j++) {
+							targetSystem.transform.GetChild(x).GetChild(y).GetChild(j).GetComponent<TweenController>().PulseTargets();
+						}
+					}
+
 				}
 				
 			}

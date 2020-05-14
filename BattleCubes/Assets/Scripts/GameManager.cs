@@ -582,7 +582,7 @@ public class GameManager : MonoBehaviour
             Vector3 sc = Camera.main.WorldToViewportPoint(location.position);
 
             //instance.transform.SetParent(GameObject.Find("GameCanvas").transform, false);
-            print(sc.x + " " + sc.y + " " + sc.z);
+            //print(sc.x + " " + sc.y + " " + sc.z);
             Vector3 tmp = instance.transform.position;
             tmp.x = (sc.x * Screen.width);
             tmp.y = (sc.y * Screen.height);

@@ -95,6 +95,7 @@ public class AttackHandler : MonoBehaviour
 
                 if (array.Length == 5)
                 {
+                    print("single Attack Back!");
                     attackedPlane = GetTargettedPlane(player, array[2], array[3], true);
                 }
                 else { 

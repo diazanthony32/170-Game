@@ -134,6 +134,7 @@ public class TweenController : MonoBehaviour
 	public void PulseTargets()
 	{
 		//gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+		LeanTween.cancel(gameObject);
 
 		var tempColor = gameObject.GetComponent<MeshRenderer>().material.color;
 		tempColor.a = 0.2f;

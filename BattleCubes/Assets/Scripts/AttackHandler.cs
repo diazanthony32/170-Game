@@ -12,13 +12,17 @@ public class AttackHandler : MonoBehaviour
     [SerializeField] GameObject hideButton;
     [SerializeField] GameObject showButton;
 
+    bool backShown = false;
 
     List<GameObject> hiddenFrontFaces = new List<GameObject>();
+
+    List<GameObject> backTargets = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
         //gameManager = GameObject.FindGameObjectWithTag("gameManager").GetComponent<GameManager>();
+        SetupBackTargetting();
 
     }
 
@@ -87,7 +91,16 @@ public class AttackHandler : MonoBehaviour
 
             if (unitInfo.targetSystem == "SingleAttack")
             {
-                GameObject attackedPlane = GetTargettedPlane(player, array[2], array[3]);
+                GameObject attackedPlane;
+
+                if (array.Length == 5)
+                {
+                    print("single Attack Back!");
+                    attackedPlane = GetTargettedPlane(player, array[2], array[3], true);
+                }
+                else { 
+                    attackedPlane = GetTargettedPlane(player, array[2], array[3], false);
+                }
 
                 if (unitInfo.AttackParticle != null)
                 {
@@ -109,9 +122,20 @@ public class AttackHandler : MonoBehaviour
             }
             else if (unitInfo.targetSystem == "TankAttack")
             {
-                GameObject[] attackedPlanes = GetTankTargettedPlaneArray(player, array[2], array[3]);
+                GameObject[] attackedPlanes;
+                if (array.Length == 5)
+                {
+                    print("Tank Attack Back!");
+                    attackedPlanes = GetTankTargettedPlaneArray(player, array[2], array[3], true);
+                }
+                else {
+                    print("Regular attack :(");
+                    attackedPlanes = GetTankTargettedPlaneArray(player, array[2], array[3], false);
+                }
+
                 for (int i = 0; i < 4; i++)
                 {
+                    //print("Back particle?: " + attackedPlanes[i].name);
                     if (unitInfo.AttackParticle != null)
                     {
                         GameObject particle = Instantiate(unitInfo.AttackParticle);
@@ -188,7 +212,7 @@ public class AttackHandler : MonoBehaviour
         return null;
     }
 
-    GameObject GetTargettedPlane(string player, string planeParent, string plane) {
+    GameObject GetTargettedPlane(string player, string planeParent, string plane, bool backAttack) {
 
         // 	void HighlightPlane(string parentName, string i){
         // 	GameObject plane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(parentName).Find(i).gameObject;
@@ -197,10 +221,27 @@ public class AttackHandler : MonoBehaviour
         // }
         GameObject targetPlane = null;
         if (player == "Host") {
-            targetPlane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find(plane).gameObject;
+            //if (backAttack)
+            //{
+                //print("back attack!!!!!!");
+                //targetPlane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find("GameObject").Find(plane).gameObject;
+                //print(targetPlane.name);
+            //}
+            //else 
+            //{
+                targetPlane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find(plane).gameObject;
+            //}
         }
         else if (player == "Client") {
-            targetPlane = gameManager.playerCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find(plane).gameObject;
+            //if (backAttack)
+            //{
+            //    targetPlane = gameManager.playerCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find("GameObject").Find(plane).gameObject;
+            //}
+            //else 
+            //{
+                targetPlane = gameManager.playerCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find(plane).gameObject;
+            //}
+            //targetPlane = gameManager.playerCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(planeParent).Find(plane).gameObject;
         }
 
         RaycastHit[] hits;
@@ -216,15 +257,16 @@ public class AttackHandler : MonoBehaviour
             //this is where we filter out the weird self hits
             if (hitPlane.tag == "unitSquare")
             {
+                print("found unit aquare to attack");
                 return hitPlane.gameObject;
             }
 
         }
-
+        print("nothin");
         return null;
     }
 
-    GameObject[] GetTankTargettedPlaneArray(string player, string planeParent, string plane) {
+    GameObject[] GetTankTargettedPlaneArray(string player, string planeParent, string plane, bool backAttack) {
 
         // 	void HighlightPlane(string parentName, string i){
         // 	GameObject plane = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks").Find(parentName).Find(i).gameObject;
@@ -237,29 +279,28 @@ public class AttackHandler : MonoBehaviour
         GameObject targetPlane4 = null;
 
         if (plane == "1") {
-            targetPlane1 = GetTargettedPlane(player, planeParent, "1");
-            targetPlane2 = GetTargettedPlane(player, planeParent, "2");
-            targetPlane3 = GetTargettedPlane(player, planeParent, "4");
-            targetPlane4 = GetTargettedPlane(player, planeParent, "5");
-
+            targetPlane1 = GetTargettedPlane(player, planeParent, "1", backAttack);
+            targetPlane2 = GetTargettedPlane(player, planeParent, "2", backAttack);
+            targetPlane3 = GetTargettedPlane(player, planeParent, "4", backAttack);
+            targetPlane4 = GetTargettedPlane(player, planeParent, "5", backAttack);
         }
         else if (plane == "3") {
-            targetPlane1 = GetTargettedPlane(player, planeParent, "2");
-            targetPlane2 = GetTargettedPlane(player, planeParent, "3");
-            targetPlane3 = GetTargettedPlane(player, planeParent, "5");
-            targetPlane4 = GetTargettedPlane(player, planeParent, "6");
+            targetPlane1 = GetTargettedPlane(player, planeParent, "2", backAttack);
+            targetPlane2 = GetTargettedPlane(player, planeParent, "3", backAttack);
+            targetPlane3 = GetTargettedPlane(player, planeParent, "5", backAttack);
+            targetPlane4 = GetTargettedPlane(player, planeParent, "6", backAttack);
         }
         else if (plane == "7") {
-            targetPlane1 = GetTargettedPlane(player, planeParent, "4");
-            targetPlane2 = GetTargettedPlane(player, planeParent, "5");
-            targetPlane3 = GetTargettedPlane(player, planeParent, "7");
-            targetPlane4 = GetTargettedPlane(player, planeParent, "8");
+            targetPlane1 = GetTargettedPlane(player, planeParent, "4", backAttack);
+            targetPlane2 = GetTargettedPlane(player, planeParent, "5", backAttack);
+            targetPlane3 = GetTargettedPlane(player, planeParent, "7", backAttack);
+            targetPlane4 = GetTargettedPlane(player, planeParent, "8", backAttack);
         }
         else if (plane == "9") {
-            targetPlane1 = GetTargettedPlane(player, planeParent, "5");
-            targetPlane2 = GetTargettedPlane(player, planeParent, "6");
-            targetPlane3 = GetTargettedPlane(player, planeParent, "8");
-            targetPlane4 = GetTargettedPlane(player, planeParent, "9");
+            targetPlane1 = GetTargettedPlane(player, planeParent, "5", backAttack);
+            targetPlane2 = GetTargettedPlane(player, planeParent, "6", backAttack);
+            targetPlane3 = GetTargettedPlane(player, planeParent, "8", backAttack);
+            targetPlane4 = GetTargettedPlane(player, planeParent, "9", backAttack);
         }
 
         GameObject[] targetPlanes = new GameObject[] { targetPlane1, targetPlane2, targetPlane3, targetPlane4 };
@@ -304,6 +345,7 @@ public class AttackHandler : MonoBehaviour
                 {
                     //return hitPlane.gameObject;
 
+                    //checks the parent plane for all unitsquares
                     for (int y = 0; y < hitPlane.transform.parent.childCount; y++)
                     {
                         if (hitPlane.transform.parent.GetChild(y).childCount > 0) {
@@ -312,7 +354,7 @@ public class AttackHandler : MonoBehaviour
                             {
                                 UnitInformation unit = hitPlane.transform.parent.GetChild(y).GetChild(z).GetComponent<UnitInformation>();
 
-                                if (unit.attackName == attackName)
+                                if (hitPlane.transform.parent.GetChild(y).gameObject.CompareTag("unitSquare") && unit.attackName == attackName)
                                 {
                                     // potentially randomize what unit does the attack ????????
 
@@ -402,12 +444,79 @@ public class AttackHandler : MonoBehaviour
 
     public void ShowHidden()
     {
+        print("showing front");
         for (int x = 0; x < hiddenFrontFaces.Count; x++)
         {
-            print("showing face");
             hiddenFrontFaces[x].SetActive(true);
         }
         hiddenFrontFaces.Clear();
+    }
+
+    public void ShowBackAttack()
+    {
+        print("showing back");
+
+        for (int x = 0; x < backTargets.Count; x++)
+        {
+            backTargets[x].SetActive(true);
+            
+            //if (backTargets[x].transform.Find("GameObject")) 
+            //{
+                //backTargets[x].transform.Find("GameObject").gameObject.SetActive(true);
+            //}
+        }
+        //hiddenFrontFaces.Clear();
+    }
+
+    public void HideBackAttack()
+    {
+        print("hiding back");
+
+        for (int x = 0; x < backTargets.Count; x++)
+        {
+            backTargets[x].SetActive(false);
+        }
+        //hiddenFrontFaces.Clear();
+    }
+
+    public void SetupBackTargetting() 
+    {
+        Transform enemyCubeHighlighting = gameManager.enemyCubePosition.transform.GetChild(1).Find("HighlightAttacks");
+
+        enemyCubeHighlighting.Find("TargettingPlanes3").gameObject.SetActive(false);
+        backTargets.Add(enemyCubeHighlighting.Find("TargettingPlanes3").gameObject); //inside back left of cube
+
+        enemyCubeHighlighting.Find("TargettingPlanes4").gameObject.SetActive(false);
+        backTargets.Add(enemyCubeHighlighting.Find("TargettingPlanes4").gameObject); //inside bottom of cube
+
+        enemyCubeHighlighting.Find("TargettingPlanes6").gameObject.SetActive(false);
+        backTargets.Add(enemyCubeHighlighting.Find("TargettingPlanes6").gameObject); //inside back right of cube
+
+        //-------------
+
+        Transform enemyCubeSingleTargetting = gameManager.enemyCubePosition.transform.GetChild(1).Find("SingleAttack");
+
+        enemyCubeSingleTargetting.Find("TargettingPlanes3").gameObject.SetActive(false);
+        backTargets.Add(enemyCubeSingleTargetting.Find("TargettingPlanes3").gameObject);
+
+        enemyCubeSingleTargetting.Find("TargettingPlanes4").gameObject.SetActive(false);
+        backTargets.Add(enemyCubeSingleTargetting.Find("TargettingPlanes4").gameObject);
+
+        enemyCubeSingleTargetting.Find("TargettingPlanes6").gameObject.SetActive(false);
+        backTargets.Add(enemyCubeSingleTargetting.Find("TargettingPlanes6").gameObject);
+
+        //---------------
+
+        Transform enemyCubeTankTargetting = gameManager.enemyCubePosition.transform.GetChild(1).Find("TankAttack");
+
+        enemyCubeTankTargetting.Find("TargettingPlanes3").gameObject.SetActive(false);
+        backTargets.Add(enemyCubeTankTargetting.Find("TargettingPlanes3").gameObject);
+
+        enemyCubeTankTargetting.Find("TargettingPlanes4").gameObject.SetActive(false);
+        backTargets.Add(enemyCubeTankTargetting.Find("TargettingPlanes4").gameObject);
+
+        enemyCubeTankTargetting.Find("TargettingPlanes6").gameObject.SetActive(false);
+        backTargets.Add(enemyCubeTankTargetting.Find("TargettingPlanes6").gameObject);
     }
 
     public void ResetAttackBack(){

@@ -74,13 +74,15 @@ public class TweenController : MonoBehaviour
 
 	public void Highlight()
 	{
+		LeanTween.cancel(gameObject);
 		gameObject.GetComponent<Image>().color = Color.yellow;
 		//LeanTween.scale(gameObject, new Vector3(1.10f, 1.10f, 1.10f), 0.5f).setEaseInOutSine().setLoopPingPong();
 	}
+
 	public void CancelPulseHighlight() {
 		LeanTween.cancel(gameObject);
 		gameObject.GetComponent<Image>().color = Color.gray;
-		LeanTween.scale(gameObject, new Vector3(1.0f, 1.0f, 1.0f), 0.0f);
+		LeanTween.scale(gameObject, new Vector3(1.0f, 1.0f, 1.0f), 0.0f).setOnComplete(plsStopTween);
 	}
 
 	public void CancelHighlight()
@@ -151,7 +153,7 @@ public class TweenController : MonoBehaviour
 		tempColor.a = 0f;
 		gameObject.GetComponent<MeshRenderer>().material.color = tempColor;
 
-		LeanTween.scale(gameObject, new Vector3(.9f, .9f, .9f), 0.0f);
+		LeanTween.scale(gameObject, new Vector3(.9f, .9f, .9f), 0.0f).setOnComplete(plsStopTween);
 	}
 
 	public void Rotate(Vector3 rotDir) {
@@ -198,7 +200,11 @@ public class TweenController : MonoBehaviour
 		Float();
 	}
 
-
+	void plsStopTween()
+	{
+		LeanTween.cancel(gameObject);
+		//gameObject.SetActive(false);
+	}
 
 	void DisableGameObject()
 	{

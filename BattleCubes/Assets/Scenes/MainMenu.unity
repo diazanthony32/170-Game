@@ -17923,9 +17923,9 @@ MonoBehaviour:
     see this as this is a long test feild to see how the layer mask works in unity.
     Hi Marcelo :) *Sings BattleCubes Magestically*. Wow, Networking is hard lmao.
     Why did we do this to ourselves :). #GraduationHeldInAnimalCrossing Hopefully
-    my team doesnt see this lmao or this would be funny to try and explain. I''m proud
-    of every single member on our team, and as well as all the teams in the 170 series,
-    all your games look awesome. '
+    my team doesnt see this lmao or this would be funny to try and explain. I''m
+    proud of every single member on our team, and as well as all the teams in the
+    170 series, all your games look awesome. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -19948,7 +19948,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 29.999939
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -23044,8 +23044,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: " - Attack Back System Implemented\n - Rewriting entire Unit Skin System
     (not done)\n - Host no longer pings client 60 times a second\n    to help preformance<size=35>
-    (oops)\n\t\t\t\t   \n<size=45>Bug Fixes :<size=35>\n\t* Attacks not checking other
-    faces for a viable unit\n\t* Tower Erroring out on Takeing Damage"
+    (oops)\n\t\t\t\t   \n<size=45>Bug Fixes :<size=35>\n\t* Attacks not checking
+    other faces for a viable unit\n\t* Tower Erroring out on Takeing Damage"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

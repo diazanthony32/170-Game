@@ -10211,6 +10211,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: vfx_shockSpark_loop
       objectReference: {fileID: 0}
+    - target: {fileID: 4726478380273912323, guid: c58f3c2142a433348b28cccf235a4ece,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4726478380273912348, guid: c58f3c2142a433348b28cccf235a4ece,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10268,3 +10273,130 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c58f3c2142a433348b28cccf235a4ece, type: 3}
+--- !u!1001 &7628816680186099310
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1629932722, guid: 398ac2e00193ba448a9a5a369a762a86, type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629932722, guid: 398ac2e00193ba448a9a5a369a762a86, type: 3}
+      propertyPath: startDelay.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3363813624187406315, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3363813624187406315, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3363813624584884683, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455361, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570740548455390, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: m_Name
+      value: vfx_shockSpark_Burst
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570741079467673, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570741079467673, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570741079467673, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570741079467673, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570741079467673, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570741959207790, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014570741959207790, guid: 398ac2e00193ba448a9a5a369a762a86,
+        type: 3}
+      propertyPath: startDelay.scalar
+      value: 0.7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 398ac2e00193ba448a9a5a369a762a86, type: 3}

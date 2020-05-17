@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DefaultParticle_ADD
+  m_Name: impact
   m_Shader: {fileID: -6465566751694194690, guid: 501bcb1e9fe64ea48a89f7406df5366f,
     type: 3}
   m_ShaderKeywords: 
@@ -21,7 +21,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_F42B7A0B:
-        m_Texture: {fileID: 2800000, guid: 9d0900eff8334b148852ebfa18353977, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5cb23da921cd92e4b947501dee890b2b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []

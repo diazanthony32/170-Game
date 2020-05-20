@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: rock 1
-  m_Shader: {fileID: -6465566751694194690, guid: a87f5228becb0264fb56ea07a089274a,
+  m_Shader: {fileID: -6465566751694194690, guid: 9482bf17231bc4941b1c3d4dde01917b,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -65,6 +65,8 @@ Material:
     - Vector1_10BF0EA2: 0.1
     - Vector1_2C65A099: 0
     - Vector1_2CE4A099: 10
+    - Vector1_2D515E67: 0.2
+    - Vector1_331D2D26: 3.2
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -87,6 +89,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_80A37E59: {r: 0.39622638, g: 0.34334576, b: 0.33081168, a: 0}
+    - Color_C68637B0: {r: 7.6114073, g: 1.6040392, b: 0.19925144, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

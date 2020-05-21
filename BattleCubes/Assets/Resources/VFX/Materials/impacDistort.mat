@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: slashAdditive
-  m_Shader: {fileID: -6465566751694194690, guid: 9e3b188655e61584aaae051f8de52a0d,
+  m_Name: impacDistort
+  m_Shader: {fileID: -6465566751694194690, guid: f270d2329604f3541886fe3950c65373,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,9 +21,13 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_F42B7A0B:
-        m_Texture: {fileID: 2800000, guid: 4f9849750a0faf248a49cbce5ad01f57, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5cb23da921cd92e4b947501dee890b2b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - Vector1_6E50B723: 15
+    - Vector1_80ECDFC1: -0.0938
     m_Colors:
-    - Color_4A0BC1B8: {r: 36.47705, g: 36.47705, b: 36.47705, a: 1}
+    - Color_4A0BC1B8: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 1}
+    - Vector2_9B44B7A7: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_FD6BAE45: {r: -0.3, g: -0.2, b: 0, a: 0}

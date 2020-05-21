@@ -20268,6 +20268,39 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1091262264}
     m_Modifications:
+    - target: {fileID: 271128865, guid: fe944bd04382c194382f535cf350b878, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 602629162, guid: fe944bd04382c194382f535cf350b878, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 647333575, guid: fe944bd04382c194382f535cf350b878, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834521800, guid: fe944bd04382c194382f535cf350b878, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 961015990, guid: fe944bd04382c194382f535cf350b878, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060584210, guid: fe944bd04382c194382f535cf350b878, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1785235813, guid: fe944bd04382c194382f535cf350b878, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028569178177693620, guid: fe944bd04382c194382f535cf350b878,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1028569178367390945, guid: fe944bd04382c194382f535cf350b878,
         type: 3}
       propertyPath: looping
@@ -20332,6 +20365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: vfx_RockSlam_v1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028569178748810819, guid: fe944bd04382c194382f535cf350b878,
+        type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe944bd04382c194382f535cf350b878, type: 3}

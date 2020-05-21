@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: seal
-  m_Shader: {fileID: -6465566751694194690, guid: 501bcb1e9fe64ea48a89f7406df5366f,
+  m_Shader: {fileID: -6465566751694194690, guid: 9e3b188655e61584aaae051f8de52a0d,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -26,4 +26,4 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_4A0BC1B8: {r: 20.315443, g: 20.219618, b: 20.219618, a: 1}
+    - Color_4A0BC1B8: {r: 11.984314, g: 11.984314, b: 11.984314, a: 1}

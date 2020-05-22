@@ -485,7 +485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &693553310
 Transform:
   m_ObjectHideFlags: 0
@@ -21204,6 +21204,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 693553310}
     m_Modifications:
+    - target: {fileID: 430316009, guid: 0e83abc5d71a19445bb3e62ca5791c5a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0327022f47fbc2c46bade535270fa407, type: 2}
+    - target: {fileID: 430316009, guid: 0e83abc5d71a19445bb3e62ca5791c5a, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0327022f47fbc2c46bade535270fa407, type: 2}
     - target: {fileID: 430316010, guid: 0e83abc5d71a19445bb3e62ca5791c5a, type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.r
       value: 0
@@ -21248,6 +21256,14 @@ PrefabInstance:
       propertyPath: RotationModule.curve.scalar
       value: 0.7853981
       objectReference: {fileID: 0}
+    - target: {fileID: 1450125490, guid: 0e83abc5d71a19445bb3e62ca5791c5a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0327022f47fbc2c46bade535270fa407, type: 2}
+    - target: {fileID: 1450125490, guid: 0e83abc5d71a19445bb3e62ca5791c5a, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0327022f47fbc2c46bade535270fa407, type: 2}
     - target: {fileID: 8507308566698399653, guid: 0e83abc5d71a19445bb3e62ca5791c5a,
         type: 3}
       propertyPath: m_LocalPosition.x

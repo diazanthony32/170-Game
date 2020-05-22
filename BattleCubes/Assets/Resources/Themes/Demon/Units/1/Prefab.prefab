@@ -176,7 +176,8 @@ PrefabInstance:
         type: 3}
       propertyPath: AttackParticle
       value: 
-      objectReference: {fileID: 100000, guid: 42e41d897808a174194be3118693ce5e, type: 3}
+      objectReference: {fileID: 3712404459525190801, guid: be7d1f5fb231c6c4a8de9986770bb429,
+        type: 3}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: unitHitNoise

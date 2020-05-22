@@ -172,7 +172,7 @@ PrefabInstance:
         type: 3}
       propertyPath: AttackParticle
       value: 
-      objectReference: {fileID: 1028569178618378335, guid: fe944bd04382c194382f535cf350b878,
+      objectReference: {fileID: 9061942698763449952, guid: 00d57919fcc0a024b99d491b915e112d,
         type: 3}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}

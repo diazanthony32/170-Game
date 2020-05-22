@@ -3308,12 +3308,12 @@ PrefabInstance:
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -3334,11 +3334,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 802822735}
+      objectReference: {fileID: 1834748617}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReadyUp
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -3349,11 +3349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1834748617}
+      objectReference: {fileID: 392404569}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
+      value: SetRotAllowed
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -3373,7 +3373,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -3384,11 +3384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 392404569}
+      objectReference: {fileID: 1117636590}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetRotAllowed
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -3414,7 +3414,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 1117636590}
+      objectReference: {fileID: 190336545}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
@@ -3433,7 +3433,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -3449,15 +3449,45 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 190336545}
+      objectReference: {fileID: 802822735}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: SetActive
+      value: ReadyUp
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 1834748622}
+    - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
+      value: StopTween
+      objectReference: {fileID: 0}
+    - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091917, guid: a404d82d9243f4848af2d6b60badd9f6,
@@ -14773,8 +14803,8 @@ MonoBehaviour:
   remainingTimeText: {fileID: 1810035912}
   preventClick: {fileID: 190336545}
   attackHandler: {fileID: 898359466}
-  playerCubePosition: {fileID: 0}
-  enemyCubePosition: {fileID: 0}
+  playerCubePosition: {fileID: 1903434421}
+  enemyCubePosition: {fileID: 1219012109}
   playerTargettingSystem: {fileID: 0}
   enemyTargettingSystem: {fileID: 0}
   readies: 0000

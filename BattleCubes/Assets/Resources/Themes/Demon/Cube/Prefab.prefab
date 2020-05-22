@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CubeFaceBasedSculpted Variant (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1834970597991374070, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3967864636250462777, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -95,6 +100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CubeFaceBasedSculpted Variant (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834970597991374070, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3967864636250462777, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
         type: 3}
@@ -248,7 +258,7 @@ PrefabInstance:
     - target: {fileID: 132055920149428826, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 169806920945706498, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
@@ -308,7 +318,7 @@ PrefabInstance:
     - target: {fileID: 1796839555677183935, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2006216937220132976, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
@@ -328,7 +338,7 @@ PrefabInstance:
     - target: {fileID: 2246730263304598069, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2495686440816143823, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
@@ -463,7 +473,7 @@ PrefabInstance:
     - target: {fileID: 7066676114086827388, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7107867084970943769, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
@@ -518,7 +528,7 @@ PrefabInstance:
     - target: {fileID: 8151084771016204532, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8444239161863498839, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
@@ -558,7 +568,7 @@ PrefabInstance:
     - target: {fileID: 8922786744482738594, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8958915667689391213, guid: 3c433e7674cc5ef45befc88b48fd5df4,
         type: 3}
@@ -589,6 +599,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CubeFaceBasedSculpted Variant (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834970597991374070, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3967864636250462777, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
         type: 3}
@@ -674,6 +689,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CubeFaceBasedSculpted Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1834970597991374070, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3967864636250462777, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -757,6 +777,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CubeFaceBasedSculpted Variant (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834970597991374070, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3967864636250462777, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
         type: 3}
@@ -842,6 +867,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CubeFaceBasedSculpted Variant (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1834970597991374070, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3967864636250462777, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -925,6 +955,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CubeFaceBasedSculpted Variant (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834970597991374070, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3967864636250462777, guid: 7e20c88db5f9b8e44bc28f18c395d1e1,
         type: 3}

@@ -28,6 +28,6 @@ Material:
     - Vector1_6E50B723: 15
     - Vector1_80ECDFC1: -0.0938
     m_Colors:
-    - Color_4A0BC1B8: {r: 2.9960785, g: 2.9960785, b: 2.9960785, a: 1}
+    - Color_4A0BC1B8: {r: 2.6039217, g: 2.6039217, b: 2.6039217, a: 1}
     - Vector2_9B44B7A7: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_FD6BAE45: {r: -0.3, g: -0.2, b: 0, a: 0}
+    - Vector2_FD6BAE45: {r: -0.3, g: -0.3, b: 0, a: 0}

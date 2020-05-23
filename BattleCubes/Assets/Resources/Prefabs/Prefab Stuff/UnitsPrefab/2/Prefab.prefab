@@ -29,7 +29,7 @@ Transform:
   m_Children:
   - {fileID: 5431620562255565979}
   m_Father: {fileID: 4434435961590423545}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5165717818710096454
 GameObject:
@@ -262,6 +262,12 @@ PrefabInstance:
       propertyPath: AttackParticle
       value: 
       objectReference: {fileID: 1995403933065894, guid: a17367ce01756bd4981330f5b9d3cf07,
+        type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: SpawnParticle
+      value: 
+      objectReference: {fileID: 3898048054394430833, guid: b6f0703dfee11dd4686e3ac4c65bc6f5,
         type: 3}
     - target: {fileID: 7594360421447855703, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}

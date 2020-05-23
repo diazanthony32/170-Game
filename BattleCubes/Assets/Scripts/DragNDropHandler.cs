@@ -275,7 +275,19 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 						// gameManager.unitCount++;
 						gameManager.AddUnitCount(1);
 
-						infoSender.SendUnitPlacement(new string[]{unitInformation.folder, hitPlane.transform.parent.name, hitPlane.transform.name});
+                        if (unitInformation.AttackParticle != null) {
+                            GameObject particle = Instantiate(unitInformation.SpawnParticle);
+                            particle.transform.position = hitPlane.transform.position;
+                            particle.transform.rotation = hitPlane.transform.rotation;
+                            particle.transform.SetParent(hitPlane.transform);
+
+                            Destroy(particle, 2.1f);
+                        }
+                        else {
+                            print("No spawn Effect!!");
+                        }
+
+                        infoSender.SendUnitPlacement(new string[]{unitInformation.folder, hitPlane.transform.parent.name, hitPlane.transform.name});
 
 						break;
 					}

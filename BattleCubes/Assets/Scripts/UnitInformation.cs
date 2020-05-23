@@ -56,10 +56,11 @@ public class UnitInformation : MonoBehaviour
 	public string targetSystem;
 	[Space(10)]
 	public GameObject AttackParticle = null;
-	public bool shakeScreen = false;
+    public bool shakeScreen = false;
+    public GameObject SpawnParticle = null;
 
-	//this gets the render of the prefab its attached to
-	[SerializeField] Renderer unitRenderer;
+    //this gets the render of the prefab its attached to
+    [SerializeField] Renderer unitRenderer;
 
 	AudioSource unitAudioSource;
 	Animator unitAnimator;

@@ -107,6 +107,8 @@ public class AttackHandler : MonoBehaviour
                     GameObject particle = Instantiate(unitInfo.AttackParticle);
                     particle.transform.position = attackedPlane.transform.position;
                     particle.transform.rotation = attackedPlane.transform.rotation;
+                    particle.transform.SetParent(attackedPlane.transform);
+                    Destroy(particle, 5f);
                 }
 
                 if (attackedPlane.transform.childCount > 0)

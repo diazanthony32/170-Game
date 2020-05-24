@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Bullet
+  - playerName
+  - loginMenu
+  - searchText
+  - gameCanvas
+  - PlayerCubePosition
+  - EnemyCubePosition
+  - target
+  - tankTarget
+  - unitSquare
+  - gameManager
+  - infoSender
+  - unit
+  - playerActionList
+  - FxTemporaire
+  - mainMenu
+  - attackChecker
+  - hideUnit
+  - towerText
+  - introText
+  - innerUnitSquare
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - attackCheck
+  - unit
+  - Postprocess
+  - VFX
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

@@ -25,6 +25,7 @@ TagManager:
   - towerText
   - introText
   - innerUnitSquare
+  - tutorialManager
   layers:
   - Default
   - TransparentFX

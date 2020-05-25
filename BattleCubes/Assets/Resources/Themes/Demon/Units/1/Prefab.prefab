@@ -209,6 +209,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3898048054394430833, guid: b6f0703dfee11dd4686e3ac4c65bc6f5,
         type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: attackImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 458292a5f5749c345b0438566776d58d,
+        type: 3}
     - target: {fileID: 7594360421447855703, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_Layer

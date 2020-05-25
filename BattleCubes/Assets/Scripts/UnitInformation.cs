@@ -44,6 +44,7 @@ public class UnitInformation : MonoBehaviour
 	public int attackDmg;
 	[Space(10)]
 	public Sprite unitImage;
+	public Sprite attackImage;
 	[Space(10)]
 	public AudioClip unitSpawnNoise = null;
 	public AudioClip unitIdleNoise = null;

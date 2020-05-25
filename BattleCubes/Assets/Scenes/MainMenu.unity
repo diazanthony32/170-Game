@@ -2281,7 +2281,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091917, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a404d82d9243f4848af2d6b60badd9f6, type: 3}
@@ -2759,8 +2759,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demons
-  CubeColor: RedCube
+  CubeTheme: Demon
+  CubeColor: DefaultColor
 --- !u!1 &250055360
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,8 +3667,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demons
-  CubeColor: BlueCube
+  CubeTheme: Demon
+  CubeColor: Blue
 --- !u!1001 &362883772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4535,7 +4535,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5879,7 +5879,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091917, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a404d82d9243f4848af2d6b60badd9f6, type: 3}

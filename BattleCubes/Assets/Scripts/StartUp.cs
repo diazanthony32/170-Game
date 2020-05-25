@@ -31,7 +31,8 @@ public class StartUp : MonoBehaviour
 
         if (PlayerPrefs.HasKey("CubeTheme")) {
             if (PlayerPrefs.HasKey("CubeColor")) {
-                GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Cube/Prefab"));
+                print(("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Cube/Prefab"));
+                GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/"+PlayerPrefs.GetString("CubeTheme")+"/Cube/Prefab"));
                 cube.transform.position = playerCubePosition.transform.position;
                 cube.transform.rotation = playerCubePosition.transform.rotation;
                 cube.transform.SetParent(playerCubePosition.transform);
@@ -41,6 +42,9 @@ public class StartUp : MonoBehaviour
                 cube.transform.position = playerCubePosition.transform.position;
                 cube.transform.rotation = playerCubePosition.transform.rotation;
                 cube.transform.SetParent(playerCubePosition.transform);
+
+                PlayerPrefs.SetString("CubeTheme", "Demon");
+                PlayerPrefs.SetString("CubeColor", "DefaultColor");
             }
         }
         else {

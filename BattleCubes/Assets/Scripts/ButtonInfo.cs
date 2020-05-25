@@ -11,16 +11,50 @@ public class ButtonInfo : MonoBehaviour
     public void ChangeCube() {
         GameObject playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
 
-        Destroy(playerCubePosition.transform.Find("Cube(Clone)").gameObject);
+        //Destroy(playerCubePosition.transform.Find("Prefab(Clone)").gameObject);
 
         PlayerPrefs.SetString("CubeTheme", CubeTheme);
         PlayerPrefs.SetString("CubeColor", CubeColor);
 
-        GameObject cube = Instantiate(Resources.Load<GameObject>(CubeTheme + "/" + CubeColor + "/Cube"));
-        cube.transform.position = playerCubePosition.transform.position;
-        cube.transform.rotation = playerCubePosition.transform.rotation;
-        cube.transform.SetParent(playerCubePosition.transform);
+        //GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/" + CubeTheme + "/" + CubeColor + "/Cube"));
+        //cube.transform.position = playerCubePosition.transform.position;
+        //cube.transform.rotation = playerCubePosition.transform.rotation;
+        //cube.transform.SetParent(playerCubePosition.transform);
 
-        swiperPannel.ChangeCube(cube);
+        Recolor();
+
+        //swiperPannel.ChangeCube(cube);
+    }
+
+    public void Recolor()
+    {
+        GameObject playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
+
+        Transform playerCubeTransform = playerCubePosition.transform.GetChild(0);
+        //int unitPoints = 12;
+        //int towerCount = 3;
+        //while (unitPoints != 0 || towerCount != 0)
+        //{
+
+            //print("unit points: " + unitPoints);
+            //print("tower count: " + towerCount);
+
+            for (int x = 0; x < playerCubeTransform.childCount; x++)
+            {
+                for (int i = 0; i < playerCubeTransform.GetChild(x).childCount; i++)
+                {
+                    //int randomIndex = Random.Range(0, 8);
+
+                    if (playerCubeTransform.GetChild(x).GetChild(i).tag == "unitSquare" && playerCubeTransform.GetChild(x).GetChild(i).childCount > 0)
+                    {
+                        for (int k = 0; k < playerCubeTransform.GetChild(x).GetChild(i).childCount; k++) {
+                        UnitInformation unitInformation = playerCubeTransform.GetChild(x).GetChild(i).GetChild(k).GetComponent<UnitInformation>();
+                        unitInformation.ReColorUnit();
+                        }
+                    }
+                }
+
+            }
+        //}
     }
 }

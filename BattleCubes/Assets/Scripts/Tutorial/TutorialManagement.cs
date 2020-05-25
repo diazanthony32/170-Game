@@ -31,6 +31,7 @@ public class TutorialManagement : MonoBehaviour
     [Space(10)]
     [SerializeField] GameObject preventClick;
     [SerializeField] AttackHandler attackHandler;
+    [SerializeField] infoMenu infoMenu;
 
     public GameObject playerCubePosition;
     public GameObject enemyCubePosition;
@@ -58,7 +59,7 @@ public class TutorialManagement : MonoBehaviour
     public readonly float ROUND_TIME = 30;
     public readonly float SET_UP_TIME = 150;
     float remainingTime;
-    bool timeStopped = false;
+    public bool timeStopped = true;
 
     //corrutine stuff
     bool setupCorrutineRunning = false;
@@ -135,6 +136,9 @@ public class TutorialManagement : MonoBehaviour
         playerCanvas.transform.Find("PlayerAPCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
 
         remainingTime = SET_UP_TIME;
+
+        //infoMenu.Pause();
+        infoMenu.Welcome();
     }
 
     void Update()
@@ -144,6 +148,10 @@ public class TutorialManagement : MonoBehaviour
                 CheckForReady();
                 RunTimer();
             }
+
+        //if (infoMenu.isPaused) {
+            //timeStopped = true;
+        //}
         //}
     }
 

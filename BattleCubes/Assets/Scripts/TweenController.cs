@@ -34,10 +34,6 @@ public class TweenController : MonoBehaviour
 
 	public void PopInUI()
 	{
-		if (!gameObject.activeSelf)
-		{
-			gameObject.SetActive(true);
-		}
 
 		if (gameObject.transform.localScale != new Vector3(0, 0, 0))
 		{
@@ -45,8 +41,31 @@ public class TweenController : MonoBehaviour
 			LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0);
 		}
 
+		if (!gameObject.activeSelf)
+		{
+			gameObject.SetActive(true);
+		}
+
 		LeanTween.alpha(gameObject, 1, 0.025f).setDelay(delayTime);
 		LeanTween.scale(gameObject, new Vector3(1, 1, 1), 0.05f);
+	}
+
+	public void PopInUIInfo(infoMenu infoMenu)
+	{
+
+		if (gameObject.transform.localScale != new Vector3(0, 0, 0))
+		{
+			LeanTween.alpha(gameObject, 0, 0);
+			LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0);
+		}
+
+		if (!gameObject.activeSelf)
+		{
+			gameObject.SetActive(true);
+		}
+
+		LeanTween.alpha(gameObject, 1, 0.025f).setDelay(delayTime);
+		LeanTween.scale(gameObject, new Vector3(1, 1, 1), 0.2f).setOnComplete(infoMenu.Pause);
 	}
 
 	public void HideUI()

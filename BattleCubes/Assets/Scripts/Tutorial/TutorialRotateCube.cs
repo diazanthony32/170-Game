@@ -9,19 +9,25 @@ public class TutorialRotateCube : MonoBehaviour {
     Quaternion basePos;
     Stack<string> plannedStack;
     TutorialManagement gameManager;
+    infoMenu infoMenu;
 
     void Start() {
         basePos = transform.rotation;
         plannedStack = new Stack<string>();
 
-        if (SceneManager.GetActiveScene().buildIndex == 1) {
+        if (SceneManager.GetActiveScene().buildIndex == 2) {
             gameManager = GameObject.FindGameObjectWithTag("tutorialManager").GetComponent<TutorialManagement>();
+            infoMenu = GameObject.FindGameObjectWithTag("infoMenu").GetComponent<infoMenu>();
+
         }
     }
 
     public void RequestRotation(string s) {
         if (!LeanTween.isTweening(gameObject)) {
             DoTweenRotation(s);
+            if (infoMenu) {
+                infoMenu.rotateCount++;
+            }
         }
     }
 

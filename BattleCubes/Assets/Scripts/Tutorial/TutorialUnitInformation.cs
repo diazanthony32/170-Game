@@ -157,6 +157,9 @@ public class TutorialUnitInformation : MonoBehaviour
 						executed = true;
 
 						if(tutorialManager.GetState() == tutorialManager.SETUP && !tutorialManager.readies[0]){
+
+							gameObject.transform.parent.GetComponent<TweenController>().HighlightPlacementTargets();
+							
 							Destroy(gameObject);
 							//infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
 							//gameManager.remainingUnitPoints += unitSpawnCost;

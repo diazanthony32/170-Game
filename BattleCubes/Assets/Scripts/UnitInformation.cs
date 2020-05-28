@@ -44,6 +44,7 @@ public class UnitInformation : MonoBehaviour
 	public int attackDmg;
 	[Space(10)]
 	public Sprite unitImage;
+	public Sprite attackImage;
 	[Space(10)]
 	public AudioClip unitSpawnNoise = null;
 	public AudioClip unitIdleNoise = null;
@@ -591,7 +592,7 @@ public class UnitInformation : MonoBehaviour
 				}
 				else if (unitName == "TowerBoi")
 				{
-					if (i == 0)
+					if (i == 3)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts"));
 						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts").shader;
@@ -608,7 +609,16 @@ public class UnitInformation : MonoBehaviour
 
 						//print("set body color");
 					}
-					else if (i == 2)
+					else if (i == 0)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/SHIELD"));
+						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/SHIELD").shader;
+
+						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
+
+						//print("set body color");
+					}
+					else if (i == 4)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/MainBody"));
 						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/MainBody").shader;
@@ -617,7 +627,7 @@ public class UnitInformation : MonoBehaviour
 
 						//print("set body color");
 					}
-					else if (i == 3)
+					else if (i == 2)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Gem"));
 						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Gem").shader;

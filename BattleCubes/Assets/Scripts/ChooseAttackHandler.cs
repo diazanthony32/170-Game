@@ -29,6 +29,9 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 	TextMeshProUGUI attackName;
 
 	TextMeshProUGUI attackCost;
+	TextMeshProUGUI damageAmount;
+
+	Image attackIcon;
 
 	string[] enemyCubeInfo;
 
@@ -79,6 +82,16 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 			attackCost = transform.parent.GetChild(1).GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>();
 			//print(transform.parent.name);
 			attackCost.text = unitInformation.attackCost.ToString();
+
+			//print(transform.parent.GetChild(1).GetChild(1).GetChild(2).name);
+			attackIcon = transform.parent.GetChild(1).GetChild(2).GetChild(0).GetComponent<Image>();
+			//print(transform.parent.name);
+			attackIcon.sprite = unitInformation.attackImage;
+
+			//print(transform.parent.GetChild(1).GetChild(1).GetChild(2).name);
+			damageAmount = transform.parent.GetChild(1).GetChild(2).GetChild(2).GetComponent<TextMeshProUGUI>();
+			//print(transform.parent.name);
+			damageAmount.text = unitInformation.attackDmg.ToString();
 		}
 	}
 

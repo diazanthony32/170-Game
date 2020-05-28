@@ -111,7 +111,7 @@ public class AttackHandler : MonoBehaviour
                     Destroy(particle, 5f);
                 }
 
-                if (attackedPlane.transform.childCount > 0)
+                if (attackedPlane.transform.childCount > 0 && attackedPlane.transform.GetComponent<UnitInformation>())
                 {
                     print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
                     UnitInformation hitUnitInfo = attackedPlane.transform.GetChild(0).GetComponent<UnitInformation>();
@@ -143,9 +143,11 @@ public class AttackHandler : MonoBehaviour
                         GameObject particle = Instantiate(unitInfo.AttackParticle);
                         particle.transform.position = attackedPlanes[i].transform.position;
                         particle.transform.rotation = attackedPlanes[i].transform.rotation;
+                        particle.transform.SetParent(attackedPlanes[i].transform);
+                        Destroy(particle, 5f);
                     }
 
-                    if (attackedPlanes[i].transform.childCount > 0)
+                    if (attackedPlanes[i].transform.childCount > 0 && attackedPlanes[i].transform.GetComponent<UnitInformation>())
                     {
                         print("You hit a Unit: " + attackedPlanes[i].transform.GetChild(0).name);
                         UnitInformation hitUnitInfo = attackedPlanes[i].transform.GetChild(0).GetComponent<UnitInformation>();

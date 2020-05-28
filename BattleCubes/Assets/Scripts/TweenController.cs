@@ -34,10 +34,6 @@ public class TweenController : MonoBehaviour
 
 	public void PopInUI()
 	{
-		if (!gameObject.activeSelf)
-		{
-			gameObject.SetActive(true);
-		}
 
 		if (gameObject.transform.localScale != new Vector3(0, 0, 0))
 		{
@@ -45,8 +41,31 @@ public class TweenController : MonoBehaviour
 			LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0);
 		}
 
+		if (!gameObject.activeSelf)
+		{
+			gameObject.SetActive(true);
+		}
+
 		LeanTween.alpha(gameObject, 1, 0.025f).setDelay(delayTime);
 		LeanTween.scale(gameObject, new Vector3(1, 1, 1), 0.05f);
+	}
+
+	public void PopInUIInfo(infoMenu infoMenu)
+	{
+
+		if (gameObject.transform.localScale != new Vector3(0, 0, 0))
+		{
+			LeanTween.alpha(gameObject, 0, 0);
+			LeanTween.scale(gameObject, new Vector3(0, 0, 0), 0);
+		}
+
+		if (!gameObject.activeSelf)
+		{
+			gameObject.SetActive(true);
+		}
+
+		LeanTween.alpha(gameObject, 1, 0.025f).setDelay(delayTime);
+		LeanTween.scale(gameObject, new Vector3(1, 1, 1), 0.2f).setOnComplete(infoMenu.Pause);
 	}
 
 	public void HideUI()
@@ -143,6 +162,30 @@ public class TweenController : MonoBehaviour
 		gameObject.GetComponent<MeshRenderer>().material.color = tempColor;
 
 		LeanTween.scale(gameObject, new Vector3(0.8f, 0.8f, 0.8f), 0.5f).setEaseInOutSine().setLoopPingPong();
+	}
+
+	public void HighlightPlacementTargets()
+	{
+		//gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+		LeanTween.cancel(gameObject);
+
+		var tempColor = gameObject.GetComponent<MeshRenderer>().material.color;
+		tempColor.a = 0.2f;
+		gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+
+		LeanTween.scale(gameObject, new Vector3(0.0003f, 1f, 0.0003f), 0.5f).setEaseInOutSine().setLoopPingPong();
+	}
+
+	public void ResetPlacementTargets()
+	{
+		//gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow;
+		LeanTween.cancel(gameObject);
+
+		//tempColor = gameObject.GetComponent<MeshRenderer>().material.color;
+		//tempColor.a = 0.2f;
+		gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+
+		LeanTween.scale(gameObject, new Vector3(0.000323f, 1f, 0.000323f), 0.0f);
 	}
 
 	public void StopPulseTargets()

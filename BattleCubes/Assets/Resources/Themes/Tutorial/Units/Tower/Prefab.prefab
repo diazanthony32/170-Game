@@ -20,7 +20,7 @@ MonoBehaviour:
   attackName: none lmao
   attackCost: 0
   attackDmg: 0
-  unitImage: {fileID: 0}
+  unitImage: {fileID: 21300000, guid: af2092899d7e9264884522ceea1add98, type: 3}
   unitSpawnNoise: {fileID: 0}
   unitIdleNoise: {fileID: 0}
   unitHitNoise: {fileID: 0}
@@ -420,7 +420,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0be9de98a10816d4f98a6f8b83b8c13f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: 9effb4dfbef80a247b3aa99492b02fee,
         type: 3}
       propertyPath: m_Materials.Array.data[1]

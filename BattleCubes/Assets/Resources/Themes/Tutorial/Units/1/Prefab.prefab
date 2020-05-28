@@ -20,7 +20,7 @@ MonoBehaviour:
   attackName: Simple Attack
   attackCost: 1
   attackDmg: 1
-  unitImage: {fileID: 21300000, guid: 595f1a267c18cf042a768331c30baa4e, type: 3}
+  unitImage: {fileID: 21300000, guid: 297bc2ac22b266e4bb42490783b65215, type: 3}
   unitSpawnNoise: {fileID: 8300000, guid: 5b819c7a39279a24bb8c8440e98a3d02, type: 3}
   unitIdleNoise: {fileID: 0}
   unitHitNoise: {fileID: 0}
@@ -91,7 +91,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 02d56dd36997cfe4fb39922f6b06e3f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -246,6 +246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595842247319051314, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.74066
       objectReference: {fileID: 0}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}

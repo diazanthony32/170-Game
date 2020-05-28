@@ -26,6 +26,7 @@ TagManager:
   - introText
   - innerUnitSquare
   - tutorialManager
+  - infoMenu
   layers:
   - Default
   - TransparentFX

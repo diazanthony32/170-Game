@@ -135,7 +135,7 @@ public class TutorialDragNDropHandler : MonoBehaviour, IDragHandler , IBeginDrag
 
 		if (unitInformation.isTower) {
 			//unitName.text = ag /*+ " \n <color=yellow>" + "Need to Place: " + (3 - gameManager.towerCount)*/;
-			GameObject.FindGameObjectWithTag("towerText").GetComponent<TextMeshProUGUI>().text = "Towers Remaining: <color=yellow>" + (3 - tutorialManager.towerCount);
+			//GameObject.FindGameObjectWithTag("towerText").GetComponent<TextMeshProUGUI>().text = "Towers Remaining: <color=yellow>" + (3 - tutorialManager.towerCount);
 		}
     	
     }
@@ -255,7 +255,7 @@ public class TutorialDragNDropHandler : MonoBehaviour, IDragHandler , IBeginDrag
 				for (int i = 0; i < hits.Length; i++){
 					RaycastHit hitPlane = hits[i];
 					
-					if(!unitInformation.isTower && hitPlane.transform.gameObject.tag == "unitSquare" && hitPlane.transform.childCount < 1)
+					if(!unitInformation.isTower && hitPlane.transform.gameObject.tag == "unitSquare" && hitPlane.transform.childCount < 1 && LeanTween.isTweening(hitPlane.transform.gameObject))
 					{
 						print("player hovered over a target");
 
@@ -275,11 +275,13 @@ public class TutorialDragNDropHandler : MonoBehaviour, IDragHandler , IBeginDrag
 						// gameManager.unitCount++;
 						tutorialManager.AddUnitCount(1);
 
+						hitPlane.transform.GetComponent<TweenController>().ResetPlacementTargets();
+
 						//infoSender.SendUnitPlacement(new string[]{unitInformation.folder, hitPlane.transform.parent.name, hitPlane.transform.name});
 
 						break;
 					}
-					else if(unitInformation.isTower && hitPlane.transform.gameObject.tag == "unitSquare" && hitPlane.transform.childCount < 1 && tutorialManager.towerCount < 3)
+					else if(unitInformation.isTower && hitPlane.transform.gameObject.tag == "unitSquare" && hitPlane.transform.childCount < 1 && tutorialManager.towerCount < 3 && LeanTween.isTweening(hitPlane.transform.gameObject))
 					{
 
 						// the variable responible for allowing the Tower to be Placed on a face
@@ -326,6 +328,8 @@ public class TutorialDragNDropHandler : MonoBehaviour, IDragHandler , IBeginDrag
 							//infoSender.SendUnitPlacement(new string[]{unitInformation.folder, hitPlane.transform.parent.name, hitPlane.transform.name});
 
 							//unitName.text = unitInformation.unitName + " \n <color=yellow>" + "Need to Place: " + (3-gameManager.towerCount);
+
+							hitPlane.transform.GetComponent<TweenController>().ResetPlacementTargets();
 
 						}
 

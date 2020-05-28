@@ -101,6 +101,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tower-get hit, idle, with shield animation fixed
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 3d2d278130bcafe469fb6085f5875179,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d2d278130bcafe469fb6085f5875179, type: 3}
 --- !u!1 &7920440375627247573 stripped

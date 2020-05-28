@@ -7634,7 +7634,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8344098275013752693, guid: 552a3eff42471c14a8d150896525f7bc,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 64d008b9e9986460580ee31bf1b50a5b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ccf50de5432dfa946b00e8a68a77a797, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8
   m_Pitch: 1
@@ -10571,7 +10571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6862745}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

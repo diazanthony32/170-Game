@@ -122,6 +122,7 @@ public class TutorialManagement : MonoBehaviour
         SpawnEnemyCube();
 
         SpawnEnemyUnits();
+        AssignPlacementLocations();
 
         //infoSender.SendCubeInfo(cubeInfo);
 
@@ -1021,27 +1022,75 @@ public class TutorialManagement : MonoBehaviour
 
         }
 
+    }
 
-        //for (int x = 0; x < enemyCubePosition.transform.GetChild(0).childCount; x++)
-        //{
-            //for (int i = 0; i < enemyCubePosition.transform.GetChild(0).GetChild(x).childCount; i++)
-            //{
-                //int randomIndex = Random.Range(0, 8);
+    public void AssignPlacementLocations()
+    {
 
-                //if (enemyCubePosition.transform.GetChild(0).GetChild(x).GetChild(i).tag == "unitSquare" && enemyCubePosition.transform.GetChild(0).GetChild(x).GetChild(i).childCount > 0)
-                //{
-                    //for (int k = 0; k < enemyCubePosition.transform.GetChild(0).GetChild(x).GetChild(i).childCount; k++)
-                    //{
-                        //UnitInformation unitInformation = enemyCubePosition.transform.GetChild(0).GetChild(x).GetChild(i).GetChild(k).GetComponent<UnitInformation>();
-                        //unitInformation.ReColorUnit();
-                    //}
-                //}
-            //}
+        List<string[]> tutorialSpawns = new List<string[]>();
 
-        //}
+        //tutorialSpawns.Add(new string[] { "Face_2", "2", "unit" });
+        //tutorialSpawns.Add(new string[] { "Face_2", "4", "unit" });
+        //tutorialSpawns.Add(new string[] { "Face_5", "8", "unit" });
+        //tutorialSpawns.Add(new string[] { "Face_6", "2", "unit" });
 
+        tutorialSpawns.Add(new string[] { "Face_3", "2", "tower" });
+        tutorialSpawns.Add(new string[] { "Face_4", "5", "tower" });
+        tutorialSpawns.Add(new string[] { "Face_5", "5", "tower" });
+
+
+
+        //goes everytime through to spawn each unit
+        foreach (string[] unit in tutorialSpawns)
+        {
+
+            //gets every face of the cube
+            for (int x = 0; x < playerCubePosition.transform.GetChild(0).childCount; x++)
+            {
+                // gets every square unit on a face
+                for (int i = 0; i < playerCubePosition.transform.GetChild(0).GetChild(x).childCount; i++)
+                {
+                    //int randomIndex = Random.Range(0, 8);
+                    Transform face = playerCubePosition.transform.GetChild(0).GetChild(x).GetChild(i);
+                    //print(face.tag);
+                    //checks for the correct unit placement
+                    if (face.tag == "unitSquare" && face.childCount < 1 && face.parent.name == unit[0] && face.name == unit[1])
+                    {
+                        //print("im in");
+                        face.GetComponent<TweenController>().HighlightPlacementTargets();
+
+                        //GameObject unitPrefab;
+
+                        //if (unit[2] == "tower")
+                        //{
+                            //unitPrefab = Instantiate(Resources.Load<GameObject>("Themes/Tutorial/Units/Tower/Prefab"));
+                        //}
+                        //else
+                        //{
+                            //unitPrefab = Instantiate(Resources.Load<GameObject>("Themes/Tutorial/Units/1/Prefab"));
+                        //}
+                        //GameObject unitPrefab = Instantiate(unitPrefab)
+
+                        //var unit = Instantiate(unitPrefab);
+
+                        //unitPrefab.transform.position = face.transform.position;
+                        //unitPrefab.transform.rotation = face.transform.rotation;
+
+                        //var rand = Random.Range(0, 4);
+
+                        //unit.transform.Translate(0.0f, 0.0f, 0.0f);
+                        //unitPrefab.transform.Rotate(0.0f, (rand * 90.0f), 0.0f);
+                        // Set unit as a child of the unitPlane
+                        //unitPrefab.transform.SetParent(face.transform);
+                    }
+                }
+
+            }
+
+        }
 
     }
+
 
     public void RemoveEnemyUnit(string[] unitArray) {
         GameObject plane = enemyCubePosition.transform.GetChild(0).Find(unitArray[0]).Find(unitArray[1]).gameObject;

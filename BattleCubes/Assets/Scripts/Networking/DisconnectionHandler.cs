@@ -38,7 +38,7 @@ public class DisconnectionHandler : MonoBehaviourPunCallbacks {
 
     public void ExitTutorial()
     {
-        PhotonNetwork.Disconnect();
+        //PhotonNetwork.Disconnect();
         Debug.Log("Disconnected from opponent");
 
         SceneManager.LoadScene(0);

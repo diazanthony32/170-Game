@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnFractured : MonoBehaviour
 {
+    public GameObject explosion;
+    public Vector3 explosionOffset;
     public GameObject original;
     public GameObject fractured;
 
@@ -22,8 +24,12 @@ public class SpawnFractured : MonoBehaviour
     }
 
     public void SpawnFracturedObj() {
-        //Destroy(original);
-        DestroyImmediate(original, true);
+        if (explosion != null) {
+            GameObject explosionFX = Instantiate(explosion) as GameObject;
+            Destroy(explosionFX, 3);
+        }
+
+        Destroy(original);
         GameObject fractObj = Instantiate(fractured) as GameObject;
         fractObj.transform.GetChild(1).GetComponent<explode>().ExplodeObject();
     }

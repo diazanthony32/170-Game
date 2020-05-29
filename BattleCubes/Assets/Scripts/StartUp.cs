@@ -15,6 +15,8 @@ public class StartUp : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
 
+    CubeInformation cubeInformation;
+
 
     void Start()
     {
@@ -36,6 +38,9 @@ public class StartUp : MonoBehaviour
                 cube.transform.position = playerCubePosition.transform.position;
                 cube.transform.rotation = playerCubePosition.transform.rotation;
                 cube.transform.SetParent(playerCubePosition.transform);
+
+                cubeInformation = cube.GetComponent<CubeInformation>();
+
             }
             else {
                 GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Cube/Prefab"));
@@ -45,6 +50,9 @@ public class StartUp : MonoBehaviour
 
                 PlayerPrefs.SetString("CubeTheme", "Demon");
                 PlayerPrefs.SetString("CubeColor", "DefaultColor");
+
+                cubeInformation = cube.GetComponent<CubeInformation>();
+
             }
         }
         else {
@@ -55,6 +63,8 @@ public class StartUp : MonoBehaviour
 
             PlayerPrefs.SetString("CubeTheme", "Demon");
             PlayerPrefs.SetString("CubeColor", "DefaultColor");
+
+            cubeInformation = cube.GetComponent<CubeInformation>();
         }
 
         if(PlayerPrefs.HasKey("MusicVolume")){
@@ -85,6 +95,8 @@ public class StartUp : MonoBehaviour
         cubeHideUnits.transform.SetParent(playerCubePosition.transform);
 
         RandomUnitPlacement();
+
+        cubeInformation.ReColorCube("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
 
     }
 

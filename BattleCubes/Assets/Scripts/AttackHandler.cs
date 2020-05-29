@@ -115,6 +115,9 @@ public class AttackHandler : MonoBehaviour
                 {
                     print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
                     UnitInformation hitUnitInfo = attackedPlane.transform.GetChild(0).GetComponent<UnitInformation>();
+                    
+                    //yield return new WaitForSeconds(0.5f);
+
                     hitUnitInfo.TakeDamage(unitInfo.attackDmg);
                 }
                 else
@@ -151,6 +154,9 @@ public class AttackHandler : MonoBehaviour
                     {
                         print("You hit a Unit: " + attackedPlanes[i].transform.GetChild(0).name);
                         UnitInformation hitUnitInfo = attackedPlanes[i].transform.GetChild(0).GetComponent<UnitInformation>();
+
+                        //yield return new WaitForSeconds(0.5f);
+
                         hitUnitInfo.TakeDamage(unitInfo.attackDmg);
                     }
                     else

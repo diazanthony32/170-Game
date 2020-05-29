@@ -9,11 +9,6 @@ public class explode : MonoBehaviour
     public float maxForce;
     public float radius;
 
-    public void Start() {
-        //StartCoroutine(ExplodeObject());
-        ExplodeObject();
-    }
-
     public void ExplodeObject() {
 
         //yield return new WaitForSeconds(5);

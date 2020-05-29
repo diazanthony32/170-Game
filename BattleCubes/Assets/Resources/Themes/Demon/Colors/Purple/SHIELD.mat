@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5442395527717057622
+--- !u!114 &-802222162139319454
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BoneParts
-  m_Shader: {fileID: -6465566751694194690, guid: 1730699b3882e5245b1aafd883d79106,
+  m_Name: SHIELD
+  m_Shader: {fileID: -6465566751694194690, guid: f6784c46c7988544d8fc446c19823cec,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,8 +33,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_38516C12:
-        m_Texture: {fileID: 0}
+    - Texture2D_B3BDD63:
+        m_Texture: {fileID: 2800000, guid: bb9d7640205373c49a6554c257b4190d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -66,9 +66,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2C3E96CF: 0.3
-    - Vector1_344F0971: 0.3
-    - Vector1_8E411615: 0.5
+    - Vector1_83675ADA: 1
+    - Vector1_EF74EBEE: 0.1
+    - Vector1_F8BDCB5D: 2
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -91,8 +91,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_95F5EFF9: {r: 1, g: 1, b: 1, a: 0}
-    - Color_DB3895C7: {r: 0.9176471, g: 1, b: 1, a: 1}
+    - Color_D08DE236: {r: 7.3780293, g: 0, b: 37.045807, a: 0}
+    - Color_EC96F719: {r: 0.1640625, g: 0, b: 1, a: 1}
+    - Vector3_5FC93FBF: {r: 0, g: 0, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

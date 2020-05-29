@@ -92,7 +92,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_95F5EFF9: {r: 1, g: 1, b: 1, a: 0}
-    - Color_DB3895C7: {r: 0.9176471, g: 1, b: 1, a: 1}
+    - Color_DB3895C7: {r: 0.8745099, g: 0.86274517, b: 0.9333334, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

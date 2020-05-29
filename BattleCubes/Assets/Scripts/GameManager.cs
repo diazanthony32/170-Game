@@ -782,6 +782,9 @@ public class GameManager : MonoBehaviour
         cube.transform.rotation = playerCubePosition.transform.rotation;
         cube.transform.SetParent(playerCubePosition.transform);
 
+        CubeInformation cubeInformation = cube.GetComponent<CubeInformation>();
+        cubeInformation.ReColorCube("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
+
         SpawnCubeTargetingSystem("PlayerCubePosition");
         SpawnAttackChecker("PlayerCubePosition");
         SpawnHideUnit("PlayerCubePosition");
@@ -797,6 +800,9 @@ public class GameManager : MonoBehaviour
         cube.transform.position = enemyCubePosition.transform.position;
         cube.transform.rotation = enemyCubePosition.transform.rotation;
         cube.transform.SetParent(enemyCubePosition.transform);
+
+        CubeInformation cubeInformation = cube.GetComponent<CubeInformation>();
+        cubeInformation.ReColorCube("Enemy", cubeInfo[0], cubeInfo[1]);
 
         SpawnCubeTargetingSystem("EnemyCubePosition");
         SpawnAttackChecker("EnemyCubePosition");

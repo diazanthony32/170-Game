@@ -91,8 +91,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_D08DE236: {r: 31.626795, g: 6.788998, b: 0, a: 0}
-    - Color_EC96F719: {r: 1.0583165, g: 0.25546134, b: 0, a: 0}
+    - Color_D08DE236: {r: 126.50718, g: 27.818333, b: 0, a: 0}
+    - Color_EC96F719: {r: 4.2332664, g: 1.0416938, b: 0, a: 0}
     - Vector3_5FC93FBF: {r: 0, g: 0, b: 0, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

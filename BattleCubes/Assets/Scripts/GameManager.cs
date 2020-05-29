@@ -935,6 +935,8 @@ public class GameManager : MonoBehaviour
         GameObject plane = enemyCubePosition.transform.GetChild(0).Find(unitArray[1]).Find(unitArray[2]).gameObject;
         GameObject unit = Instantiate(Resources.Load<GameObject>("Themes/" + enemyCubeInfo[0] + "/Units/" + unitArray[0] + "/Prefab"));
 
+        //unit.transform.GetComponent<UnitInformation>().ReColorUnit("Enemy", enemyCubeInfo[0], enemyCubeInfo[1]);
+
         unit.transform.position = plane.transform.position;
         unit.transform.rotation = plane.transform.rotation;
         unit.transform.SetParent(plane.transform);
@@ -945,6 +947,8 @@ public class GameManager : MonoBehaviour
         else{
             AddEnemyUnitCount(1);
         }
+
+        unit.transform.GetComponent<UnitInformation>().ReColorUnit("Enemy", enemyCubeInfo[0], enemyCubeInfo[1]);
         // AddEnemyUnitCount(1);
     }
 

@@ -49,9 +49,9 @@ public class ButtonInfo : MonoBehaviour
                     {
                         for (int k = 0; k < playerCubeTransform.GetChild(x).GetChild(i).childCount; k++) {
                         UnitInformation unitInformation = playerCubeTransform.GetChild(x).GetChild(i).GetChild(k).GetComponent<UnitInformation>();
-                        unitInformation.ReColorUnit();
-                        }
+                        unitInformation.ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
                     }
+                }
                 }
 
             }

@@ -275,7 +275,9 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 						// gameManager.unitCount++;
 						gameManager.AddUnitCount(1);
 
-                        if (unitInformation.AttackParticle != null) {
+						unit.GetComponent<UnitInformation>().ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
+
+						if (unitInformation.SpawnParticle != null) {
                             GameObject particle = Instantiate(unitInformation.SpawnParticle);
                             particle.transform.position = hitPlane.transform.position;
                             particle.transform.rotation = hitPlane.transform.rotation;
@@ -332,6 +334,8 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 							unit.transform.Rotate(0.0f,(rand * 90.0f), 0.0f);
 							// Set unit as a child of the unitPlane
 							unit.transform.SetParent(hitPlane.transform);
+
+							unit.GetComponent<UnitInformation>().ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
 
 							gameManager.AddTowerCount(1);
 

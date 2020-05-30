@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: beamAdditive
-  m_Shader: {fileID: -6465566751694194690, guid: 9e3b188655e61584aaae051f8de52a0d,
+  m_Name: innerSphere
+  m_Shader: {fileID: -6465566751694194690, guid: d977976a5a54cae43803b48e48e3244f,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,9 +21,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_F42B7A0B:
-        m_Texture: {fileID: 2800000, guid: 9d0900eff8334b148852ebfa18353977, type: 3}
+        m_Texture: {fileID: 2800000, guid: b6f2dc840b41d3d49bc8c8aebe76d0ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - Vector1_56C0212D: 1
+    - Vector1_6E50B723: 10
+    - Vector1_80ECDFC1: 0.0106
+    - Vector1_C90C5096: 10
     m_Colors:
-    - Color_4A0BC1B8: {r: 8.47419, g: 8.47419, b: 8.47419, a: 1}
+    - Color_4A0BC1B8: {r: 4.237095, g: 4.237095, b: 4.237095, a: 1}
+    - Vector2_9B44B7A7: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_FD6BAE45: {r: 0.5, g: 0, b: 0, a: 0}

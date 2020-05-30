@@ -58703,7 +58703,7 @@ GameObject:
   - component: {fileID: 1183190699}
   - component: {fileID: 1183190698}
   m_Layer: 0
-  m_Name: sphere1
+  m_Name: fireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

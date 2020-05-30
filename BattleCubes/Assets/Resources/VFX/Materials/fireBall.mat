@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: innerSphere
+  m_Name: fireBall
   m_Shader: {fileID: -6465566751694194690, guid: d977976a5a54cae43803b48e48e3244f,
     type: 3}
   m_ShaderKeywords: 

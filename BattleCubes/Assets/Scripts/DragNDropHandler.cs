@@ -149,9 +149,9 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
     // changes the color of the unitPlacer button when a unit starts a drag
 	public void OnBeginDrag(PointerEventData eventData){
-		if(active){
-			tweenController.Highlight();
-		}
+		//if(active){
+			//tweenController.Highlight();
+		//}
 	}
 
     // updates continously while a player is dragging
@@ -159,7 +159,7 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 		// updates the units image to the players position
 		if (active)
 		{
-			unitImage.transform.position = eventData.position;
+			//unitImage.transform.position = eventData.position;
 
 			var tempColor = unitImage.color;
 			tempColor.a = 0.5f;
@@ -267,7 +267,7 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 						var rand = Random.Range(0, 4);
 
 						//unit.transform.Translate(0.0f, 0.0f, 0.0f);
-						unit.transform.Rotate(0.0f,(rand * 90.0f), 0.0f);
+						unit.transform.Rotate(0.0f,45.0f+180.0f, 0.0f);
 						// Set unit as a child of the unitPlane
 						unit.transform.SetParent(hitPlane.transform);
 						//gameManager.remainingUnitPoints -= unitInformation.unitSpawnCost;

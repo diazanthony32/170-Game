@@ -129,6 +129,13 @@ public class UnitInformation : MonoBehaviour
 			unitAudioSource.PlayOneShot(unitSpawnNoise);
 			unitAnimator.SetTrigger("spawn");
 
+			GameObject particle = Instantiate(SpawnParticle);
+			particle.transform.position = transform.position;
+			particle.transform.rotation = transform.rotation;
+			particle.transform.SetParent(transform);
+
+			Destroy(particle, 2.1f);
+
 		}
 
 		// oc.unitPoints -= unitCost;

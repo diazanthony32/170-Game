@@ -44,6 +44,7 @@ public class TutorialUnitInformation : MonoBehaviour
 	public int attackDmg;
 	[Space(10)]
 	public Sprite unitImage;
+	public Sprite attackImage;
 	[Space(10)]
 	public AudioClip unitSpawnNoise = null;
 	public AudioClip unitIdleNoise = null;
@@ -367,6 +368,7 @@ public class TutorialUnitInformation : MonoBehaviour
 					//print("can attack");
 					for (int i = 0; i < tutorialManager.attackList.Count; i++)
 					{
+						print(tutorialManager.attackList[i][0]+":"+ tutorialManager.attackList[i][1]);
 
 						if (tutorialManager.attackList[i][0] == attackName)
 						{

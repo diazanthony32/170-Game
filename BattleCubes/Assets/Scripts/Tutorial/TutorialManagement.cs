@@ -861,7 +861,7 @@ public class TutorialManagement : MonoBehaviour
         return components;
     }
     public void AddAction(string[] actionArray, int cost) {
-        playerActionList.GetComponent<ActionStorage>().StoreAction(actionArray);
+        playerActionList.GetComponent<TutorialActionStorage>().StoreAction(actionArray);
         AddActionPoints(-cost);
     }
 

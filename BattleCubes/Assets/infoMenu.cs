@@ -179,7 +179,7 @@ public class infoMenu : MonoBehaviour
                 }
             }
         }
-        print(checkSpotsbools[0] + " " + checkSpotsbools[1] + " " + checkSpotsbools[2]);
+        //print(checkSpotsbools[0] + " " + checkSpotsbools[1] + " " + checkSpotsbools[2]);
         if (checkSpotsbools[0].Equals(true) && checkSpotsbools[1].Equals(true) && checkSpotsbools[2].Equals(true)) {
             finalSpot = true;
         }

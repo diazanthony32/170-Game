@@ -16,7 +16,6 @@ public class CubeInformation : MonoBehaviour {
     bool impacted = false;
     float impactSpeed = 50f;
     float interval = 1;
-    //float sv = 1;
 
 
     private void Start() {
@@ -108,7 +107,6 @@ public class CubeInformation : MonoBehaviour {
                 transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].SetColor("Color_774AE0F8", Color.black);
             }
         }
-        //sv = 1;
     }
 
 }

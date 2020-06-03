@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -14629,7 +14629,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -40.09961
+      value: -40.101562
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -22681,12 +22681,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a76d85fbd6e46644e8755988ec1a93d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22851,7 +22851,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 102.34961}
+  m_AnchoredPosition: {x: 0, y: 102.35156}
   m_SizeDelta: {x: 627.7, y: 188.70001}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1118712667
@@ -34646,7 +34646,7 @@ PrefabInstance:
     - target: {fileID: 2796643107917264920, guid: 96fe3c57407b4d44a90199aff9dbc435,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -355.80078
+      value: -355.8047
       objectReference: {fileID: 0}
     - target: {fileID: 2796643107917264920, guid: 96fe3c57407b4d44a90199aff9dbc435,
         type: 3}

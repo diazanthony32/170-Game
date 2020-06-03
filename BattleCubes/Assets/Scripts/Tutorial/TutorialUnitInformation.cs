@@ -282,7 +282,7 @@ public class TutorialUnitInformation : MonoBehaviour
 			if(plane.gameObject.transform.childCount > 0){
 				for(int x = 0 ; x < plane.gameObject.transform.childCount ; x++ ){
 
-					if(plane.CompareTag("unitSquare") && !(plane.transform.GetChild(x).gameObject.GetComponent<TutorialUnitInformation>().isTower)){
+					if(plane.CompareTag("unitSquare") && plane.transform.GetChild(x).gameObject.GetComponent<TutorialUnitInformation>() && !(plane.transform.GetChild(x).gameObject.GetComponent<TutorialUnitInformation>().isTower)){
 
 						isVulnerable = false;
 						safe = true;

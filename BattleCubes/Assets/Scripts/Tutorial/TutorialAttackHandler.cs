@@ -180,14 +180,14 @@ public class TutorialAttackHandler : MonoBehaviour
             // UnitInformation unitInfo;
             for (int i = 0; i <= 3; i++) {
 
-                TutorialUnitInformation unitInfo = null;
+                TutorialUnitInformation unitInfo;
 
                 if (i == 0) {
-                    unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.cubeInfo[0] + "/Units/Tower/Prefab").GetComponent<TutorialUnitInformation>();
+                    unitInfo = Resources.Load<GameObject>("Themes/Tutorial/Units/Tower/Prefab").GetComponent<TutorialUnitInformation>();
                     //("Themes/" + gameManager.cubeInfo[0] + "/Units/Tower/Prefab")
                 }
                 else {
-                    unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.cubeInfo[0] + "/Units/" + i + "/Prefab").GetComponent<TutorialUnitInformation>();
+                    unitInfo = Resources.Load<GameObject>("Themes/Tutorial/Units/" + i + "/Prefab").GetComponent<TutorialUnitInformation>();
                     //("Themes/" + gameManager.cubeInfo[0] + "/Units/" + i + "/Prefab")
                 }
 
@@ -362,7 +362,7 @@ public class TutorialAttackHandler : MonoBehaviour
 
                             for (int z = 0; z < hitPlane.transform.parent.GetChild(y).childCount; z++)
                             {
-                                UnitInformation unit = hitPlane.transform.parent.GetChild(y).GetChild(z).GetComponent<UnitInformation>();
+                                TutorialUnitInformation unit = hitPlane.transform.parent.GetChild(y).GetChild(z).GetComponent<TutorialUnitInformation>();
 
                                 if (hitPlane.transform.parent.GetChild(y).gameObject.CompareTag("unitSquare") && unit.attackName == attackName)
                                 {

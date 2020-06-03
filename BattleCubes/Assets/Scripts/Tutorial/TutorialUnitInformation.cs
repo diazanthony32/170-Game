@@ -139,65 +139,65 @@ public class TutorialUnitInformation : MonoBehaviour
 	}
 
 	void Update(){
-		if(pointerDown){
-			pointerDownTimer += Time.deltaTime;
+		//if(pointerDown){
+		//	pointerDownTimer += Time.deltaTime;
 
-			RaycastHit[] hits;
-			hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 5.0f, mask);
+		//	RaycastHit[] hits;
+		//	hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 5.0f, mask);
 
-			for (int i = 0; i < hits.Length; i++){
-				RaycastHit hitPlane = hits[i];
-				//print(hits[i].transform.gameObject.name);
+		//	for (int i = 0; i < hits.Length; i++){
+		//		RaycastHit hitPlane = hits[i];
+		//		//print(hits[i].transform.gameObject.name);
 				
-				if(hitPlane.transform.gameObject == gameObject)
-				{
-					if(pointerDownTimer > requiredHoldTime && !executed && SceneManager.GetActiveScene().buildIndex != 0)
-					{
-						//print("Removing Unit");
-						executed = true;
+		//		if(hitPlane.transform.gameObject == gameObject)
+		//		{
+		//			if(pointerDownTimer > requiredHoldTime && !executed && SceneManager.GetActiveScene().buildIndex != 0)
+		//			{
+		//				//print("Removing Unit");
+		//				executed = true;
 
-						if(tutorialManager.GetState() == tutorialManager.SETUP && !tutorialManager.readies[0]){
+		//				if(tutorialManager.GetState() == tutorialManager.SETUP && !tutorialManager.readies[0]){
 
-							gameObject.transform.parent.GetComponent<TweenController>().HighlightPlacementTargets();
+		//					gameObject.transform.parent.GetComponent<TweenController>().HighlightPlacementTargets();
 							
-							Destroy(gameObject);
-							//infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
-							//gameManager.remainingUnitPoints += unitSpawnCost;
-							tutorialManager.AddUnitPoints(unitSpawnCost);
+		//					Destroy(gameObject);
+		//					//infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
+		//					//gameManager.remainingUnitPoints += unitSpawnCost;
+		//					tutorialManager.AddUnitPoints(unitSpawnCost);
 
-							if (isTower){
-								tutorialManager.AddTowerCount(-1);
-							}
-							else if(!isTower){
-								tutorialManager.AddUnitCount(-1);
-							}
-						}
+		//					if (isTower){
+		//						tutorialManager.AddTowerCount(-1);
+		//					}
+		//					else if(!isTower){
+		//						tutorialManager.AddUnitCount(-1);
+		//					}
+		//				}
 
-						//print("can attack");
-						for (int j = 0; j < tutorialManager.attackList.Count; j++)
-						{
+		//				//print("can attack");
+		//				for (int j = 0; j < tutorialManager.attackList.Count; j++)
+		//				{
 
-							if (tutorialManager.attackList[j][0] == attackName)
-							{
-								tutorialManager.attackList[j][1] = "false";
-								//print(gameManager.attackList[j][0] + " : " + gameManager.attackList[j][1]);
+		//					if (tutorialManager.attackList[j][0] == attackName)
+		//					{
+		//						tutorialManager.attackList[j][1] = "false";
+		//						//print(gameManager.attackList[j][0] + " : " + gameManager.attackList[j][1]);
 
-							}
-						}
+		//					}
+		//				}
 
-					}
-					break;
-				}
-				else{
-					//reset timer if not hovering over the unit
-					pointerDownTimer = 0;
-				}
-			}
-			if (hits.Length == 0) {
-				//reset timer if not hovering over the unit
-				pointerDownTimer = 0;
-			}
-		}
+		//			}
+		//			break;
+		//		}
+		//		else{
+		//			//reset timer if not hovering over the unit
+		//			pointerDownTimer = 0;
+		//		}
+		//	}
+		//	if (hits.Length == 0) {
+		//		//reset timer if not hovering over the unit
+		//		pointerDownTimer = 0;
+		//	}
+		//}
 
 		if (SceneManager.GetActiveScene().buildIndex != 0) 
 		{

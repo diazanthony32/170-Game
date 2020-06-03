@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     //player points
     int roundsForPointIncrease = 5;
     int pointsPerRound = 3;
-    int actionPoints = 0;
+    int actionPoints = 99;
 
     //unit points
     public int totalUnitPoints = 12;
@@ -90,6 +90,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
+
+    //VFX
+    public GameObject explosion;
 
     void Start() {
         cubeInfo = new string[] {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
@@ -131,6 +134,7 @@ public class GameManager : MonoBehaviour
         playerCanvas.transform.Find("PlayerAPCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
 
         remainingTime = SET_UP_TIME;
+
     }
 
     void Update()
@@ -621,11 +625,17 @@ public class GameManager : MonoBehaviour
                 if(unitCount <= 0 || towerCount < 3){
                     GameEndPopUp("You Lose: All Units or Tower Destroyed");
                     infoSender.SendGameOver("You Win!: Opponent Units or Tower Destroyed");
+
+                    SpawnCubeExplosion("PlayerCubePosition");
+
                     // gameCanvas.transform.GetChild(1).GetChild(0).Find("GameOverText").GetComponent<TextMeshProUGUI>().text;
                 }
                 else if(enemyUnitCount <= 0 || enemyTowerCount < 3){
                     GameEndPopUp("You Win!: Opponent Units or Tower Destroyed");
                     infoSender.SendGameOver("You Lose: All Units or Tower Destroyed");
+
+                    SpawnCubeExplosion("EnemyCubePosition");
+
                 }
                 else if(roundCount >= 20){
                     if(unitCount > enemyUnitCount){
@@ -984,6 +994,22 @@ public class GameManager : MonoBehaviour
     }
     public bool IsCubeTweening() {
         return LeanTween.isTweening(playerCubePosition.transform.GetChild(0).gameObject); 
+    }
+
+    void SpawnCubeExplosion(string posTag) {
+        if (explosion != null) {
+            
+            GameObject spawnPos = GameObject.FindGameObjectWithTag(posTag);
+
+            GameObject explosionFX = Instantiate(explosion) as GameObject;
+            explosionFX.transform.position = spawnPos.transform.position + new Vector3(0, 0.55f, 0);
+            explosionFX.transform.Rotate(new Vector3(0, 90, 0), Space.Self);
+            explosionFX.transform.SetParent(spawnPos.transform);
+
+            Destroy(explosionFX, 10);
+
+            print("explode!");
+        }
     }
 
     //get

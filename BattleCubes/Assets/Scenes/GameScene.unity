@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1605,7 +1605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &91444939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15308,6 +15308,8 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 552a3eff42471c14a8d150896525f7bc, type: 2}
   musicSlider: {fileID: 653424850}
   sfxSlider: {fileID: 1964904191}
+  explosion: {fileID: 1853059847514176373, guid: e2bf6dae7e76541478d991d584cd5f13,
+    type: 3}
 --- !u!4 &802822736
 Transform:
   m_ObjectHideFlags: 0

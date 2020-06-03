@@ -142,7 +142,7 @@ public class infoMenu : MonoBehaviour
 
         Transform centerTopPlane = playerTargetting.GetChild(1).GetChild(4);
         Transform centerRightPlane = playerTargetting.GetChild(4).GetChild(4);
-        Transform centerLeftPlane = playerTargetting.GetChild(4).GetChild(4);
+        Transform centerLeftPlane = playerTargetting.GetChild(4).GetChild(1);
         //print(centerTopPlane.name + " " + centerTopPlane.parent.name);
 
         checkSpots.Add(centerTopPlane);
@@ -152,7 +152,7 @@ public class infoMenu : MonoBehaviour
         for (int j = 0; j < checkSpots.Count; j++) {
 
             RaycastHit[] hits;
-            hits = Physics.RaycastAll(checkSpots[j].transform.position, -checkSpots[j].transform.up, 0.25f);
+            hits = Physics.RaycastAll(checkSpots[j].transform.position, -checkSpots[j].transform.up, 0.05f);
 
             for (int i = 0; i < hits.Length; i++)
             {
@@ -164,7 +164,7 @@ public class infoMenu : MonoBehaviour
                 //this is where we filter out the weird self hits
                 if (hitPlane.tag == "unitSquare")
                 {
-                    if (hitPlane.transform.childCount > 0)
+                    if (hitPlane.transform.childCount > 0 && hitPlane.transform.GetChild(0).GetComponent<TutorialUnitInformation>())
                     {
                         //finalSpot = true;
                         checkSpotsbools[j] = true;
@@ -178,7 +178,7 @@ public class infoMenu : MonoBehaviour
                 }
             }
         }
-
+        print(checkSpotsbools[0] + " " + checkSpotsbools[1] + " " + checkSpotsbools[2]);
         if (checkSpotsbools[0].Equals(true) && checkSpotsbools[1].Equals(true) && checkSpotsbools[2].Equals(true)) {
             finalSpot = true;
         }

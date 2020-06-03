@@ -27,7 +27,7 @@ public class CubeInformation : MonoBehaviour {
     private void Update() {
         Dissolve();
 
-        if (Input.GetMouseButtonUp(0)) { StartCoroutine(StartImpact()); }
+        //if (Input.GetMouseButtonUp(0)) { StartCoroutine(StartImpact()); }
         ShowImpact();
     }
 

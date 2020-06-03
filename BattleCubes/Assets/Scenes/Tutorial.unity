@@ -4773,7 +4773,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -4818,7 +4818,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UnitInfo
+      value: ShowEnemyCube
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091916, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}

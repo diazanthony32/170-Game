@@ -273,5 +273,17 @@ public class infoMenu : MonoBehaviour
         preventClick.SetActive(false);
 
     }
+    public void ShowEnemyCube()
+    {
+        
+        //tutorialManagement.AssignUnitPlacementLocations();
+        tutorialManagement.remainingTime = 0;
+        tutorialManagement.timeStopped = false;
+        //tutorialManagement.remainingTime = 0;
+
+        //popUps[10].GetComponent<TweenController>().PopInUIInfo(this);
+        preventClick.SetActive(false);
+
+    }
 
 }

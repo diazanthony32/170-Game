@@ -58,7 +58,7 @@ public class TutorialManagement : MonoBehaviour
     //timeming
     public readonly float ROUND_TIME = 30;
     public readonly float SET_UP_TIME = 150;
-    float remainingTime;
+    public float remainingTime;
     public bool timeStopped = true;
 
     //corrutine stuff

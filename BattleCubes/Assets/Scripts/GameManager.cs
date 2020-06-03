@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     //player points
     int roundsForPointIncrease = 5;
     int pointsPerRound = 3;
-    int actionPoints = 0;
+    int actionPoints = 100;
 
     //unit points
     public int totalUnitPoints = 12;
@@ -93,6 +93,10 @@ public class GameManager : MonoBehaviour
 
     //VFX
     public GameObject explosion;
+    GameObject cube;
+    bool exploding = false;
+    bool startDissolve = false;
+    float dissolveVal = 0.0f;
 
     void Start() {
         cubeInfo = new string[] {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
@@ -135,6 +139,9 @@ public class GameManager : MonoBehaviour
 
         remainingTime = SET_UP_TIME;
 
+        cube = playerCubePosition.transform.GetChild(0).gameObject;
+        cube.GetComponent<CubeInformation>().SpawnCubeExplosion("PlayerCubePosition");
+        //SpawnCubeExplosion("PlayerCubePosition");
     }
 
     void Update()
@@ -145,6 +152,17 @@ public class GameManager : MonoBehaviour
                 RunTimer();
             }
         }
+
+        //if (startDissolve) {
+        //    for (int i = 0; i < 6; i++) {
+        //        dissolveVal += 0.001f;
+        //        for (int j = 0; j < cube.transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
+        //            cube.transform.GetChild(i).GetComponent<MeshRenderer>().materials[0].SetFloat("_Fade", dissolveVal);
+        //            cube.transform.GetChild(i).GetComponent<MeshRenderer>().materials[1].SetFloat("_Fade", dissolveVal);
+        //        }
+        //    }
+        //}
+
     }
 
     // void UpdateUnitCount(){
@@ -626,7 +644,7 @@ public class GameManager : MonoBehaviour
                     GameEndPopUp("You Lose: All Units or Tower Destroyed");
                     infoSender.SendGameOver("You Win!: Opponent Units or Tower Destroyed");
 
-                    SpawnCubeExplosion("PlayerCubePosition");
+                    //SpawnCubeExplosion("PlayerCubePosition");
 
                     // gameCanvas.transform.GetChild(1).GetChild(0).Find("GameOverText").GetComponent<TextMeshProUGUI>().text;
                 }
@@ -634,7 +652,7 @@ public class GameManager : MonoBehaviour
                     GameEndPopUp("You Win!: Opponent Units or Tower Destroyed");
                     infoSender.SendGameOver("You Lose: All Units or Tower Destroyed");
 
-                    SpawnCubeExplosion("EnemyCubePosition");
+                    //SpawnCubeExplosion("EnemyCubePosition");
 
                 }
                 else if(roundCount >= 20){
@@ -680,7 +698,15 @@ public class GameManager : MonoBehaviour
 
     public void GameEndPopUp(string condition){
         //mainScreenCanvas.SetActive(false);
+        state = GAMEEND;
         pauseCanvas.SetActive(false);
+        StartCoroutine(ShowGameEndPopUp(condition));
+    }
+
+    public IEnumerator ShowGameEndPopUp(string condition) {
+        yield return new WaitForSeconds(9f);
+
+        //pauseCanvas.SetActive(false);
         gameOverCanvas.SetActive(true);
         state = GAMEEND;
 
@@ -688,7 +714,6 @@ public class GameManager : MonoBehaviour
         gameOverText.text = condition;
 
         state = GAMEEND;
-
     }
 
     // void CompareActions(string[] host, string[] client) {
@@ -996,21 +1021,24 @@ public class GameManager : MonoBehaviour
         return LeanTween.isTweening(playerCubePosition.transform.GetChild(0).gameObject); 
     }
 
-    void SpawnCubeExplosion(string posTag) {
-        if (explosion != null) {
-            
-            GameObject spawnPos = GameObject.FindGameObjectWithTag(posTag);
+    //void SpawnCubeExplosion(string posTag) {
 
-            GameObject explosionFX = Instantiate(explosion) as GameObject;
-            explosionFX.transform.position = spawnPos.transform.position + new Vector3(0, 0.55f, 0);
-            explosionFX.transform.Rotate(new Vector3(0, 90, 0), Space.Self);
-            explosionFX.transform.SetParent(spawnPos.transform);
+    //    if (explosion != null && !exploding) {
+    //        exploding = true;
+    //        //print("explode!!");
 
-            Destroy(explosionFX, 10);
+    //        GameObject spawnPos = GameObject.FindGameObjectWithTag(posTag);
 
-            print("explode!");
-        }
-    }
+    //        GameObject explosionFX = Instantiate(explosion) as GameObject;
+    //        explosionFX.transform.position = spawnPos.transform.position + new Vector3(0, 0.55f, 0);
+    //        explosionFX.transform.Rotate(new Vector3(0, 90, 0), Space.Self);
+    //        explosionFX.transform.SetParent(spawnPos.transform);
+
+    //        Destroy(explosionFX, 10);
+
+    //        StartCoroutine(WaitToDissolve());
+    //    }
+    //}
 
     //get
     public GameObject GetEnemyCanvas() {

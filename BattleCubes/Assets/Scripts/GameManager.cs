@@ -641,7 +641,7 @@ public class GameManager : MonoBehaviour
 
                 if(unitCount <= 0 || towerCount < 3){
                     GameEndPopUp("You Lose: All Units or Tower Destroyed");
-                    infoSender.SendGameOver("You Win!: Opponent Units or Tower Destroyed", "player");
+                    infoSender.SendGameOver("You Win!: Opponent Units or Tower Destroyed", "enemy");
 
                     //SpawnCubeExplosion("PlayerCubePosition");
                     ExplodeCube("player");
@@ -650,7 +650,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if(enemyUnitCount <= 0 || enemyTowerCount < 3){
                     GameEndPopUp("You Win!: Opponent Units or Tower Destroyed");
-                    infoSender.SendGameOver("You Lose: All Units or Tower Destroyed", "enemy");
+                    infoSender.SendGameOver("You Lose: All Units or Tower Destroyed", "player");
 
                     //SpawnCubeExplosion("EnemyCubePosition");
                     ExplodeCube("enemy");

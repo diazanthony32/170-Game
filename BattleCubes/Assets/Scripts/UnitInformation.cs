@@ -218,9 +218,11 @@ public class UnitInformation : MonoBehaviour
 			
 			unitCurrentHealth -= damageAmount;
 			gameManager.CreateFloatingText(("-" + damageAmount.ToString()), transform.parent, "attack");
-			//audioSource.PlayOneShot(hitEnemySfx);
 
-			Handheld.Vibrate();
+            StartCoroutine(transform.parent.parent.parent.GetComponent<CubeInformation>().StartImpact());
+            //audioSource.PlayOneShot(hitEnemySfx);
+
+            Handheld.Vibrate();
 
 			// audioSource.PlayOneShot(unitBehavior.unitHitNoise);
 			if (unitCurrentHealth > 0){

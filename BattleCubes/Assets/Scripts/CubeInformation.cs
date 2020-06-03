@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeInformation : MonoBehaviour {
@@ -99,7 +98,7 @@ public class CubeInformation : MonoBehaviour {
             }
         }
     }
-    IEnumerator impactLenght() {
+    public IEnumerator StartImpact() {
         impacted = true;
         yield return new WaitForSeconds(0.35f);
         impacted = false;

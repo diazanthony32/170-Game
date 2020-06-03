@@ -30,7 +30,7 @@ public class TutorialManagement : MonoBehaviour
     [SerializeField] TextMeshProUGUI remainingTimeText;
     [Space(10)]
     [SerializeField] GameObject preventClick;
-    [SerializeField] AttackHandler attackHandler;
+    [SerializeField] TutorialAttackHandler attackHandler;
     [SerializeField] infoMenu infoMenu;
 
     public GameObject playerCubePosition;
@@ -58,7 +58,7 @@ public class TutorialManagement : MonoBehaviour
     //timeming
     public readonly float ROUND_TIME = 30;
     public readonly float SET_UP_TIME = 150;
-    float remainingTime;
+    public float remainingTime;
     public bool timeStopped = true;
 
     //corrutine stuff
@@ -149,6 +149,7 @@ public class TutorialManagement : MonoBehaviour
                 CheckForReady();
                 RunTimer();
             }
+        //print(enemyUnitCount + ": " + enemyTowerCount);
 
         //if (infoMenu.isPaused) {
             //timeStopped = true;
@@ -233,9 +234,9 @@ public class TutorialManagement : MonoBehaviour
     public IEnumerator GetOutOfSetUp() {
         print("getting out of setup");
 
-        if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+        //if (PhotonNetwork.LocalPlayer.IsMasterClient) {
             CheckWinCondition();
-        }
+        //}
 
         if(state != GAMEEND){
 
@@ -310,29 +311,29 @@ public class TutorialManagement : MonoBehaviour
         mainScreenCanvas.SetActive(false);
         attackCanvas.SetActive(false);
         rotationCanvas.SetActive(false);
-        rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(false);
+        rotationCanvas.transform.Find("swiperPannel").gameObject.GetComponent<TutorialRotationByFinger>().SetRotAllowed(false);
 
         yield return new WaitForSeconds(1.5f);
-        playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().SnapToBaseRotation();
+        playerCubePosition.transform.GetChild(0).GetComponent<TutorialRotateCube>().SnapToBaseRotation();
         yield return new WaitForSeconds(1.5f);
         TurnOnTargetting();
 
         //playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend()
-        if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
+        if (playerActionList.GetComponent<TutorialActionStorage>().GetActionListCount() > 0) {
             //infoSender.SendActionListArray(playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend());
         }
         
         yield return new WaitForSeconds(0.5f);
 
-        playerActionList.GetComponent<ActionStorage>().resetUIPulses();
-        enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
+        playerActionList.GetComponent<TutorialActionStorage>().resetUIPulses();
+        enemyActionList.GetComponent<TutorialActionStorage>().resetUIPulses();
 
         playerActionList.GetComponent<TweenController>().slideXOver((Screen.width * -0.034f));
         enemyActionList.GetComponent<TweenController>().slideXOver((Screen.width * 0.034f));
 
-        if (PhotonNetwork.LocalPlayer.IsMasterClient) {
+        //if () {
             StartCoroutine(DoThrowdown());
-        }
+        //}
     }
     
     private void RunTimer() {
@@ -379,8 +380,8 @@ public class TutorialManagement : MonoBehaviour
     }
 
     public void HighlightThrowdownAction(int i){
-        playerActionList.GetComponent<ActionStorage>().resetUIPulses();
-        enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
+        playerActionList.GetComponent<TutorialActionStorage>().resetUIPulses();
+        enemyActionList.GetComponent<TutorialActionStorage>().resetUIPulses();
 
         // playerActionList.GetComponent<ActionStorage>().resetUIPulses();
         playerActionList.transform.GetChild(i).GetComponent<TweenController>().PulseHighlight();
@@ -402,7 +403,7 @@ public class TutorialManagement : MonoBehaviour
         string[] client;
         for (int i = 0; i < 5 && state == THROWDOWN; i++) {
 
-            if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i || enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+            if (playerActionList.GetComponent<TutorialActionStorage>().GetActionListCount() > i || enemyActionList.GetComponent<TutorialActionStorage>().GetActionListCount() > i) {
                 HighlightThrowdownAction(i);
                 //infoSender.SendThrowdownHighlight(i);
             }
@@ -420,11 +421,11 @@ public class TutorialManagement : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
 
             //both players have actions
-            if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i && enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+            if (playerActionList.GetComponent<TutorialActionStorage>().GetActionListCount() > i && enemyActionList.GetComponent<TutorialActionStorage>().GetActionListCount() > i) {
                 yield return new WaitForSeconds(0.5f);
                 print("both players have actions");
-                host = playerActionList.GetComponent<ActionStorage>().GetAt(i);
-                client = enemyActionList.GetComponent<ActionStorage>().GetAt(i);
+                host = playerActionList.GetComponent<TutorialActionStorage>().GetAt(i);
+                client = enemyActionList.GetComponent<TutorialActionStorage>().GetAt(i);
 
                 if (host[0] == client[0]) {
                     yield return new WaitForSeconds(0.5f);
@@ -493,10 +494,10 @@ public class TutorialManagement : MonoBehaviour
                 }
             }
             //only host has actions
-            else if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+            else if (playerActionList.GetComponent<TutorialActionStorage>().GetActionListCount() > i) {
                 yield return new WaitForSeconds(0.5f);
                 print("host has actions");
-                host = playerActionList.GetComponent<ActionStorage>().GetAt(i);
+                host = playerActionList.GetComponent<TutorialActionStorage>().GetAt(i);
 
                 if (host[0] == "rotate") {
                     print("Host rotate");
@@ -515,10 +516,10 @@ public class TutorialManagement : MonoBehaviour
                 yield return new WaitForSeconds(3.5f);
             }
             //only client has actions
-            else if (enemyActionList.GetComponent<ActionStorage>().GetActionListCount() > i) {
+            else if (enemyActionList.GetComponent<TutorialActionStorage>().GetActionListCount() > i) {
                 yield return new WaitForSeconds(0.5f);
                 print("client has actions");
-                client = enemyActionList.GetComponent<ActionStorage>().GetAt(i);
+                client = enemyActionList.GetComponent<TutorialActionStorage>().GetAt(i);
 
                 if (client[0] == "rotate") {
                     print("client rotate");
@@ -570,10 +571,10 @@ public class TutorialManagement : MonoBehaviour
     }
 
     public void TranslateRotatePlayerCube(string direction) {
-        playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().RequestRotation(direction);
+        playerCubePosition.transform.GetChild(0).GetComponent<TutorialRotateCube>().RequestRotation(direction);
     }
     public void TranslateRotateEnemyCube(string direction) {
-        enemyCubePosition.transform.GetChild(0).GetComponent<RotateCube>().RequestRotation(direction);
+        enemyCubePosition.transform.GetChild(0).GetComponent<TutorialRotateCube>().RequestRotation(direction);
     }
 
     public void CreateFloatingText(string text, Transform location, string type)
@@ -734,6 +735,11 @@ public class TutorialManagement : MonoBehaviour
 
     public void ReadyUp() {
         readies[0] = true;
+        readies[1] = true;
+
+        remainingTime = 0;
+        timeStopped = false;
+
         //infoSender.SendReady();
     }
 
@@ -755,8 +761,8 @@ public class TutorialManagement : MonoBehaviour
             playerActionList.GetComponent<TweenController>().slideXOver((Screen.width * 0.034f));
             enemyActionList.GetComponent<TweenController>().slideXOver((Screen.width * -0.034f));
 
-            playerActionList.GetComponent<ActionStorage>().ClearActionList();
-            enemyActionList.GetComponent<ActionStorage>().ClearActionList();
+            playerActionList.GetComponent<TutorialActionStorage>().ClearActionList();
+            enemyActionList.GetComponent<TutorialActionStorage>().ClearActionList();
             TurnOffTargetting();
         }
 
@@ -861,7 +867,7 @@ public class TutorialManagement : MonoBehaviour
         return components;
     }
     public void AddAction(string[] actionArray, int cost) {
-        playerActionList.GetComponent<ActionStorage>().StoreAction(actionArray);
+        playerActionList.GetComponent<TutorialActionStorage>().StoreAction(actionArray);
         AddActionPoints(-cost);
     }
 
@@ -1000,9 +1006,11 @@ public class TutorialManagement : MonoBehaviour
 
                         if (unit[2] == "tower") {
                             unitPrefab = Instantiate(Resources.Load<GameObject>("Themes/Tutorial/Units/Tower/Prefab"));
+                            enemyTowerCount++;
                         }
                         else { 
                             unitPrefab = Instantiate(Resources.Load<GameObject>("Themes/Tutorial/Units/1/Prefab"));
+                            enemyUnitCount++;
                         }
                         //GameObject unitPrefab = Instantiate(unitPrefab)
 

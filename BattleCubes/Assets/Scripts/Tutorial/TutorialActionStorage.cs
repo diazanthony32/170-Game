@@ -7,7 +7,7 @@ public class TutorialActionStorage : MonoBehaviour
 {
     [SerializeField] TutorialRotationByFinger rotationByFinger;
     [SerializeField] TutorialManagement gameManager;
-    [SerializeField] AttackHandler attackHandler;
+    [SerializeField] TutorialAttackHandler attackHandler;
     List<string[]> actionList = null;
     [Space(10)]
     [SerializeField] GameObject readyButtonHighlight = null;
@@ -92,7 +92,7 @@ public class TutorialActionStorage : MonoBehaviour
                     gameManager.AddActionPoints(3);
                 }
                 if (action == "attack") {
-                    UnitInformation unitInfo = attackHandler.GetAttackUnit("Host", actionList[index - 1][1]);
+                    TutorialUnitInformation unitInfo = attackHandler.GetAttackUnit("Host", actionList[index - 1][1]);
                     gameManager.AddActionPoints(unitInfo.attackCost);
                 }
 

@@ -33,6 +33,13 @@ public class TutorialChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 
 	Image attackIcon;
 
+	public GameObject attackChooserInfo;
+	public GameObject attackTargetInfo;
+	public GameObject attackTargetConfirm;
+
+	public GameObject preventClick;
+
+
 	string[] enemyCubeInfo;
 
 	public bool active = true;
@@ -249,28 +256,36 @@ public class TutorialChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 							attackHandler.attackArray = attackArray;
 							attackHandler.attackCost = unitInformation.attackCost;
 
-							ConfirmButton.interactable = true;
+							if (hitPlane.transform.parent.name == "TargettingPlanes2" && hitPlane.transform.name == "6") {
 
-							LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
-							highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
-							highlightConfirmButton.GetComponent<TweenController>().Pulse();
+								attackTargetInfo.transform.GetComponent<TweenController>().HideUI();
+
+								ConfirmButton.interactable = true;
+
+								LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
+								highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
+								highlightConfirmButton.GetComponent<TweenController>().Pulse();
+								attackTargetConfirm.GetComponent<TweenController>().PopInUI();
+								preventClick.SetActive(true);
+							}
+
 						}
-						else if (hitPlane.transform.parent.name == "GameObject")
-						{
-							HighlightInnerPlane(hitPlane.transform.parent.parent.name, hitPlane.transform.name);
+						//else if (hitPlane.transform.parent.name == "GameObject")
+						//{
+						//	HighlightInnerPlane(hitPlane.transform.parent.parent.name, hitPlane.transform.name);
 
-							selectedPlane = hitPlane.transform.gameObject;
-							attackArray = new string[] { "attack", unitInformation.attackName, hitPlane.transform.parent.parent.name, hitPlane.transform.name, "attackBack" };
+						//	selectedPlane = hitPlane.transform.gameObject;
+						//	attackArray = new string[] { "attack", unitInformation.attackName, hitPlane.transform.parent.parent.name, hitPlane.transform.name, "attackBack" };
 
-							attackHandler.attackArray = attackArray;
-							attackHandler.attackCost = unitInformation.attackCost;
+						//	attackHandler.attackArray = attackArray;
+						//	attackHandler.attackCost = unitInformation.attackCost;
 
-							ConfirmButton.interactable = true;
+						//	ConfirmButton.interactable = true;
 
-							LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
-							highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
-							highlightConfirmButton.GetComponent<TweenController>().Pulse();
-						}
+						//	LeanTween.alphaCanvas(highlightConfirmButton.GetComponent<CanvasGroup>(), 1f, 0.0f);
+						//	highlightConfirmButton.GetComponent<CanvasGroup>().interactable = true;
+						//	highlightConfirmButton.GetComponent<TweenController>().Pulse();
+						//}
 					}
 				}
 	        	
@@ -402,6 +417,10 @@ public class TutorialChooseAttackHandler : MonoBehaviour, IPointerDownHandler
             }
 
             tweenController.Highlight();
+
+			attackChooserInfo.SetActive(false);
+			attackTargetInfo.transform.GetComponent<TweenController>().PopInUI();
+
 			//LeanTween.alphaCanvas(transform.parent.GetComponent<CanvasGroup>(), 1f, 0.0f);
 			//transform.parent.GetComponent<CanvasGroup>().interactable = true;
 			isSelected = true;

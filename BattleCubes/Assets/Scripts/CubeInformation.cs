@@ -10,12 +10,13 @@ public class CubeInformation : MonoBehaviour {
     public GameObject explosion;
     bool startDissolve = false;
     float dissolveVal = 0.0f;
-    [SerializeField] float speed = 0.1f;
+    [SerializeField] float speed = 0.085f;
 
     //Impact effect
     bool impacted = false;
     float impactSpeed = 50f;
     float interval = 1;
+    bool negativeColor = true;
 
 
     private void Start() {
@@ -26,7 +27,7 @@ public class CubeInformation : MonoBehaviour {
     private void Update() {
         Dissolve();
 
-        //if (Input.GetMouseButtonUp(0)) { StartCoroutine(StartImpact()); }
+        if (Input.GetMouseButtonUp(0)) { StartCoroutine(StartImpact()); }
         ShowImpact();
     }
 
@@ -77,7 +78,15 @@ public class CubeInformation : MonoBehaviour {
             if (interval >= 1) {
                 interval = 0;
                 print("change color!!");
-                Color impactColor = Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1, 1);
+                Color impactColor;
+                if (negativeColor) {
+                    impactColor = Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1, 1);
+                    negativeColor = false;
+                }
+                else {
+                    impactColor = Color.black;
+                    negativeColor = true;
+                }
 
                 for (int i = 0; i < 6; i++) {
                     for (int j = 0; j < transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {

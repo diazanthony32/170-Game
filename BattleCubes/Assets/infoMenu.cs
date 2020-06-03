@@ -11,14 +11,15 @@ public class infoMenu : MonoBehaviour
     public static bool isPaused = false;
     public GameObject preventClick;
     public TutorialManagement tutorialManagement;
-
+    [Space(10)]
     public int rotateCount = 0;
     public TextMeshProUGUI rotateCountText;
     public GameObject rotateLearnButton;
     public GameObject towerLearnButton;
     public GameObject unitLearnButton;
-
     public GameObject tutorialFinishLearnButton;
+    [Space(10)]
+    public GameObject blackOut;
 
 
     bool rotateButtonActive = false;
@@ -283,6 +284,16 @@ public class infoMenu : MonoBehaviour
 
         //popUps[10].GetComponent<TweenController>().PopInUIInfo(this);
         preventClick.SetActive(false);
+        StartCoroutine(waitForEnemyCube());
+
+    }
+
+    IEnumerator waitForEnemyCube() { 
+        yield return new WaitForSeconds(4.5f);
+        tutorialManagement.timeStopped = true;
+        popUps[10].GetComponent<TweenController>().PopInUIInfo(this);
+        preventClick.SetActive(true);
+        blackOut.SetActive(true);
 
     }
 

@@ -147,8 +147,11 @@ public class InfoSender : MonoBehaviourPun {
         PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);
     }
 
-    public void SendGameOver(string content) {
+    public void SendGameOver(string info, string cube) {
         byte evCode = 20;
+
+        string[] content = new string[] {info, cube};
+
         RaiseEventOptions raiseEventOptions = new RaiseEventOptions { Receivers = ReceiverGroup.Others };
         SendOptions sendOptions = new SendOptions { Reliability = true };
         PhotonNetwork.RaiseEvent(evCode, content, raiseEventOptions, sendOptions);

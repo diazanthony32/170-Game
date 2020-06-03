@@ -12,7 +12,7 @@ public class CubeInformation : MonoBehaviour
     public GameObject explosion;
     bool startDissolve = false;
     float dissolveVal = 0.0f;
-    float speed = 0.1f;
+    [SerializeField] float speed = 0.1f;
 
     private void Start()
     {
@@ -50,17 +50,15 @@ public class CubeInformation : MonoBehaviour
 
 		}
 	}
-    public void SpawnCubeExplosion(string posTag) {
+    public void SpawnCubeExplosion() {
         if (explosion != null && !explode) {
             explode = true;
             //print("explode!!");
 
-            GameObject spawnPos = GameObject.FindGameObjectWithTag(posTag);
-
             GameObject explosionFX = Instantiate(explosion) as GameObject;
-            explosionFX.transform.position = spawnPos.transform.position + new Vector3(0, 0.55f, 0);
+            explosionFX.transform.position = transform.position + new Vector3(0, 0.55f, 0);
             explosionFX.transform.Rotate(new Vector3(0, 90, 0), Space.Self);
-            explosionFX.transform.SetParent(spawnPos.transform);
+            explosionFX.transform.SetParent(transform);
 
             Destroy(explosionFX, 10);
 
@@ -68,9 +66,14 @@ public class CubeInformation : MonoBehaviour
         }
     }
     IEnumerator WaitToDissolve() {
+        //yield return new WaitForSeconds(3.9f);
         yield return new WaitForSeconds(4);
         startDissolve = true;
+        for (int i = 0; i < transform.childCount - 1; i++) {
+            for (int j = 0; j < transform.GetChild(i).childCount; j++) {
+                transform.GetChild(i).GetChild(j).gameObject.SetActive(false);
+            }
+        }
     }
-    //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demons/Colors/" + PlayerPrefs.GetString("CubeColor") + "Body");
 }
 

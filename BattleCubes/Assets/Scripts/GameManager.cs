@@ -92,11 +92,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] Slider sfxSlider;
 
     //VFX
-    public GameObject explosion;
-    GameObject cube;
-    bool exploding = false;
-    bool startDissolve = false;
-    float dissolveVal = 0.0f;
+    //public GameObject explosion;
+    //GameObject cube;
+    //bool exploding = false;
+    //bool startDissolve = false;
+    //float dissolveVal = 0.0f;
 
     void Start() {
         cubeInfo = new string[] {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
@@ -139,9 +139,8 @@ public class GameManager : MonoBehaviour
 
         remainingTime = SET_UP_TIME;
 
-        cube = playerCubePosition.transform.GetChild(0).gameObject;
-        cube.GetComponent<CubeInformation>().SpawnCubeExplosion("PlayerCubePosition");
-        //SpawnCubeExplosion("PlayerCubePosition");
+        //cube = playerCubePosition.transform.GetChild(0).gameObject;
+        //cube.GetComponent<CubeInformation>().SpawnCubeExplosion();
     }
 
     void Update()
@@ -642,54 +641,57 @@ public class GameManager : MonoBehaviour
 
                 if(unitCount <= 0 || towerCount < 3){
                     GameEndPopUp("You Lose: All Units or Tower Destroyed");
-                    infoSender.SendGameOver("You Win!: Opponent Units or Tower Destroyed");
+                    infoSender.SendGameOver("You Win!: Opponent Units or Tower Destroyed", "player");
 
                     //SpawnCubeExplosion("PlayerCubePosition");
-
+                    ExplodeCube("player");
+                    //playerCubePosition.transform.GetChild(0).GetComponent<CubeInformation>().SpawnCubeExplosion();
                     // gameCanvas.transform.GetChild(1).GetChild(0).Find("GameOverText").GetComponent<TextMeshProUGUI>().text;
                 }
                 else if(enemyUnitCount <= 0 || enemyTowerCount < 3){
                     GameEndPopUp("You Win!: Opponent Units or Tower Destroyed");
-                    infoSender.SendGameOver("You Lose: All Units or Tower Destroyed");
+                    infoSender.SendGameOver("You Lose: All Units or Tower Destroyed", "enemy");
 
                     //SpawnCubeExplosion("EnemyCubePosition");
+                    ExplodeCube("enemy");
+                    //enemyCubePosition.transform.GetChild(0).GetComponent<CubeInformation>().SpawnCubeExplosion();
 
                 }
                 else if(roundCount >= 20){
                     if(unitCount > enemyUnitCount){
                         GameEndPopUp("You Win!: More units");
-                        infoSender.SendGameOver("You Lose: Less units");
+                        infoSender.SendGameOver("You Lose: Less units", "N/A");
                     }
                     else if(unitCount < enemyUnitCount){
                         GameEndPopUp("You Lose: Less units");
-                        infoSender.SendGameOver("You Win!: More units");
+                        infoSender.SendGameOver("You Win!: More units", "N/A");
                     }
                     else if(unitCount == enemyUnitCount){
                         GameEndPopUp("Game Tie");
-                        infoSender.SendGameOver("Game Tie");
+                        infoSender.SendGameOver("Game Tie", "N/A");
                     }
                     else{
                         GameEndPopUp("ERROR 1: Unknown game end condition");
-                        infoSender.SendGameOver("ERROR 1: Unknown game end condition");
+                        infoSender.SendGameOver("ERROR 1: Unknown game end condition", "N/A");
                     }
                 }
             }
             else{
                 if((unitCount <= 0 || towerCount < 3) && (enemyUnitCount <= 0 || enemyTowerCount < 3)){
                     GameEndPopUp("Both players did not finish setup in time...");
-                    infoSender.SendGameOver("Both players did not finish setup in time...");
+                    infoSender.SendGameOver("Both players did not finish setup in time...", "N/A");
                 }
                 else if(unitCount <= 0 || towerCount < 3){
                     GameEndPopUp("You did not finish setup in time...");
-                    infoSender.SendGameOver("Opponent did not finish setup in time...");
+                    infoSender.SendGameOver("Opponent did not finish setup in time...", "N/A");
                 }
                 else if(enemyUnitCount <= 0 || enemyTowerCount < 3){
                     GameEndPopUp("Opponent did not finish setup in time...");
-                    infoSender.SendGameOver("You did not finish setup in time...");
+                    infoSender.SendGameOver("You did not finish setup in time...", "N/A");
                 }
                 else{
                     GameEndPopUp("ERROR 2: Unknown game end condition");
-                    infoSender.SendGameOver("ERROR 2: Unknown game end condition");
+                    infoSender.SendGameOver("ERROR 2: Unknown game end condition", "N/A");
                 }
             }
 
@@ -1019,6 +1021,17 @@ public class GameManager : MonoBehaviour
     }
     public bool IsCubeTweening() {
         return LeanTween.isTweening(playerCubePosition.transform.GetChild(0).gameObject); 
+    }
+    public void ExplodeCube(string cube) {
+        if (cube == "player") {
+            playerCubePosition.transform.GetChild(0).GetComponent<CubeInformation>().SpawnCubeExplosion();
+        }
+        else if (cube == "enemy") {
+            enemyCubePosition.transform.GetChild(0).GetComponent<CubeInformation>().SpawnCubeExplosion();
+        }
+        else {
+            print("no cube to explode");
+        }
     }
 
     //void SpawnCubeExplosion(string posTag) {

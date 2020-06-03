@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
     //player points
     int roundsForPointIncrease = 5;
     int pointsPerRound = 3;
-    int actionPoints = 100;
+    int actionPoints = 0;
 
     //unit points
     public int totalUnitPoints = 12;

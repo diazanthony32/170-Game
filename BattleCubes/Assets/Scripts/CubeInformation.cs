@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeInformation : MonoBehaviour
-{
+public class CubeInformation : MonoBehaviour {
     public AudioClip[] cubeRotationSounds;
     AudioSource cubeAudioSource;
 
@@ -14,21 +13,23 @@ public class CubeInformation : MonoBehaviour
     float dissolveVal = 0.0f;
     [SerializeField] float speed = 0.1f;
 
-    private void Start()
-    {
-		cubeAudioSource = GetComponent<AudioSource>();
+    //Impact effect
+    bool impacted = false;
+    float impactSpeed = 50f;
+    float interval = 1;
+    //float sv = 1;
+
+
+    private void Start() {
+        cubeAudioSource = GetComponent<AudioSource>();
+        //SpawnCubeExplosion();
     }
 
     private void Update() {
-        if (startDissolve) {
-            for (int i = 0; i < 6; i++) {
-                dissolveVal += Time.deltaTime * speed;
-                for (int j = 0; j < transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
-                    transform.GetChild(i).GetComponent<MeshRenderer>().materials[0].SetFloat("_Fade", dissolveVal);
-                    transform.GetChild(i).GetComponent<MeshRenderer>().materials[1].SetFloat("_Fade", dissolveVal);
-                }
-            }
-        }
+        Dissolve();
+
+        //if (Input.GetMouseButtonUp(0)) { StartCoroutine(impactLenght()); }
+        ShowImpact();
     }
 
     public void PlayRandomRotateSound() {
@@ -36,20 +37,18 @@ public class CubeInformation : MonoBehaviour
         cubeAudioSource.PlayOneShot(cubeRotationSounds[rand]);
     }
 
-	public void ReColorCube(string player, string theme, string color)
-	{
+    public void ReColorCube(string player, string theme, string color) {
 
-		for (int i = 0; i < 6; i++)
-		{
-			//this.transform.GetChild(i).GetComponent<MeshRenderer>();
+        for (int i = 0; i < 6; i++) {
+            //this.transform.GetChild(i).GetComponent<MeshRenderer>();
 
-			for (int j = 0; j < this.transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
-				this.transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/"+ theme + "/Colors/" + color + "/CUBE"));
-				this.transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].shader = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/CUBE").shader;
-			}
+            for (int j = 0; j < this.transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
+                this.transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/CUBE"));
+                this.transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].shader = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/CUBE").shader;
+            }
 
-		}
-	}
+        }
+    }
     public void SpawnCubeExplosion() {
         if (explosion != null && !explode) {
             explode = true;
@@ -65,8 +64,33 @@ public class CubeInformation : MonoBehaviour
             StartCoroutine(WaitToDissolve());
         }
     }
+    void Dissolve() {
+        if (startDissolve) {
+            for (int i = 0; i < 6; i++) {
+                dissolveVal += Time.deltaTime * speed;
+                for (int j = 0; j < transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
+                    transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].SetFloat("_Fade", dissolveVal);
+                }
+            }
+        }
+    }
+    void ShowImpact() {
+        if (impacted) {
+            if (interval >= 1) {
+                interval = 0;
+                print("change color!!");
+                Color impactColor = Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1, 1);
+
+                for (int i = 0; i < 6; i++) {
+                    for (int j = 0; j < transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
+                        transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].SetColor("Color_774AE0F8", impactColor);
+                    }
+                }
+            }
+            interval += impactSpeed * Time.deltaTime;
+        }
+    }
     IEnumerator WaitToDissolve() {
-        //yield return new WaitForSeconds(3.9f);
         yield return new WaitForSeconds(4);
         startDissolve = true;
         for (int i = 0; i < transform.childCount - 1; i++) {
@@ -75,5 +99,18 @@ public class CubeInformation : MonoBehaviour
             }
         }
     }
+    IEnumerator impactLenght() {
+        impacted = true;
+        yield return new WaitForSeconds(0.35f);
+        impacted = false;
+
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
+                transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].SetColor("Color_774AE0F8", Color.black);
+            }
+        }
+        //sv = 1;
+    }
+
 }
 

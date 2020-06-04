@@ -434,7 +434,7 @@ public class UnitInformation : MonoBehaviour
         unitCurrentHealth -= damageAmount;
         gameManager.CreateFloatingText(("-" + damageAmount.ToString()), transform.parent, "attack");
 
-        StartCoroutine(transform.parent.parent.parent.GetComponent<CubeInformation>().StartImpact());
+        transform.parent.parent.parent.GetComponent<CubeInformation>().StartImpact();
         //audioSource.PlayOneShot(hitEnemySfx);
 
         Handheld.Vibrate();

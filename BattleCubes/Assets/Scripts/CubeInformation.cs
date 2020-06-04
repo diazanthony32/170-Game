@@ -13,21 +13,23 @@ public class CubeInformation : MonoBehaviour {
     [SerializeField] float speed = 0.085f;
 
     //Impact effect
+    Color originalColor;
     bool impacted = false;
-    float impactSpeed = 1f;
+    float impactSpeed = 10f;
     float interval = 1;
     bool negativeColor = true;
 
 
     private void Start() {
         cubeAudioSource = GetComponent<AudioSource>();
+        originalColor = transform.GetChild(0).GetComponent<MeshRenderer>().materials[0].GetColor("Color_76507EF6");
         //SpawnCubeExplosion();
     }
 
     private void Update() {
         Dissolve();
 
-        if (Input.GetMouseButtonUp(0)) { StartCoroutine(StartImpact()); }
+        //if (Input.GetMouseButtonUp(0)) { impacted = true; }
         ShowImpact();
     }
 
@@ -47,6 +49,7 @@ public class CubeInformation : MonoBehaviour {
             }
 
         }
+        originalColor = transform.GetChild(0).GetComponent<MeshRenderer>().materials[0].GetColor("Color_76507EF6");
     }
     public void SpawnCubeExplosion() {
         if (explosion != null && !explode) {
@@ -75,26 +78,33 @@ public class CubeInformation : MonoBehaviour {
     }
     void ShowImpact() {
         if (impacted) {
-            if (interval >= 1) {
-                interval = 0;
-                print("change color!!");
-                Color impactColor;
-                if (negativeColor) {
-                    impactColor = Color.HSVToRGB(Random.Range(0.0f, 1.0f), 1, 1);
-                    negativeColor = false;
-                }
-                else {
-                    impactColor = Color.black;
-                    negativeColor = true;
-                }
+            StartCoroutine(FlashCube());
+        }
+    }
+    IEnumerator FlashCube() {
+        impacted = false;
+        for (int i = 0; i < 6; i++) {
+            Color impactColor = originalColor;
+            if (negativeColor) {
+                impactColor *= 5;
+                negativeColor = false;
+            }
+            else {
+                impactColor = originalColor;
+                negativeColor = true;
+            }
 
-                for (int i = 0; i < 6; i++) {
-                    for (int j = 0; j < transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
-                        transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].SetColor("Color_774AE0F8", impactColor);
-                    }
+            for (int j = 0; j < 6; j++) {
+                for (int k = 0; k < transform.GetChild(j).GetComponent<MeshRenderer>().materials.Length; k++) {
+                    transform.GetChild(j).GetComponent<MeshRenderer>().materials[k].SetColor("Color_76507EF6", impactColor);
                 }
             }
-            interval += impactSpeed * Time.deltaTime;
+            yield return new WaitForSeconds(0.1f);
+        }
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
+                transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].SetColor("Color_76507EF6", originalColor);
+            }
         }
     }
     IEnumerator WaitToDissolve() {
@@ -106,16 +116,20 @@ public class CubeInformation : MonoBehaviour {
             }
         }
     }
-    public IEnumerator StartImpact() {
+    public void StartImpact() {
         impacted = true;
-        yield return new WaitForSeconds(0.35f);
-        impacted = false;
-
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
-                transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].SetColor("Color_774AE0F8", Color.black);
-            }
-        }
     }
+    //public IEnumerator StartImpact() {
+    //    impacted = true;
+    //    yield return new WaitForSeconds(0.35f);
+    //    //impacted = false;
+
+    //    for (int i = 0; i < 6; i++) {
+    //        for (int j = 0; j < transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
+    //            //transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].SetColor("Color_774AE0F8", Color.black);
+    //            transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].SetColor("Color_76507EF6", originalColor);
+    //        }
+    //    }
+    //}
 }
 

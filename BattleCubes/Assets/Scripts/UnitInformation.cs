@@ -207,7 +207,7 @@ public class UnitInformation : MonoBehaviour
 
 	}
 
-	public void TakeDamage(int damageAmount){
+	public void TakeDamage(int damageAmount, float impactDelay){
 		
 		if(isTower && !isVulnerable){
 			CheckIfVulnerable();
@@ -215,51 +215,7 @@ public class UnitInformation : MonoBehaviour
 		//CheckIfVulnerable();
 
 		if(isVulnerable){
-			
-			unitCurrentHealth -= damageAmount;
-			gameManager.CreateFloatingText(("-" + damageAmount.ToString()), transform.parent, "attack");
-
-            StartCoroutine(transform.parent.parent.parent.GetComponent<CubeInformation>().StartImpact());
-            //audioSource.PlayOneShot(hitEnemySfx);
-
-            Handheld.Vibrate();
-
-			// audioSource.PlayOneShot(unitBehavior.unitHitNoise);
-			if (unitCurrentHealth > 0){
-
-				if(unitHitNoise != null){
-
-					if (unitAudioSource)
-					{
-						//unitAudioSource.PlayOneShot(unitDeathNoise);
-						unitAudioSource.PlayOneShot(unitHitNoise);
-
-					}
-
-					//unitAudioSource.PlayOneShot(unitHitNoise);
-					//unitAnimator.SetTrigger("Hit");
-
-					//if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
-					//{
-						//Handheld.Vibrate();
-					//}
-				}
-
-				if (unitAnimator) {
-					unitAnimator.SetTrigger("hit");
-				}
-				
-			}
-			else if(unitCurrentHealth <= 0){
-
-				//if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
-				//{
-					//Handheld.Vibrate();
-				//}
-
-				StartCoroutine(Die());
-			}
-
+            StartCoroutine(DelayImpact(damageAmount, impactDelay));
 		}
 		else if(!isVulnerable && isTower){
 
@@ -472,8 +428,54 @@ public class UnitInformation : MonoBehaviour
 		}
 
 	}
+    IEnumerator DelayImpact(int damageAmount, float impactDelay) {
+        yield return new WaitForSeconds(impactDelay);
 
-	public void ReColorUnit(string player , string theme, string color) 
+        unitCurrentHealth -= damageAmount;
+        gameManager.CreateFloatingText(("-" + damageAmount.ToString()), transform.parent, "attack");
+
+        StartCoroutine(transform.parent.parent.parent.GetComponent<CubeInformation>().StartImpact());
+        //audioSource.PlayOneShot(hitEnemySfx);
+
+        Handheld.Vibrate();
+
+        // audioSource.PlayOneShot(unitBehavior.unitHitNoise);
+        if (unitCurrentHealth > 0) {
+
+            if (unitHitNoise != null) {
+
+                if (unitAudioSource) {
+                    //unitAudioSource.PlayOneShot(unitDeathNoise);
+                    unitAudioSource.PlayOneShot(unitHitNoise);
+
+                }
+
+                //unitAudioSource.PlayOneShot(unitHitNoise);
+                //unitAnimator.SetTrigger("Hit");
+
+                //if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+                //{
+                //Handheld.Vibrate();
+                //}
+            }
+
+            if (unitAnimator) {
+                unitAnimator.SetTrigger("hit");
+            }
+
+        }
+        else if (unitCurrentHealth <= 0) {
+
+            //if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+            //{
+            //Handheld.Vibrate();
+            //}
+
+            StartCoroutine(Die());
+        }
+    }
+
+    public void ReColorUnit(string player , string theme, string color) 
 	{
 		
 

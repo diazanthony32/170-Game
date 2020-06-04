@@ -92,6 +92,7 @@ public class AttackHandler : MonoBehaviour
             if (unitInfo.targetSystem == "SingleAttack")
             {
                 GameObject attackedPlane;
+                float impactDelay = 0;
 
                 if (array.Length == 5)
                 {
@@ -108,6 +109,8 @@ public class AttackHandler : MonoBehaviour
                     particle.transform.position = attackedPlane.transform.position;
                     particle.transform.rotation = attackedPlane.transform.rotation;
                     particle.transform.SetParent(attackedPlane.transform);
+
+                    impactDelay = particle.transform.GetChild(0).GetComponent<ParticleSystem>().main.duration;
                     Destroy(particle, 5f);
                 }
 
@@ -115,10 +118,10 @@ public class AttackHandler : MonoBehaviour
                 {
                     print("You hit a Unit: " + attackedPlane.transform.GetChild(0).name);
                     UnitInformation hitUnitInfo = attackedPlane.transform.GetChild(0).GetComponent<UnitInformation>();
-                    
-                    //yield return new WaitForSeconds(0.5f);
 
-                    hitUnitInfo.TakeDamage(unitInfo.attackDmg);
+                    //yield return new WaitForSeconds(0.5f);
+                    print("ImpactDelay: " + impactDelay);
+                    hitUnitInfo.TakeDamage(unitInfo.attackDmg, impactDelay);
                 }
                 else
                 {
@@ -140,13 +143,16 @@ public class AttackHandler : MonoBehaviour
 
                 for (int i = 0; i < 4; i++)
                 {
-                    //print("Back particle?: " + attackedPlanes[i].name);
+                    float impactDelay = 0;
+                    
                     if (unitInfo.AttackParticle != null)
                     {
                         GameObject particle = Instantiate(unitInfo.AttackParticle);
                         particle.transform.position = attackedPlanes[i].transform.position;
                         particle.transform.rotation = attackedPlanes[i].transform.rotation;
                         particle.transform.SetParent(attackedPlanes[i].transform);
+
+                        impactDelay = particle.transform.GetChild(0).GetComponent<ParticleSystem>().main.duration;
                         Destroy(particle, 5f);
                     }
 
@@ -157,7 +163,9 @@ public class AttackHandler : MonoBehaviour
 
                         //yield return new WaitForSeconds(0.5f);
 
-                        hitUnitInfo.TakeDamage(unitInfo.attackDmg);
+                        print("ImpactDelay: " + impactDelay);
+
+                        hitUnitInfo.TakeDamage(unitInfo.attackDmg, impactDelay);
                     }
                     else
                     {

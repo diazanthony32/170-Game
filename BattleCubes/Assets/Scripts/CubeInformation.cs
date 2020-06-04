@@ -14,7 +14,7 @@ public class CubeInformation : MonoBehaviour {
 
     //Impact effect
     bool impacted = false;
-    float impactSpeed = 50f;
+    float impactSpeed = 1f;
     float interval = 1;
     bool negativeColor = true;
 
@@ -27,7 +27,7 @@ public class CubeInformation : MonoBehaviour {
     private void Update() {
         Dissolve();
 
-        //if (Input.GetMouseButtonUp(0)) { StartCoroutine(StartImpact()); }
+        if (Input.GetMouseButtonUp(0)) { StartCoroutine(StartImpact()); }
         ShowImpact();
     }
 

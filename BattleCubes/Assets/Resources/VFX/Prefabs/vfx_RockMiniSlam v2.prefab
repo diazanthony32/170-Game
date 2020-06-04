@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8740983605922238725}
   - component: {fileID: 5142465359212765629}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143680129304459796}
   serializedVersion: 6
-  lengthInSec: 1
+  lengthInSec: 1.3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4717,8 +4717,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: fc753c71489cd114d8935760e10f150f, type: 2}
+  - {fileID: 2100000, guid: fc753c71489cd114d8935760e10f150f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

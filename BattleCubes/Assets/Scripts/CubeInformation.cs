@@ -15,8 +15,6 @@ public class CubeInformation : MonoBehaviour {
     //Impact effect
     Color originalColor;
     bool impacted = false;
-    float impactSpeed = 10f;
-    float interval = 1;
     bool negativeColor = true;
 
 
@@ -86,7 +84,7 @@ public class CubeInformation : MonoBehaviour {
         for (int i = 0; i < 6; i++) {
             Color impactColor = originalColor;
             if (negativeColor) {
-                impactColor *= 5;
+                impactColor *= 10;
                 negativeColor = false;
             }
             else {

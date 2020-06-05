@@ -59,6 +59,7 @@ public class UnitInformation : MonoBehaviour
 	public GameObject AttackParticle = null;
     public bool shakeScreen = false;
     public GameObject SpawnParticle = null;
+    public GameObject shieldParticle = null;
 
     //this gets the render of the prefab its attached to
     public Renderer unitRenderer;
@@ -480,11 +481,9 @@ public class UnitInformation : MonoBehaviour
     
     private void OnDestroy() {
         if (!isTower) {
-            print("Im Destroyed!!");
             if (gameManager) {
                 gameManager.UpdateShields();
             }
-            //CheckVulnerability(FindTowers());
         }
     }
 

@@ -422,6 +422,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1003163708}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &497022361 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+    type: 3}
+  m_PrefabInstance: {fileID: 6135092245438194635}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &563393006
 GameObject:
   m_ObjectHideFlags: 0
@@ -15581,6 +15587,7 @@ Transform:
   - {fileID: 1551606958}
   - {fileID: 1980057320}
   - {fileID: 44615147}
+  - {fileID: 497022361}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15756,7 +15763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1380811103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20810,7 +20817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1873522803
 Transform:
   m_ObjectHideFlags: 0
@@ -22804,6 +22811,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: vfx_dps
+      objectReference: {fileID: 0}
+    - target: {fileID: 536509907089205079, guid: 9eaeceeed4ebd7843b1ab40400f81a43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eaeceeed4ebd7843b1ab40400f81a43, type: 3}
@@ -26428,6 +26440,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: vfx_cubeBoom
       objectReference: {fileID: 0}
+    - target: {fileID: 1853059847514176373, guid: e2bf6dae7e76541478d991d584cd5f13,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1853059847514176374, guid: e2bf6dae7e76541478d991d584cd5f13,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26906,6 +26923,7 @@ MonoBehaviour:
   shakeScreen: 0
   SpawnParticle: {fileID: 3898048054394430833, guid: b6f0703dfee11dd4686e3ac4c65bc6f5,
     type: 3}
+  shieldParticle: {fileID: 0}
   unitRenderer: {fileID: 3407341301247160497}
   isTower: 0
   isVulnerable: 1
@@ -32626,6 +32644,7 @@ MonoBehaviour:
   shakeScreen: 0
   SpawnParticle: {fileID: 3898048054394430833, guid: b6f0703dfee11dd4686e3ac4c65bc6f5,
     type: 3}
+  shieldParticle: {fileID: 0}
   unitRenderer: {fileID: 1139592379195452551}
   isTower: 0
   isVulnerable: 1
@@ -33242,7 +33261,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &4281960307874428680
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38464,6 +38483,95 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4598491680509456744}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &6135092245438194635
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1091262264}
+    m_Modifications:
+    - target: {fileID: 6135092245109445433, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245109445433, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5774515
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245109445433, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.25098038
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245109445433, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624146, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135092245881624147, guid: 377d036e4f48f6e429a9bcdecbd6f630,
+        type: 3}
+      propertyPath: m_Name
+      value: vfx_ShieldRegeneration
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 377d036e4f48f6e429a9bcdecbd6f630, type: 3}
 --- !u!1 &6137729511073958777
 GameObject:
   m_ObjectHideFlags: 0
@@ -43344,6 +43452,7 @@ MonoBehaviour:
   shakeScreen: 0
   SpawnParticle: {fileID: 3898048054394430833, guid: b6f0703dfee11dd4686e3ac4c65bc6f5,
     type: 3}
+  shieldParticle: {fileID: 0}
   unitRenderer: {fileID: 6959649971476661825}
   isTower: 0
   isVulnerable: 1
@@ -44890,6 +44999,7 @@ MonoBehaviour:
   AttackParticle: {fileID: 0}
   shakeScreen: 0
   SpawnParticle: {fileID: 0}
+  shieldParticle: {fileID: 0}
   unitRenderer: {fileID: 4525348375221242109}
   isTower: 1
   isVulnerable: 1
@@ -46839,6 +46949,7 @@ MonoBehaviour:
   shakeScreen: 0
   SpawnParticle: {fileID: 3898048054394430833, guid: b6f0703dfee11dd4686e3ac4c65bc6f5,
     type: 3}
+  shieldParticle: {fileID: 0}
   unitRenderer: {fileID: 0}
   isTower: 0
   isVulnerable: 1
@@ -46876,6 +46987,7 @@ MonoBehaviour:
   shakeScreen: 0
   SpawnParticle: {fileID: 3898048054394430833, guid: b6f0703dfee11dd4686e3ac4c65bc6f5,
     type: 3}
+  shieldParticle: {fileID: 0}
   unitRenderer: {fileID: 7975618640335169210}
   isTower: 0
   isVulnerable: 1
@@ -46912,6 +47024,7 @@ MonoBehaviour:
   shakeScreen: 0
   SpawnParticle: {fileID: 3898048054394430833, guid: b6f0703dfee11dd4686e3ac4c65bc6f5,
     type: 3}
+  shieldParticle: {fileID: 0}
   unitRenderer: {fileID: 3917325400152031295}
   isTower: 0
   isVulnerable: 1

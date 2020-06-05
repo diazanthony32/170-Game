@@ -61,6 +61,7 @@ public class UnitInformation : MonoBehaviour
     public GameObject SpawnParticle = null;
     public GameObject shieldParticle = null;
     public GameObject shieldBustParticle = null;
+    public GameObject deathParticle = null;
 
     //this gets the render of the prefab its attached to
     public Renderer unitRenderer;

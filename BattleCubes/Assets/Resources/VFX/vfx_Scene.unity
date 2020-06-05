@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -26926,6 +26926,7 @@ MonoBehaviour:
     type: 3}
   shieldParticle: {fileID: 0}
   shieldBustParticle: {fileID: 0}
+  deathParticle: {fileID: 0}
   unitRenderer: {fileID: 3407341301247160497}
   isTower: 0
   isVulnerable: 1
@@ -32648,6 +32649,7 @@ MonoBehaviour:
     type: 3}
   shieldParticle: {fileID: 0}
   shieldBustParticle: {fileID: 0}
+  deathParticle: {fileID: 0}
   unitRenderer: {fileID: 1139592379195452551}
   isTower: 0
   isVulnerable: 1
@@ -38943,6 +38945,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: vfx_Tower_shatter
       objectReference: {fileID: 0}
+    - target: {fileID: 6193567169677225191, guid: e2c7203b2409ecd4c946ec8920243891,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2c7203b2409ecd4c946ec8920243891, type: 3}
 --- !u!1 &6194461691719412554
@@ -43511,6 +43518,7 @@ MonoBehaviour:
     type: 3}
   shieldParticle: {fileID: 0}
   shieldBustParticle: {fileID: 0}
+  deathParticle: {fileID: 0}
   unitRenderer: {fileID: 6959649971476661825}
   isTower: 0
   isVulnerable: 1
@@ -45059,6 +45067,7 @@ MonoBehaviour:
   SpawnParticle: {fileID: 0}
   shieldParticle: {fileID: 0}
   shieldBustParticle: {fileID: 0}
+  deathParticle: {fileID: 0}
   unitRenderer: {fileID: 4525348375221242109}
   isTower: 1
   isVulnerable: 1
@@ -47016,6 +47025,7 @@ MonoBehaviour:
     type: 3}
   shieldParticle: {fileID: 0}
   shieldBustParticle: {fileID: 0}
+  deathParticle: {fileID: 0}
   unitRenderer: {fileID: 0}
   isTower: 0
   isVulnerable: 1
@@ -47055,6 +47065,7 @@ MonoBehaviour:
     type: 3}
   shieldParticle: {fileID: 0}
   shieldBustParticle: {fileID: 0}
+  deathParticle: {fileID: 0}
   unitRenderer: {fileID: 7975618640335169210}
   isTower: 0
   isVulnerable: 1
@@ -47093,6 +47104,7 @@ MonoBehaviour:
     type: 3}
   shieldParticle: {fileID: 0}
   shieldBustParticle: {fileID: 0}
+  deathParticle: {fileID: 0}
   unitRenderer: {fileID: 3917325400152031295}
   isTower: 0
   isVulnerable: 1

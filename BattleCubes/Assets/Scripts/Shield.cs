@@ -49,6 +49,26 @@ public class Shield : MonoBehaviour
 
             if (unitInfo.CheckIfVulnerable()) {
                 if (shieldOn) {
+                    //Get the particle system main, because other wise unity wont let u change it directly
+                    GameObject particle = Instantiate(unitInfo.shieldBustParticle);
+
+                    for (int i = 0; i < particle.transform.GetChild(0).childCount; i++) {
+                        ParticleSystem ps = particle.transform.GetChild(0).GetChild(i).GetComponent<ParticleSystem>();
+                        ParticleSystem.MainModule main = ps.main;
+
+                        //Get color and transform it to HSV to adjust its saturation
+                        tmpColor = unitInfo.unitRenderer.materials[0].GetColor("Color_EC96F719");
+                        Color.RGBToHSV(tmpColor, out float h, out float s, out float v);
+                        tmpColor = Color.HSVToRGB(Mathf.Min(h, 1), Mathf.Min(s, 0.75f), Mathf.Min(v, 1));
+                        main.startColor = tmpColor;
+                    } 
+
+                    //Positioning the particle system
+                    particle.transform.position = transform.position;
+                    particle.transform.rotation = transform.rotation;
+                    particle.transform.SetParent(transform);
+                    Destroy(particle, 1.1f);
+
                     unitInfo.unitRenderer.materials[0].SetColor("Color_E68DA174", Color.black);
 
                     shieldOn = false;

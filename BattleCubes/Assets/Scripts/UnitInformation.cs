@@ -60,6 +60,7 @@ public class UnitInformation : MonoBehaviour
     public bool shakeScreen = false;
     public GameObject SpawnParticle = null;
     public GameObject shieldParticle = null;
+    public GameObject shieldBustParticle = null;
 
     //this gets the render of the prefab its attached to
     public Renderer unitRenderer;

@@ -260,6 +260,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
             yield return new WaitForSeconds(0.25f);
+            UpdateShields();
             enemyCubePosition.GetComponent<TweenController>().slideEnemyUp();
             
             yield return new WaitForSeconds(3.0f);

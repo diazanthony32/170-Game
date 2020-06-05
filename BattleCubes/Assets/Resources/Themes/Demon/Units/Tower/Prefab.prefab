@@ -198,6 +198,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6135092245881624147, guid: 377d036e4f48f6e429a9bcdecbd6f630,
         type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: shieldBustParticle
+      value: 
+      objectReference: {fileID: 4191056240143293145, guid: 338ae65c099b50d4192d049c589b3184,
+        type: 3}
     - target: {fileID: 7594360421447855703, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_Layer

@@ -35,6 +35,12 @@ public class Shield : MonoBehaviour
     //public void CheckVulnerable() {
 
     //}
+    public void ChangeMaterial() {
+        if (shieldOn) {
+            shieldOn = false;
+            StartCoroutine(CheckVulnerability());
+        }
+    }
     public IEnumerator CheckVulnerability() {
         yield return new WaitForSeconds(0.1f);
 
@@ -84,7 +90,5 @@ public class Shield : MonoBehaviour
         else {
             print("Unit info script not found");
         }
-
-        
     }
 }

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonInfo : MonoBehaviour
-{
+public class ButtonInfo : MonoBehaviour {
     [SerializeField] RotationByFinger swiperPannel;
     public string CubeTheme;
     public string CubeColor;
@@ -26,32 +25,32 @@ public class ButtonInfo : MonoBehaviour
         //swiperPannel.ChangeCube(cube);
     }
 
-    public void Recolor()
-    {
+    public void Recolor() {
         GameObject playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
 
         Transform playerCubeTransform = playerCubePosition.transform.GetChild(0);
 
         CubeInformation cubeInformation = playerCubeTransform.GetComponent<CubeInformation>();
-       
-        for (int x = 0; x < playerCubeTransform.childCount; x++)
-        {
-            for (int i = 0; i < playerCubeTransform.GetChild(x).childCount; i++)
-            {
+
+        for (int x = 0; x < playerCubeTransform.childCount; x++) {
+            for (int i = 0; i < playerCubeTransform.GetChild(x).childCount; i++) {
                 //int randomIndex = Random.Range(0, 8);
 
-                if (playerCubeTransform.GetChild(x).GetChild(i).tag == "unitSquare" && playerCubeTransform.GetChild(x).GetChild(i).childCount > 0)
-                {
+                if (playerCubeTransform.GetChild(x).GetChild(i).tag == "unitSquare" && playerCubeTransform.GetChild(x).GetChild(i).childCount > 0) {
                     for (int k = 0; k < playerCubeTransform.GetChild(x).GetChild(i).childCount; k++) {
-                    UnitInformation unitInformation = playerCubeTransform.GetChild(x).GetChild(i).GetChild(k).GetComponent<UnitInformation>();
-                    unitInformation.ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
+                        UnitInformation unitInformation = playerCubeTransform.GetChild(x).GetChild(i).GetChild(k).GetComponent<UnitInformation>();
+                        unitInformation.ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
+
+                        if (unitInformation.isTower) {
+                            //print("Tower Found");
+                            unitInformation.GetComponent<Shield>().ChangeMaterial();
+                        }
+                    }
                 }
-            }
             }
 
         }
 
         cubeInformation.ReColorCube("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
-
     }
 }

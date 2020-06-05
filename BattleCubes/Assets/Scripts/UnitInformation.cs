@@ -395,9 +395,19 @@ public class UnitInformation : MonoBehaviour
 			unitAnimator.SetTrigger("death");
 		}
 
-		//unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
-		//unitBehavior.unitAnimator.SetTrigger("Death");
-		//print("Im dead :(");
+        //unitBehavior.unitAudioSource.PlayOneShot(unitBehavior.unitDeathNoise);
+        //unitBehavior.unitAnimator.SetTrigger("Death");
+        //print("Im dead :(");
+        yield return new WaitForSeconds(0.3f);
+
+        if (deathParticle) {
+            GameObject particle = Instantiate(deathParticle);
+            particle.transform.position = transform.position;
+            particle.transform.rotation = transform.rotation;
+            particle.transform.SetParent(transform);
+
+            Destroy(particle, 5f);
+        }
 
 		yield return new WaitForSeconds(1.5f);
 		//print(transform.parent.parent.parent.parent.gameObject.tag);

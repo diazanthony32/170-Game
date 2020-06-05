@@ -264,6 +264,9 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 						unit.transform.position = hitPlane.transform.position;
 						unit.transform.rotation = hitPlane.transform.rotation;
 
+                        //CheckVulnerability(FindTowers());
+                        gameManager.UpdateShields();
+
 						var rand = Random.Range(0, 4);
 
 						//unit.transform.Translate(0.0f, 0.0f, 0.0f);
@@ -309,7 +312,7 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 							{
 								for(int x = 0 ; x < plane.gameObject.transform.childCount ; x++ ){
 
-									if((plane.transform.GetChild(x).gameObject.GetComponent<UnitInformation>().isTower)){
+									if((plane.transform.GetChild(x).gameObject.GetComponent<UnitInformation>()) && (plane.transform.GetChild(x).gameObject.GetComponent<UnitInformation>().isTower)) {
 										safeToPlace = false;
 									}
 
@@ -337,7 +340,19 @@ public class DragNDropHandler : MonoBehaviour, IDragHandler , IBeginDragHandler,
 
 							unit.GetComponent<UnitInformation>().ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
 
-							gameManager.AddTowerCount(1);
+                            if (unitInformation.SpawnParticle != null) {
+                                GameObject particle = Instantiate(unitInformation.SpawnParticle);
+                                particle.transform.position = hitPlane.transform.position;
+                                particle.transform.rotation = hitPlane.transform.rotation;
+                                particle.transform.SetParent(hitPlane.transform);
+
+                                Destroy(particle, 2.1f);
+                            }
+                            else {
+                                print("No spawn Effect!!");
+                            }
+
+                            gameManager.AddTowerCount(1);
 
 							infoSender.SendUnitPlacement(new string[]{unitInformation.folder, hitPlane.transform.parent.name, hitPlane.transform.name});
 

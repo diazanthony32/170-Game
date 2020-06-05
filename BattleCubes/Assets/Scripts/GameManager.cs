@@ -1034,24 +1034,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //void SpawnCubeExplosion(string posTag) {
+    public void UpdateShields() {
+        CheckVulnerability(FindTowers());
+    }
 
-    //    if (explosion != null && !exploding) {
-    //        exploding = true;
-    //        //print("explode!!");
+    public List<GameObject> FindTowers() {
+        GameObject[] units = GameObject.FindGameObjectsWithTag("unit");
+        List<GameObject> towers = new List<GameObject>();
 
-    //        GameObject spawnPos = GameObject.FindGameObjectWithTag(posTag);
+        foreach (GameObject i in units) {
+            if (i.GetComponent<UnitInformation>().isTower) {
+                towers.Add(i);
+            }
+        }
 
-    //        GameObject explosionFX = Instantiate(explosion) as GameObject;
-    //        explosionFX.transform.position = spawnPos.transform.position + new Vector3(0, 0.55f, 0);
-    //        explosionFX.transform.Rotate(new Vector3(0, 90, 0), Space.Self);
-    //        explosionFX.transform.SetParent(spawnPos.transform);
+        return towers;
+    }
+    public void CheckVulnerability(List<GameObject> towers) {
 
-    //        Destroy(explosionFX, 10);
-
-    //        StartCoroutine(WaitToDissolve());
-    //    }
-    //}
+        if (towers.Count > 0) {
+            foreach (GameObject i in towers) {
+                StartCoroutine(i.GetComponent<Shield>().CheckVulnerability());
+            }
+        }
+    }
 
     //get
     public GameObject GetEnemyCanvas() {

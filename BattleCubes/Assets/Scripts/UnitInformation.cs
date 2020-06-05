@@ -61,7 +61,7 @@ public class UnitInformation : MonoBehaviour
     public GameObject SpawnParticle = null;
 
     //this gets the render of the prefab its attached to
-    [SerializeField] Renderer unitRenderer;
+    public Renderer unitRenderer;
 
 	AudioSource unitAudioSource;
 	Animator unitAnimator;
@@ -77,7 +77,7 @@ public class UnitInformation : MonoBehaviour
 
 	// sends info to other player
 	public bool isTower = false;
-	bool isVulnerable = true;
+	public bool isVulnerable = true;
 
 	GameObject parentPlane;
 
@@ -163,7 +163,9 @@ public class UnitInformation : MonoBehaviour
 						if(gameManager.GetState() == gameManager.SETUP && !gameManager.readies[0]){
 							Destroy(gameObject);
 							infoSender.RemoveUnitPlacement(new string[] {gameObject.transform.parent.parent.name, gameObject.transform.parent.name});
-							//gameManager.remainingUnitPoints += unitSpawnCost;
+							
+
+                            //gameManager.remainingUnitPoints += unitSpawnCost;
 							gameManager.AddUnitPoints(unitSpawnCost);
 
 							if (isTower){
@@ -171,7 +173,7 @@ public class UnitInformation : MonoBehaviour
 							}
 							else if(!isTower){
 								gameManager.AddUnitCount(-1);
-							}
+                            }
 						}
 
 						//print("can attack");
@@ -230,7 +232,7 @@ public class UnitInformation : MonoBehaviour
 
 	}
 
-	void CheckIfVulnerable(){
+	public bool CheckIfVulnerable(){
 		bool safe = false;
 
 		for(int i = 0; i < transform.parent.parent.childCount; i++) {
@@ -257,6 +259,7 @@ public class UnitInformation : MonoBehaviour
 		if(!safe){
 			isVulnerable = true;
 		}
+        return isVulnerable;
 	}
 
 	// runs when the player clicks an attack to do
@@ -426,8 +429,8 @@ public class UnitInformation : MonoBehaviour
 
 			}
 		}
-
-	}
+        gameManager.UpdateShields();
+    }
     IEnumerator DelayImpact(int damageAmount, float impactDelay) {
         yield return new WaitForSeconds(impactDelay);
 
@@ -472,6 +475,16 @@ public class UnitInformation : MonoBehaviour
             //}
 
             StartCoroutine(Die());
+        }
+    }
+    
+    private void OnDestroy() {
+        if (!isTower) {
+            print("Im Destroyed!!");
+            if (gameManager) {
+                gameManager.UpdateShields();
+            }
+            //CheckVulnerability(FindTowers());
         }
     }
 

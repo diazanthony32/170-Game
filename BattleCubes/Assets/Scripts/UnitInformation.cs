@@ -64,7 +64,7 @@ public class UnitInformation : MonoBehaviour
     [SerializeField] Renderer unitRenderer;
 
 	AudioSource unitAudioSource;
-	Animator unitAnimator;
+	public Animator unitAnimator;
 	Image unitHealthBar;
 
 	//-------
@@ -426,7 +426,7 @@ public class UnitInformation : MonoBehaviour
 		}
 	}
 
-	IEnumerator Die() {
+	public IEnumerator Die() {
 
 		if (unitAudioSource)
 		{

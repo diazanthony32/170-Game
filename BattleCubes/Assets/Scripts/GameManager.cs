@@ -118,7 +118,8 @@ public class GameManager : MonoBehaviour
         playerCanvas.transform.Find("PlayerUnitCounter").Find("Count").gameObject.GetComponent<TextMeshProUGUI>().text = unitCount.ToString();
 
         SpawnPlayerCube(cubeInfo);
-        infoSender.SendCubeInfo(cubeInfo);
+        SpawnEnemyCube(new string[] { "Demon", "Blue"});
+
 
         setupCanvas.transform.Find("swiperPannel").gameObject.GetComponent<RotationByFinger>().SetRotAllowed(true);
 
@@ -795,14 +796,15 @@ public class GameManager : MonoBehaviour
     public void SpawnEnemyCube(string[] cubeInfo) {
         enemyCubePosition = GameObject.FindGameObjectWithTag("EnemyCubePosition");
         enemyCubeInfo = cubeInfo;
+        //PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")
 
-        GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/" + cubeInfo[0] + "/Cube/Prefab"));
+        GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Cube/Prefab"));
         cube.transform.position = enemyCubePosition.transform.position;
         cube.transform.rotation = enemyCubePosition.transform.rotation;
         cube.transform.SetParent(enemyCubePosition.transform);
 
         CubeInformation cubeInformation = cube.GetComponent<CubeInformation>();
-        cubeInformation.ReColorCube("Enemy", cubeInfo[0], cubeInfo[1]);
+        cubeInformation.ReColorCube("Enemy", PlayerPrefs.GetString("CubeTheme"), "Blue");
 
         SpawnCubeTargetingSystem("EnemyCubePosition");
         SpawnAttackChecker("EnemyCubePosition");

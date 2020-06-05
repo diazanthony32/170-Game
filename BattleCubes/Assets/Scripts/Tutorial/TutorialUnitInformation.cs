@@ -368,7 +368,7 @@ public class TutorialUnitInformation : MonoBehaviour
 					//print("can attack");
 					for (int i = 0; i < tutorialManager.attackList.Count; i++)
 					{
-						print(tutorialManager.attackList[i][0]+":"+ tutorialManager.attackList[i][1]);
+						//print(tutorialManager.attackList[i][0]+":"+ tutorialManager.attackList[i][1]);
 
 						if (tutorialManager.attackList[i][0] == attackName)
 						{

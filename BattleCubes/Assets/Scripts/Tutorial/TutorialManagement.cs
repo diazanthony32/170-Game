@@ -88,6 +88,12 @@ public class TutorialManagement : MonoBehaviour
     int tmpTime;
     bool tmpTimeChange = false;
 
+    public bool paused = false;
+    public int popUp = 0;
+
+    public GameObject[] popUps;
+
+
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
@@ -231,6 +237,14 @@ public class TutorialManagement : MonoBehaviour
 
     }
 
+    public void SetPopUp(int i) {
+        popUp = i;
+    }
+    public void SetPause(bool i)
+    {
+        paused = i;
+    }
+
     public IEnumerator GetOutOfSetUp() {
         print("getting out of setup");
 
@@ -257,7 +271,7 @@ public class TutorialManagement : MonoBehaviour
             
             yield return new WaitForSeconds(3.0f);
             //infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
-            
+
             //mainScreenCanvas.SetActive(true);
 
             //remainingTime = ROUND_TIME;
@@ -265,8 +279,8 @@ public class TutorialManagement : MonoBehaviour
 
             //roundCount++;
             //roundCountText.text = ConvertNumToText(roundCount);
-
-            ResetRound();
+            StartCoroutine(ResetRound());
+            //ResetRound();
             preventClick.SetActive(false);
         }
 
@@ -331,8 +345,20 @@ public class TutorialManagement : MonoBehaviour
         playerActionList.GetComponent<TweenController>().slideXOver((Screen.width * -0.034f));
         enemyActionList.GetComponent<TweenController>().slideXOver((Screen.width * 0.034f));
 
+        paused = true;
+        print(popUp + " : " + paused);
+
+        if (popUp == 0) {
+            popUps[0].GetComponent<TweenController>().PopInUI();
+        }
+
+        while (paused && popUp == 0)
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
+
         //if () {
-            StartCoroutine(DoThrowdown());
+        StartCoroutine(DoThrowdown());
         //}
     }
     
@@ -562,7 +588,8 @@ public class TutorialManagement : MonoBehaviour
 
             //mainScreenCanvas.SetActive(true);
 
-            ResetRound();
+            StartCoroutine(ResetRound());
+
             //infoSender.SendResetRound();
         }
 
@@ -743,7 +770,7 @@ public class TutorialManagement : MonoBehaviour
         //infoSender.SendReady();
     }
 
-    public void ResetRound() {
+    public IEnumerator ResetRound() {
         readies[0] = false;
         readies[1] = false;
 
@@ -767,10 +794,11 @@ public class TutorialManagement : MonoBehaviour
         }
 
         remainingTime = ROUND_TIME;
-        timeStopped = false;
+        
 
         roundCount++;
         roundCountText.text = ConvertNumToText(roundCount);
+        remainingTimeText.text = ROUND_TIME.ToString();
 
         int extraPoints = ((roundCount - (roundCount % roundsForPointIncrease)) / roundsForPointIncrease);
         print("Extra points: " + extraPoints);
@@ -782,6 +810,22 @@ public class TutorialManagement : MonoBehaviour
         preventClick.SetActive(false);
 
         state = PLAN;
+        timeStopped = true;
+
+        //paused = true;
+        //print(popUp + " : " + paused);
+
+        if (popUp == 1)
+        {
+            popUps[1].GetComponent<TweenController>().PopInUI();
+        }
+
+        //while (paused && popUp == 1)
+        //{
+        //    yield return new WaitForSeconds(0.2f);
+        //}
+        yield return new WaitForSeconds(0.0f);
+
     }
 
     void FillAttackList() {

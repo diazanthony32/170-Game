@@ -151,7 +151,7 @@ PrefabInstance:
         type: 3}
       propertyPath: unitImage
       value: 
-      objectReference: {fileID: 21300000, guid: d9fc7214e52df4547956fea1438773c9,
+      objectReference: {fileID: 21300000, guid: 74226ade69a487b42a32282ba63f9874,
         type: 3}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}

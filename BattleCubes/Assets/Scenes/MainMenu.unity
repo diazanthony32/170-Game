@@ -9935,7 +9935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &776925075
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12941,7 +12941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &970726757
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19451,9 +19451,9 @@ MonoBehaviour:
     see this as this is a long test feild to see how the layer mask works in unity.
     Hi Marcelo :) *Sings BattleCubes Magestically*. Wow, Networking is hard lmao.
     Why did we do this to ourselves :). #GraduationHeldInAnimalCrossing Hopefully
-    my team doesnt see this lmao or this would be funny to try and explain. I''m proud
-    of every single member on our team, and as well as all the teams in the 170 series,
-    all your games look awesome. '
+    my team doesnt see this lmao or this would be funny to try and explain. I''m
+    proud of every single member on our team, and as well as all the teams in the
+    170 series, all your games look awesome. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -24957,8 +24957,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " - Tutorial Draft of Setup Phase grammar fixed\n - Tower Image added\n
-    - More Colors!\n - Some UI fixes\n\t\t\t\t   \n<size=45>Some Bug Fixes :<size=35>\n\t*
+  m_text: " - Tutorial Draft of Setup Phase grammar fixed\n - Tower Image added\n-
+    More Colors!\n - Some UI fixes\n\t\t\t\t   \n<size=45>Some Bug Fixes :<size=35>\n\t*
     Tower Check Fails fixed (kinda)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

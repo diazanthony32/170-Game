@@ -1605,7 +1605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &91444939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6979,8 +6979,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "<color=yellow>Swipe</color> on your BattleCube in the direction you want
     to Rotate. \n\nTo <color=yellow>cancel an action</color>, click the highlighted
-    action on your action list.\n\n<size=35>* Remember, you will ONLY be able to use
-    the attacks for the units visible on your cube."
+    action on your action list.\n\n<size=35>* Remember, you will ONLY be able to
+    use the attacks for the units visible on your cube."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

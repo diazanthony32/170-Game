@@ -12,6 +12,7 @@ public class TweenController : MonoBehaviour
 	[SerializeField] bool pulse = false;
 
 	[SerializeField] bool notify = false;
+	[SerializeField] bool rotate = false;
 
 	RotateCube rotateCube = null;
 
@@ -29,6 +30,10 @@ public class TweenController : MonoBehaviour
 		}
 		if (notify) {
 			Notify();
+		}
+		if (rotate)
+		{
+			RotateHealth();
 		}
 	}
 
@@ -206,6 +211,18 @@ public class TweenController : MonoBehaviour
 		gameObject.GetComponent<CubeInformation>().PlayRandomRotateSound();
 
 	}
+
+	public void RotateHealth()
+	{
+		//LeanTween.rotateAroundLocal(gameObject, rotDir, 90, 1);
+		//print(rotDir);
+		//LeanTween.rotate(this.gameObject, Vector3.down, 5.0f);
+		//LeanTween.rotateZ(this.gameObject, 180, 5.0f);
+		LeanTween.rotateAroundLocal(this.gameObject, Vector3.forward, 360.0f, 25.0f).setOnComplete(RotateHealth);
+
+
+	}
+
 	//public void RotateAndStore(Vector3 rotDir) {
 	//    LeanTween.rotateAround(gameObject, rotDir, 90, 0.6f).setEaseInOutSine().setOnComplete(PushToStack);
 	//}

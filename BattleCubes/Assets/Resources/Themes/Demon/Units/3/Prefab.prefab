@@ -206,6 +206,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: da694246ac05b8c478222acc34e0d067,
         type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: deathParticle
+      value: 
+      objectReference: {fileID: 2930951211917612277, guid: 7139a3ffa10a95e40866a72d2d76624e,
+        type: 3}
     - target: {fileID: 7594360421447855703, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_Layer

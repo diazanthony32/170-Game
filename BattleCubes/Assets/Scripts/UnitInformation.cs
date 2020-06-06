@@ -402,6 +402,18 @@ public class UnitInformation : MonoBehaviour
 
         if (deathParticle) {
             GameObject particle = Instantiate(deathParticle);
+            Color tmpColor;
+            for (int i = 0; i < particle.transform.GetChild(0).childCount; i++) {
+                ParticleSystem ps = particle.transform.GetChild(0).GetChild(i).GetComponent<ParticleSystem>();
+                ParticleSystem.MainModule main = ps.main;
+
+                //Get color and transform it to HSV to adjust its saturation
+                tmpColor = transform.parent.parent.GetComponent<MeshRenderer>().materials[0].GetColor("Color_76507EF6");
+                Color.RGBToHSV(tmpColor, out float h, out float s, out float v);
+                tmpColor = Color.HSVToRGB(Mathf.Min(h, 1), Mathf.Min(s, 0.75f), Mathf.Min(v, 1));
+                main.startColor = tmpColor;
+            }
+
             particle.transform.position = transform.position;
             particle.transform.rotation = transform.rotation;
             particle.transform.SetParent(transform);

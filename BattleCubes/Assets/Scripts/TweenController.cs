@@ -52,7 +52,7 @@ public class TweenController : MonoBehaviour
 		}
 
 		LeanTween.alpha(gameObject, 1, 0.025f).setDelay(delayTime);
-		LeanTween.scale(gameObject, new Vector3(1, 1, 1), 0.2f);
+		LeanTween.scale(gameObject, new Vector3(1, 1, 1), 0.1f);
 	}
 
 	public void PopInUIInfo(infoMenu infoMenu)

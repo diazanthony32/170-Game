@@ -14,6 +14,8 @@ public class StartUp : MonoBehaviour
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
+    [SerializeField] GameObject background;
+
 
     CubeInformation cubeInformation;
 
@@ -76,6 +78,11 @@ public class StartUp : MonoBehaviour
         {
             audioMixer.SetFloat("SFX", PlayerPrefs.GetFloat("SFXVolume"));
             sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+        }
+
+        if (Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background"))
+        {
+            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background");
         }
 
         //Only for testing purposes. dont need this, this spawns the targetting system on the main menu cube

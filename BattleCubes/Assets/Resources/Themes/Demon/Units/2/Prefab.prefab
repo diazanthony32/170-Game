@@ -206,6 +206,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 35ac91024284b7a478a156386986df13,
         type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: unitAttackNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 93992aed3cb659e4eae35a816afe0514, type: 3}
     - target: {fileID: 7594360421447855703, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_Layer

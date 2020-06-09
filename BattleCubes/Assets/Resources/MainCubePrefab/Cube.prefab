@@ -5760,6 +5760,7 @@ MonoBehaviour:
   delayTime: 0.025
   pulse: 0
   notify: 0
+  rotate: 0
 --- !u!114 &1053774801777330547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5897,6 +5898,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8adde07b7bb12d247a695575a7d51a7a, type: 3}
   - {fileID: 8300000, guid: ef99dfda4782a8349a2c494114ea337d, type: 3}
   - {fileID: 8300000, guid: e133cce57f6d22645a5a9786d6710bf4, type: 3}
+  cubeExplosion: {fileID: 8300000, guid: d20acbaa300be3d41ab024ed6ea57e7f, type: 3}
+  explosion: {fileID: 0}
+  speed: 0.085
 --- !u!1 &4043999132271621342
 GameObject:
   m_ObjectHideFlags: 0

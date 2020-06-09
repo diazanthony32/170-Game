@@ -646,7 +646,7 @@ public class UnitInformation : MonoBehaviour
 
                         //print("set body color");
                     }
-                    else if (i == 1)
+                    else if (i == 1 || i == 9 || i == 7)
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head"));
                         unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head").shader;
@@ -663,7 +663,34 @@ public class UnitInformation : MonoBehaviour
 
                         //print("set body color");
                     }
-                    else
+					else if (i == 3 || i == 5)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Arm"));
+						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Arm").shader;
+
+						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
+
+						//print("set body color");
+					}
+					else if (i == 8)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Shoulder"));
+						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Shoulder").shader;
+
+						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
+
+						//print("set body color");
+					}
+					else if (i == 6)
+					{
+						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Claw"));
+						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Claw").shader;
+
+						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
+
+						//print("set bone colors");
+					}
+					else
 					{
 						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/ERROR"));
 						//print("set bone colors");

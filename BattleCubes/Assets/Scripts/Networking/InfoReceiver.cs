@@ -143,6 +143,24 @@ public class InfoReceiver : MonoBehaviourPun {
 
             gameManager.ExplodeCube(content[1]);
         }
+        else if (eventCode == 21)
+        {
+            int content = (int)photonEvent.CustomData;
+
+            gameManager.RotateUpdate();
+        }
+        else if (eventCode == 22)
+        {
+            int content = (int)photonEvent.CustomData;
+
+            gameManager.AttackUpdate();
+        }
+        else if (eventCode == 23)
+        {
+            int content = (int)photonEvent.CustomData;
+
+            gameManager.UnitUpdate();
+        }
         else {
             print("No event code: " + eventCode);
         }

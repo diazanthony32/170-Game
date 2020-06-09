@@ -430,6 +430,8 @@ public class UnitInformation : MonoBehaviour
 			}
 			else{
 				gameManager.AddUnitCount(-1);
+				gameManager.unitsLost++;
+
 			}
 		}
 		else if(transform.parent.parent.parent.parent.gameObject.tag == "EnemyCubePosition"){
@@ -442,6 +444,7 @@ public class UnitInformation : MonoBehaviour
 		}
 
 		Destroy(gameObject);
+		//gameManager.unitsLost++;
 
 		//print("can attack");
 		for (int i = 0; i < gameManager.attackList.Count; i++)

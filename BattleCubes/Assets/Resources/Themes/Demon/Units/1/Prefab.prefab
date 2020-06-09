@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: attackName
-      value: Ember
+      value: Fury Swipes
       objectReference: {fileID: 0}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}

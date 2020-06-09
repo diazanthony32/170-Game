@@ -214,6 +214,7 @@ public class TweenController : MonoBehaviour
 
 	public void RotateHealth()
 	{
+		LeanTween.cancel(this.gameObject);
 		//LeanTween.rotateAroundLocal(gameObject, rotDir, 90, 1);
 		//print(rotDir);
 		//LeanTween.rotate(this.gameObject, Vector3.down, 5.0f);

@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     public List<string[]> attackList = new List<string[]>();
 
     List<string> playerInfo;
-    public bool[] readies = {false, false};
+    public bool[] readies = { false, false };
 
     //states
     public readonly int SETUP = 0;
@@ -92,6 +92,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] Slider musicSlider;
     [SerializeField] Slider sfxSlider;
 
+    int totalCubeRotations;
+    int totalAttacks;
+    public int unitsLost;
+    int timeElapsed;
+
+    [SerializeField] GameObject rotateText;
+    [SerializeField] GameObject attackText;
+    [SerializeField] GameObject unitText;
+    [SerializeField] GameObject timeText;
+
+
+
+
+
     //VFX
     //public GameObject explosion;
     //GameObject cube;
@@ -100,7 +114,7 @@ public class GameManager : MonoBehaviour
     //float dissolveVal = 0.0f;
 
     void Start() {
-        cubeInfo = new string[] {PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor")};
+        cubeInfo = new string[] { PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor") };
 
         if (PlayerPrefs.HasKey("MusicVolume"))
         {
@@ -181,9 +195,9 @@ public class GameManager : MonoBehaviour
             //ResetRound();
             //infoSender.SendResetRound();
             //if (state == SETUP) {
-                //    remainingTime = 0;
-                //playerApCounter.SetActive(true);
-                
+            //    remainingTime = 0;
+            //playerApCounter.SetActive(true);
+
             //}
             //else {
             //    GetOutOfSetUp();
@@ -200,16 +214,16 @@ public class GameManager : MonoBehaviour
     //    GetOutOfSetUp();
     //}
 
-    public void TurnOnTargetting(){
+    public void TurnOnTargetting() {
         //print("Turning on targets");
 
-        for(int j = 0; j < enemyCubePosition.transform.GetChild(1).childCount-1; j++){
+        for (int j = 0; j < enemyCubePosition.transform.GetChild(1).childCount - 1; j++) {
             enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(true);
             // targetsystems.SetActive(false);
             //print("turning enemy targets on");
         }
 
-        for(int i = 0; i < playerCubePosition.transform.GetChild(1).childCount-1; i++){
+        for (int i = 0; i < playerCubePosition.transform.GetChild(1).childCount - 1; i++) {
             playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(true);
             // targetsystems.SetActive(false);
             //print("turning player targets on");
@@ -219,20 +233,20 @@ public class GameManager : MonoBehaviour
         //gameManager.enemyCubePosition.transform.GetChild(1).Find(unitInformation.targetSystem).gameObject.SetActive(true);
 
     }
-    public void SetEnemyCubePrefs(string[] cubeInfo){
+    public void SetEnemyCubePrefs(string[] cubeInfo) {
         enemyCubeInfo = cubeInfo;
     }
-    public void TurnOffTargetting(){
+    public void TurnOffTargetting() {
         //print("Turning off targets");
 
 
-        for(int j = 0; j < enemyCubePosition.transform.GetChild(1).childCount-1; j++){
+        for (int j = 0; j < enemyCubePosition.transform.GetChild(1).childCount - 1; j++) {
             enemyCubePosition.transform.GetChild(1).GetChild(j).gameObject.SetActive(false);
             //print("turning enemy targets off");
             // targetsystems.SetActive(false);
         }
 
-        for(int i = 0; i < playerCubePosition.transform.GetChild(1).childCount-1; i++){
+        for (int i = 0; i < playerCubePosition.transform.GetChild(1).childCount - 1; i++) {
             playerCubePosition.transform.GetChild(1).GetChild(i).gameObject.SetActive(false);
             // targetsystems.SetActive(false);
             //print("turning player targets off");
@@ -250,7 +264,7 @@ public class GameManager : MonoBehaviour
             CheckWinCondition();
         }
 
-        if(state != GAMEEND){
+        if (state != GAMEEND) {
 
             playerApCounter.SetActive(true);
 
@@ -267,10 +281,10 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             UpdateShields();
             enemyCubePosition.GetComponent<TweenController>().slideEnemyUp();
-            
+
             yield return new WaitForSeconds(3.0f);
             //infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
-            
+
             //mainScreenCanvas.SetActive(true);
 
             //remainingTime = ROUND_TIME;
@@ -294,7 +308,7 @@ public class GameManager : MonoBehaviour
 
         // yield return new WaitForSeconds(3f);
         // infoSender.SendCubeRotation(GetQuatComponentAry(playerCubePosition.transform.GetChild(0)));
-        
+
         // mainScreenCanvas.SetActive(true);
 
         // remainingTime = ROUND_TIME;
@@ -335,7 +349,7 @@ public class GameManager : MonoBehaviour
         if (playerActionList.GetComponent<ActionStorage>().GetActionListCount() > 0) {
             infoSender.SendActionListArray(playerActionList.GetComponent<ActionStorage>().PrepareActionListForSend());
         }
-        
+
         yield return new WaitForSeconds(0.5f);
 
         playerActionList.GetComponent<ActionStorage>().resetUIPulses();
@@ -348,7 +362,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(DoThrowdown());
         }
     }
-    
+
     private void RunTimer() {
         int intTIME = 0;
 
@@ -392,7 +406,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void HighlightThrowdownAction(int i){
+    public void HighlightThrowdownAction(int i) {
         playerActionList.GetComponent<ActionStorage>().resetUIPulses();
         enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
 
@@ -448,7 +462,9 @@ public class GameManager : MonoBehaviour
 
                         //rotate both
                         TranslateRotatePlayerCube(host[1]);
+                        totalCubeRotations++;
                         TranslateRotateEnemyCube(client[1]);
+                        infoSender.RotateIncrease(1);
 
                         infoSender.SendPlayerTurningDir(host[1]);
                         infoSender.SendEnemyTurningDir(client[1]);
@@ -461,8 +477,9 @@ public class GameManager : MonoBehaviour
                         print("Players both attack");
 
                         StartCoroutine(attackHandler.DoAttack("Host", host));
+                        totalAttacks++;
                         StartCoroutine(attackHandler.DoAttack("Client", client));
-
+                        infoSender.AttackIncrease(1);
 
                         infoSender.SendPlayerAttackInfo(host);
                         infoSender.SendEnemyAttackInfo(client);
@@ -476,11 +493,15 @@ public class GameManager : MonoBehaviour
 
                         //host rotates, client then attacks
                         TranslateRotatePlayerCube(host[1]);
+                        totalCubeRotations++;
+
                         infoSender.SendPlayerTurningDir(host[1]);
-                        
+
                         yield return new WaitForSeconds(3.5f);
 
                         StartCoroutine(attackHandler.DoAttack("Client", client));
+                        infoSender.AttackIncrease(1);
+
                         infoSender.SendEnemyAttackInfo(client);
                         //infosender
                         //yield return new WaitForSeconds(3);
@@ -493,10 +514,12 @@ public class GameManager : MonoBehaviour
                         //rotate client , host then attacks
                         TranslateRotateEnemyCube(client[1]);
                         infoSender.SendEnemyTurningDir(client[1]);
-                        
+                        infoSender.RotateIncrease(1);
+
                         yield return new WaitForSeconds(3.5f);
 
                         StartCoroutine(attackHandler.DoAttack("Host", host));
+                        totalAttacks++;
                         infoSender.SendPlayerAttackInfo(host);
 
                         //infosender
@@ -517,11 +540,14 @@ public class GameManager : MonoBehaviour
 
                     //host rotates
                     TranslateRotatePlayerCube(host[1]);
+                    totalCubeRotations++;
+
                     infoSender.SendPlayerTurningDir(host[1]);
                 }
                 else if (host[0] == "attack") {
                     print("Host attack");
                     StartCoroutine(attackHandler.DoAttack("Host", host));
+                    totalAttacks++;
                     infoSender.SendPlayerAttackInfo(host);
 
                     //infosender
@@ -540,12 +566,16 @@ public class GameManager : MonoBehaviour
                     //client rotates
                     TranslateRotateEnemyCube(client[1]);
                     infoSender.SendEnemyTurningDir(client[1]);
+                    infoSender.RotateIncrease(1);
+
                 }
                 else if (client[0] == "attack") {
                     print("client attack");
                     //print(client[1] + " "+ client[2] + " "+ client[3]);
 
                     StartCoroutine(attackHandler.DoAttack("Client", client));
+                    infoSender.AttackIncrease(1);
+
                     infoSender.SendEnemyAttackInfo(client);
 
                     //infosender
@@ -567,7 +597,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
 
         // attackHandler.TurnOffTargetting();
-        if (state == THROWDOWN){
+        if (state == THROWDOWN) {
             //timeStopped = false;
             //remainingTime = ROUND_TIME;
             //roundCount++;
@@ -582,12 +612,31 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         CheckWinCondition();
     }
+    public void UpdateStats(){
+        rotateText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = totalCubeRotations.ToString();
+        attackText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = totalAttacks.ToString();
+        unitText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = unitsLost.ToString();
+        timeText.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = timeElapsed.ToString();
+
+    }
 
     public void TranslateRotatePlayerCube(string direction) {
         playerCubePosition.transform.GetChild(0).GetComponent<RotateCube>().RequestRotation(direction);
     }
     public void TranslateRotateEnemyCube(string direction) {
         enemyCubePosition.transform.GetChild(0).GetComponent<RotateCube>().RequestRotation(direction);
+    }
+
+    public void RotateUpdate() { 
+           totalCubeRotations++;
+    }
+    public void AttackUpdate()
+    {
+        totalAttacks++;
+    }
+    public void UnitUpdate()
+    {
+        unitsLost++;
     }
 
     public void CreateFloatingText(string text, Transform location, string type)
@@ -706,6 +755,8 @@ public class GameManager : MonoBehaviour
 
     public void GameEndPopUp(string condition){
         //mainScreenCanvas.SetActive(false);
+        UpdateStats();
+
         state = GAMEEND;
         pauseCanvas.SetActive(false);
         StartCoroutine(ShowGameEndPopUp(condition));

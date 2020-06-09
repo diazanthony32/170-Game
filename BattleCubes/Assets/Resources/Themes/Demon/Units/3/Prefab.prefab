@@ -30,7 +30,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 040bec31c5e0f2f489f30ad489dd2cc3,
+      objectReference: {fileID: 21300000, guid: c3c2e3a80b647804ca46eb80d83c39fd,
         type: 3}
     - target: {fileID: 100907511662817315, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
@@ -145,7 +145,7 @@ PrefabInstance:
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: attackName
-      value: Earthquake
+      value: Rock Tomb
       objectReference: {fileID: 0}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
@@ -274,7 +274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7fa984414860f845ad282cfeb54bdb0, type: 3}
---- !u!4 &4434435961590423545 stripped
+--- !u!4 &3409652335183156194 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1358904807456033821, guid: c7fa984414860f845ad282cfeb54bdb0,
     type: 3}
@@ -285,7 +285,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4434435961590423545}
+    m_TransformParent: {fileID: 3409652335183156194}
     m_Modifications:
     - target: {fileID: -4216859302048453862, guid: c9dab7bd62ffb8f4eb91382f81766483,
         type: 3}

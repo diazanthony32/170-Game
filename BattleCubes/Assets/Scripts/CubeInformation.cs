@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class CubeInformation : MonoBehaviour {
     public AudioClip[] cubeRotationSounds;
@@ -22,7 +24,12 @@ public class CubeInformation : MonoBehaviour {
 
     private void Start() {
         cubeAudioSource = GetComponent<AudioSource>();
-        originalColor = transform.GetChild(0).GetComponent<MeshRenderer>().materials[0].GetColor("Color_76507EF6");
+        if (SceneManager.GetActiveScene().buildIndex != 2)
+        {
+            originalColor = transform.GetChild(0).GetComponent<MeshRenderer>().materials[0].GetColor("Color_76507EF6");
+
+        }
+        //originalColor = transform.GetChild(0).GetComponent<MeshRenderer>().materials[0].GetColor("Color_76507EF6");
         //SpawnCubeExplosion();
     }
 

@@ -372,7 +372,7 @@ public class AttackHandler : MonoBehaviour
                             {
                                 UnitInformation unit = hitPlane.transform.parent.GetChild(y).GetChild(z).GetComponent<UnitInformation>();
 
-                                if (hitPlane.transform.parent.GetChild(y).gameObject.CompareTag("unitSquare") && unit.attackName == attackName)
+                                if (unit && hitPlane.transform.parent.GetChild(y).gameObject.CompareTag("unitSquare") && unit.attackName == attackName)
                                 {
                                     // potentially randomize what unit does the attack ????????
 

@@ -4,6 +4,8 @@ using UnityEngine;
 public class CubeInformation : MonoBehaviour {
     public AudioClip[] cubeRotationSounds;
     AudioSource cubeAudioSource;
+    public AudioClip cubeExplosion;
+
 
     //Explosion VFX
     bool explode = false;
@@ -58,6 +60,8 @@ public class CubeInformation : MonoBehaviour {
             explosionFX.transform.position = transform.position + new Vector3(0, 0.55f, 0);
             explosionFX.transform.Rotate(new Vector3(0, 90, 0), Space.Self);
             explosionFX.transform.SetParent(transform);
+
+            cubeAudioSource.PlayOneShot(cubeExplosion);
 
             Destroy(explosionFX, 10);
 

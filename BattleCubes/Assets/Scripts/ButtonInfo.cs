@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonInfo : MonoBehaviour {
     [SerializeField] RotationByFinger swiperPannel;
     public string CubeTheme;
     public string CubeColor;
+    [SerializeField] GameObject background;
+
 
     public void ChangeCube() {
         GameObject playerCubePosition = GameObject.FindGameObjectWithTag("PlayerCubePosition");
@@ -21,6 +24,11 @@ public class ButtonInfo : MonoBehaviour {
         //cube.transform.SetParent(playerCubePosition.transform);
 
         Recolor();
+
+        if (Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background"))
+        {
+            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background");
+        }
 
         //swiperPannel.ChangeCube(cube);
     }

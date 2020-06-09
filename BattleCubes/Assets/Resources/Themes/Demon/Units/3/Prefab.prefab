@@ -30,8 +30,18 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: dd4c99998ffe5a149bbd6b468a4d771f,
+      objectReference: {fileID: 21300000, guid: 040bec31c5e0f2f489f30ad489dd2cc3,
         type: 3}
+    - target: {fileID: 100907511662817315, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100907511662817315, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: m_FillOrigin
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1890405386919292845, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: m_Name
@@ -151,7 +161,7 @@ PrefabInstance:
         type: 3}
       propertyPath: unitImage
       value: 
-      objectReference: {fileID: 21300000, guid: 74226ade69a487b42a32282ba63f9874,
+      objectReference: {fileID: 21300000, guid: 688e0e3a9df7a1445bddba9c7ad4bd99,
         type: 3}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
@@ -206,6 +216,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: da694246ac05b8c478222acc34e0d067,
         type: 3}
+    - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
+        type: 3}
+      propertyPath: unitAttackNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ffc28ae31abcdb4ca4885bc163fac56, type: 3}
     - target: {fileID: 6028684828106123750, guid: c7fa984414860f845ad282cfeb54bdb0,
         type: 3}
       propertyPath: deathParticle

@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverCanvas;
     [SerializeField] GameObject pauseCanvas;
     [SerializeField] GameObject playerApCounter;
+    [SerializeField] GameObject background;
     [Space(10)]
     [SerializeField] GameObject enemyActionList;
     [SerializeField] GameObject playerActionList;
@@ -136,6 +137,10 @@ public class GameManager : MonoBehaviour
         FillAttackList();
 
         playerCanvas.transform.Find("PlayerAPCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
+
+        if (Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background")) {
+            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background");
+        }
 
         remainingTime = SET_UP_TIME;
 

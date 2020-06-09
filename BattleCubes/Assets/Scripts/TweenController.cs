@@ -13,6 +13,8 @@ public class TweenController : MonoBehaviour
 
 	[SerializeField] bool notify = false;
 	[SerializeField] bool rotate = false;
+	[SerializeField] float rotateSpeed = 25.0f;
+
 
 	RotateCube rotateCube = null;
 
@@ -218,7 +220,7 @@ public class TweenController : MonoBehaviour
 		//print(rotDir);
 		//LeanTween.rotate(this.gameObject, Vector3.down, 5.0f);
 		//LeanTween.rotateZ(this.gameObject, 180, 5.0f);
-		LeanTween.rotateAroundLocal(this.gameObject, Vector3.forward, 360.0f, 25.0f).setOnComplete(RotateHealth);
+		LeanTween.rotateAroundLocal(this.gameObject, Vector3.forward, 360.0f, rotateSpeed).setOnComplete(RotateHealth);
 
 
 	}

@@ -16,7 +16,7 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
     [SerializeField] private Button privateSearchButton = null;
 
     private bool isConnecting = false;
-    private const string GameVersion = "0.1.4"; //Change with the gameVersion
+    private const string GameVersion = "1.0.0"; //Change with the gameVersion
     private const int MaxPlayersPerRoom = 2;
 
     private void Awake() {

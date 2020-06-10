@@ -34,11 +34,16 @@ public class TutorialRotateCube : MonoBehaviour {
     void DoTweenRotation(string s) {
         Vector3 vecDirection = GetVecDirFromStringDir(s);
 
-        if (SceneManager.GetActiveScene().buildIndex == 1) {
+        if (SceneManager.GetActiveScene().buildIndex == 2) {
             if (gameManager.GetState() == gameManager.PLAN) {
-                GetComponent<TweenController>().Rotate(vecDirection);
-                plannedStack.Push(s);
-                gameManager.AddAction(new string[] { "rotate", s }, 3);
+                if (s == "turn_left") {
+                    gameManager.popUps[3].GetComponent<TweenController>().HideUI();
+
+                    GetComponent<TweenController>().Rotate(vecDirection);
+                    plannedStack.Push(s);
+                    gameManager.AddAction(new string[] { "rotate", s }, 3);
+                    gameManager.popUps[2].GetComponent<TweenController>().PopInUI();
+                }
             }
             else {
                 GetComponent<TweenController>().Rotate(vecDirection);

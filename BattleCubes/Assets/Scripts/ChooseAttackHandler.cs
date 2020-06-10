@@ -112,7 +112,7 @@ public class ChooseAttackHandler : MonoBehaviour, IPointerDownHandler
 			attackAllowed = false;
 			//LeanTween.alphaCanvas(gameObject.GetComponent<CanvasGroup>(), 0.25f, 0.4f);
 			GetComponent<CanvasGroup>().interactable = false;
-			LeanTween.alphaCanvas(GetComponent<CanvasGroup>(), 0.35f, 0.4f);
+			LeanTween.alphaCanvas(GetComponent<CanvasGroup>(), 0.25f, 0.4f);
 		}
 
 		if (Input.GetMouseButtonDown(0) && attackAllowed == true){

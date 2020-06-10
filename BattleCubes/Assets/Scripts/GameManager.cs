@@ -355,6 +355,9 @@ public class GameManager : MonoBehaviour
         playerActionList.GetComponent<ActionStorage>().resetUIPulses();
         enemyActionList.GetComponent<ActionStorage>().resetUIPulses();
 
+        enemyActionList.GetComponent<CanvasGroup>().alpha = 1.0f;
+
+
         playerActionList.GetComponent<TweenController>().slideXOver((Screen.width * -0.034f));
         enemyActionList.GetComponent<TweenController>().slideXOver((Screen.width * 0.034f));
 
@@ -835,6 +838,8 @@ public class GameManager : MonoBehaviour
         if (state != SETUP && roundCount >= 1) {
             playerActionList.GetComponent<TweenController>().slideXOver((Screen.width * 0.034f));
             enemyActionList.GetComponent<TweenController>().slideXOver((Screen.width * -0.034f));
+
+            enemyActionList.GetComponent<CanvasGroup>().alpha = 0.0f;
 
             playerActionList.GetComponent<ActionStorage>().ClearActionList();
             enemyActionList.GetComponent<ActionStorage>().ClearActionList();

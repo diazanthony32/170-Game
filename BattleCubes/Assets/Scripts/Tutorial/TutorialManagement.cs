@@ -351,8 +351,12 @@ public class TutorialManagement : MonoBehaviour
         if (popUp == 0) {
             popUps[0].GetComponent<TweenController>().PopInUI();
         }
+        if (popUp == 2)
+        {
+            popUps[4].GetComponent<TweenController>().PopInUI();
+        }
 
-        while (paused && popUp == 0)
+        while (paused && (popUp == 0 || popUp == 2))
         {
             yield return new WaitForSeconds(0.2f);
         }
@@ -403,6 +407,12 @@ public class TutorialManagement : MonoBehaviour
                 tmpTimeChange = false;
             }
         }
+    }
+
+    public void EnemyActionStore() {
+        string[]  attackArray = new string[] { "attack", "Simple Attack", "TargettingPlanes5", "5" };
+        enemyActionList.GetComponent<TutorialActionStorage>().StoreAction(attackArray);
+
     }
 
     public void HighlightThrowdownAction(int i){
@@ -818,6 +828,10 @@ public class TutorialManagement : MonoBehaviour
         if (popUp == 1)
         {
             popUps[1].GetComponent<TweenController>().PopInUI();
+        }
+        if (popUp == 3)
+        {
+            popUps[5].GetComponent<TweenController>().PopInUI();
         }
 
         //while (paused && popUp == 1)

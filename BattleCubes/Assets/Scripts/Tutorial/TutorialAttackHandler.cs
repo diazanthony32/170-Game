@@ -199,18 +199,18 @@ public class TutorialAttackHandler : MonoBehaviour
 
         if (player == "Client") {
             //UnitInformation unitInfo;
-            print("Enemy Cube Info: " + gameManager.enemyCubeInfo[0] + " " + gameManager.enemyCubeInfo[1]);
+            //print("Enemy Cube Info: " + gameManager.enemyCubeInfo[0] + " " + gameManager.enemyCubeInfo[1]);
 
             for (int i = 0; i <= 3; i++) {
 
                 TutorialUnitInformation unitInfo = null;
 
                 if (i == 0) {
-                    unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/Tower/Prefab").GetComponent<TutorialUnitInformation>();
+                    unitInfo = Resources.Load<GameObject>("Themes/Tutorial/Units/Tower/Prefab").GetComponent<TutorialUnitInformation>();
                     //("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/Tower/Prefab")
                 }
                 else {
-                    unitInfo = Resources.Load<GameObject>("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/" + i + "/Prefab").GetComponent<TutorialUnitInformation>();
+                    unitInfo = Resources.Load<GameObject>("Themes/Tutorial/Units/" + i + "/Prefab").GetComponent<TutorialUnitInformation>();
                     //("Themes/" + gameManager.enemyCubeInfo[0] + "/Units/" + i + "/Prefab")
                 }
 

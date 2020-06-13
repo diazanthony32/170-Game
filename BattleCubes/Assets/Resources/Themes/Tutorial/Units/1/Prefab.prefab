@@ -80,7 +80,8 @@ MonoBehaviour:
   unitAttackNoise: {fileID: 8300000, guid: 37eb87ad067546b4f80cbf38fc7a319f, type: 3}
   towerShieldSfx: {fileID: 0}
   targetSystem: SingleAttack
-  AttackParticle: {fileID: 100000, guid: ee79f50c4304fe4498ab53a26a5b8395, type: 3}
+  AttackParticle: {fileID: 7438542020297580377, guid: ec2e9a163e4256142a45b1c226e3eb17,
+    type: 3}
   shakeScreen: 0
   unitRenderer: {fileID: 8377327213359140259}
   isTower: 0

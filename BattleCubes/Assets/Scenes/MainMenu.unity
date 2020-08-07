@@ -7203,7 +7203,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 47.8
+  m_fontSize: 47.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13505,7 +13505,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Version 1.0.0
+  m_text: Version 1.0.2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -21505,7 +21505,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: 29.999939
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}

@@ -91,6 +91,9 @@ public class UnitInformation : MonoBehaviour
 	bool executed = false;
 	LayerMask mask;
 
+	//dab easter egg
+	int clickCount = 0;
+
 	// runs once the unit is created inside of the DragNDropUnits Script
 	void Start(){
 
@@ -121,6 +124,8 @@ public class UnitInformation : MonoBehaviour
 		if (isTower)
 		{
 			isVulnerable = false;
+			//ColorUtility.TryParseHtmlString("#259C00", out Color shieldColor);
+			//unitHealthBar.color = shieldColor;
 			//unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<MeshRenderer>();
 		}
 		//else {
@@ -259,8 +264,17 @@ public class UnitInformation : MonoBehaviour
 			}
 		}
 
-		if(!safe){
+		if (!safe)
+		{
+			//green health
+			ColorUtility.TryParseHtmlString("#259C00", out Color shieldColor);
+			shieldColor.a = 0.8f;
+			unitHealthBar.color = shieldColor;
 			isVulnerable = true;
+		}
+		else {
+			//ColorUtility.TryParseHtmlString("#259C00", out Color shieldColor);
+			unitHealthBar.color = Color.yellow;
 		}
         return isVulnerable;
 	}
@@ -276,6 +290,24 @@ public class UnitInformation : MonoBehaviour
 	public void OnMouseUp()
 	{
 		pointerDown = false;
+
+		// should allow taps to trigger an animation
+		if (pointerDownTimer < requiredHoldTime )
+		{
+			clickCount++;
+
+			if (unitSpawnNoise && (clickCount%5) != 0)
+			{
+				unitAudioSource.PlayOneShot(unitSpawnNoise);
+				unitAnimator.SetTrigger("spawn");
+
+			}
+			else if((clickCount % 5) == 0 && unitName == "TankBoi")
+			{
+				unitAnimator.SetTrigger("dab");
+			}
+		}
+
 		pointerDownTimer = 0;
 		
 	}

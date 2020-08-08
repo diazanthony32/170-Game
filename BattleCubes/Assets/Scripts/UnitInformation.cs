@@ -516,10 +516,30 @@ public class UnitInformation : MonoBehaviour
 
     public void ReColorUnit(string player , string theme, string color) 
 	{
-		Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/u_color");
 
-		unitRenderer.material.CopyPropertiesFromMaterial(recolor);
-		unitRenderer.material.shader = recolor.shader;
+		if (!isTower)
+		{
+
+			Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/u_color");
+			unitRenderer.material.CopyPropertiesFromMaterial(recolor);
+			unitRenderer.material.shader = recolor.shader;
+
+		}
+		else if (isTower)
+		{
+			Material s_color = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/t_shield");
+			unitRenderer.materials[0].CopyPropertiesFromMaterial(s_color);
+			unitRenderer.materials[0].shader = s_color.shader;
+
+			Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/u_color");
+			unitRenderer.materials[1].CopyPropertiesFromMaterial(recolor);
+			unitRenderer.materials[1].shader = recolor.shader;
+		}
+		else {
+			Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/ERROR");
+			unitRenderer.material.CopyPropertiesFromMaterial(recolor);
+			unitRenderer.material.shader = recolor.shader;
+		}
 
 	}
 }

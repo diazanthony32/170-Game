@@ -352,6 +352,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sniper_final
       objectReference: {fileID: 0}
+    - target: {fileID: 979706455888334495, guid: d746c71f69bf33248ae5473598b5af69,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d746c71f69bf33248ae5473598b5af69, type: 3}
 --- !u!1 &2979834510773691653 stripped

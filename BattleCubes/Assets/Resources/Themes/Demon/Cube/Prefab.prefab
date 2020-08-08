@@ -10587,7 +10587,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 0.052
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -10662,7 +10662,7 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_CastShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -10687,7 +10687,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05
+      value: 0.052
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -10767,7 +10767,7 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_CastShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -10792,7 +10792,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.05
+      value: -0.052
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -10872,7 +10872,7 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_CastShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -10907,7 +10907,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.05
+      value: -0.052
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -10977,7 +10977,7 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_CastShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -11007,7 +11007,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: -0.052
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -11082,7 +11082,7 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_CastShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -11117,7 +11117,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.05
+      value: 0.052
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
@@ -11187,7 +11187,7 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}
       propertyPath: m_CastShadows
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 578203b1ace941b479369bcfe7107eb2,
         type: 3}

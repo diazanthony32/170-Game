@@ -362,6 +362,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank
       objectReference: {fileID: 0}
+    - target: {fileID: 7646988792635524162, guid: e85c4d66bca21744889d6134bacbbc8d,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e85c4d66bca21744889d6134bacbbc8d, type: 3}
 --- !u!1 &5320561096164649196 stripped

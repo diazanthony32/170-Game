@@ -7203,7 +7203,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 47.4
+  m_fontSize: 47.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9209,7 +9209,7 @@ GameObject:
   - component: {fileID: 694577722}
   - component: {fileID: 694577721}
   m_Layer: 5
-  m_Name: BackgroundCanvas
+  m_Name: Background Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11336,7 +11336,7 @@ GameObject:
   - component: {fileID: 847387256}
   - component: {fileID: 847387257}
   m_Layer: 0
-  m_Name: startUp
+  m_Name: Start Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12837,7 +12837,7 @@ GameObject:
   - component: {fileID: 955711935}
   - component: {fileID: 955711934}
   m_Layer: 5
-  m_Name: ScrollingText
+  m_Name: Scrolling Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14476,7 +14476,7 @@ GameObject:
   - component: {fileID: 1114775186}
   - component: {fileID: 1114775189}
   m_Layer: 0
-  m_Name: CubeLocation
+  m_Name: Cube Location
   m_TagString: PlayerCubePosition
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15502,7 +15502,7 @@ GameObject:
   - component: {fileID: 1259145095}
   - component: {fileID: 1259145094}
   m_Layer: 5
-  m_Name: MainCanvas
+  m_Name: Main Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19677,7 +19677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1635173381}
   m_Layer: 0
-  m_Name: SceneObjects
+  m_Name: Scene Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

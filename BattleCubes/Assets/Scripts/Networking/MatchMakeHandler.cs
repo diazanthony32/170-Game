@@ -19,10 +19,14 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
     private const string GameVersion = "1.0.0"; //Change with the gameVersion
     private const int MaxPlayersPerRoom = 2;
 
+    //private ProgressSceneLoader progressSceneLoader;
+
     private void Awake() {
         PhotonNetwork.AutomaticallySyncScene = true;
 
         searchText = GameObject.FindGameObjectWithTag("searchText").GetComponent<TextMeshProUGUI>();
+
+        //progressSceneLoader = GameObject.FindGameObjectWithTag("progressSceneLoader").GetComponent<ProgressSceneLoader>();
     }
 
     public void FindOpponent() 
@@ -125,7 +129,8 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
             Debug.Log("Match is ready to begin");
 
             // Loading Levels
-            PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            //PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            FindObjectOfType<ProgressSceneLoader>().Loadscene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
@@ -134,11 +139,16 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
     //}
 
     public void GoToTutorialScene() {
-        PhotonNetwork.LoadLevel("Tutorial");
+        //PhotonNetwork.LoadLevel("Tutorial");
+
+        FindObjectOfType<ProgressSceneLoader>().Loadscene("Tutorial");
+        //GameObject.FindGameObjectWithTag("progressSceneLoader").GetComponent<ProgressSceneLoader>().Loadscene("Tutorial");
     }
 
     public void GoToMenuScene() {
-        PhotonNetwork.LoadLevel("MenuScene");
+        //PhotonNetwork.LoadLevel("MenuScene");
+        FindObjectOfType<ProgressSceneLoader>().Loadscene("MenueScene");
+        //GameObject.FindGameObjectWithTag("progressSceneLoader").GetComponent<ProgressSceneLoader>().Loadscene("MenueScene");
     }
 
     public void CancelSearch() {

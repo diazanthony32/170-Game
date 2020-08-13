@@ -210,11 +210,6 @@ public class UnitInformation : MonoBehaviour
 			}
 		}
 
-		if (SceneManager.GetActiveScene().buildIndex != 0) 
-		{
-			unitHealthBar.fillAmount = unitCurrentHealth / unitHealth;
-		}
-
 	}
 
 	public void TakeDamage(int damageAmount, float impactDelay){
@@ -491,6 +486,7 @@ public class UnitInformation : MonoBehaviour
 		}
         gameManager.UpdateShields();
     }
+
     IEnumerator DelayImpact(int damageAmount, float impactDelay) {
         yield return new WaitForSeconds(impactDelay);
 
@@ -513,14 +509,26 @@ public class UnitInformation : MonoBehaviour
 
                 }
 
-                //unitAudioSource.PlayOneShot(unitHitNoise);
-                //unitAnimator.SetTrigger("Hit");
+				// makes units health red if 25% health
+				if (unitCurrentHealth <= (unitHealth / 4)) {
+					Color temp = Color.red;
+					temp.a = 0.8f;
+					unitHealthBar.color = temp;
+				}
 
-                //if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
-                //{
-                //Handheld.Vibrate();
-                //}
-            }
+				//if (SceneManager.GetActiveScene().buildIndex != 0)
+				//{
+					unitHealthBar.fillAmount = unitCurrentHealth / unitHealth;
+				//}
+
+				//unitAudioSource.PlayOneShot(unitHitNoise);
+				//unitAnimator.SetTrigger("Hit");
+
+				//if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+				//{
+				//Handheld.Vibrate();
+				//}
+			}
 
             if (unitAnimator) {
                 unitAnimator.SetTrigger("hit");

@@ -258,16 +258,16 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: /Users/diazanthony/Documents/Game Development/All BattleCubes/keys
-    s stuff/user1.keystore
-  AndroidKeyaliasName: 123456
+  AndroidKeystoreName: /Users/diazanthony/Documents/Game Development/Mental Block
+    Games/BattleCubes/Important/bc_keystore.keystore
+  AndroidKeyaliasName: battlecubes
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 0
+  androidUseCustomKeystore: 1
   m_AndroidBanners:
   - width: 320
     height: 180

@@ -462,7 +462,7 @@ public class UnitInformation : MonoBehaviour
 			}
 		}
 
-		Destroy(gameObject);
+		//Destroy(gameObject);
 
 		//print("can attack");
 		for (int i = 0; i < gameManager.attackList.Count; i++)

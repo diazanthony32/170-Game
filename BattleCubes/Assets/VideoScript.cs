@@ -51,76 +51,76 @@ public class VideoScript : MonoBehaviour
         GameObject enemyTopFace = gameManager.enemyCubePosition.transform.GetChild(0).Find("Face_2").gameObject;
 
 
-        //SpawnEnemyUnit(unit1, enemyTopFace, "5", 180.0f);
-        SpawnEnemyUnit(towerPrefab, enemyTopFace, "3", 180.0f);
-        
-
-
-        //SpawnEnemyUnit(unit2, enemyTopFace, "1", -90.0f);
-        GameObject e1 = Instantiate(unit2);
-        UnitInformation e1Info = e1.transform.GetComponent<UnitInformation>();
-
-        e1.transform.position = enemyTopFace.transform.Find("1").transform.position;
-        e1.transform.rotation = enemyTopFace.transform.Find("1").transform.rotation;
-        e1.transform.Rotate(0.0f, -90.0f, 0.0f);
-        // Set unit as a child of the unitPlane
-        e1.transform.SetParent(enemyTopFace.transform.Find("1").transform);
-
-        e1Info.ReColorUnit("Player", "Demon", "Blue");
-
-        //SpawnEnemyUnit(unit1, enemyTopFace, "5", 180.0f);
-        GameObject e2 = Instantiate(unit1);
-        UnitInformation e2Info = e2.transform.GetComponent<UnitInformation>();
-
-        e2.transform.position = enemyTopFace.transform.Find("5").transform.position;
-        e2.transform.rotation = enemyTopFace.transform.Find("5").transform.rotation;
-        e2.transform.Rotate(0.0f, 180.0f, 0.0f);
-        // Set unit as a child of the unitPlane
-        e2.transform.SetParent(enemyTopFace.transform.Find("5").transform);
-
-        e2Info.ReColorUnit("Player", "Demon", "Blue");
+        ////SpawnEnemyUnit(unit1, enemyTopFace, "5", 180.0f);
+        //SpawnEnemyUnit(towerPrefab, enemyTopFace, "3", 180.0f);
 
 
 
+        ////SpawnEnemyUnit(unit2, enemyTopFace, "1", -90.0f);
+        //GameObject e1 = Instantiate(unit2);
+        //UnitInformation e1Info = e1.transform.GetComponent<UnitInformation>();
 
-        SpawnEnemyUnit(unit3, enemyLeftFace, "2", 90.0f);
-        SpawnEnemyUnit(towerPrefab, enemyLeftFace, "7", 90.0f);
-        SpawnEnemyUnit(unit2, enemyRightFace, "2", 0.0f);
-        SpawnEnemyUnit(unit1, enemyRightFace, "4", 0.0f);
-        SpawnEnemyUnit(unit1, enemyRightFace, "8", 0.0f);
+        //e1.transform.position = enemyTopFace.transform.Find("1").transform.position;
+        //e1.transform.rotation = enemyTopFace.transform.Find("1").transform.rotation;
+        //e1.transform.Rotate(0.0f, -90.0f, 0.0f);
+        //// Set unit as a child of the unitPlane
+        //e1.transform.SetParent(enemyTopFace.transform.Find("1").transform);
+
+        //e1Info.ReColorUnit("Player", "Demon", "Blue");
+
+        ////SpawnEnemyUnit(unit1, enemyTopFace, "5", 180.0f);
+        //GameObject e2 = Instantiate(unit1);
+        //UnitInformation e2Info = e2.transform.GetComponent<UnitInformation>();
+
+        //e2.transform.position = enemyTopFace.transform.Find("5").transform.position;
+        //e2.transform.rotation = enemyTopFace.transform.Find("5").transform.rotation;
+        //e2.transform.Rotate(0.0f, 180.0f, 0.0f);
+        //// Set unit as a child of the unitPlane
+        //e2.transform.SetParent(enemyTopFace.transform.Find("5").transform);
+
+        //e2Info.ReColorUnit("Player", "Demon", "Blue");
 
 
 
-        SpawnUnit(towerPrefab, playerCubeTopFace, "4", 180.0f);
-        //SpawnUnit(unit3, playerCubeTopFace, "7", 180.0f);
-        SpawnUnit(unit2, playerCubeRightFace, "2", 180.0f);
-        SpawnUnit(unit1, playerCubeRightFace, "8", 180.0f);
-        SpawnUnit(unit1, playerCubeRightFace, "4", 180.0f);
-        SpawnUnit(towerPrefab, playerCubeRightFace, "5", 180.0f);
-        SpawnUnit(unit1, playerCubeLeftFace, "3", 180.0f);
 
-        GameObject tower = Instantiate(unit2);
-        UnitInformation towerInfo = tower.transform.GetComponent<UnitInformation>();
+        //SpawnEnemyUnit(unit3, enemyLeftFace, "2", 90.0f);
+        //SpawnEnemyUnit(towerPrefab, enemyLeftFace, "7", 90.0f);
+        //SpawnEnemyUnit(unit2, enemyRightFace, "2", 0.0f);
+        //SpawnEnemyUnit(unit1, enemyRightFace, "4", 0.0f);
+        //SpawnEnemyUnit(unit1, enemyRightFace, "8", 0.0f);
 
-        tower.transform.position = playerCubeTopFace.transform.Find("7").transform.position;
-        tower.transform.rotation = playerCubeTopFace.transform.Find("7").transform.rotation;
-        tower.transform.Rotate(0.0f, 180.0f, 0.0f);
-        // Set unit as a child of the unitPlane
-        tower.transform.SetParent(playerCubeTopFace.transform.Find("7").transform);
 
-        towerInfo.ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
 
-        yield return new WaitForSeconds(8f);
+        //SpawnUnit(towerPrefab, playerCubeTopFace, "4", 180.0f);
+        ////SpawnUnit(unit3, playerCubeTopFace, "7", 180.0f);
+        //SpawnUnit(unit2, playerCubeRightFace, "2", 180.0f);
+        //SpawnUnit(unit1, playerCubeRightFace, "8", 180.0f);
+        //SpawnUnit(unit1, playerCubeRightFace, "4", 180.0f);
+        //SpawnUnit(towerPrefab, playerCubeRightFace, "5", 180.0f);
+        //SpawnUnit(unit1, playerCubeLeftFace, "3", 180.0f);
 
-        towerInfo.DoAttackAnimation();
-        yield return new WaitForSeconds(1.25f);
-        AttackSpot(towerInfo.AttackParticle, enemyTopFace, "1");
+        //GameObject tower = Instantiate(unit2);
+        //UnitInformation towerInfo = tower.transform.GetComponent<UnitInformation>();
+
+        //tower.transform.position = playerCubeTopFace.transform.Find("7").transform.position;
+        //tower.transform.rotation = playerCubeTopFace.transform.Find("7").transform.rotation;
+        //tower.transform.Rotate(0.0f, 180.0f, 0.0f);
+        //// Set unit as a child of the unitPlane
+        //tower.transform.SetParent(playerCubeTopFace.transform.Find("7").transform);
+
+        //towerInfo.ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
+
+        //yield return new WaitForSeconds(8f);
+
+        //towerInfo.DoAttackAnimation();
+        //yield return new WaitForSeconds(1.25f);
+        //AttackSpot(towerInfo.AttackParticle, enemyTopFace, "1");
         //AttackSpot(towerInfo.AttackParticle, enemyTopFace, "2");
         //AttackSpot(towerInfo.AttackParticle, enemyTopFace, "4");
         //AttackSpot(towerInfo.AttackParticle, enemyTopFace, "5");
 
-        yield return new WaitForSeconds(0.0f);
-        StartCoroutine(e1Info.Die());
+        //yield return new WaitForSeconds(0.0f);
+        //StartCoroutine(e1Info.Die());
         //StartCoroutine(e2Info.Die());
 
 
@@ -203,21 +203,21 @@ public class VideoScript : MonoBehaviour
 
         //----------------------------------------------------------------------------------------------------------------------------------------------------
 
-        //GameObject realUnit3 = Instantiate(unit3);
-        //UnitInformation unitInfo3 = realUnit3.transform.GetComponent<UnitInformation>();
+        GameObject realUnit3 = Instantiate(unit3);
+        UnitInformation unitInfo3 = realUnit3.transform.GetComponent<UnitInformation>();
 
-        //realUnit3.transform.position = playerCubeLeftFace.transform.Find("5").transform.position;
-        //realUnit3.transform.rotation = playerCubeLeftFace.transform.Find("5").transform.rotation;
-        //realUnit3.transform.Rotate(0.0f,  180.0f, 0.0f);
+        realUnit3.transform.position = playerCubeTopFace.transform.Find("5").transform.position;
+        realUnit3.transform.rotation = playerCubeTopFace.transform.Find("5").transform.rotation;
+        realUnit3.transform.Rotate(0.0f,  180.0f, 0.0f);
         //// Set unit as a child of the unitPlane
-        //realUnit3.transform.SetParent(playerCubeLeftFace.transform.Find("5").transform);
+        realUnit3.transform.SetParent(playerCubeTopFace.transform.Find("5").transform);
 
-        //unitInfo3.ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
+        unitInfo3.ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
 
-        //yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.5f);
 
-        //GameObject realUnit4 = Instantiate(towerPrefab);
-        //UnitInformation unitInfo4 = realUnit4.transform.GetComponent<UnitInformation>();
+        GameObject realUnit4 = Instantiate(towerPrefab);
+        UnitInformation unitInfo4 = realUnit4.transform.GetComponent<UnitInformation>();
 
         //realUnit4.transform.position = playerCubeRightFace.transform.Find("3").transform.position;
         //realUnit4.transform.rotation = playerCubeRightFace.transform.Find("3").transform.rotation;
@@ -227,22 +227,22 @@ public class VideoScript : MonoBehaviour
 
         //unitInfo4.ReColorUnit("Player", PlayerPrefs.GetString("CubeTheme"), PlayerPrefs.GetString("CubeColor"));
 
-        ////unitInfo3.DoAttackAnimation();
-        ////StartCoroutine(unitInfo3.Die());
+        //unitInfo3.DoAttackAnimation();
+        StartCoroutine(unitInfo3.Die());
 
-        //yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.0f);
 
         //gameManager.TranslateRotatePlayerCube("turn_L_down");
 
-        //AttackSpot(unitInfo3.AttackParticle, playerCubeTopFace, "3");
-        //AttackSpot(unitInfo3.AttackParticle, playerCubeTopFace, "2");
-        //AttackSpot(unitInfo3.AttackParticle, playerCubeTopFace, "5");
-        //AttackSpot(unitInfo3.AttackParticle, playerCubeTopFace, "6");
+        AttackSpot(unitInfo3.AttackParticle, playerCubeTopFace, "5");
+        AttackSpot(unitInfo3.AttackParticle, playerCubeTopFace, "6");
+        AttackSpot(unitInfo3.AttackParticle, playerCubeTopFace, "8");
+        AttackSpot(unitInfo3.AttackParticle, playerCubeTopFace, "9");
 
         //StartCoroutine(unitInfo3.Die());
         //unitInfo3.unitAnimator.SetTrigger("spawn");
-        //yield return new WaitForSeconds(1.0f);
-        //unitInfo3.DoAttackAnimation();
+        yield return new WaitForSeconds(1.0f);
+        unitInfo3.DoAttackAnimation();
 
 
     }

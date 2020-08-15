@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e85c4d66bca21744889d6134bacbbc8d
+guid: 46b4fb8dda37e48429e5b47c08c87a36
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
@@ -9,6 +9,9 @@ ModelImporter:
   - first:
       74: 6151719909873191375
     second: Armature|death01
+  - first:
+      74: 8711599017650471663
+    second: Armature|do it
   - first:
       74: -2569665297301669077
     second: Armature|get hit02-refine

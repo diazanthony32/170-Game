@@ -35,7 +35,7 @@ public class StartUp : MonoBehaviour
 
         if (PlayerPrefs.HasKey("CubeTheme")) {
             if (PlayerPrefs.HasKey("CubeColor")) {
-                print(("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Cube/Prefab"));
+                print(("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/"+ PlayerPrefs.GetString("CubeColor")));
                 GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/"+PlayerPrefs.GetString("CubeTheme")+"/Cube/Prefab"));
                 cube.transform.position = playerCubePosition.transform.position;
                 cube.transform.rotation = playerCubePosition.transform.rotation;
@@ -80,9 +80,9 @@ public class StartUp : MonoBehaviour
             sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
         }
 
-        if (Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background"))
+        if (Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/main_background"))
         {
-            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background");
+            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/main_background");
         }
 
         //Only for testing purposes. dont need this, this spawns the targetting system on the main menu cube
@@ -138,15 +138,16 @@ public class StartUp : MonoBehaviour
                         {
                             unitPrefab = Instantiate(Resources.Load<GameObject>("Themes/" + cubeInfo[0] + "/Units/Tower/Prefab"));
                         }
-                        else {
+                        else
+                        {
                             unitPrefab = Instantiate(Resources.Load<GameObject>("Themes/" + cubeInfo[0] + "/Units/" + unitFolder + "/Prefab"));
                         }
 
-                        print("spawned a " + unitPrefab.GetComponent<UnitInformation>().unitName);
+                        //print("spawned a " + unitPrefab.GetComponent<UnitInformation>().unitName);
 
                         if (unitPoints >= unitPrefab.GetComponent<UnitInformation>().unitSpawnCost) {
                             //unitPrefab.transform.SetParent(playerCubeTransform.GetChild(x).GetChild(i));
-                            print("inside placement check");
+                            //print("inside placement check");
                             if (unitPrefab.GetComponent<UnitInformation>().isTower && towerCount != 0) {
 
                                 // the variable responible for allowing the Tower to be Placed on a face
@@ -186,7 +187,7 @@ public class StartUp : MonoBehaviour
                                 }
                                 else
                                 {
-                                    print("destroyed a " + unitPrefab.GetComponent<UnitInformation>().unitName);
+                                    //print("destroyed a " + unitPrefab.GetComponent<UnitInformation>().unitName);
                                     Destroy(unitPrefab);
                                 }
                             }
@@ -203,20 +204,20 @@ public class StartUp : MonoBehaviour
                             }
                             else
                             {
-                                print("destroyed a " + unitPrefab.GetComponent<UnitInformation>().unitName);
+                                //print("destroyed a " + unitPrefab.GetComponent<UnitInformation>().unitName);
                                 Destroy(unitPrefab);
                             }
                         }
                         else
                         {
-                            print("destroyed a " + unitPrefab.GetComponent<UnitInformation>().unitName);
+                            //print("destroyed a " + unitPrefab.GetComponent<UnitInformation>().unitName);
                             Destroy(unitPrefab);
                         }
                     }
                 }
 
-                print("unit points: " + unitPoints);
-                print("tower count: " + towerCount);
+                //print("unit points: " + unitPoints);
+                //print("tower count: " + towerCount);
 
             }
         }

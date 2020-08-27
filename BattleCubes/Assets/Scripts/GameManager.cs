@@ -152,8 +152,8 @@ public class GameManager : MonoBehaviour
 
         playerCanvas.transform.Find("PlayerAPCounter").Find("Count").GetComponent<TextMeshProUGUI>().text = actionPoints.ToString();
 
-        if (Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background")) {
-            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Background");
+        if (Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/game_background")) {
+            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/game_background");
         }
 
         remainingTime = SET_UP_TIME;

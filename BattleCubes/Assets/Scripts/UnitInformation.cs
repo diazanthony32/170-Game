@@ -91,6 +91,9 @@ public class UnitInformation : MonoBehaviour
 	bool executed = false;
 	LayerMask mask;
 
+	//dab easter egg
+	int clickCount = 0;
+
 	// runs once the unit is created inside of the DragNDropUnits Script
 	void Start(){
 
@@ -121,6 +124,8 @@ public class UnitInformation : MonoBehaviour
 		if (isTower)
 		{
 			isVulnerable = false;
+			//ColorUtility.TryParseHtmlString("#259C00", out Color shieldColor);
+			//unitHealthBar.color = shieldColor;
 			//unitRenderer = transform.Find("UnitScaler").GetComponentInChildren<MeshRenderer>();
 		}
 		//else {
@@ -205,11 +210,6 @@ public class UnitInformation : MonoBehaviour
 			}
 		}
 
-		if (SceneManager.GetActiveScene().buildIndex != 0) 
-		{
-			unitHealthBar.fillAmount = unitCurrentHealth / unitHealth;
-		}
-
 	}
 
 	public void TakeDamage(int damageAmount, float impactDelay){
@@ -259,8 +259,17 @@ public class UnitInformation : MonoBehaviour
 			}
 		}
 
-		if(!safe){
+		if (!safe)
+		{
+			//green health
+			ColorUtility.TryParseHtmlString("#259C00", out Color shieldColor);
+			shieldColor.a = 0.8f;
+			unitHealthBar.color = shieldColor;
 			isVulnerable = true;
+		}
+		else {
+			//ColorUtility.TryParseHtmlString("#259C00", out Color shieldColor);
+			unitHealthBar.color = Color.yellow;
 		}
         return isVulnerable;
 	}
@@ -276,6 +285,24 @@ public class UnitInformation : MonoBehaviour
 	public void OnMouseUp()
 	{
 		pointerDown = false;
+
+		// should allow taps to trigger an animation
+		if (pointerDownTimer < requiredHoldTime )
+		{
+			clickCount++;
+
+			if (unitSpawnNoise && (clickCount%5) != 0)
+			{
+				unitAudioSource.PlayOneShot(unitSpawnNoise);
+				unitAnimator.SetTrigger("spawn");
+
+			}
+			else if((clickCount % 5) == 0 && unitName == "TankBoi")
+			{
+				unitAnimator.SetTrigger("dab");
+			}
+		}
+
 		pointerDownTimer = 0;
 		
 	}
@@ -459,6 +486,7 @@ public class UnitInformation : MonoBehaviour
 		}
         gameManager.UpdateShields();
     }
+
     IEnumerator DelayImpact(int damageAmount, float impactDelay) {
         yield return new WaitForSeconds(impactDelay);
 
@@ -481,14 +509,26 @@ public class UnitInformation : MonoBehaviour
 
                 }
 
-                //unitAudioSource.PlayOneShot(unitHitNoise);
-                //unitAnimator.SetTrigger("Hit");
+				// makes units health red if 25% health
+				if (unitCurrentHealth <= (unitHealth / 4)) {
+					Color temp = Color.red;
+					temp.a = 0.8f;
+					unitHealthBar.color = temp;
+				}
 
-                //if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
-                //{
-                //Handheld.Vibrate();
-                //}
-            }
+				//if (SceneManager.GetActiveScene().buildIndex != 0)
+				//{
+					unitHealthBar.fillAmount = unitCurrentHealth / unitHealth;
+				//}
+
+				//unitAudioSource.PlayOneShot(unitHitNoise);
+				//unitAnimator.SetTrigger("Hit");
+
+				//if (transform.parent.parent.parent.parent.gameObject.tag == "PlayerCubePosition")
+				//{
+				//Handheld.Vibrate();
+				//}
+			}
 
             if (unitAnimator) {
                 unitAnimator.SetTrigger("hit");
@@ -516,298 +556,29 @@ public class UnitInformation : MonoBehaviour
 
     public void ReColorUnit(string player , string theme, string color) 
 	{
-		
 
-		for (int i = 0 ; i < unitRenderer.materials.Length ; i++) {
-			if (theme == "Demon") 
-			{
-				if (unitName == "TankBoi")
-				{
-					if (i == 0)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Back"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Back").shader;
+		if (!isTower)
+		{
 
-                        //print("set body color");
-                    }
-                    else if (i == 1)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Knee"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Knee").shader;
+			Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/u_color");
+			unitRenderer.material.CopyPropertiesFromMaterial(recolor);
+			unitRenderer.material.shader = recolor.shader;
 
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts");
+		}
+		else if (isTower)
+		{
+			Material s_color = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/t_shield");
+			unitRenderer.materials[0].CopyPropertiesFromMaterial(s_color);
+			unitRenderer.materials[0].shader = s_color.shader;
 
-                        //print("set bone colors");
-                    }
-                    else if (i == 2)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Shoulder"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Shoulder").shader;
-
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns");
-
-                        //print("set bone colors");
-                    }
-                    else if (i == 3)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Hip"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Hip").shader;
-
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-                        //print("set bone colors");
-                    }
-					else if (i == 4)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Arm"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Arm").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-						//print("set bone colors");
-					}
-					else if (i == 5)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Chest"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Chest").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-						//print("set bone colors");
-					}
-					else if (i == 6)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Spine"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Spine").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-						//print("set bone colors");
-					}
-					else if (i == 7)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Body"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Body").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-						//print("set bone colors");
-					}
-					else if (i == 8)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-						//print("set bone colors");
-					}
-					else if (i == 9 || i == 12)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Hole"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Hole").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-						//print("set bone colors");
-					}
-					else if (i == 10)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Horn"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Horn").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-						//print("set bone colors");
-					}
-					else if (i == 11)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Claw"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Claw").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-						//print("set bone colors");
-					}
-					else
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/ERROR"));
-						//print("set bone colors");
-					}
-				}
-				else if (unitName == "SniperBoi")
-				{
-					if (i == 0 || i == 2)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Hole"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Hole").shader;
-
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-                        //print("set body color");
-                    }
-                    else if (i == 1 || i == 9 || i == 7)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head").shader;
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts");
-
-                        //print("set body color");
-                    }
-                    else if (i == 4)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Body"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Body").shader;
-
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
-
-                        //print("set body color");
-                    }
-					else if (i == 3 || i == 5)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Arm"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Arm").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
-
-						//print("set body color");
-					}
-					else if (i == 8)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Shoulder"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Shoulder").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
-
-						//print("set body color");
-					}
-					else if (i == 6)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Claw"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Claw").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-
-						//print("set bone colors");
-					}
-					else
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/ERROR"));
-						//print("set bone colors");
-					}
-				}
-				else if (unitName == "SingleBoi")
-				{
-					if (i == 0 || i == 8)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head").shader;
-
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts");
-                        //print("set body color");
-                    }
-                    else if (i == 1)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Body"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Body").shader;
-
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
-
-                        //print("set body color");
-                    }
-                    else if (i == 2 || i == 3)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head").shader;
-
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns");
-
-                        //print("set body color");
-                    }
-                    else if (i == 4)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Horn"));
-                        unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Horn").shader;
-
-                        //unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-                        //print("set body color");
-                    }
-					else if (i == 5 || i == 7)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Hole"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Hole").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-						//print("set body color");
-					}
-					else if (i == 6 )
-					{
-						//eyebrows
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Shoulder"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Shoulder").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-						//print("set body color");
-					}
-					else
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/ERROR"));
-						//print("set bone colors");
-					}
-				}
-				else if (unitName == "TowerBoi")
-				{
-					if (i == 3)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Head").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/BoneParts");
-						//print("set body color");
-					}
-					else if (i == 1)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Chain"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Chain").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
-
-						//print("set body color");
-					}
-					else if (i == 0)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/SHIELD"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/SHIELD").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Body");
-
-						//print("set body color");
-					}
-					else if (i == 4)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/MainBody"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/MainBody").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Horns");
-
-						//print("set body color");
-					}
-					else if (i == 2)
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Gem"));
-						unitRenderer.materials[i].shader = Resources.Load<Material>("Themes/Demon/Colors/" + color + "/Gem").shader;
-
-						//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/Holes");
-						//print("set body color");
-					}
-					else
-					{
-						unitRenderer.materials[i].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/Demon/Colors/" + color + "/ERROR"));
-						//print("set bone colors");
-					}
-				}
-			}
-			//unitRenderer.materials[i] = Resources.Load<Material>("Themes/Demons/Colors/" + PlayerPrefs.GetString("CubeColor") + "Body");
+			//Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/u_color");
+			//unitRenderer.materials[1].CopyPropertiesFromMaterial(recolor);
+			//unitRenderer.materials[1].shader = recolor.shader;
+		}
+		else {
+			Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/ERROR");
+			unitRenderer.material.CopyPropertiesFromMaterial(recolor);
+			unitRenderer.material.shader = recolor.shader;
 		}
 
 	}

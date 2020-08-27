@@ -51,8 +51,11 @@ public class CubeInformation : MonoBehaviour {
             //this.transform.GetChild(i).GetComponent<MeshRenderer>();
 
             for (int j = 0; j < this.transform.GetChild(i).GetComponent<MeshRenderer>().materials.Length; j++) {
-                this.transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].CopyPropertiesFromMaterial(Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/CUBE"));
-                this.transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].shader = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/CUBE").shader;
+
+                Material c_recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/c_color");
+
+                this.transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].CopyPropertiesFromMaterial(c_recolor);
+                this.transform.GetChild(i).GetComponent<MeshRenderer>().materials[j].shader = c_recolor.shader;
             }
 
         }

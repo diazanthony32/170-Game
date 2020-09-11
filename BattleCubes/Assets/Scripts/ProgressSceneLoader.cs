@@ -58,15 +58,16 @@ public class ProgressSceneLoader : MonoBehaviour
     private IEnumerator BeginLoad(int i) {
         operation = SceneManager.LoadSceneAsync(i);
 
-        while (!operation.isDone) {
+        while (operation != null && !operation.isDone) {
             UpdateProgressUI(operation.progress);
-            //print(operation);
             yield return null;
         }
 
-        UpdateProgressUI(operation.progress);
-        operation = null;
-        canvas.gameObject.SetActive(false);
+        if (operation != null) {
+            UpdateProgressUI(operation.progress);
+            operation = null;
+            canvas.gameObject.SetActive(false);
+        }
     }
 
     private void UpdateProgressUI(float progress) {

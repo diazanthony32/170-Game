@@ -547,11 +547,16 @@ public class UnitInformation : MonoBehaviour
     }
     
     private void OnDestroy() {
-        if (!isTower) {
-            if (gameManager) {
-                gameManager.UpdateShields();
-            }
-        }
+		if (SceneManager.GetActiveScene().buildIndex != 0)
+		{
+			if (!isTower)
+			{
+				if (gameManager)
+				{
+					gameManager.UpdateShields();
+				}
+			}
+		}
     }
 
     public void ReColorUnit(string player , string theme, string color) 
@@ -567,13 +572,23 @@ public class UnitInformation : MonoBehaviour
 		}
 		else if (isTower)
 		{
-			Material s_color = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/t_shield");
-			unitRenderer.materials[0].CopyPropertiesFromMaterial(s_color);
-			unitRenderer.materials[0].shader = s_color.shader;
+			if (unitRenderer.materials.Length > 1)
+			{
+				Material s_color = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/t_shield");
+				unitRenderer.materials[0].CopyPropertiesFromMaterial(s_color);
+				unitRenderer.materials[0].shader = s_color.shader;
 
-			//Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/u_color");
-			//unitRenderer.materials[1].CopyPropertiesFromMaterial(recolor);
-			//unitRenderer.materials[1].shader = recolor.shader;
+				Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/u_color");
+				unitRenderer.materials[1].CopyPropertiesFromMaterial(recolor);
+				unitRenderer.materials[1].shader = recolor.shader;
+
+			}
+			else
+			{
+				Material s_color = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/t_shield");
+				unitRenderer.materials[0].CopyPropertiesFromMaterial(s_color);
+				unitRenderer.materials[0].shader = s_color.shader;
+			}
 		}
 		else {
 			Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/ERROR");

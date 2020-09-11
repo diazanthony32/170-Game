@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demon
+  CubeTheme: 
   CubeColor: Purple
   background: {fileID: 287518078}
 --- !u!1 &28067739
@@ -3090,7 +3090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demon
+  CubeTheme: 
   CubeColor: Ash
   background: {fileID: 287518078}
 --- !u!1 &243425875
@@ -3561,7 +3561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demon
+  CubeTheme: 
   CubeColor: DefaultColor
   background: {fileID: 287518078}
 --- !u!1 &250055360
@@ -4470,7 +4470,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demon
+  CubeTheme: 
   CubeColor: Blue
   background: {fileID: 287518078}
 --- !u!1001 &362883772
@@ -6191,7 +6191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demon
+  CubeTheme: 
   CubeColor: Black
   background: {fileID: 287518078}
 --- !u!1 &472448476
@@ -7239,7 +7239,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 47.8
+  m_fontSize: 47.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8136,7 +8136,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: 29.99997
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -10660,7 +10660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demon
+  CubeTheme: 
   CubeColor: Ground
   background: {fileID: 287518078}
 --- !u!1001 &803563554
@@ -12498,7 +12498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demon
+  CubeTheme: 
   CubeColor: Bone
   background: {fileID: 287518078}
 --- !u!1 &947333440
@@ -12960,8 +12960,8 @@ MonoBehaviour:
   - 'Ever wonder whats new in an update? Tap on the <color=yellow>Version Number</color>
     on the top left of your screen to look at this version''s <color=yellow>Patch
     Notes</color>! '
-  - Congrats <color=yellow>UCSC class of 2020</color>! We made it through to the end.
-    Now, let's go into Battle!
+  - Congrats <color=yellow>UCSC class of 2020</color>! We made it through to the
+    end. Now, let's go into Battle!
   - '"<color=yellow>BAAATTLEcUUBEss</color>!" - Marcelo 2020'
   - <color=yellow>Rotate</color> your BattleCube here in the Main Menu! Simply <color=yellow>swipe</color>
     your BattleCube as much as your heart desires!
@@ -13127,7 +13127,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -13332,7 +13332,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091917, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_Name
-      value: Theme 2
+      value: Temp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a404d82d9243f4848af2d6b60badd9f6, type: 3}
@@ -19483,7 +19483,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 40140048580091913, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
@@ -19688,7 +19688,7 @@ PrefabInstance:
     - target: {fileID: 40140048580091917, guid: a404d82d9243f4848af2d6b60badd9f6,
         type: 3}
       propertyPath: m_Name
-      value: Theme 1
+      value: Demon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a404d82d9243f4848af2d6b60badd9f6, type: 3}
@@ -20814,9 +20814,9 @@ MonoBehaviour:
     see this as this is a long test feild to see how the layer mask works in unity.
     Hi Marcelo :) *Sings BattleCubes Magestically*. Wow, Networking is hard lmao.
     Why did we do this to ourselves :). #GraduationHeldInAnimalCrossing Hopefully
-    my team doesnt see this lmao or this would be funny to try and explain. I''m proud
-    of every single member on our team, and as well as all the teams in the 170 series,
-    all your games look awesome. '
+    my team doesnt see this lmao or this would be funny to try and explain. I''m
+    proud of every single member on our team, and as well as all the teams in the
+    170 series, all your games look awesome. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -21411,6 +21411,41 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -95}
   m_SizeDelta: {x: -492.7, y: -406.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1661490228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1661490229}
+  m_Layer: 5
+  m_Name: ' '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1661490229
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661490228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1761049680}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1666517808
 GameObject:
@@ -23144,6 +23179,7 @@ RectTransform:
   - {fileID: 1913667989}
   - {fileID: 803118697}
   - {fileID: 1733778741}
+  - {fileID: 1661490229}
   - {fileID: 1510059768}
   - {fileID: 966864969}
   m_Father: {fileID: 1406997361}
@@ -28311,7 +28347,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1794767544
 GameObject:
@@ -30484,7 +30520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swiperPannel: {fileID: 955415339}
-  CubeTheme: Demon
+  CubeTheme: 
   CubeColor: Neon
   background: {fileID: 287518078}
 --- !u!1 &1921113837

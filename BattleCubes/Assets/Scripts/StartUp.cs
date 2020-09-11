@@ -34,7 +34,9 @@ public class StartUp : MonoBehaviour
         }
 
         if (PlayerPrefs.HasKey("CubeTheme")) {
+            print(PlayerPrefs.GetString("CubeTheme"));
             if (PlayerPrefs.HasKey("CubeColor")) {
+                print(PlayerPrefs.GetString("CubeColor"));
                 print(("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/"+ PlayerPrefs.GetString("CubeColor")));
                 GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/"+PlayerPrefs.GetString("CubeTheme")+"/Cube/Prefab"));
                 cube.transform.position = playerCubePosition.transform.position;

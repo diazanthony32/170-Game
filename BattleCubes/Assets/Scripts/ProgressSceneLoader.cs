@@ -12,12 +12,20 @@ public class ProgressSceneLoader : MonoBehaviour
     [SerializeField] TextMeshProUGUI ProgressText;
     [SerializeField] Slider ProgressBar;
 
+    private static bool ProgressSceneLoaderExists;
+
     private AsyncOperation operation;
     private Canvas canvas;
 
     public void Awake() {
-        canvas = GetComponentInChildren<Canvas>(true);
-        DontDestroyOnLoad(gameObject);
+        if (!ProgressSceneLoaderExists) {
+            ProgressSceneLoaderExists = true;
+            canvas = GetComponentInChildren<Canvas>(true);
+            DontDestroyOnLoad(gameObject);
+        }
+        else {
+            Destroy(gameObject);
+        }
     }
 
     public void Loadscene(string sceneName = "") {
@@ -52,6 +60,7 @@ public class ProgressSceneLoader : MonoBehaviour
 
         while (!operation.isDone) {
             UpdateProgressUI(operation.progress);
+            //print(operation);
             yield return null;
         }
 

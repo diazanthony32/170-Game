@@ -1,8 +1,6 @@
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\PhotonRealtime.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\PhotonRealtime.pdb
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Boo.Lang.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\ICSharpCode.NRefactory.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Microsoft.CSharp.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Microsoft.Win32.Primitives.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\mscorlib.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\netstandard.dll
@@ -13,7 +11,6 @@ E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Collections.Co
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Collections.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Collections.NonGeneric.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Collections.Specialized.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ComponentModel.Annotations.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ComponentModel.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ComponentModel.EventBasedAsync.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ComponentModel.Primitives.dll
@@ -51,7 +48,6 @@ E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Linq.Expressio
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Linq.Parallel.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Linq.Queryable.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Net.Http.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Net.Http.Rtc.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Net.NameResolution.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Net.NetworkInformation.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Net.Ping.dll
@@ -66,9 +62,6 @@ E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Numerics.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Numerics.Vectors.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ObjectModel.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Reflection.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Reflection.Emit.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Reflection.Emit.ILGeneration.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Reflection.Emit.Lightweight.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Reflection.Extensions.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Reflection.Primitives.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Resources.Reader.dll
@@ -95,11 +88,6 @@ E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Security.Crypt
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Security.Cryptography.X509Certificates.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Security.Principal.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Security.SecureString.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ServiceModel.Duplex.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ServiceModel.Http.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ServiceModel.NetTcp.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ServiceModel.Primitives.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ServiceModel.Security.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Text.Encoding.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Text.Encoding.Extensions.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Text.RegularExpressions.dll
@@ -190,8 +178,6 @@ E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\UnityEngine.VideoModu
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\UnityEngine.VRModule.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\UnityEngine.WindModule.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\UnityEngine.XRModule.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\UnityScript.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\UnityScript.Lang.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\websocket-sharp.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Unity.CompilationPipeline.Common.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Unity.Cecil.dll
@@ -199,10 +185,6 @@ E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Unity.SerializationLo
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\ExCSS.Unity.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Unity.Legacy.NRefactory.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\SyntaxTree.VisualStudio.Unity.Messaging.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Boo.Lang.Compiler.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Boo.Lang.PatternMatching.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Boo.Lang.Parser.dll
-E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Boo.Lang.Useful.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\Unity.CecilTools.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\PhotonWebSocket.pdb
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\UnityEngine.xml
@@ -278,3 +260,15 @@ E:\Alejandro\code\UCSC\170-Game\BattleCubes\obj\Debug\PhotonRealtime.csproj.Core
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\obj\Debug\PhotonRealtime.csproj.CopyComplete
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\obj\Debug\PhotonRealtime.dll
 E:\Alejandro\code\UCSC\170-Game\BattleCubes\obj\Debug\PhotonRealtime.pdb
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\JMOAssets_CartoonFXFreeWelcome.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ComponentModel.Composition.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Diagnostics.Tracing.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Drawing.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.IO.Compression.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.IO.Compression.FileSystem.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Net.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.ServiceModel.Web.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Transactions.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Web.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Windows.dll
+E:\Alejandro\code\UCSC\170-Game\BattleCubes\Temp\bin\Debug\System.Xml.Serialization.dll

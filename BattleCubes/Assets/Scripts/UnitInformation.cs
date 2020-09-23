@@ -564,7 +564,6 @@ public class UnitInformation : MonoBehaviour
 
 		if (!isTower)
 		{
-
 			Material recolor = Resources.Load<Material>("Themes/" + theme + "/Colors/" + color + "/u_color");
 			unitRenderer.material.CopyPropertiesFromMaterial(recolor);
 			unitRenderer.material.shader = recolor.shader;

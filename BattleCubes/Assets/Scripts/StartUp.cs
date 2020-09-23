@@ -16,9 +16,7 @@ public class StartUp : MonoBehaviour
     [SerializeField] Slider sfxSlider;
     [SerializeField] GameObject background;
 
-
     CubeInformation cubeInformation;
-
 
     void Start()
     {
@@ -53,7 +51,7 @@ public class StartUp : MonoBehaviour
                 cube.transform.SetParent(playerCubePosition.transform);
 
                 PlayerPrefs.SetString("CubeTheme", "Demon");
-                PlayerPrefs.SetString("CubeColor", "DefaultColor");
+                PlayerPrefs.SetString("CubeColor", "0");
 
                 cubeInformation = cube.GetComponent<CubeInformation>();
 
@@ -66,7 +64,7 @@ public class StartUp : MonoBehaviour
             cube.transform.SetParent(playerCubePosition.transform);
 
             PlayerPrefs.SetString("CubeTheme", "Demon");
-            PlayerPrefs.SetString("CubeColor", "DefaultColor");
+            PlayerPrefs.SetString("CubeColor", "0");
 
             cubeInformation = cube.GetComponent<CubeInformation>();
         }

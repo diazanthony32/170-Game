@@ -28,6 +28,7 @@ TagManager:
   - tutorialManager
   - infoMenu
   - progressSceneLoader
+  - colors
   layers:
   - Default
   - TransparentFX

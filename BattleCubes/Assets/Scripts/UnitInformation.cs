@@ -297,7 +297,7 @@ public class UnitInformation : MonoBehaviour
 				unitAnimator.SetTrigger("spawn");
 
 			}
-			else if((clickCount % 5) == 0 && unitName == "TankBoi")
+			else if((clickCount % 10) == 0 && unitName == "TankBoi")
 			{
 				unitAnimator.SetTrigger("dab");
 			}

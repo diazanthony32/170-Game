@@ -12,12 +12,20 @@ public class ProgressSceneLoader : MonoBehaviour
     [SerializeField] TextMeshProUGUI ProgressText;
     [SerializeField] Slider ProgressBar;
 
+    private static bool ProgressSceneLoaderExists;
+
     private AsyncOperation operation;
     private Canvas canvas;
 
     public void Awake() {
-        canvas = GetComponentInChildren<Canvas>(true);
-        DontDestroyOnLoad(gameObject);
+        if (!ProgressSceneLoaderExists) {
+            ProgressSceneLoaderExists = true;
+            canvas = GetComponentInChildren<Canvas>(true);
+            DontDestroyOnLoad(gameObject);
+        }
+        else {
+            Destroy(gameObject);
+        }
     }
 
     public void Loadscene(string sceneName = "") {
@@ -37,27 +45,40 @@ public class ProgressSceneLoader : MonoBehaviour
     private IEnumerator BeginLoad(string sceneName) {
         operation = SceneManager.LoadSceneAsync(sceneName);
 
-        while (!operation.isDone) {
+        while (operation != null && !operation.isDone) {
             UpdateProgressUI(operation.progress);
             yield return null;
         }
 
-        UpdateProgressUI(operation.progress);
-        operation = null;
-        canvas.gameObject.SetActive(false);
+        if (operation != null) {
+            UpdateProgressUI(operation.progress);
+            operation = null;
+            canvas.gameObject.SetActive(false);
+        }
+
+        //while (!operation.isDone) {
+        //    UpdateProgressUI(operation.progress);
+        //    yield return null;
+        //}
+
+        //UpdateProgressUI(operation.progress);
+        //operation = null;
+        //canvas.gameObject.SetActive(false);
     }
 
     private IEnumerator BeginLoad(int i) {
         operation = SceneManager.LoadSceneAsync(i);
 
-        while (!operation.isDone) {
+        while (operation != null && !operation.isDone) {
             UpdateProgressUI(operation.progress);
             yield return null;
         }
 
-        UpdateProgressUI(operation.progress);
-        operation = null;
-        canvas.gameObject.SetActive(false);
+        if (operation != null) {
+            UpdateProgressUI(operation.progress);
+            operation = null;
+            canvas.gameObject.SetActive(false);
+        }
     }
 
     private void UpdateProgressUI(float progress) {

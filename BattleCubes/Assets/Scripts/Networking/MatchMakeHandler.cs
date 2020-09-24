@@ -100,7 +100,7 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
 
     //this what player 2 does
     public override void OnJoinedRoom() {
-        Debug.Log("client joined the room succesfully");
+        Debug.Log("client joined the room successfully");
 
         int playerCount = PhotonNetwork.CurrentRoom.PlayerCount;
 
@@ -117,6 +117,7 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
             //LevelLoader levelLoader = GameObject.FindGameObjectWithTag("levelLoader").GetComponent<LevelLoader>();
             //levelLoader.FadeOutLevel("MainScene");
             //PhotonNetwork.LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            FindObjectOfType<ProgressSceneLoader>().Loadscene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
@@ -154,5 +155,4 @@ public class MatchMakeHandler : MonoBehaviourPunCallbacks
     public void CancelSearch() {
         PhotonNetwork.Disconnect();
     }
-
 }

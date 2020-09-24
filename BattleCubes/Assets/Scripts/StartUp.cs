@@ -31,11 +31,11 @@ public class StartUp : MonoBehaviour
             mainMenu.SetActive(false);
         }
 
-        if (PlayerPrefs.HasKey("CubeTheme")) {
+        if (PlayerPrefs.HasKey("CubeTheme") && PlayerPrefs.GetString("CubeTheme") != "Coming Soon") {
             print(PlayerPrefs.GetString("CubeTheme"));
             if (PlayerPrefs.HasKey("CubeColor")) {
                 print(PlayerPrefs.GetString("CubeColor"));
-                print(("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/"+ PlayerPrefs.GetString("CubeColor")));
+                
                 GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/"+PlayerPrefs.GetString("CubeTheme")+"/Cube/Prefab"));
                 cube.transform.position = playerCubePosition.transform.position;
                 cube.transform.rotation = playerCubePosition.transform.rotation;
@@ -45,7 +45,7 @@ public class StartUp : MonoBehaviour
 
             }
             else {
-                GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Cube/Prefab"));
+                GameObject cube = Instantiate(Resources.Load<GameObject>("Themes/Demon/Cube/Prefab"));
                 cube.transform.position = playerCubePosition.transform.position;
                 cube.transform.rotation = playerCubePosition.transform.rotation;
                 cube.transform.SetParent(playerCubePosition.transform);
@@ -80,21 +80,24 @@ public class StartUp : MonoBehaviour
             sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
         }
 
-        if (Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/main_background"))
+        if (Resources.Load<Sprite>("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Colors/" + PlayerPrefs.GetString("CubeColor") + "/main_background"))
         {
-            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/Demon/Colors/" + PlayerPrefs.GetString("CubeColor") + "/main_background");
+            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/" + PlayerPrefs.GetString("CubeTheme") + "/Colors/" + PlayerPrefs.GetString("CubeColor") + "/main_background");
+        }
+        else {
+            background.GetComponent<Image>().sprite = Resources.Load<Sprite>("Themes/Demon/Colors/0/main_background");
         }
 
         //Only for testing purposes. dont need this, this spawns the targetting system on the main menu cube
-        GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("MainCubePrefab/CubeTargeting"));
-        cubeTargeting.transform.position = playerCubePosition.transform.position;
-        cubeTargeting.transform.rotation = playerCubePosition.transform.rotation;
-        cubeTargeting.transform.SetParent(playerCubePosition.transform);
+        //GameObject cubeTargeting = Instantiate(Resources.Load<GameObject>("MainCubePrefab/CubeTargeting"));
+        //cubeTargeting.transform.position = playerCubePosition.transform.position;
+        //cubeTargeting.transform.rotation = playerCubePosition.transform.rotation;
+        //cubeTargeting.transform.SetParent(playerCubePosition.transform);
 
-        GameObject cubeAttackChecker = Instantiate(Resources.Load<GameObject>("MainCubePrefab/AttackChecker"));
-        cubeAttackChecker.transform.position = playerCubePosition.transform.position;
-        cubeAttackChecker.transform.rotation = playerCubePosition.transform.rotation;
-        cubeAttackChecker.transform.SetParent(playerCubePosition.transform);
+        //GameObject cubeAttackChecker = Instantiate(Resources.Load<GameObject>("MainCubePrefab/AttackChecker"));
+        //cubeAttackChecker.transform.position = playerCubePosition.transform.position;
+        //cubeAttackChecker.transform.rotation = playerCubePosition.transform.rotation;
+        //cubeAttackChecker.transform.SetParent(playerCubePosition.transform);
 
         GameObject cubeHideUnits = Instantiate(Resources.Load<GameObject>("MainCubePrefab/HideUnits"));
         cubeHideUnits.transform.position = playerCubePosition.transform.position;

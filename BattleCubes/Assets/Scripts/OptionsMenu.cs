@@ -29,13 +29,19 @@ public class OptionsMenu : MonoBehaviour
 
     public void OpenTwitter()
     {
-        Application.OpenURL("https://twitter.com/BattleCubesGame");
+        Application.OpenURL("https://twitter.com/MBGames__");
 
     }
 
     public void OpenWebsite()
     {
         Application.OpenURL("mentalblockgames.com");
+
+    }
+
+    public void OpenTwitch()
+    {
+        Application.OpenURL("https://www.twitch.tv/mentalblockgames");
 
     }
 }

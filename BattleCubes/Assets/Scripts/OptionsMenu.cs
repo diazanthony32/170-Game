@@ -35,7 +35,7 @@ public class OptionsMenu : MonoBehaviour
 
     public void OpenWebsite()
     {
-        Application.OpenURL("https://battlecubes.sites.ucsc.edu/");
+        Application.OpenURL("mentalblockgames.com");
 
     }
 }
